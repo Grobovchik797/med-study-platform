@@ -20,7 +20,9 @@ jobs:
       - name: Generate installable app icons
         run: python3 scripts/generate_icons.py
       - name: Validate PWA assets and manifest
-        run: python3 scripts/validate_pwa.py
+        run: |
+          python3 scripts/validate_pwa.py
+          python3 scripts/validate_illustrations.py
       - name: Validate JavaScript syntax
         run: |
           node --check app.js
@@ -45,10 +47,11 @@ jobs:
       - name: Prepare website files
         run: |
           python3 scripts/generate_icons.py
-          mkdir -p _site/data _site/icons
+          mkdir -p _site/data _site/icons _site/illustrations
           cp index.html styles.css app.js sw.js manifest.webmanifest .nojekyll _site/
           cp data/questions.json data/lesson.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
+          cp illustrations/*.svg _site/illustrations/
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v4
         with:
