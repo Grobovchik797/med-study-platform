@@ -722,7 +722,20 @@ function showStats() {
       append(box,element('p','note','По этой теме тестов пока нет, поэтому и статистика не собирается.'));
       main.append(box);continue;
     }
-    append(box,element('p','muted','Ниже результаты ВНС по смысловым разделам. Считаются все ответы, включая повторения.'));
+    if(topic.id==='histology-small-intestine'){
+      const data=window.MedStudySI?.readProgress();
+      if(data){
+        append(box,element('p','muted','Завершено тренировок по тонкой кишке: '+data.sessions+' · вопросов на повторение: '+data.missed.length));
+        for(const [level,name] of [['easy','Лёгкий'],['medium','Средний'],['hard','Сложный']]){
+          const x=data.byDifficulty[level],label=element('div','topic-stat-line');
+          append(label,element('strong','',name),element('span','muted',x?'Тренировок: '+x.sessions+' · лучший результат '+x.best+'%':'Тренировок пока нет'));
+          box.append(label);
+        }
+      }
+      main.append(box);
+      continue;
+    }
+    append(box,element('p','muted','Результаты ВНС по смысловым разделам. Считаются все ответы, включая повторения.'));
     const subtopics=[...new Set(questionBank.questions.map(q=>q.topic))];
     for(const subtopic of subtopics){
       const entry=progress.topicStats[subtopic]||{attempts:0,correct:0};
@@ -774,15 +787,21 @@ function showInstallGuide() {
 function showMistakes() {
   view = 'mistakes'; updateNav(); main.replaceChildren();
   main.append(titleArea('ПОВТОРЕНИЕ ПО ТЕМАМ', 'Работа над ошибками',
-    'Ошибки сохраняются по идентификаторам вопросов. Сейчас тестовый банк есть только по ВНС; по гистологии тесты в подготовке.'));
+    'Ошибки сгруппированы по учебным темам: отдельный банк ВНС и отдельный банк тонкой кишки.'));
   const entries=libraryEntries().filter(x=>x.topic.quiz);
   if(!entries.length){main.append(element('p','note','Пока нет тестовых банков.'));return;}
   for(const {subject,section,topic} of entries) {
     const module=element('section','card topic-stats');
     append(module,element('div','kicker',subject.name+' · '+section.title),
       element('h2','',topic.title));
-    // Current quiz engine has one bank (ANS). Next banks will be registered
-    // by topicId and stored separately, without mixing question IDs.
+    if(topic.id==='histology-small-intestine'){
+      const m=window.MedStudySI?.readProgress()?.missed?.length||0;
+      append(module,element('p','muted',m?'Нужно повторить: '+m:'Ошибок на повторение пока нет.'),
+        button(m?'Повторить вопросы →':'Открыть тему →',
+          m?showSmallIntestineQuiz:()=>showTopic(topic.id),'library-action'));
+      main.append(module);
+      continue;
+    }
     const questions=topic.id==='ans'?
       questionBank.questions.filter(q=>progress.mistakes.includes(q.id)):[];
     if(!questions.length) {
