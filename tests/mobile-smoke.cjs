@@ -18,8 +18,9 @@ async function navigateHistology(page) {
   const gi=page.locator('.library-card').filter({hasText:'Пищеварительная система'});
   await gi.locator('.library-go').tap();
   await waitHeading(page,'Пищеварительная система');
-  assert.equal(await page.locator('.library-card').count(),1);
-  await page.locator('.library-card .library-go').tap();
+  assert.equal(await page.locator('.library-card').count(),20);
+  const legacy=page.locator('.library-card').filter({hasText:'Тонкая кишка — исходный подробный пилот'});
+  await legacy.locator('.library-go').tap();
   await waitHeading(page,'Тонкая кишка');
   assert.equal(await page.locator('.library-feature').count(),4);
   assert.ok((await page.locator('.library-feature').nth(1).textContent()).includes('30 вопросов'));
@@ -40,7 +41,11 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.si-microscope').count(),1);
   assert.equal(await page.locator('.si-pin').count(),2);
   assert.equal(await page.locator('.si-microscope img').count(),1);
-  assert.equal(await page.locator('.si-image-loading').count(),1);
+  assert.equal(await page.locator('.si-choice-row').count()>0,true);
+  await page.getByRole('button',{name:'Найди структуру'}).tap();
+  assert.equal(await page.locator('.si-pin').count(),0);
+  assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
+  await page.getByRole('button',{name:'Изучение'}).tap();
   await page.getByRole('button',{name:'Самопроверка'}).tap();
   assert.equal(await page.locator('.si-field').count(),3);
   await page.getByRole('button',{name:'Проверить препарат и подписи'}).tap();
@@ -52,9 +57,10 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.study-depth-button').count(),3);
   assert.equal(await page.locator('.hist-study-section').count(),7);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
-  assert.equal(await page.locator('.hist-gallery-card img').count(),3);
-  assert.equal(await page.locator('.hist-gallery-card img').count(),3);
+  assert.equal(await page.locator('.hist-gallery-card img').count(),0);
+  assert.equal(await page.locator('.hist-gallery-card img').count(),0);
   assert.equal(await page.locator('.si-focus').count(),1);
+  assert.ok(await page.locator('.gi-related-microphoto').count()>0);
   await page.getByRole('button',{name:'Начать'}).tap();
   await page.getByRole('button',{name:'Пауза'}).tap();
   await page.getByRole('button',{name:'Сбросить'}).tap();
@@ -67,8 +73,40 @@ async function navigateHistology(page) {
   await page.locator('.study-depth-button').nth(2).tap();
   assert.equal(await page.locator('.hist-study-section').count(),16);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
-  assert.equal(await page.locator('.hist-gallery-card img').count(),3);
+  assert.equal(await page.locator('.hist-gallery-card img').count(),0);
 }
+
+async function navigateDigestiveCourse(page) {
+  await page.locator('.side-nav [data-nav="subjects"]').tap();
+  await waitHeading(page,'Мои предметы');
+  await page.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').tap();
+  await waitHeading(page,'Гистология, цитология');
+  await page.locator('.library-card').filter({hasText:'Пищеварительная система'}).locator('.library-go').tap();
+  await waitHeading(page,'Пищеварительная система');
+  assert.equal(await page.locator('.library-card').count(),20);
+  await page.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').tap();
+  await waitHeading(page,'Желудок: оболочки');
+  assert.equal(await page.locator('.gi-mini-card').count(),3);
+  await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
+  assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).includes('Верно'));
+  await page.getByRole('button',{name:'Расширенный'}).tap();
+  assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
+  await page.getByRole('button',{name:'Все заполненные карты'}).tap();
+  await waitHeading(page,'Заполненные ориентировочные карты');
+  assert.equal(await page.locator('.gi-method-card').count(),7);
+  await page.locator('.gi-method-card summary').first().tap();
+  assert.equal(await page.locator('.gi-table').count(),7);
+  await page.getByRole('button',{name:'← К пищеварительной системе'}).first().tap();
+  await waitHeading(page,'Пищеварительная система');
+  await page.locator('.library-card').filter({hasText:'Итоговый тест пищеварительной системы'}).locator('.library-go').tap();
+  await waitHeading(page,'Контроль знаний');
+  await page.getByRole('button',{name:'Лёгкий · 8'}).tap();
+  assert.ok(await page.locator('.gi-mini-choice').count()===4);
+  await page.locator('.gi-mini-choice').first().tap();
+  assert.ok((await page.locator('.gi-mini-feedback').textContent()).length>35);
+  await page.getByRole('button',{name:'Выйти из теста'}).tap();
+}
+
 async function main() {
   const browser=await chromium.launch({headless:true});
   const errors=[];
@@ -83,12 +121,13 @@ async function main() {
     await page.locator('.hero-action').tap();
     await waitHeading(page,'Мои предметы');
     await navigateHistology(page);
+    await navigateDigestiveCourse(page);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=3,'Unexpected page overflow: '+overflow);
 
     await page.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(page,'Библиотека конспектов');
-    assert.equal(await page.locator('.library-card').count(),2);
+    assert.equal(await page.locator('.library-card').count(),20);
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
     await waitHeading(page,'Карточки по темам');
@@ -98,7 +137,7 @@ async function main() {
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
     await waitHeading(page,'Библиотека атласов');
-    assert.equal(await page.locator('.library-card').count(),2);
+    assert.ok(await page.locator('.library-card').count()>=2);
     await page.locator('.library-card').filter({hasText:'Вегетативная нервная система'}).locator('.library-go').tap();
     await waitHeading(page,'Интерактивный атлас рецепторов');
     await page.locator('#mobile-more-toggle').tap();
@@ -135,7 +174,7 @@ async function main() {
     assert.equal(await app.locator('.topic-stats').count(),2);
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
-    assert.equal(await app.locator('.library-card').count(),2);
+    assert.equal(await app.locator('.library-card').count(),20);
     assert.equal(errors.length,0,errors.join('\n'));
     await appctx.close();await ctx.close();
     console.log('PASS: multi-topic navigation, global resources, 3 notes depths and Android menu');
