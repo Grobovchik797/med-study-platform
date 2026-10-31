@@ -1,8 +1,8 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v0.5.2";
+const CACHE = "med-study-shell-v0.6.0";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js",
-  "./data/questions.json", "./data/lesson.json", "./data/atlas.json",
+  "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./illustrations/pathways.svg", "./illustrations/receptors.svg", "./illustrations/organs.svg"
 ];
