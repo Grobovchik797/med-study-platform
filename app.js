@@ -37,6 +37,8 @@ let learningLibrary = null;
 let intestineData = null;
 let intestineQuizBank = null;
 let intestineSlides = null;
+let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null;
+let activeGIChapterId = null;
 let intestineDepth = 'intro';
 let selectedReceptor = 'beta1';
 let view = 'home';
@@ -103,7 +105,7 @@ function button(label, handler, className = 'action-button') {
 
 function updateNav() {
   for (const item of document.querySelectorAll('[data-nav]')) {
-    const navigationView = ({ lesson:'notes', intestine:'notes', atlas:'atlases',
+    const navigationView = ({ lesson:'notes', intestine:'notes', 'gi-chapter':'notes', 'gi-workbook':'notes', 'gi-exam':'subjects', atlas:'atlases',
       flashcards:'cards', subject:'subjects', section:'subjects', topic:'subjects' })[view] || view;
     const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
@@ -252,12 +254,46 @@ function showSmallIntestineQuiz() {
   window.MedStudySI.renderQuiz(main,intestineQuizBank,()=>showTopic('histology-small-intestine'));
   window.scrollTo(0,0);
 }
+function showGIChapter(id) {
+  if(!window.MedStudyGI || !giCurriculum)return showSubjects();
+  const chapter=giCurriculum.chapters.find(x=>x.id===id);
+  if(!chapter)return showSection('histology-cytology','digestive');
+  activeGIChapterId=id;
+  view='gi-chapter';updateNav();main.replaceChildren();
+  window.MedStudyGI.renderChapter(main,{
+    chapter,mini:giInlineBank.chapterQuestions[id],workbook:giWorkbook.maps,
+    onBack:()=>showSection('histology-cytology','digestive'),
+    onSlide:slide=>showSmallIntestineSlides(giSlideIndex(slide)),
+    onExam:showGIExam,onWorkbook:showGIWorkbook
+  });
+  window.scrollTo(0,0);
+}
+function giSlideIndex(id) {return Math.max(0,intestineSlides.images.findIndex(x=>x.id===id));}
+function showGIWorkbook() {
+  view='gi-workbook';updateNav();main.replaceChildren();
+  window.MedStudyGI.renderWorkbook(main,{maps:giWorkbook.maps,
+    onBack:()=>showSection('histology-cytology','digestive')});
+  window.scrollTo(0,0);
+}
+function showGIExam() {
+  view='gi-exam';updateNav();main.replaceChildren();
+  window.MedStudyGI.renderExam(main,{bank:giFinalBank,
+    onBack:()=>showSection('histology-cytology','digestive')});
+  window.scrollTo(0,0);
+}
 function showSmallIntestineSlides(initialIndex=0) {
   // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
   if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>2)initialIndex=0;
+  const from=view, scrollY=window.scrollY, chapterId=activeGIChapterId,depth=intestineDepth;
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
-  window.MedStudySI.renderSlides(main,intestineSlides,()=>showTopic('histology-small-intestine'),initialIndex);
+  const back=()=>{
+    if(from==='intestine'){intestineDepth=depth;showIntestine();}
+    else if(from==='gi-chapter'&&chapterId)showGIChapter(chapterId);
+    else showTopic('histology-small-intestine');
+    requestAnimationFrame(()=>window.scrollTo(0,scrollY));
+  };
+  window.MedStudySI.renderSlides(main,intestineSlides,back,initialIndex);
   window.scrollTo(0,0);
 }
 
@@ -266,6 +302,9 @@ function showTopic(topicId) {
   if(!entry){showSubjects();return;}
   view='topic';updateNav();main.replaceChildren();
   const {subject,section,topic}=entry;
+  if(topic.route==='gi-chapter')return showGIChapter(topic.chapterId);
+  if(topic.route==='gi-workbook')return showGIWorkbook();
+  if(topic.route==='gi-exam')return showGIExam();
   main.append(contextLink('← '+section.title,()=>showSection(subject.id,section.id)));
   main.append(titleArea(subject.name+' · '+section.title,topic.title,topic.hint));
   const box=element('div','library-features');
@@ -420,25 +459,17 @@ function histologyParagraph(value) {
   }
   return p;
 }
-function intestineIllustrations() {
-  const gallery=element('section','hist-visual-gallery');
-  append(gallery,element('div','kicker','АТЛАС В КАЖДОМ КОНСПЕКТЕ'),
-    element('h2','','Увидеть строение на препарате'),
-    element('p','','Три настоящие микрофотографии, включённые в Med Study. Для изучения, увеличения и самопроверки выбери препарат.'));
-  const grid=element('div','hist-gallery-grid');
-  for(const [i,slide] of intestineSlides.images.entries()){
-    const card=element('article','hist-gallery-card');
-    const img=element('img');
-    img.src='./'+slide.src;img.alt='Гистологический препарат: '+slide.title;
-    img.loading='lazy';img.decoding='async';
-    append(card,img,element('h3','',slide.title),
-      element('p','',slide.id==='jejunum'?'Определение отдела; клеточные метки пока не подтверждены.':
-        'Проверенные ориентиры для изучения и самопроверки.'),
-      button('Открыть микроскоп →',()=>showSmallIntestineSlides(i),'library-action'));
-    grid.append(card);
-  }
-  gallery.append(grid);
-  return gallery;
+function addMicroscopyContext(card,slide,idx) {
+  const fig=element('figure','gi-related-microphoto');
+  const img=element('img');
+  img.src=slide.src;img.alt='Реальный гистологический препарат: '+slide.title;
+  img.loading='lazy';img.decoding='async';
+  const status=element('p','gi-photo-fallback','');
+  img.addEventListener('error',()=>{status.textContent='Фото пока не загрузилось с внешнего сервера. Ты можешь открыть препарат и повторить загрузку.';});
+  const caption=element('figcaption','','Препарат по теме: '+slide.title+'. Нажми, чтобы изучить структуры и вернуться на это место.');
+  fig.append(img,caption,status,
+    button('Изучить этот препарат →',()=>showSmallIntestineSlides(idx),'gi-button'));
+  card.append(fig);
 }
 
 function showIntestine() {
@@ -470,24 +501,13 @@ function showIntestine() {
   main.append(focus);
   if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus);
   if(version.originStatement)main.append(element('p','si-source-note',version.originStatement));
-  const activities=element('div','si-note-actions');
-  append(activities,button('30 тестов →',showSmallIntestineQuiz,'library-action'),
-    button('Препараты и самопроверка →',showSmallIntestineSlides,'alt-button'));
-  main.append(activities);
-  {
-    const diagram=element('figure','histology-diagram');
-    const img=element('img','','Учебная схема ворсинки и крипты тонкой кишки');
-    img.src='./illustrations/small-intestine-schematic.svg';
-    img.alt='Авторская учебная схема: ворсинка, энтероциты, бокаловидная клетка, крипта и клетки Панета, собственная пластинка и подслизистая';
-    img.loading='lazy';
-    diagram.append(img,element('figcaption','','Схема для ориентации, не реальный гистологический препарат.'));
-    main.append(diagram);
-  }
+  // Resources belong near the content they illustrate, not above every note.
+
   const legend=element('div','hist-reading-legend');
   append(legend,element('span','','Фиолетовый · важный термин / NB'),
     element('span','','Бирюзовый · пояснение в скобках'));
   main.append(legend);
-  if(intestineSlides?.images?.length===3)main.append(intestineIllustrations());
+
   const toc=element('nav','study-toc');
   append(toc,element('strong','','Разделы · '+version.sections.length));
   for(let n=0;n<version.sections.length;n++) {
@@ -501,6 +521,20 @@ function showIntestine() {
     card.id='intestine-section-'+i;
     append(card,element('h2','',section.title));
     for(const paragraph of section.paragraphs) card.append(histologyParagraph(paragraph));
+    const label=section.title.toLowerCase();
+    if(/рельеф|ворсинк|слизистая|стенка/.test(label) && !main.querySelector('.histology-diagram')) {
+      const diagram=element('figure','histology-diagram');
+      const img=element('img');img.src='./illustrations/small-intestine-schematic.svg';
+      img.alt='Учебная схема ворсинки и крипты';img.loading='lazy';
+      diagram.append(img,element('figcaption','','Схема ворсинки и крипты (не микропрепарат).'));
+      card.append(diagram);
+    }
+    if(intestineSlides?.images?.length===3){
+      if(/сравнен|различить три отдела|определить.*отдел/.test(label)) {
+        for(const [ix,slide] of intestineSlides.images.entries())addMicroscopyContext(card,slide,ix);
+      } else if(/бруннер|железы бруннер/.test(label)) addMicroscopyContext(card,intestineSlides.images[0],0);
+      else if(/пейер|иммунная защита/.test(label)) addMicroscopyContext(card,intestineSlides.images[2],2);
+    }
     if(section.table) {
       const wrap=element('div','hist-table-scroll');
       const t=element('table','hist-table');
@@ -532,6 +566,9 @@ function showIntestine() {
   for(const value of intestineData.checklist) ul.append(element('li','',value));
   checklist.append(ul);
   main.append(checklist);
+  const endActions=element('div','si-note-actions');
+  endActions.append(button('Перейти к 30 большим тестам →',showSmallIntestineQuiz,'library-action'));
+  main.append(endActions);
   const future=element('section','card hist-study-section');
   append(future,element('h2','','Настоящие микропрепараты уже в пилоте'),
     element('p','hist-paragraph','Открой три лицензированных фотографии тонкой кишки. Подписи наложены только на достоверно различимые области. В режиме самопроверки назови отдел и подпиши метки; более подробный цифровой микроскоп — будущая версия.'));
@@ -540,7 +577,8 @@ function showIntestine() {
     l.href=item.url;l.target='_blank';l.rel='noopener noreferrer';future.append(l);
   }
   future.append(button('Открыть виртуальные препараты →',showSmallIntestineSlides,'library-action'));
-  main.append(future);
+  // Общий атлас доступен из раздела «Атласы»; не дублируем галерею на каждом экране конспекта.
+
 }
  
 function sampleQuestions(list, count) {
@@ -1035,9 +1073,13 @@ Promise.all([
   fetch('./data/histology-small-intestine.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/library.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/small-intestine-quiz.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/small-intestine-slides.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/small-intestine-slides.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/gi-curriculum.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI curriculum '+r.status);return r.json();}),
+  fetch('./data/gi-inline-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI mini '+r.status);return r.json();}),
+  fetch('./data/gi-final-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI exam '+r.status);return r.json();}),
+  fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1058,6 +1100,9 @@ Promise.all([
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
         !slides || slides.images?.length !== 3 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
+    if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.maps?.length!==7 ||
+      Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3))throw Error('Пищеварительная система: повреждены материалы');
+    giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
