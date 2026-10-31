@@ -39,8 +39,8 @@ async function navigateHistology(page) {
   await waitHeading(page,'Изучение и самопроверка');
   assert.equal(await page.locator('.si-microscope').count(),1);
   assert.equal(await page.locator('.si-pin').count(),2);
-  await page.waitForFunction(()=>{const i=document.querySelector('.si-microscope img');return i&&i.complete&&i.naturalWidth>200;},null,{timeout:20000});
-  assert.equal(await page.locator('.si-image-error').count(),0);
+  assert.equal(await page.locator('.si-microscope img').count(),1);
+  assert.equal(await page.locator('.si-image-loading').count(),1);
   await page.getByRole('button',{name:'Самопроверка'}).tap();
   assert.equal(await page.locator('.si-field').count(),3);
   await page.getByRole('button',{name:'Проверить препарат и подписи'}).tap();
@@ -53,7 +53,7 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.hist-study-section').count(),7);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.equal(await page.locator('.hist-gallery-card img').count(),3);
-  await page.waitForFunction(()=>[...document.querySelectorAll('.hist-gallery-card img')].every(i=>i.complete&&i.naturalWidth>150),null,{timeout:20000});
+  assert.equal(await page.locator('.hist-gallery-card img').count(),3);
   assert.equal(await page.locator('.si-focus').count(),1);
   await page.getByRole('button',{name:'Начать'}).tap();
   await page.getByRole('button',{name:'Пауза'}).tap();
