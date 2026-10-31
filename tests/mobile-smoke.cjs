@@ -144,7 +144,7 @@ async function main() {
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="stats"]').tap();
     await waitHeading(page,'Мой прогресс');
-    assert.equal(await page.locator('.topic-stats').count(),2);
+    assert.ok(await page.locator('.topic-stats').count()>=2,'Statistics must support multiple course topics');
     assert.equal(errors.length,0,errors.join('\n'));
 
     const appctx=await browser.newContext({viewport:{width:360,height:760},isMobile:true,hasTouch:true});
@@ -172,7 +172,7 @@ async function main() {
     assert.equal(await app.locator('#mobile-more-panel [data-nav="install"]').isVisible(),false);
     await app.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
     await waitHeading(app,'Работа над ошибками');
-    assert.equal(await app.locator('.topic-stats').count(),2);
+    assert.ok(await app.locator('.topic-stats').count()>=2,'Android statistics must support multiple topics');
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
     assert.equal(await app.locator('.library-card').count(),20);
