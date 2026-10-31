@@ -6,6 +6,8 @@ const STORAGE_KEY = 'med-study-progress-v1';
 
 let questionBank = null;
 let lessonData = null;
+let atlasData = null;
+let selectedReceptor = 'beta1';
 let view = 'home';
 let session = null;
 let lastResult = null;
@@ -85,6 +87,7 @@ function navigate(to) {
   if (!questionBank) return;
   if (to === 'subjects') showSubjects();
   else if (to === 'lesson') showLesson();
+  else if (to === 'atlas') showAtlas();
   else if (to === 'flashcards') showFlashcards();
   else if (to === 'stats') showStats();
   else if (to === 'install') showInstallGuide();
@@ -128,6 +131,9 @@ function showHome() {
   const heroCopy = append(element('div', 'hero-copy'), element('div', 'kicker', 'СЕГОДНЯ МОЖНО НАЧАТЬ'), element('h2', '', 'Каждый правильный ответ — шаг вперёд.'), element('p', '', 'Выбирай тему, отвечай на вопросы и сразу узнавай, почему ответ правильный.'));
   append(hero, heroCopy, button('Изучить тему →', () => navigate('lesson'), 'hero-action'));
   main.append(hero);
+  const atlasShortcut = element('section', 'atlas-home-link');
+  append(atlasShortcut, element('div', 'kicker', 'НОВОЕ · ИНТЕРАКТИВНЫЙ АТЛАС'), element('h2', '', 'Нажимай на рецепторы — изучай эффекты'), element('p','', 'Шесть рецепторов ВНС с объяснениями, примерами и источниками.'), button('Открыть атлас →', () => navigate('atlas')));
+  main.append(atlasShortcut);
   const shortcuts = element('div', 'feature-grid');
   append(shortcuts,
     button('🧠  Карточки для повторения', () => navigate('flashcards'), 'feature-button'),
@@ -259,6 +265,58 @@ function showLesson() {
   append(refs,ul,element('p','muted',lessonData.disclaimer));
   main.append(refs, append(element('div','section-actions'),button('Проверить знания: 20 вопросов →',()=>begin(questionBank.questions))));
   window.scrollTo(0,0);
+}
+
+function showAtlas() {
+  view = 'atlas'; updateNav(); main.replaceChildren();
+  if (!atlasData) {
+    main.append(element('p','note','Атлас не загрузился. Попробуй обновить страницу.'));
+    return;
+  }
+  const entries = atlasData.items;
+  let current = entries.find(x => x.id === selectedReceptor) || entries[0];
+  main.append(titleArea('ИНТЕРАКТИВНОЕ ОБУЧЕНИЕ', atlasData.title, atlasData.description));
+  const shell = element('section', 'atlas-layout');
+  const selector = element('div', 'card atlas-selector');
+  append(selector, element('h2', '', 'Выбери рецептор'), element('p', 'muted', atlasData.legend));
+  const grid = element('div', 'atlas-receptors');
+  for (const receptor of entries) {
+    const receptorButton = button(receptor.short, () => {
+      selectedReceptor = receptor.id;
+      showAtlas();
+    }, 'atlas-receptor ' + (receptor.division === 'sympathetic' ? 'atlas-sym' : 'atlas-para')
+       + (receptor.id === current.id ? ' active' : ''));
+    receptorButton.setAttribute('aria-pressed', String(receptor.id === current.id));
+    receptorButton.setAttribute('aria-label', receptor.title);
+    grid.append(receptorButton);
+  }
+  selector.append(grid);
+  const illustration = element('img', 'atlas-overview');
+  illustration.src = './illustrations/receptors.svg';
+  illustration.loading = 'lazy';
+  illustration.alt = 'Общая схема шести рецепторов ВНС и их типичных эффектов';
+  selector.append(illustration);
+
+  const detail = element('article', 'card atlas-detail ' + (current.division === 'sympathetic' ? 'detail-sym' : 'detail-para'));
+  append(detail, element('span', 'subject-tag', current.division === 'sympathetic' ? 'СИМПАТИЧЕСКИЙ ОТДЕЛ' : 'ПАРАСИМПАТИЧЕСКИЙ ОТДЕЛ'),
+    element('h2', '', current.title));
+  const rows = [
+    ['Медиатор',current.mediator],
+    ['Где действует',current.organ],
+    ['Физиологический эффект',current.effect],
+    ['Как запомнить',current.remember]
+  ];
+  for (const [heading, body] of rows) {
+    const field = element('div', 'atlas-detail-row');
+    append(field, element('strong', '', heading), element('p','', body));
+    detail.append(field);
+  }
+  const ref = element('a','question-source','Проверить источник на NCBI Bookshelf ↗');
+  ref.href=current.source;
+  ref.target='_blank'; ref.rel='noopener noreferrer';
+  detail.append(ref);
+  append(shell, selector, detail);
+  main.append(shell, element('p','note',atlasData.note));
 }
 
 function showFlashcards() {
@@ -551,12 +609,14 @@ if ('serviceWorker' in navigator) {
 
 Promise.all([
   fetch('./data/questions.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
 ])
-  .then(([data, lesson]) => {
+  .then(([data, lesson, atlas]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
-    questionBank = data; lessonData = lesson;
+    if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
+    questionBank = data; lessonData = lesson; atlasData = atlas;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();
