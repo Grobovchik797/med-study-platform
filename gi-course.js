@@ -6,6 +6,7 @@ const el=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className
 const button=(value,callback,cls='gi-button')=>{const x=el('button',cls,value);x.type='button';x.addEventListener('click',callback);return x;};
 const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
 const titles={intro:'Вводный',brief:'Краткий',deep:'Расширенный'};
+const randomize=a=>{const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
 const chapterDepths=Object.create(null);
 function paragraph(text,cls='gi-paragraph') {
  const p=el('p',cls);
@@ -47,11 +48,11 @@ function renderMiniQuestions(host,items) {
   const card=el('article','gi-mini-card');
   append(card,el('h3','',(ix+1)+'. '+prompt));
   const choices=el('div','gi-mini-answers'),message=el('div','gi-mini-feedback');
-  answers.forEach((answer,j)=>{
-   const opt=button(answer,()=>{
+  randomize(answers.map((answer,i)=>({answer,good:i===correct}))).forEach(item=>{
+   const opt=button(item.answer,()=>{
     for(const b of choices.querySelectorAll('button'))b.disabled=true;
-    opt.classList.add(j===correct?'gi-correct':'gi-incorrect');
-    append(message,el('strong','',j===correct?'Верно!':'Неверно. Правильный ответ: '+answers[correct]),paragraph(reason));
+    opt.classList.add(item.good?'gi-correct':'gi-incorrect');
+    append(message,el('strong','',item.good?'Верно!':'Неверно. Правильный ответ: '+answers[correct]),paragraph(reason));
    },'gi-mini-choice');
    choices.append(opt);
   });
@@ -173,12 +174,13 @@ function renderExam(host,{bank,onBack}){
   append(host,el('div','kicker',levels[level]+' · '+(idx+1)+'/'+set.length),
     el('h2','gi-question-heading',q.prompt));
   const choices=el('div','gi-mini-answers'),result=el('div','gi-mini-feedback'),actions=el('div','gi-end-actions');
-  for(const [i,a] of q.options.entries()){
-    choices.append(button(a,()=>{
+  const randomized=randomize(q.options.map((value,i)=>({value,good:i===q.answer})));
+  for(const [i,option] of randomized.entries()){
+    choices.append(button(option.value,()=>{
       if(chosen!==-1)return;
-      chosen=i;done.push({id:q.id,correct:i===q.answer});if(i===q.answer)correct++;
+      chosen=i;done.push({id:q.id,correct:option.good});if(option.good)correct++;
       for(const b of choices.querySelectorAll('button'))b.disabled=true;
-      append(result,el('strong','',i===q.answer?'Верно!':'Правильный ответ: '+q.options[q.answer]),paragraph(q.explanation));
+      append(result,el('strong','',option.good?'Верно!':'Правильный ответ: '+q.options[q.answer]),paragraph(q.explanation));
       actions.append(button(idx+1===set.length?'Завершить':'Следующий вопрос →',()=>{idx++;question();},'gi-button'));
     },'gi-mini-choice'));
   }
