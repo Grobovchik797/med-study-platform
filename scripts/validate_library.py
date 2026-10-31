@@ -32,7 +32,7 @@ for subject_id, subject_data in library["subjects"].items():
             if topic["route"]=="intestine":
                 assert topic["id"]=="histology-small-intestine"
                 assert all(topic["notes"].values())
-                assert not topic["quiz"] and not topic["atlas"] and not topic["flashcards"]
+                assert topic["quiz"] and topic["atlas"] and not topic["flashcards"]
             if topic["route"]=="lesson":
                 assert topic["id"]=="ans" and topic["quiz"]
 assert topic_ids=={"ans","histology-small-intestine"}

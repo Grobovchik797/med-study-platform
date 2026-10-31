@@ -21,6 +21,7 @@ jobs:
           python3 scripts/validate_subjects.py
           python3 scripts/validate_histology.py
           python3 scripts/validate_library.py
+          python3 scripts/validate_small_intestine_pilot.py
       - name: Generate installable app icons
         run: python3 scripts/generate_icons.py
       - name: Validate PWA assets and manifest
@@ -30,6 +31,7 @@ jobs:
       - name: Validate JavaScript syntax
         run: |
           node --check app.js
+          node --check small-intestine-interact.js
           node --check sw.js
 
   deploy:
@@ -52,8 +54,8 @@ jobs:
         run: |
           python3 scripts/generate_icons.py
           mkdir -p _site/data _site/icons _site/illustrations
-          cp index.html styles.css app.js sw.js manifest.webmanifest .nojekyll _site/
-          cp data/questions.json data/lesson.json data/atlas.json data/subjects.json data/histology-small-intestine.json data/library.json _site/data/
+          cp index.html styles.css app.js small-intestine-interact.js sw.js manifest.webmanifest .nojekyll _site/
+          cp data/questions.json data/lesson.json data/atlas.json data/subjects.json data/histology-small-intestine.json data/library.json data/small-intestine-quiz.json data/small-intestine-slides.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/
       - name: Upload website artifact

@@ -30,17 +30,17 @@
             {
               "id": "histology-small-intestine",
               "title": "Тонкая кишка",
-              "status": "draft-reviewed-sources",
+              "status": "source-mapped-pilot",
               "notes": {
                 "intro": true,
                 "brief": true,
                 "deep": true
               },
-              "quiz": false,
-              "atlas": false,
+              "quiz": true,
+              "atlas": true,
               "flashcards": false,
               "route": "intestine",
-              "hint": "Три конспекта, схема ворсинки и крипты, таблицы. Подготовка по кафедральным вопросам ещё требуется."
+              "hint": "Три интегрированных конспекта, 30 тематических вопросов, 3 настоящих микропрепарата и два режима атласа."
             }
           ]
         },
