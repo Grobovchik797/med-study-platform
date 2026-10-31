@@ -8,7 +8,7 @@ web = root / "android" / "app" / "src" / "main" / "assets" / "www"
 web.mkdir(parents=True, exist_ok=True)
 files = [
     "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "sw.js", "manifest.webmanifest",
-    "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-workbook.json",
+    "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-workbook.json",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
     "icons/icon-192.png", "icons/icon-512.png",
     "illustrations/pathways.svg", "illustrations/receptors.svg",
