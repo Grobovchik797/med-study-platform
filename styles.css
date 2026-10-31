@@ -508,3 +508,13 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .gi-department-list{margin:5px 14px 15px 35px;padding:0;}
 .gi-department-list li{font-size:13px;line-height:1.75;padding:6px 0;border-bottom:1px solid #efeaf5;}
 .gi-question-link{display:block;margin:7px 0 4px;padding:7px 10px;border-radius:8px;background:#eee6fa;color:#61319a;border:1px solid #deccec;font-size:12px;cursor:pointer;min-height:35px;}
+
+/* Detailed GI learning blocks and single-click checkpoints */
+.gi-deep-block{border-top:1px solid #e5dff0;padding:17px 0 7px;scroll-margin-top:80px;}
+.gi-deep-block h3{color:#4b2d80;font-size:18px;line-height:1.45;margin:8px 0 12px;}
+.gi-block-index{color:#9074bf;font-size:11px;font-weight:800;letter-spacing:.11em;}
+.gi-checkpoint{padding:15px;margin:15px 0 4px;border-radius:13px;background:#f3f9fa;border-left:4px solid #5cb7ae;}
+.gi-checkpoint h3{font-size:14px;color:#205e69;line-height:1.6;margin:9px 0 12px;}
+.gi-checkpoint .gi-mini-answers{margin-top:10px;}
+.gi-brief-block{padding:12px 0;border-bottom:1px solid #ede8f4;}
+.gi-brief-block h3{color:#60418b;font-size:15px;margin:0 0 7px;}

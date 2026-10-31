@@ -1,12 +1,7 @@
 {
   "version": 1,
-  "description": "Библиотека из 11 дисциплин: три вида конспекта, темы с явным статусом научной и кафедральной проверки.",
+  "description": "Библиотека из 11 дисциплин: два вида конспекта (краткий и расширенный). Готовность материалов указана по отдельным темам.",
   "note_modes": [
-    {
-      "id": "intro",
-      "title": "Вводный конспект",
-      "description": "Карта темы: что это, где находится, главные структуры и как ориентироваться в материале. Не заменяет базовый ответ на зачёте."
-    },
     {
       "id": "brief",
       "title": "Краткий конспект",
@@ -35,7 +30,6 @@
           "id": "small-intestine",
           "name": "Тонкая кишка",
           "status": "source-checked-draft",
-          "intro_status": "source-checked-draft",
           "brief_status": "source-checked-draft",
           "deep_status": "source-checked-draft",
           "questions": 30,
@@ -53,7 +47,7 @@
           "id": "ans",
           "name": "Вегетативная нервная система",
           "status": "introductory",
-          "brief_status": "introductory",
+          "brief_status": "draft",
           "deep_status": "planned",
           "questions": 20
         }

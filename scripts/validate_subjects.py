@@ -8,7 +8,7 @@ data = json.loads((root / "data/subjects.json").read_text("utf-8"))
 subjects = data.get("subjects", [])
 assert data.get("version") == 1
 assert isinstance(subjects, list) and len(subjects) == 11
-assert {mode["id"] for mode in data["note_modes"]} == {"intro","brief","deep"}
+assert {mode["id"] for mode in data["note_modes"]} == {"brief","deep"}
 ids = [x["id"] for x in subjects]
 assert len(ids) == len(set(ids))
 assert sum(x["status"] == "learning-material" for x in subjects) == 2

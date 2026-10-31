@@ -38,12 +38,15 @@ jobs:
           python3 scripts/validate_histology.py
           python3 scripts/validate_library.py
           python3 scripts/validate_small_intestine_pilot.py
+          python3 scripts/validate_gi_curriculum.py
           node --check app.js
           node --check gi-course.js
           node --check small-intestine-interact.js
       - name: Prepare embedded offline website
         run: |
           python3 scripts/generate_icons.py
+          python3 -m pip install --quiet Pillow
+          python3 scripts/prepare_histology_photos.py
           python3 scripts/package_android_assets.py
       - name: Build debug APK
         working-directory: android

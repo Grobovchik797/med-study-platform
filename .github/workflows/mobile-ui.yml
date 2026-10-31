@@ -25,6 +25,8 @@ jobs:
       - name: Generate icons and start local web server
         run: |
           python3 scripts/generate_icons.py
+          python3 -m pip install --quiet Pillow
+          python3 scripts/prepare_histology_photos.py
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/med-study-test-server.log 2>&1 &
       - name: Test mobile interactions (browser and Android origin)
         run: node tests/mobile-smoke.cjs

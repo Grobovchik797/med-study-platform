@@ -26,7 +26,7 @@ for subject_id, subject_data in library["subjects"].items():
             assert topic["title"] and topic["hint"]
             assert topic["route"] in {"intestine","lesson","gi-chapter","gi-workbook","gi-exam"}
             assert all(isinstance(topic[key],bool) for key in ("quiz","atlas","flashcards"))
-            assert set(topic["notes"]) == (set() if topic["route"]=="gi-exam" else ({"intro"} if topic["route"]=="gi-workbook" else {"intro","brief","deep"}))
+            assert set(topic["notes"]) == (set() if topic["route"]=="gi-exam" else ({"brief"} if topic["route"]=="gi-workbook" else {"brief","deep"}))
             assert all(isinstance(value,bool) for value in topic["notes"].values())
             assert any(topic["notes"].values()) or topic["route"]=="gi-exam", topic["id"]
             if topic["route"]=="intestine":

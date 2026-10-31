@@ -5,7 +5,7 @@
 const el=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=String(text);return x;};
 const button=(value,callback,cls='gi-button')=>{const x=el('button',cls,value);x.type='button';x.addEventListener('click',callback);return x;};
 const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
-const titles={intro:'Вводный',brief:'Краткий',deep:'Расширенный'};
+const titles={brief:'Краткий',deep:'Расширенный'};
 const randomize=a=>{const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
 const chapterDepths=Object.create(null);
 function paragraph(text,cls='gi-paragraph') {
@@ -60,7 +60,26 @@ function renderMiniQuestions(host,items) {
  }
  host.append(wrap);
 }
-function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
+function renderBlockCheckpoint(host,checkpoint) {
+  const box=el('div','gi-checkpoint');
+  append(box,el('div','kicker','ПРОВЕРКА ЭТОГО БЛОКА'),el('h3','',checkpoint.prompt));
+  const options=el('div','gi-mini-answers');
+  const feedback=el('div','gi-mini-feedback');
+  randomize(checkpoint.options.map((value,i)=>({value,good:i===checkpoint.answer}))).forEach(option=>{
+    const choice=button(option.value,()=>{
+      for(const b of options.querySelectorAll('button'))b.disabled=true;
+      choice.classList.add(option.good?'gi-correct':'gi-incorrect');
+      append(feedback,el('strong','',option.good?'Верно!':'Правильный ответ: '+checkpoint.options[checkpoint.answer]),paragraph(checkpoint.explanation));
+    },'gi-mini-choice');
+    options.append(choice);
+  });
+  box.append(options,feedback);host.append(box);
+}
+function briefExtract(text){
+  return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
+}
+
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
  let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
@@ -70,7 +89,7 @@ function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack
     paragraph(chapter.intro,'gi-lead'),
     paragraph('Методичка: печатные страницы '+chapter.methodPage+'. Источник: АГМА, 1999 год. Современные пояснения добавлены отдельно; это не утверждённая преподавателем редакция.','gi-provenance'));
   const depths=el('div','gi-depths');
-  for(const key of ['intro','brief','deep']){
+  for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
     b.setAttribute('aria-pressed',String(current===key));depths.append(b);
   }host.append(depths);
@@ -92,10 +111,25 @@ function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack
   const content=el('article','card gi-content');
   append(content,el('h2','','Учебный конспект'),
     paragraph(chapter.intro));
-  if(current!=='intro')for(const x of chapter.brief)content.append(paragraph(x));
-  if(current==='deep'){
-    content.append(sectionTitle('Клеточный, функциональный и молекулярный уровень'));
+  for(const x of chapter.brief)content.append(paragraph(x));
+  if(current==='brief'){
+    content.append(sectionTitle('Основные признаки и структуры по блокам'));
+    for(const block of deepBlocks){
+      const brief=el('section','gi-brief-block');
+      brief.append(el('h3','',block.title),paragraph(briefExtract(block.text)));
+      content.append(brief);
+    }
+  }else{
+    content.append(sectionTitle('Подробный разбор по слоям, клеткам и механизмам'));
     for(const x of chapter.deep)content.append(paragraph(x));
+    for(const [number,block] of deepBlocks.entries()){
+      const part=el('section','gi-deep-block');
+      part.id='gi-block-'+chapter.id+'-'+(number+1);
+      append(part,el('div','gi-block-index','БЛОК '+(number+1)+' / '+deepBlocks.length),
+        el('h3','',block.title),paragraph(block.text));
+      renderBlockCheckpoint(part,block.checkpoint);
+      content.append(part);
+    }
   }
   append(content,append(el('div','gi-nb'),el('strong','','NB · Обрати внимание'),paragraph(chapter.nb)));
   host.append(content);

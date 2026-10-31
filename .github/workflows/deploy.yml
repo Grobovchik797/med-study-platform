@@ -29,6 +29,10 @@ jobs:
         run: |
           python3 scripts/validate_pwa.py
           python3 scripts/validate_illustrations.py
+      - name: Download and verify original licensed microscopy photographs
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 scripts/prepare_histology_photos.py
       - name: Validate JavaScript syntax
         run: |
           node --check app.js
@@ -55,12 +59,15 @@ jobs:
       - name: Prepare website files
         run: |
           python3 scripts/generate_icons.py
-          mkdir -p _site/data _site/icons _site/illustrations
+          python3 -m pip install --quiet Pillow
+          python3 scripts/prepare_histology_photos.py
+          mkdir -p _site/data _site/icons _site/illustrations _site/photos
           cp index.html styles.css app.js small-intestine-interact.js gi-course.js sw.js manifest.webmanifest .nojekyll _site/
-          cp data/gi-department-questions.json data/gi-curriculum.json data/gi-inline-quiz.json data/gi-final-quiz.json data/gi-workbook.json _site/data/
+          cp data/gi-deep-a.json data/gi-deep-b.json data/gi-department-questions.json data/gi-curriculum.json data/gi-inline-quiz.json data/gi-final-quiz.json data/gi-workbook.json _site/data/
           cp data/questions.json data/lesson.json data/atlas.json data/subjects.json data/histology-small-intestine.json data/library.json data/small-intestine-quiz.json data/small-intestine-slides.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/
+          cp photos/*.jpg _site/photos/
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -10,6 +10,18 @@ mini=load('gi-inline-quiz.json')
 exam=load('gi-final-quiz.json')
 maps=load('gi-workbook.json')
 library=load('library.json')
+deep_a=load('gi-deep-a.json')
+deep_b=load('gi-deep-b.json')
+deep_blocks={**deep_a['blocks'],**deep_b['blocks']}
+assert len(deep_blocks)==17
+assert sum(len(items) for items in deep_blocks.values())==85
+for chapter_id,sections in deep_blocks.items():
+ assert len(sections)==5
+ for block in sections:
+  assert len(block['text'])>=280 and len(block['title'])>10, (chapter_id,block['id'])
+  cp=block['checkpoint']
+  assert len(cp['options'])==3 and len(set(cp['options']))==3 and cp['answer'] in range(3)
+  assert len(cp['prompt'])>20 and len(cp['explanation'])>25
 assert course['version']==1 and len(course['chapters'])==17
 ids=[c['id'] for c in course['chapters']]
 assert len(set(ids))==17

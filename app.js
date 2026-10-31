@@ -37,9 +37,9 @@ let learningLibrary = null;
 let intestineData = null;
 let intestineQuizBank = null;
 let intestineSlides = null;
-let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null;
+let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
 let activeGIChapterId = null;
-let intestineDepth = 'intro';
+let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
 let view = 'home';
 let session = null;
@@ -262,6 +262,7 @@ function showGIChapter(id) {
   view='gi-chapter';updateNav();main.replaceChildren();
   window.MedStudyGI.renderChapter(main,{
     chapter,mini:giInlineBank.chapterQuestions[id],workbook:giWorkbook.maps,
+    deepBlocks:giDeepBlocks[id],
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>showSmallIntestineSlides(giSlideIndex(slide)),
@@ -311,17 +312,17 @@ function showTopic(topicId) {
   const box=element('div','library-features');
   const notes=element('section','card library-feature');
   append(notes,element('h2','','Конспекты'),element('p','',
-    topic.id==='ans'?'Пока доступен вводный материал.':
-    'Три учебные версии на основе твоего материала. Все спорные уточнения отражены в журнале редакции; сторонние сведения выделены отдельно.'));
+    topic.id==='ans'?'Пока доступен существующий конспект; подробная научная редакция ещё запланирована.':
+    'Два формата конспекта на основе кафедральной тематики. Все спорные уточнения отражены в журнале редакции; сторонние сведения выделены отдельно.'));
   if(topic.route==='intestine') {
     const buttons=element('div','library-buttons');
-    for(const item of [{id:'intro',label:'Вводный'},{id:'brief',label:'Краткий'},{id:'deep',label:'Расширенный'}]) {
+    for(const item of [{id:'brief',label:'Краткий'},{id:'deep',label:'Расширенный'}]) {
       buttons.append(button(item.label,()=>{intestineDepth=item.id;showIntestine();window.scrollTo(0,0);},
         'library-action'));
     }
     notes.append(buttons);
   } else if(topic.route==='lesson') {
-    notes.append(button('Читать вводный конспект →',()=>navigate('lesson'),'library-action'));
+    notes.append(button('Читать конспект →',()=>navigate('lesson'),'library-action'));
   }
   box.append(notes);
   const tests=element('section','card library-feature');
@@ -480,12 +481,12 @@ function showIntestine() {
     return;
   }
   main.append(titleArea('ГИСТОЛОГИЯ · ЦИТОЛОГИЯ', intestineData.title,
-    'Единая тема в трёх самостоятельных форматах. Выбирай глубину изучения, не теряя связи между строением и функцией.'));
+    'Два формата: полноценная обязательная база и расширенная гистология с механизмами и связями.'));
   const warning=element('div','note');
   warning.textContent=intestineData.review_note;
   main.append(warning);
   const selector=element('div','study-depth-selector');
-  for(const variant of intestineData.variants) {
+  for(const variant of intestineData.variants.filter(v=>v.id==='brief'||v.id==='deep')) {
     const active=variant.id===intestineDepth;
     const b=button(variant.title,() => {intestineDepth=variant.id;showIntestine();window.scrollTo(0,0);},
       'study-depth-button'+(active?' active':''));
@@ -493,7 +494,7 @@ function showIntestine() {
     selector.append(b);
   }
   main.append(selector);
-  const version=intestineData.variants.find(x=>x.id===intestineDepth)||intestineData.variants[0];
+  const version=intestineData.variants.find(x=>x.id===intestineDepth)||intestineData.variants.find(x=>x.id==='brief');
   const header=element('div','study-depth-header');
   append(header,element('div','kicker',version.label),element('h2','',version.title+' конспект'),
     element('p','',version.description));
@@ -1079,19 +1080,21 @@ Promise.all([
   fetch('./data/gi-inline-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI mini '+r.status);return r.json();}),
   fetch('./data/gi-final-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI exam '+r.status);return r.json();}),
   fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();}),
-  fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();})
+  fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();}),
+  fetch('./data/gi-deep-a.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep A '+r.status);return r.json();}),
+  fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
     if (!subjects || !Array.isArray(subjects.subjects) || subjects.subjects.length !== 11 ||
-        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 3) {
+        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 2) {
       throw new Error('Каталог предметов повреждён');
     }
     if (!intestine || !Array.isArray(intestine.variants) ||
         intestine.variants.length !== 3 ||
-        !['intro','brief','deep'].every(key => intestine.variants.some(v => v.id === key && Array.isArray(v.sections)))) {
+        !['brief','deep'].every(key => intestine.variants.some(v => v.id === key && Array.isArray(v.sections)))) {
       throw new Error('Материал по тонкой кишке повреждён');
     }
     if (!library || library.version !== 1 || !library.subjects ||
@@ -1106,6 +1109,9 @@ Promise.all([
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
       giMethodQuestions?.groups?.reduce((sum,g)=>sum+g.questions.length,0)!==56)
       throw Error('Пищеварительная система: повреждены материалы');
+    giDeepBlocks=Object.assign(Object.create(null),giDeepA?.blocks,giDeepB?.blocks);
+    if(giCourse.chapters.some(ch=>giDeepBlocks[ch.id]?.length!==5))
+      throw Error('Не хватает подробных гистологических блоков');
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;

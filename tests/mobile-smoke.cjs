@@ -41,6 +41,13 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.si-microscope').count(),1);
   assert.equal(await page.locator('.si-pin').count(),2);
   assert.equal(await page.locator('.si-microscope img').count(),1);
+  for(const value of ['0','1','2']){
+    await page.locator('.si-select').selectOption(value);
+    await page.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>420,{timeout:15000});
+    assert.ok((await page.locator('.si-microscope img').getAttribute('src')).startsWith('./photos/'),
+      'Microscope must use bundled local photo');
+  }
+  await page.locator('.si-select').selectOption('0');
   assert.equal(await page.locator('.si-choice-row').count()>0,true);
   await page.getByRole('button',{name:'Найди структуру'}).tap();
   assert.equal(await page.locator('.si-pin').count(),0);
@@ -54,8 +61,8 @@ async function navigateHistology(page) {
   await waitHeading(page,'Тонкая кишка');
   await page.locator('.library-buttons button').first().tap();
   await waitHeading(page,'Тонкая кишка');
-  assert.equal(await page.locator('.study-depth-button').count(),3);
-  assert.equal(await page.locator('.hist-study-section').count(),6);
+  assert.equal(await page.locator('.study-depth-button').count(),2);
+  assert.equal(await page.locator('.hist-study-section').count(),10);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
@@ -65,12 +72,12 @@ async function navigateHistology(page) {
   await page.getByRole('button',{name:'Пауза'}).tap();
   await page.getByRole('button',{name:'Сбросить'}).tap();
   assert.equal(await page.locator('.si-focus-clock').textContent(),'30:00');
-  await page.locator('.study-depth-button').nth(1).tap();
+  await page.locator('.study-depth-button').nth(0).tap();
   assert.equal(await page.locator('.hist-study-section').count(),10);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.ok(await page.locator('.hist-inline-aside').count()>1);
   assert.ok((await page.locator('.hist-takeaway strong').first().textContent()).includes('NB'));
-  await page.locator('.study-depth-button').nth(2).tap();
+  await page.locator('.study-depth-button').nth(1).tap();
   assert.equal(await page.locator('.hist-study-section').count(),15);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
@@ -87,11 +94,16 @@ async function navigateDigestiveCourse(page) {
   await page.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').tap();
   await waitHeading(page,'Желудок: оболочки');
   assert.equal(await page.locator('.gi-mini-card').count(),3);
+  assert.equal(await page.locator('.gi-brief-block').count(),5);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
   assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).length>30,'Inline question must reveal explanation regardless of randomized answer order');
   assert.equal(await page.locator('.gi-chapter-figure img').count(),1);
   await page.getByRole('button',{name:'Расширенный'}).tap();
-  assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
+  assert.equal(await page.locator('.gi-deep-block').count(),5);
+  assert.equal(await page.locator('.gi-checkpoint').count(),5);
+  assert.ok((await page.locator('.gi-content').textContent()).includes('Подробный разбор'));
+  await page.locator('.gi-checkpoint').first().locator('.gi-mini-choice').first().tap();
+  assert.ok((await page.locator('.gi-checkpoint .gi-mini-feedback').first().textContent()).length>25);
   await page.getByRole('button',{name:'Все заполненные карты'}).tap();
   await waitHeading(page,'Заполненные ориентировочные карты');
   assert.equal(await page.locator('.gi-method-card').count(),11); // 7 filled maps + 4 departmental question lists
