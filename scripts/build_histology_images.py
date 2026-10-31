@@ -12,6 +12,7 @@ import time
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
+from urllib.parse import quote
 from PIL import Image, ImageOps, UnidentifiedImageError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,19 +25,20 @@ HEADERS = {
 }
 for file_index, s in enumerate(slides["images"]):
     if file_index:
-        time.sleep(5)  # Wikimedia CDN rate-limit courtesy delay
+        time.sleep(1)
     name = s["id"]
     destination = ROOT / s["src"]
     assert destination.resolve().is_relative_to(output.resolve()), s["src"]
-    urls = [s["originalSrc"]]
-    # Originals are publicly licensed; if the original thumbnail route fails,
-    # use Commons' redirect to the original; compress locally after download.
+    # Route through a read-through image proxy if Wikimedia's CDN returns 429.
+    # The source is always a fixed, curator-approved Wikimedia URL, not user input.
+    proxy = "https://wsrv.nl/?url=" + quote(s["originalSrc"], safe="") + "&w=1500&output=jpg"
+    urls = [proxy, s["originalSrc"]]
     if s.get("originalSourceUrl"):
         urls.append(s["originalSourceUrl"])
     content = None
     failures = []
     for url in urls:
-        for attempt in range(4):
+        for attempt in range(2):
             try:
                 request = Request(url, headers=HEADERS)
                 with urlopen(request, timeout=35) as response:
@@ -50,7 +52,7 @@ for file_index, s in enumerate(slides["images"]):
                 break
             except (URLError, HTTPError, TimeoutError, OSError, ValueError) as err:
                 failures.append(str(err))
-                time.sleep(5 + attempt * 6)  # backoff after 429/other transient errors
+                time.sleep(2 + attempt * 3)  # bounded backoff, fail CI rather than shipping placeholders
         if content is not None:
             break
     if content is None:
