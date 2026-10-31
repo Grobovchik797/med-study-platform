@@ -127,3 +127,28 @@ p { margin:0; }
 .question-source { display:inline-block; margin-top:10px; font-size:12px; font-weight:700; }
 @media (max-width:900px) { .subject-card {flex-wrap:wrap;} .subject-actions {width:100%;flex-direction:row;flex-wrap:wrap;} .subject-actions button {flex:1;} }
 @media (max-width:650px) { .lesson-facts {grid-template-columns:1fr;} .lesson-toolbar {flex-direction:column;align-items:stretch;} .lesson-toolbar button {width:100%;} .subject-actions {flex-direction:column;min-width:0;} .subject-actions button {width:100%;} .lesson-intro {padding:18px;} .lesson-section {padding:18px;} }
+
+/* Med Study 0.3 — mobile-first tools */
+.feature-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0 27px; }
+.feature-button { background:#fff; color:var(--purple-dark); border:1px solid #dac8f4; border-radius:13px; padding:16px; text-align:left; font-weight:780; box-shadow:var(--shadow); }
+.feature-button:hover { background:var(--purple-pale); border-color:var(--purple); }
+.flashcard { min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:12px; background:linear-gradient(130deg,#ffffff,#f8f3ff); margin:20px 0; }
+.flashcard h2 { font-size:clamp(22px,4vw,32px);margin:0; }
+.flash-answer {line-height:1.8;color:#42485d;max-width:650px;}
+.flash-hint {font-size:13px;color:var(--muted);font-style:italic;}
+.topic-stats {margin:24px 0;}
+.topic-stat-line {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;font-size:13px;}
+.topic-stat-line .muted {font-size:12px;text-align:right;}
+.option.chosen { background:#f3edff; border-color:#a67dec; }
+.feedback.neutral { background:#f5f1ff; border-color:#e1d4fa; }
+@media(max-width:760px) {
+  .side-nav {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;}
+  .nav-item {font-size:10px;min-height:46px;padding:5px 2px;}
+  .sidebar {padding:5px 9px;}
+  .main-content {padding-bottom:36px;}
+}
+@media(max-width:520px) {
+  .feature-grid {grid-template-columns:1fr;gap:9px;}
+  .topic-stat-line {align-items:flex-start;flex-direction:column;gap:4px;}
+  .flashcard {padding:25px 16px;min-height:240px;}
+}
