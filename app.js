@@ -379,16 +379,18 @@ function answer(q, selectedId, options, card) {
   const correct = selectedId === q.correct_answer;
   if (correct) {
     session.score++;
-    progress.mistakes = progress.mistakes.filter(id => id !== q.id);
+    if (session.mode !== 'exam') progress.mistakes = progress.mistakes.filter(id => id !== q.id);
   } else {
     session.failures.push(q);
-    if (!progress.mistakes.includes(q.id)) progress.mistakes.push(q.id);
+    if (session.mode !== 'exam' && !progress.mistakes.includes(q.id)) progress.mistakes.push(q.id);
   }
-  const topicEntry = progress.topicStats[q.topic] || { attempts: 0, correct: 0 };
-  topicEntry.attempts++;
-  if (correct) topicEntry.correct++;
-  progress.topicStats[q.topic] = topicEntry;
-  persistProgress(); updateNav();
+  if (session.mode !== 'exam') {
+    const topicEntry = progress.topicStats[q.topic] || { attempts: 0, correct: 0 };
+    topicEntry.attempts++;
+    if (correct) topicEntry.correct++;
+    progress.topicStats[q.topic] = topicEntry;
+    persistProgress(); updateNav();
+  }
   for (const option of options.children) {
     const id = option.dataset.optionId;
     option.disabled = true;
@@ -396,7 +398,7 @@ function answer(q, selectedId, options, card) {
     if (session.mode !== 'exam' && id === selectedId && !correct) option.classList.add('bad');
     if (session.mode === 'exam' && id === selectedId) option.classList.add('chosen');
   }
-  const feedback = element('div', 'feedback ' + (correct ? 'good' : 'bad'));
+  const feedback = element('div', 'feedback ' + (session.mode === 'exam' ? 'neutral' : correct ? 'good' : 'bad'));
   feedback.setAttribute('role', 'status');
   append(feedback, element('strong', '',
     session.mode === 'exam' ? 'Ответ принят' :
@@ -411,7 +413,7 @@ function answer(q, selectedId, options, card) {
   }
   const actions = element('div', 'quiz-actions');
   const next = button(session.index + 1 === session.questions.length ? 'Завершить тест →' : 'Следующий вопрос →', () => { session.index++; renderQuestion(); });
-  append(actions, element('span', 'muted', 'Правильных ответов: ' + session.score), next);
+  append(actions, element('span', 'muted', session.mode === 'exam' ? 'Ответ сохранён' : 'Правильных ответов: ' + session.score), next);
   append(card, feedback, actions);
   next.focus();
 }
@@ -421,6 +423,18 @@ function finishSession() {
   const completed = session;
   session = null;
   const percent = Math.round(100 * completed.score / completed.questions.length);
+  if (completed.mode === 'exam') {
+    const failed = new Set(completed.failures.map(q => q.id));
+    for (const question of completed.questions) {
+      const correct = !failed.has(question.id);
+      if (correct) progress.mistakes = progress.mistakes.filter(id => id !== question.id);
+      else if (!progress.mistakes.includes(question.id)) progress.mistakes.push(question.id);
+      const entry = progress.topicStats[question.topic] || { attempts: 0, correct: 0 };
+      entry.attempts++;
+      if (correct) entry.correct++;
+      progress.topicStats[question.topic] = entry;
+    }
+  }
   progress.sessions++;
   progress.best = progress.best === null ? percent : Math.max(progress.best, percent);
   persistProgress(); updateNav();
