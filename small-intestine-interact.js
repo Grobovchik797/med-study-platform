@@ -124,8 +124,8 @@ function renderSlides(host,data,exit,initialIndex=0){
   const markFailed=()=>{
     frame.classList.add('si-image-error');loading.replaceChildren();
     add(loading,e('strong','','Препарат не открылся'),
-      e('p','','Внешний сервер не ответил или изображение недоступно. Можно повторить запрос или открыть оригинал по ссылке автора.'),
-      btn('Повторить загрузку',()=>{frame.classList.remove('si-image-error');loading.replaceChildren(e('span','si-loading-spinner'),e('span','','Повторная загрузка…'));photo.src='https://wsrv.nl/?url='+encodeURIComponent(slide.src)+'&w=960&output=webp&retry='+Date.now();},'si-button secondary'));
+      e('p','','Локальный файл не найден или повреждён. Проверь обновление приложения. Временно можно открыть оригинал автора в браузере.'),
+      btn('Повторить загрузку',()=>{frame.classList.remove('si-image-error');loading.replaceChildren(e('span','si-loading-spinner'),e('span','','Повторная загрузка…'));photo.src=slide.src+'?reload='+Date.now();},'si-button secondary'));
   };
   photo.addEventListener('load',markLoaded);
   photo.addEventListener('error',markFailed);
