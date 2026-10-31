@@ -6,6 +6,7 @@ const el=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className
 const button=(value,callback,cls='gi-button')=>{const x=el('button',cls,value);x.type='button';x.addEventListener('click',callback);return x;};
 const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
 const titles={intro:'Вводный',brief:'Краткий',deep:'Расширенный'};
+const chapterDepths=Object.create(null);
 function paragraph(text,cls='gi-paragraph') {
  const p=el('p',cls);
  const pieces=String(text).split(/(\([^()]{3,170}\)|NB\.)/);
@@ -59,7 +60,7 @@ function renderMiniQuestions(host,items) {
  host.append(wrap);
 }
 function renderChapter(host,{chapter,mini,workbook,onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
- let current=depth;
+ let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
   append(host,button('← К разделу «Пищеварительная система»',onBack,'gi-back'),
@@ -69,7 +70,7 @@ function renderChapter(host,{chapter,mini,workbook,onBack,onSlide,onExam,onWorkb
     paragraph('Методичка: печатные страницы '+chapter.methodPage+'. Источник: АГМА, 1999 год. Современные пояснения добавлены отдельно; это не утверждённая преподавателем редакция.','gi-provenance'));
   const depths=el('div','gi-depths');
   for(const key of ['intro','brief','deep']){
-    const b=button(titles[key],()=>{current=key;show();},'gi-button'+(current===key?' gi-active':''));
+    const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
     b.setAttribute('aria-pressed',String(current===key));depths.append(b);
   }host.append(depths);
   const content=el('article','card gi-content');
