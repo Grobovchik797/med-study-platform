@@ -218,6 +218,7 @@ function showSubject(subjectId) {
     grid.append(card);
   }
   main.append(grid);
+  window.scrollTo(0,0);
 }
 
 function showSection(subjectId,sectionId) {
@@ -239,6 +240,7 @@ function showSection(subjectId,sectionId) {
     grid.append(card);
   }
   main.append(grid);
+  window.scrollTo(0,0);
 }
 
 function showTopic(topicId) {
@@ -284,6 +286,7 @@ function showTopic(topicId) {
   if(topic.flashcards) cards.append(button('Учить карточки →',()=>navigate('flashcards'),'library-action'));
   box.append(cards);
   main.append(box);
+  window.scrollTo(0,0);
 }
 
 function showResourceLibrary(kind) {
@@ -320,6 +323,7 @@ function showResourceLibrary(kind) {
   const next=element('div','section-actions');
   next.append(button('Посмотреть все предметы →',()=>navigate('subjects'),'alt-button'));
   main.append(next);
+  window.scrollTo(0,0);
 }
 
 function showHome() {
@@ -907,7 +911,7 @@ function isValidBank(data) {
 
 function showLoadError(error) {
   main.replaceChildren();
-  append(main, titleArea('ОШИБКА ЗАГРУЗКИ', 'Не удалось открыть вопросы', 'Проверь подключение или попробуй открыть приложение через веб-сервер. При открытии файла напрямую браузер может блокировать чтение JSON.'), element('p', 'note', String(error)));
+  append(main, titleArea('ОШИБКА ЗАГРУЗКИ', 'Не удалось загрузить учебные материалы', 'Проверь подключение или попробуй открыть приложение через веб-сервер. При открытии файла напрямую браузер может блокировать чтение JSON.'), element('p', 'note', String(error)));
 }
 
 for (const item of document.querySelectorAll('[data-nav]')) {
