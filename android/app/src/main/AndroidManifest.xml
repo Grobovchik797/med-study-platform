@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:allowBackup="false"
-        android:label="Med Study"
+        android:label="${appLabel}"
         android:icon="@drawable/ic_medstudy"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:usesCleartextTraffic="false"
