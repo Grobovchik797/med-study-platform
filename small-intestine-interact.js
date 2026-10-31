@@ -120,8 +120,8 @@ function renderSlides(host,data,exit,initialIndex=0){
   const markFailed=()=>{
     frame.classList.add('si-image-error');loading.replaceChildren();
     add(loading,e('strong','','Препарат не открылся'),
-      e('p','','Локальный файл недоступен или повреждён. Попробуй загрузить его повторно.'),
-      btn('Повторить загрузку',()=>{frame.classList.remove('si-image-error');loading.replaceChildren(e('span','si-loading-spinner'),e('span','','Повторная загрузка…'));photo.src=slide.src+'?retry='+Date.now();},'si-button secondary'));
+      e('p','','Внешний сервер не ответил или изображение недоступно. Можно повторить запрос или открыть оригинал по ссылке автора.'),
+      btn('Повторить загрузку',()=>{frame.classList.remove('si-image-error');loading.replaceChildren(e('span','si-loading-spinner'),e('span','','Повторная загрузка…'));photo.src='https://wsrv.nl/?url='+encodeURIComponent(slide.src)+'&w=960&output=webp&retry='+Date.now();},'si-button secondary'));
   };
   photo.addEventListener('load',markLoaded);
   photo.addEventListener('error',markFailed);
@@ -191,11 +191,11 @@ function renderSlides(host,data,exit,initialIndex=0){
   }
   const by=e('div','si-credit');
   add(by,e('p','','Автор: '+slide.credit+' · '+slide.license+' · '+slide.stain),
-    e('p','','Адаптация для Med Study: уменьшение разрешения и WebP-кодирование. Условия CC BY-SA 4.0 распространяются на модифицированную копию.'));
+    e('p','','Показ уменьшенной миниатюры с сохранением авторства и лицензии CC BY-SA 4.0. Источник — Wikimedia Commons.'));
   for(const [label,url] of [['Источник снимка',slide.source],['Условия лицензии',slide.licenseUrl]]){
     const a=e('a','',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener noreferrer';by.append(a);
   }
-  root.append(by,notes('Локальные оптимизированные копии входят в сайт и Android APK. Подробные исходные фотографии доступны по ссылке автора.'),
+  root.append(by,notes('Для снимков пока нужен интернет: сервер Wikimedia может ограничивать доступ. Схема и учебные тексты доступны отдельно; ссылка на оригинал приведена ниже.'),
     btn('← Вернуться к теме',exit,'si-button secondary'));
  }
  show();
@@ -214,7 +214,7 @@ function renderFocus(host) {
    {s:900,name:'Микроскопия',description:'Посмотри схему и реальные препараты, попробуй самостоятельно назвать структуры.'},
    {s:1260,name:'Восстановление по памяти',description:'Закрой объяснение и восстанови механизмы без подсказок.'},
    {s:1620,name:'Самопроверка',description:'Сделай несколько тестов и отметь, что нужно повторить.'},
-   {s:1800,name:'Перерыв',description:'Пройдиcь, попей воды, поменяй фокус взгляда; при желании — лёгкая разминка.'},
+   {s:1800,name:'Перерыв',description:'Пройдись, попей воды, поменяй фокус взгляда; при желании — лёгкая разминка.'},
    {s:2100,name:'Готово',description:'Отдых завершён. Можно повторить трудный фрагмент в другое время.'}
   ];
   let elapsed=0,baseElapsed=0,runningSince=0,ticker=null;
