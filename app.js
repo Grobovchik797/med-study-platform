@@ -35,6 +35,8 @@ let atlasData = null;
 let subjectCatalog = null;
 let learningLibrary = null;
 let intestineData = null;
+let intestineQuizBank = null;
+let intestineSlides = null;
 let intestineDepth = 'intro';
 let selectedReceptor = 'beta1';
 let view = 'home';
@@ -243,6 +245,20 @@ function showSection(subjectId,sectionId) {
   window.scrollTo(0,0);
 }
 
+
+function showSmallIntestineQuiz() {
+  view='si-quiz';updateNav();main.replaceChildren();
+  if(!window.MedStudySI || !intestineQuizBank) {main.append(element('p','note','Банк тестов не загрузился.'));return;}
+  window.MedStudySI.renderQuiz(main,intestineQuizBank,()=>showTopic('histology-small-intestine'));
+  window.scrollTo(0,0);
+}
+function showSmallIntestineSlides() {
+  view='si-slides';updateNav();main.replaceChildren();
+  if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
+  window.MedStudySI.renderSlides(main,intestineSlides,()=>showTopic('histology-small-intestine'));
+  window.scrollTo(0,0);
+}
+
 function showTopic(topicId) {
   const entry=libraryEntries().find(x=>x.topic.id===topicId);
   if(!entry){showSubjects();return;}
@@ -254,7 +270,7 @@ function showTopic(topicId) {
   const notes=element('section','card library-feature');
   append(notes,element('h2','','Конспекты'),element('p','',
     topic.id==='ans'?'Пока доступен вводный материал.':
-    'Три авторские версии. Сверка с твоим кафедральным конспектом ещё впереди.'));
+    'Три учебные версии на основе твоего материала. Все спорные уточнения отражены в журнале редакции; сторонние сведения выделены отдельно.'));
   if(topic.route==='intestine') {
     const buttons=element('div','library-buttons');
     for(const item of [{id:'intro',label:'Вводный'},{id:'brief',label:'Краткий'},{id:'deep',label:'Расширенный'}]) {
@@ -268,16 +284,23 @@ function showTopic(topicId) {
   box.append(notes);
   const tests=element('section','card library-feature');
   append(tests,element('h2','','Тестирование'),
-    element('p','',topic.quiz?'20 учебных вопросов с объяснениями.':
+    element('p','',topic.id==='histology-small-intestine'?
+      '30 вопросов: лёгкие, средние, сложные. Отдельный прогресс и разбор ошибок.':
+      topic.quiz?'20 учебных вопросов по ВНС с объяснениями.':
       'Тесты по этой теме пока не подготовлены.'));
-  if(topic.quiz) append(tests,button('Начать тест →',()=>begin(questionBank.questions),'library-action'),
+  if(topic.id==='histology-small-intestine') {
+    tests.append(button('Открыть 3 уровня тестов →',showSmallIntestineQuiz,'library-action'));
+  } else if(topic.quiz) append(tests,button('Начать тест →',()=>begin(questionBank.questions),'library-action'),
     button('Экзамен без подсказок',()=>begin(questionBank.questions,'exam'),'alt-button'));
   box.append(tests);
   const atlas=element('section','card library-feature');
   append(atlas,element('h2','','Атлас и изображения'),
-    element('p','',topic.atlas?'Доступен интерактивный атлас рецепторов.':
-      'Виртуальные препараты и атлас для этой темы ещё планируются.'));
-  if(topic.atlas) atlas.append(button('Открыть атлас →',()=>navigate('atlas'),'library-action'));
+    element('p','',topic.id==='histology-small-intestine'?
+      '3 реальных микропрепарата с зумом, подписями и самопроверкой. Фото загружаются через интернет.':
+      topic.atlas?'Доступен интерактивный атлас рецепторов.':
+      'Атлас для этой темы ещё планируется.'));
+  if(topic.id==='histology-small-intestine') atlas.append(button('Изучение / самопроверка →',showSmallIntestineSlides,'library-action'));
+  else if(topic.atlas) atlas.append(button('Открыть атлас →',()=>navigate('atlas'),'library-action'));
   box.append(atlas);
   const cards=element('section','card library-feature');
   append(cards,element('h2','','Карточки для повторения'),
@@ -311,7 +334,8 @@ function showResourceLibrary(kind) {
         button('Выбрать конспект →',()=>showTopic(topic.id),'library-go'));
     } else if(kind==='atlas') {
       append(card,element('p','','Атлас доступен в разделе выбранной темы.'),
-        button('Открыть атлас →',()=>navigate('atlas'),'library-go'));
+        button('Открыть атлас →',
+          topic.id==='histology-small-intestine'?showSmallIntestineSlides:()=>navigate('atlas'),'library-go'));
     } else {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',()=>navigate('flashcards'),'library-go'));
@@ -405,6 +429,10 @@ function showIntestine() {
   append(header,element('div','kicker',version.label),element('h2','',version.title+' конспект'),
     element('p','',version.description));
   main.append(header);
+  const activities=element('div','si-note-actions');
+  append(activities,button('30 тестов →',showSmallIntestineQuiz,'library-action'),
+    button('Препараты и самопроверка →',showSmallIntestineSlides,'alt-button'));
+  main.append(activities);
   if(intestineDepth==='intro') {
     const diagram=element('figure','histology-diagram');
     const img=element('img','','Учебная схема ворсинки и крипты тонкой кишки');
@@ -458,15 +486,16 @@ function showIntestine() {
   checklist.append(ul);
   main.append(checklist);
   const future=element('section','card hist-study-section');
-  append(future,element('h2','','Виртуальные гистопрепараты — следующий этап'),
-    element('p','hist-paragraph',intestineData.future_virtual_slides.note));
+  append(future,element('h2','','Настоящие микропрепараты уже в пилоте'),
+    element('p','hist-paragraph','Открой три лицензированных фотографии тонкой кишки. Подписи наложены только на достоверно различимые области. В режиме самопроверки назови отдел и подпиши метки; более подробный цифровой микроскоп — будущая версия.'));
   for(const item of intestineData.future_virtual_slides.examples) {
     const l=element('a','hist-source-link',item.title+' ↗');
     l.href=item.url;l.target='_blank';l.rel='noopener noreferrer';future.append(l);
   }
+  future.append(button('Открыть виртуальные препараты →',showSmallIntestineSlides,'library-action'));
   main.append(future);
 }
-
+ 
 function sampleQuestions(list, count) {
   const copy = list.slice();
   for (let i = copy.length - 1; i > 0; i--) {
@@ -938,9 +967,11 @@ Promise.all([
   fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/subjects.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/histology-small-intestine.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/library.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/library.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/small-intestine-quiz.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/small-intestine-slides.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -958,7 +989,11 @@ Promise.all([
         !Array.isArray(library.subjects['normal-physiology']?.sections)) {
       throw Error('Структура библиотеки повреждена');
     }
+    if (!histQuiz || histQuiz.questions?.length !== 30 ||
+        !slides || slides.images?.length !== 3 || !window.MedStudySI)
+      throw Error('Новый учебный модуль по гистологии не загружен');
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
+    intestineQuizBank=histQuiz;intestineSlides=slides;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();
