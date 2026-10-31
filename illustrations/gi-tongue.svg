@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title description"><title id="title">Сосочки языка</title><desc id="description">Сравнение четырёх видов сосочков языка: нитевидные, грибовидные, желобовидные, листовидные; схема не в масштабе.</desc><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf6ff"/><stop offset="1" stop-color="#effbf8"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#35285d" flood-opacity=".12"/></filter></defs><rect width="960" height="560" rx="28" fill="url(#bg)"/><text x="46" y="58" fill="#47257f" font-size="29" font-family="Arial,sans-serif" font-weight="700">Сосочки языка</text>
+<g filter="url(#s)"><rect x="35" y="110" width="890" height="360" rx="22" fill="#fff"/></g>
+<path d="M55 375 L910 375" stroke="#ce9ac5" stroke-width="7"/>
+<g fill="#edb9c7" stroke="#c36a88" stroke-width="3">
+<path d="M105 370 L135 215 Q144 176 155 214 L180 370Z"/>
+<path d="M272 369 Q259 319 259 285 Q259 265 276 251 Q298 225 326 248 Q345 262 345 285 Q345 318 332 369Z"/>
+<path d="M477 365 Q466 300 460 266 Q456 235 486 226 L569 226 Q599 234 590 266 L580 365Z"/>
+<path d="M699 365 Q695 335 691 311 Q685 282 710 271 Q735 264 759 278 L764 365Z"/>
+<path d="M759 365 Q755 333 751 307 Q745 278 773 267 Q803 261 824 284 L830 365Z"/>
+<path d="M830 365 Q823 338 824 314 Q825 290 850 283 L870 365Z"/></g>
+<g fill="#9265c7"><circle cx="494" cy="255" r="9"/><circle cx="553" cy="255" r="9"/><circle cx="292" cy="265" r="8"/><circle cx="722" cy="292" r="7"/><circle cx="782" cy="290" r="7"/></g>
+<path d="M444 372 L444 265 L461 265 M608 372 L608 265 L590 265" stroke="#d3a5b4" stroke-width="7" fill="none"/>
+<g font-family="Arial,sans-serif" font-size="19" fill="#46356e" text-anchor="middle"><text x="145" y="425">Нитевидный</text><text x="303" y="425">Грибовидный</text><text x="525" y="425">Желобовидный</text><text x="774" y="425">Листовидные</text></g>
+<text x="100" y="166" font-size="16" fill="#9b4164">Механика</text><text x="270" y="165" font-size="16" fill="#8a58bf">Вкус</text><text x="476" y="165" font-size="16" fill="#8a58bf">Вкус + борозда</text><text x="739" y="165" font-size="16" fill="#8a58bf">Вкус</text>
+<text x="45" y="532" fill="#6b6080" font-size="16" font-family="Arial,sans-serif">Авторская учебная схема • Med Study • не микрофотография</text></svg>
