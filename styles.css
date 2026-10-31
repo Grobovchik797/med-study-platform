@@ -319,3 +319,38 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .course-actions {display:flex;flex-wrap:wrap;gap:9px;margin-top:13px;}
 .course-actions button {min-height:42px;white-space:normal;}
 @media(max-width:700px) {.catalog-grid,.note-modes {grid-template-columns:1fr;} .course-card{padding:17px;} .course-actions button {flex:1;} }
+
+/* Small intestine histology: three substantial reading depths */
+.histology-spotlight {margin:22px 0;padding:24px;background:linear-gradient(113deg,#efe8ff 5%,#fff 96%);border:1px solid #ddcff5;border-radius:18px;}
+.histology-spotlight h2 {font-size:clamp(21px,3vw,29px);margin:8px 0;color:#3f286a;}
+.histology-spotlight p {color:#5d6480;font-size:13px;line-height:1.75;max-width:700px;margin:0 0 15px;}
+.histology-spotlight-button {border:0;background:var(--purple);color:#fff;padding:13px 17px;border-radius:12px;font-weight:800;min-height:48px;}
+.study-depth-selector {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:6px;background:#eee9fa;border-radius:15px;margin:22px 0;}
+.study-depth-button {min-height:53px;border:1px solid transparent;background:transparent;color:#685a85;font-size:14px;font-weight:800;border-radius:11px;padding:10px 8px;touch-action:manipulation;}
+.study-depth-button.active {background:#fff;color:var(--purple-dark);border-color:#d6c7f2;box-shadow:0 2px 8px rgba(49,29,92,.09);}
+.study-depth-header {background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin:0 0 18px;}
+.study-depth-header h2 {font-size:clamp(23px,4vw,29px);margin:7px 0 9px;}
+.study-depth-header p {line-height:1.75;font-size:13px;color:#676a80;}
+.histology-diagram {margin:20px 0;border:1px solid #e1d8f0;border-radius:17px;background:#f9f8fe;overflow:hidden;}
+.histology-diagram img {display:block;width:100%;height:auto;}
+.histology-diagram figcaption {font-size:12px;color:#6c6483;padding:10px 14px;background:#fff;}
+.study-toc {display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px;margin:24px 0;background:#f6f4fc;border:1px solid #e6dcfa;border-radius:14px;}
+.study-toc strong {font-size:14px;color:#5e388b;margin-bottom:5px;}
+.study-toc a {font-size:12px;color:#5a4b7c;text-decoration:underline;text-underline-offset:2px;line-height:1.5;}
+.hist-study-section {margin:19px 0;scroll-margin-top:165px;}
+.hist-study-section h2 {font-size:clamp(19px,3vw,24px);margin:0 0 17px;color:#332c53;line-height:1.35;}
+.hist-paragraph {color:#3e4459;line-height:1.85;font-size:14px;margin:0 0 16px;}
+.hist-takeaway {margin:17px 0 12px;padding:13px 16px;background:#f1ebff;border-radius:0 12px 12px 0;border-left:4px solid var(--purple);}
+.hist-takeaway strong {font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#6a36bf;display:block;margin-bottom:5px;}
+.hist-takeaway p {font-size:13px;color:#4d3676;line-height:1.7;}
+.hist-source-link {display:inline-block;font-size:12px;color:#6630ae;text-decoration:underline;text-underline-offset:3px;margin:10px 0 0;font-weight:700;}
+.hist-table-scroll {overflow-x:auto;max-width:100%;border:1px solid #e8dff3;border-radius:13px;margin:19px 0;}
+.hist-table {width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;line-height:1.55;min-width:540px;}
+.hist-table th,.hist-table td {padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid #eee8f4;overflow-wrap:anywhere;}
+.hist-table th {background:#eae0fc;color:#5d318e;font-weight:800;}
+.hist-table tr:nth-child(even) td {background:#faf8ff;}
+.hist-checklist {padding-left:22px;margin:14px 0;line-height:1.85;color:#4b5269;font-size:13px;}
+.hist-checklist li {margin:6px 0;}
+@media(max-width:760px) {.hist-study-section {scroll-margin-top:155px;padding:18px;} .hist-paragraph{font-size:14px;} .study-depth-header{padding:19px;} .histology-diagram{overflow-x:auto;} .histology-diagram img{width:800px;max-width:none;} }
+@media(max-width:430px) {.study-depth-selector{gap:3px;} .study-depth-button{font-size:12px;padding:10px 3px;min-height:49px;} .histology-spotlight{padding:18px;} }
+@media print {.sidebar,.topbar,.study-depth-selector,.study-toc,.histology-spotlight-button {display:none!important;} .main-content{padding:0!important;} .hist-study-section{break-inside:avoid;box-shadow:none;} .hist-paragraph{font-size:11pt;} }

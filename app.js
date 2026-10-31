@@ -33,6 +33,8 @@ let questionBank = null;
 let lessonData = null;
 let atlasData = null;
 let subjectCatalog = null;
+let intestineData = null;
+let intestineDepth = 'intro';
 let selectedReceptor = 'beta1';
 let view = 'home';
 let session = null;
@@ -121,6 +123,7 @@ function navigate(to) {
   if (to === 'subjects') showSubjects();
   else if (to === 'lesson') showLesson();
   else if (to === 'atlas') showAtlas();
+  else if (to === 'intestine') showIntestine();
   else if (to === 'flashcards') showFlashcards();
   else if (to === 'stats') showStats();
   else if (to === 'install') showInstallGuide();
@@ -164,6 +167,13 @@ function showHome() {
   const heroCopy = append(element('div', 'hero-copy'), element('div', 'kicker', 'СЕГОДНЯ МОЖНО НАЧАТЬ'), element('h2', '', 'Каждый правильный ответ — шаг вперёд.'), element('p', '', 'Выбирай тему, отвечай на вопросы и сразу узнавай, почему ответ правильный.'));
   append(hero, heroCopy, button('Изучить тему →', () => navigate('lesson'), 'hero-action'));
   main.append(hero);
+  const histShortcut = element('section','histology-spotlight');
+  append(histShortcut,
+    element('div','kicker','ПЕРВЫЙ МОДУЛЬ ГИСТОЛОГИИ'),
+    element('h2','','Тонкая кишка: три уровня понимания'),
+    element('p','','Вводный обзор, содержательная базовая версия и расширенный разбор до клеток, ультраструктуры, секреции и иммунной защиты.'),
+    button('Выбрать уровень конспекта →', () => navigate('intestine'),'histology-spotlight-button'));
+  main.append(histShortcut);
   const atlasShortcut = element('section', 'atlas-home-link');
   append(atlasShortcut, element('div', 'kicker', 'НОВОЕ · ИНТЕРАКТИВНЫЙ АТЛАС'), element('h2', '', 'Нажимай на рецепторы — изучай эффекты'), element('p','', 'Шесть рецепторов ВНС с объяснениями, примерами и источниками.'), button('Открыть атлас →', () => navigate('atlas')));
   main.append(atlasShortcut);
@@ -185,51 +195,141 @@ function showHome() {
 function showSubjects() {
   view = 'subjects'; updateNav(); main.replaceChildren();
   main.append(titleArea('ТВОЙ УНИВЕРСИТЕТ', 'Мои предметы',
-    'Все дисциплины текущего семестра — от анатомии до философии. Пока учебный материал есть только по ВНС.'));
+    'В каталоге 11 дисциплин. Сейчас доступен вводный материал по ВНС и первый пилот гистологии тонкой кишки.'));
   if (!subjectCatalog) {
-    main.append(element('p','note','Не удалось загрузить каталог предметов.'));
-    return;
+    main.append(element('p','note','Не удалось загрузить каталог предметов.'));return;
   }
   const modes = element('div','note-modes');
   for (const mode of subjectCatalog.note_modes) {
     const card = element('div','note-mode');
-    append(card, element('h3','',mode.title),element('p','',mode.description));
+    append(card,element('h3','',mode.title),element('p','',mode.description));
     modes.append(card);
   }
   main.append(modes);
-  const heading = append(element('div','section-head'), append(element('div'),
-    element('h2','', 'Предметы семестра'),
-    element('p','section-subtitle', subjectCatalog.subjects.length + ' дисциплин; новые материалы будем добавлять постепенно')));
+  const heading = append(element('div','section-head'),
+    append(element('div'),element('h2','','Предметы семестра'),
+      element('p','section-subtitle','Выбирай готовую тему. Для остальных материалов пока указан статус подготовки.')));
   main.append(heading);
   const grid = element('div','catalog-grid');
   for (const subject of subjectCatalog.subjects) {
     const card = element('article','course-card');
-    const available = subject.status === 'learning-material';
+    const hist = subject.id === 'histology-cytology';
+    const normal = subject.id === 'normal-physiology';
+    const summary = hist ? 'Тонкая кишка · три формата учебного материала'
+      : normal ? 'ВНС · вводный конспект и 20 вопросов' : 'Материалы ещё не добавлены';
     append(card,
       element('div','course-kind',subject.group === 'medical' ? 'МЕДИЦИНА' : 'ОБЩЕУНИВЕРСИТЕТСКИЙ'),
-      element('h3','',subject.name),
-      element('p','course-status',available ? 'ВНС: есть вводные материалы и 20 вопросов' : 'Материалы ещё не добавлены'));
-    if (available) {
-      const noteStatus = element('div','course-notes-status');
-      append(noteStatus,
-        element('span','', 'Краткий: вводный материал (ещё не сверен со всеми вопросами)'),
-        element('span','', 'Расширенный: в разработке'));
-      card.append(noteStatus);
-      const action = element('div','course-actions');
-      append(action, button('Открыть ВНС', () => navigate('lesson')),
-        button('20 вопросов', () => begin(questionBank.questions),'alt-button'));
-      card.append(action);
+      element('h3','',subject.name),element('p','course-status',summary));
+    const state = element('div','course-notes-status');
+    if (hist) {
+      append(state,element('span','','Вводный, краткий и расширенный: авторские материалы с проверкой по открытым источникам'),
+        element('span','','Требуется сверка с кафедрой; гистопрепараты будут позже'));
+    } else if (normal) {
+      append(state,element('span','','ВНС: вводный материал'),
+        element('span','','Полноценные краткий и расширенный: ещё не готовы'));
     } else {
-      const pending = element('div','course-notes-status');
-      append(pending,element('span','', 'Краткий: планируется'),
-        element('span','', 'Расширенный: планируется'));
-      card.append(pending);
+      append(state,element('span','','Вводный: планируется'),
+        element('span','','Краткий и расширенный: планируются'));
+    }
+    card.append(state);
+    if(hist||normal) {
+      const actions = element('div','course-actions');
+      if(hist) append(actions,button('Тонкая кишка →',() => navigate('intestine')));
+      if(normal) append(actions,button('Читать ВНС',() => navigate('lesson')),
+        button('20 вопросов',() => begin(questionBank.questions),'alt-button'));
+      card.append(actions);
     }
     grid.append(card);
   }
-  main.append(grid, disclaimer());
+  main.append(grid);
 }
 
+function showIntestine() {
+  view = 'intestine'; updateNav(); main.replaceChildren();
+  if (!intestineData) {
+    main.append(element('p','note','Материал по гистологии не загрузился. Обнови страницу.'));
+    return;
+  }
+  main.append(titleArea('ГИСТОЛОГИЯ · ЦИТОЛОГИЯ', intestineData.title,
+    'Единая тема в трёх самостоятельных форматах. Выбирай глубину изучения, не теряя связи между строением и функцией.'));
+  const warning=element('div','note');
+  warning.textContent=intestineData.review_note;
+  main.append(warning);
+  const selector=element('div','study-depth-selector');
+  for(const variant of intestineData.variants) {
+    const active=variant.id===intestineDepth;
+    const b=button(variant.title,() => {intestineDepth=variant.id;showIntestine();window.scrollTo(0,0);},
+      'study-depth-button'+(active?' active':''));
+    b.setAttribute('aria-pressed',String(active));
+    selector.append(b);
+  }
+  main.append(selector);
+  const version=intestineData.variants.find(x=>x.id===intestineDepth)||intestineData.variants[0];
+  const header=element('div','study-depth-header');
+  append(header,element('div','kicker',version.label),element('h2','',version.title+' конспект'),
+    element('p','',version.description));
+  main.append(header);
+  if(intestineDepth==='intro') {
+    const diagram=element('figure','histology-diagram');
+    const img=element('img','','Учебная схема ворсинки и крипты тонкой кишки');
+    img.src='./illustrations/small-intestine-schematic.svg';
+    img.alt='Авторская учебная схема: ворсинка, энтероциты, бокаловидная клетка, крипта и клетки Панета, собственная пластинка и подслизистая';
+    img.loading='lazy';
+    diagram.append(img,element('figcaption','','Схема для ориентации, не реальный гистологический препарат.'));
+    main.append(diagram);
+  }
+  const toc=element('nav','study-toc');
+  append(toc,element('strong','','Разделы · '+version.sections.length));
+  for(let n=0;n<version.sections.length;n++) {
+    const link=element('a','',version.sections[n].title);
+    link.href='#intestine-section-'+n;
+    toc.append(link);
+  }
+  main.append(toc);
+  for(let i=0;i<version.sections.length;i++) {
+    const section=version.sections[i],card=element('section','card hist-study-section');
+    card.id='intestine-section-'+i;
+    append(card,element('h2','',section.title));
+    for(const paragraph of section.paragraphs) card.append(element('p','hist-paragraph',paragraph));
+    if(section.table) {
+      const wrap=element('div','hist-table-scroll');
+      const t=element('table','hist-table');
+      const head=element('thead');const row=element('tr');
+      for(const h of section.table.headers) row.append(element('th','',h));
+      head.append(row);t.append(head);
+      const body=element('tbody');
+      for(const values of section.table.rows) {
+        const tr=element('tr');
+        for(const value of values)tr.append(element('td','',value));
+        body.append(tr);
+      }
+      t.append(body);wrap.append(t);card.append(wrap);
+    }
+    const takeaway=element('div','hist-takeaway');
+    append(takeaway,element('strong','','Запомни'),element('p','',section.key));
+    card.append(takeaway);
+    if(typeof section.source==='string'&&section.source.startsWith('https://')) {
+      const link=element('a','hist-source-link','Проверить раздел по источнику ↗');
+      link.href=section.source;link.target='_blank';link.rel='noopener noreferrer';
+      card.append(link);
+    }
+    main.append(card);
+  }
+  const checklist=element('section','card hist-study-section');
+  append(checklist,element('h2','','Что нужно уметь объяснить преподавателю'));
+  const ul=element('ul','hist-checklist');
+  for(const value of intestineData.checklist) ul.append(element('li','',value));
+  checklist.append(ul);
+  main.append(checklist);
+  const future=element('section','card hist-study-section');
+  append(future,element('h2','','Виртуальные гистопрепараты — следующий этап'),
+    element('p','hist-paragraph',intestineData.future_virtual_slides.note));
+  for(const item of intestineData.future_virtual_slides.examples) {
+    const l=element('a','hist-source-link',item.title+' ↗');
+    l.href=item.url;l.target='_blank';l.rel='noopener noreferrer';future.append(l);
+  }
+  main.append(future);
+}
 
 function sampleQuestions(list, count) {
   const copy = list.slice();
@@ -687,17 +787,23 @@ Promise.all([
   fetch('./data/questions.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/subjects.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/subjects.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/histology-small-intestine.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
 ])
-  .then(([data, lesson, atlas, subjects]) => {
+  .then(([data, lesson, atlas, subjects, intestine]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
     if (!subjects || !Array.isArray(subjects.subjects) || subjects.subjects.length !== 11 ||
-        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 2) {
+        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 3) {
       throw new Error('Каталог предметов повреждён');
     }
-    questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects;
+    if (!intestine || !Array.isArray(intestine.variants) ||
+        intestine.variants.length !== 3 ||
+        !['intro','brief','deep'].every(key => intestine.variants.some(v => v.id === key && Array.isArray(v.sections)))) {
+      throw new Error('Материал по тонкой кишке повреждён');
+    }
+    questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();
