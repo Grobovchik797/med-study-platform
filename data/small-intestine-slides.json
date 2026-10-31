@@ -1,7 +1,7 @@
 {
   "version": 1,
   "topicId": "histology-small-intestine",
-  "modeDescription": "Изучение и самопроверка по 3 лицензированным гистологическим снимкам. Изображения оптимизируются во время сборки и входят в сайт и тестовый APK; ссылки на оригиналы и лицензии сохранены.",
+  "modeDescription": "Изучение и самопроверка по трём лицензированным фотографиям Wikimedia. Используются небольшие миниатюры, но их загрузка всё ещё зависит от внешнего сервера; на Android может быть недоступна.",
   "images": [
     {
       "id": "duodenum",
@@ -9,7 +9,7 @@
       "answer": "duodenum",
       "stain": "Микрофотография, окраска заявлена как гистологическая (точный протокол не указан автором)",
       "aspect": "0.75",
-      "src": "media/histology/duodenum.webp",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Duodenum_Microscopic_View.jpg/500px-Duodenum_Microscopic_View.jpg",
       "credit": "Lokeshmanikanta 22",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -33,7 +33,7 @@
       ],
       "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Duodenum_Microscopic_View.jpg/960px-Duodenum_Microscopic_View.jpg",
       "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Duodenum%20Microscopic%20View.jpg",
-      "isResizedCopy": true
+      "isResizedCopy": false
     },
     {
       "id": "jejunum",
@@ -41,7 +41,7 @@
       "answer": "jejunum",
       "stain": "Гистологический препарат (окраска в карточке Commons не уточнена)",
       "aspect": "0.75",
-      "src": "media/histology/jejunum.webp",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Jejunum.png/576px-Jejunum.png",
       "credit": "Gnanadeep",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -50,7 +50,7 @@
       "annotations": [],
       "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Jejunum.png/960px-Jejunum.png",
       "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jejunum.png",
-      "isResizedCopy": true
+      "isResizedCopy": false
     },
     {
       "id": "ileum",
@@ -58,7 +58,7 @@
       "answer": "ileum",
       "stain": "Гематоксилин и эозин (H&E), биопсия терминального отдела",
       "aspect": "1.5",
-      "src": "media/histology/ileum.webp",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg/640px-Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg",
       "credit": "CoRus13",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -89,7 +89,7 @@
       ],
       "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg/1280px-Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg",
       "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ileum%20biopsy%20with%20lymphoid%20tissue%2C%20intermed.%20mag.jpg",
-      "isResizedCopy": true
+      "isResizedCopy": false
     }
   ]
 }
