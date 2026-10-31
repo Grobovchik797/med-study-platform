@@ -35,6 +35,7 @@ jobs:
           python3 scripts/validate_illustrations.py
           python3 scripts/validate_atlas.py
           python3 scripts/validate_subjects.py
+          python3 scripts/validate_histology.py
           node --check app.js
       - name: Prepare embedded offline website
         run: |
