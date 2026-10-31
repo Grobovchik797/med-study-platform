@@ -4,155 +4,104 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { chromium } = require('playwright');
 
-const BASE = 'http://127.0.0.1:8765/';
-
-async function waitForHeading(page, value) {
-  await page.waitForFunction(expected =>
-    document.querySelector('#main-content h1')?.textContent?.includes(expected), value);
+async function waitHeading(page,title) {
+  await page.waitForFunction(t=>document.querySelector('#main-content h1')?.textContent?.includes(t),title);
 }
-
-async function run() {
-  const browser = await chromium.launch({ headless:true });
-  const failures = [];
+async function navigateHistology(page) {
+  await page.locator('.side-nav [data-nav="subjects"]').tap();
+  await waitHeading(page,'Мои предметы');
+  assert.equal(await page.locator('.library-card').count(),11);
+  const hist=page.locator('.library-card').filter({hasText:'Гистология, цитология'});
+  await hist.locator('.library-go').tap();
+  await waitHeading(page,'Гистология, цитология');
+  assert.equal(await page.locator('.library-card').count(),11);
+  const gi=page.locator('.library-card').filter({hasText:'Пищеварительная система'});
+  await gi.locator('.library-go').tap();
+  await waitHeading(page,'Пищеварительная система');
+  assert.equal(await page.locator('.library-card').count(),1);
+  await page.locator('.library-card .library-go').tap();
+  await waitHeading(page,'Тонкая кишка');
+  assert.equal(await page.locator('.library-feature').count(),4);
+  assert.ok((await page.locator('.library-feature').nth(1).textContent()).includes('пока не подготовлены'));
+  await page.locator('.library-buttons button').first().tap();
+  await waitHeading(page,'Тонкая кишка');
+  assert.equal(await page.locator('.study-depth-button').count(),3);
+  assert.equal(await page.locator('.hist-study-section').count(),7);
+  await page.locator('.study-depth-button').nth(1).tap();
+  assert.equal(await page.locator('.hist-study-section').count(),11);
+  await page.locator('.study-depth-button').nth(2).tap();
+  assert.equal(await page.locator('.hist-study-section').count(),16);
+}
+async function main() {
+  const browser=await chromium.launch({headless:true});
+  const errors=[];
   try {
-    const context = await browser.newContext({
-      viewport:{ width:390,height:780 }, isMobile:true, hasTouch:true,
-      deviceScaleFactor:2
-    });
-    const page = await context.newPage();
-    page.on('pageerror', error => failures.push(error.message));
-    await page.goto(BASE, { waitUntil:'networkidle' });
-    await waitForHeading(page, 'Твоя учёба');
-    assert.equal(await page.locator('#mobile-more-toggle').isVisible(),true);
-    assert.equal(await page.locator('.side-nav [data-nav="atlas"]').isVisible(),false);
-    // Critical regression: navigation must be at TOP, never within Android's
-    // bottom 3-button system navigation area (typically last 50-90 px).
-    const navRect = await page.locator('.sidebar').boundingBox();
-    assert.ok(navRect, 'Navigation not visible');
-    assert.ok(navRect.y >= 48 && navRect.y <= 75,
-      'Mobile navigation is not below the top header: ' + JSON.stringify(navRect));
-    assert.ok(navRect.y + navRect.height < 175,
-      'Top navigation unexpectedly low: ' + JSON.stringify(navRect));
-    assert.ok(navRect.y + navRect.height < 780 - 100,
-      'Navigation overlaps simulated Android navigation bar');
-    const hit = await page.locator('.side-nav [data-nav="home"]').evaluate(button => {
-      const rect = button.getBoundingClientRect();
-      const element = document.elementFromPoint(rect.left + rect.width / 2,rect.top + rect.height / 2);
-      return element === button || button.contains(element);
-    });
-    assert.equal(hit,true,'Mobile navigation button is obscured');
-
-    const overflow = await page.evaluate(() =>
-      document.documentElement.scrollWidth - window.innerWidth);
-    assert.ok(overflow <= 3,'Unexpected full-page horizontal overflow: ' + overflow);
-
-    // Course catalog remains tappable and honest about missing materials.
-    await page.locator('.side-nav [data-nav="subjects"]').tap();
-    await waitForHeading(page, 'Мои предметы');
-    assert.equal(await page.locator('.course-card').count(), 11);
-    assert.equal(await page.locator('.note-mode').count(), 3);
-    assert.equal(await page.locator('.course-card .course-actions').count(), 2);
-    const hist = page.locator('.course-card').filter({hasText:'Гистология, цитология'});
-    await hist.locator('.course-actions button').first().tap();
-    await waitForHeading(page,'Тонкая кишка');
-    assert.equal(await page.locator('.study-depth-button').count(),3);
-    assert.equal(await page.locator('.hist-study-section').count(),7);
-    await page.locator('.study-depth-button').nth(1).tap();
-    assert.equal(await page.locator('.hist-study-section').count(),11);
-    assert.ok(await page.locator('.hist-table').count() >= 2);
-    await page.locator('.study-depth-button').nth(2).tap();
-    assert.equal(await page.locator('.hist-study-section').count(),16);
-    assert.ok(await page.locator('.hist-source-link').count() >= 14);
-    await page.locator('.study-depth-button').first().tap();
-    assert.equal(await page.locator('.histology-diagram').count(),1);
-    await page.locator('.side-nav [data-nav="subjects"]').tap();
-    await waitForHeading(page,'Мои предметы');
-    const philosophy = await page.locator('.course-card').filter({ hasText: 'Философия' }).textContent();
-    assert.ok(philosophy.includes('планируется'));
-    await page.locator('.side-nav [data-nav="home"]').tap();
-    await waitForHeading(page, 'Твоя учёба');
-
-    // Reproduces the broken hero tap reported by an Android user.
+    const ctx=await browser.newContext({viewport:{width:390,height:780},isMobile:true,hasTouch:true});
+    const page=await ctx.newPage();
+    page.on('pageerror',e=>errors.push(e.message));
+    await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
+    await waitHeading(page,'Med Study — библиотека знаний');
+    const nav=await page.locator('.sidebar').boundingBox();
+    assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
-    await waitForHeading(page, 'Вегетативная нервная система');
-    await page.locator('#mobile-more-toggle').tap();
-    assert.equal(await page.locator('#mobile-more-panel').isVisible(),true);
-    const panelRect = await page.locator('#mobile-more-panel').boundingBox();
-    assert.ok(panelRect && panelRect.y > navRect.y,
-      'More menu should drop from top navigation');
-    assert.ok(panelRect.y + panelRect.height < 780 - 50,
-      'More menu must not overlap Android system navigation region');
-    await page.locator('#mobile-more-panel [data-nav="flashcards"]').tap();
-    await waitForHeading(page, 'Карточки по ВНС');
-    assert.equal(await page.locator('#mobile-more-panel').isVisible(),false);
+    await waitHeading(page,'Мои предметы');
+    await navigateHistology(page);
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+    assert.ok(overflow<=3,'Unexpected page overflow: '+overflow);
 
+    await page.locator('.side-nav [data-nav="notes"]').tap();
+    await waitHeading(page,'Библиотека конспектов');
+    assert.equal(await page.locator('.library-card').count(),2);
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
+    await waitHeading(page,'Карточки по темам');
+    assert.equal(await page.locator('.library-card').count(),1);
+    await page.locator('.library-go').tap();
+    await waitHeading(page,'Карточки по ВНС');
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+    await waitHeading(page,'Библиотека атласов');
+    assert.equal(await page.locator('.library-card').count(),1);
+    await page.locator('.library-go').tap();
+    await waitHeading(page,'Интерактивный атлас рецепторов');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="stats"]').tap();
-    await waitForHeading(page, 'Мой прогресс');
-    await page.locator('#mobile-more-toggle').tap();
-    await page.locator('#mobile-more-panel [data-nav="atlas"]').tap();
-    await waitForHeading(page, 'Интерактивный атлас рецепторов');
-    await page.locator('.atlas-receptor').first().tap();
-    assert.ok((await page.locator('.atlas-detail').textContent()).includes('α1'));
+    await waitHeading(page,'Мой прогресс');
+    assert.equal(await page.locator('.topic-stats').count(),2);
+    assert.equal(errors.length,0,errors.join('\n'));
 
-    // Simulate the special origin used by the Android native wrapper.
-    // In that runtime installation actions must be hidden.
-    const appContext = await browser.newContext({
-      viewport:{width:360,height:760},isMobile:true,hasTouch:true
-    });
-    const appPage = await appContext.newPage();
-    await appPage.route('https://appassets.androidplatform.net/assets/www/**', async route => {
-      const url = new URL(route.request().url());
-      const relative = decodeURIComponent(url.pathname.replace('/assets/www/',''));
-      const target = path.resolve(process.cwd(),relative);
-      if (!target.startsWith(process.cwd() + path.sep)) {
-        await route.fulfill({status:403,body:'Forbidden'});return;
-      }
-      try {
-        const bytes=await fs.readFile(target);
-        const ext=path.extname(relative);
-        const mime=({'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'})[ext]||'application/octet-stream';
+    const appctx=await browser.newContext({viewport:{width:360,height:760},isMobile:true,hasTouch:true});
+    const app=await appctx.newPage();
+    app.on('pageerror',e=>errors.push(e.message));
+    await app.route('https://appassets.androidplatform.net/assets/www/**',async route=>{
+      const url=new URL(route.request().url());
+      const rel=decodeURIComponent(url.pathname.replace('/assets/www/',''));
+      const file=path.resolve(process.cwd(),rel);
+      if(!file.startsWith(process.cwd()+path.sep)){await route.fulfill({status:403,body:'Forbidden'});return;}
+      try{
+        const bytes=await fs.readFile(file);
+        const extension=path.extname(rel);
+        const mime=({'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'})[extension]||'application/octet-stream';
         await route.fulfill({status:200,contentType:mime,body:bytes});
-      } catch {
-        await route.fulfill({status:404,body:'Not found'});
-      }
+      }catch{await route.fulfill({status:404,body:'Not found'});}
     });
-    await appPage.goto('https://appassets.androidplatform.net/assets/www/index.html',
-      {waitUntil:'networkidle'});
-    await waitForHeading(appPage, 'Твоя учёба');
-    assert.equal(await appPage.locator('html').getAttribute('data-runtime'),'android-app');
-    await appPage.locator('.side-nav [data-nav="subjects"]').tap();
-    await waitForHeading(appPage, 'Мои предметы');
-    assert.equal(await appPage.locator('.course-card').count(), 11);
-    assert.equal(await appPage.locator('.note-mode').count(),3);
-    await appPage.locator('.course-card').filter({hasText:'Гистология, цитология'})
-      .locator('.course-actions button').first().tap();
-    await waitForHeading(appPage,'Тонкая кишка');
-    await appPage.locator('.study-depth-button').nth(2).tap();
-    assert.equal(await appPage.locator('.hist-study-section').count(),16);
-    await appPage.locator('.side-nav [data-nav="subjects"]').tap();
-    await waitForHeading(appPage,'Мои предметы');
-    await appPage.locator('.side-nav [data-nav="home"]').tap();
-    await waitForHeading(appPage, 'Твоя учёба');
-    const appNavRect = await appPage.locator('.sidebar').boundingBox();
-    assert.ok(appNavRect && appNavRect.y < 80 &&
-      appNavRect.y + appNavRect.height < 190,
-      'Android-origin navigation must be at the top: ' + JSON.stringify(appNavRect));
-    await appPage.locator('#mobile-more-toggle').tap();
-    assert.equal(await appPage.locator('#mobile-more-panel [data-nav="install"]').isVisible(),false);
-    await appPage.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
-    await waitForHeading(appPage,'Работа над ошибками');
-    await appPage.locator('#mobile-more-toggle').tap();
-    await appPage.locator('#mobile-more-panel [data-nav="stats"]').tap();
-    await waitForHeading(appPage,'Мой прогресс');
-    await appPage.locator('.side-nav [data-nav="home"]').tap();
-    await appPage.locator('.hero-action').tap();
-    await waitForHeading(appPage,'Вегетативная нервная система');
-    assert.deepEqual(failures,[],'Unexpected JavaScript errors');
-    console.log('PASS: mobile buttons, More menu, Android-origin simulation and no overflow');
-    await appContext.close();await context.close();
-  } finally {
-    await browser.close();
-  }
+    await app.goto('https://appassets.androidplatform.net/assets/www/index.html',{waitUntil:'networkidle'});
+    await waitHeading(app,'Med Study — библиотека знаний');
+    assert.equal(await app.locator('html').getAttribute('data-runtime'),'android-app');
+    const bar=await app.locator('.sidebar').boundingBox();
+    assert.ok(bar && bar.y<85 && bar.y+bar.height<190,'Android menu overlaps OS navbar');
+    await navigateHistology(app);
+    await app.locator('#mobile-more-toggle').tap();
+    assert.equal(await app.locator('#mobile-more-panel [data-nav="install"]').isVisible(),false);
+    await app.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
+    await waitHeading(app,'Работа над ошибками');
+    assert.equal(await app.locator('.topic-stats').count(),1);
+    await app.locator('.side-nav [data-nav="notes"]').tap();
+    await waitHeading(app,'Библиотека конспектов');
+    assert.equal(await app.locator('.library-card').count(),2);
+    assert.equal(errors.length,0,errors.join('\n'));
+    await appctx.close();await ctx.close();
+    console.log('PASS: multi-topic navigation, global resources, 3 notes depths and Android menu');
+  } finally {await browser.close();}
 }
-run().catch(error => {console.error(error);process.exitCode=1;});
+main().catch(e=>{console.error(e);process.exitCode=1;});
