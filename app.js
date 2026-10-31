@@ -429,6 +429,7 @@ function showIntestine() {
   append(header,element('div','kicker',version.label),element('h2','',version.title+' конспект'),
     element('p','',version.description));
   main.append(header);
+  if(version.originStatement)main.append(element('p','si-source-note',version.originStatement));
   const activities=element('div','si-note-actions');
   append(activities,button('30 тестов →',showSmallIntestineQuiz,'library-action'),
     button('Препараты и самопроверка →',showSmallIntestineSlides,'alt-button'));
@@ -469,6 +470,7 @@ function showIntestine() {
       }
       t.append(body);wrap.append(t);card.append(wrap);
     }
+    if(section.userPages) card.append(element('p','si-source-note','В исходном конспекте: стр. '+section.userPages+'; редакционные пояснения и предложения — в журнале сверки.'));
     const takeaway=element('div','hist-takeaway');
     append(takeaway,element('strong','','Запомни'),element('p','',section.key));
     card.append(takeaway);
