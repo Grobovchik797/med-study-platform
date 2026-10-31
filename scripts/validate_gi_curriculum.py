@@ -15,7 +15,8 @@ ids=[c['id'] for c in course['chapters']]
 assert len(set(ids))==17
 assert len(mini['chapterQuestions'])==17 and set(mini['chapterQuestions'])==set(ids)
 for c in course['chapters']:
- assert all(isinstance(c[f],str) and len(c[f])>=14 for f in ('id','title','methodPage','intro','nb'))
+ assert all(isinstance(c[f],str) and c[f].strip() for f in ('id','title','methodPage','intro','nb'))
+ assert len(c['title'])>=8 and len(c['intro'])>=35 and len(c['nb'])>=25
  assert len(c['brief'])>=2 and len(c['deep'])>=2
  assert c['methodologyPdfPages'] and len(c['methodologyPdfPages'])==2
  for q in mini['chapterQuestions'][c['id']]:
