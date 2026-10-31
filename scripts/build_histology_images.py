@@ -22,7 +22,9 @@ HEADERS = {
     "User-Agent": "MedStudyEducation/0.9 (licensed image mirroring; educational project; contact via GitHub Grobovchik797/med-study-platform)",
     "Accept": "image/avif,image/webp,image/jpeg,image/png,image/*",
 }
-for s in slides["images"]:
+for file_index, s in enumerate(slides["images"]):
+    if file_index:
+        time.sleep(5)  # Wikimedia CDN rate-limit courtesy delay
     name = s["id"]
     destination = ROOT / s["src"]
     assert destination.resolve().is_relative_to(output.resolve()), s["src"]
@@ -34,7 +36,7 @@ for s in slides["images"]:
     content = None
     failures = []
     for url in urls:
-        for attempt in range(3):
+        for attempt in range(4):
             try:
                 request = Request(url, headers=HEADERS)
                 with urlopen(request, timeout=35) as response:
@@ -48,7 +50,7 @@ for s in slides["images"]:
                 break
             except (URLError, HTTPError, TimeoutError, OSError, ValueError) as err:
                 failures.append(str(err))
-                time.sleep(1 + attempt)
+                time.sleep(5 + attempt * 6)  # backoff after 429/other transient errors
         if content is not None:
             break
     if content is None:
