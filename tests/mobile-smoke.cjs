@@ -83,8 +83,8 @@ async function main() {
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
     await waitHeading(page,'Библиотека атласов');
-    assert.equal(await page.locator('.library-card').count(),1);
-    await page.locator('.library-go').tap();
+    assert.equal(await page.locator('.library-card').count(),2);
+    await page.locator('.library-card').filter({hasText:'Вегетативная нервная система'}).locator('.library-go').tap();
     await waitHeading(page,'Интерактивный атлас рецепторов');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="stats"]').tap();
