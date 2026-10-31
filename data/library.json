@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "description": "Дерево предмет → раздел → тема. Запись в библиотеке не означает наличие материалов.",
+  "subjects": {
+    "histology-cytology": {
+      "sections": [
+        {
+          "id": "cytology",
+          "title": "Цитология",
+          "subtitle": "Клетка и её структуры",
+          "topics": []
+        },
+        {
+          "id": "embryology",
+          "title": "Эмбриология",
+          "subtitle": "Эмбриональное развитие",
+          "topics": []
+        },
+        {
+          "id": "general-histology",
+          "title": "Общая гистология",
+          "subtitle": "Основные типы тканей",
+          "topics": []
+        },
+        {
+          "id": "digestive",
+          "title": "Пищеварительная система",
+          "subtitle": "Эпителий и железы пищеварительного тракта",
+          "topics": [
+            {
+              "id": "histology-small-intestine",
+              "title": "Тонкая кишка",
+              "status": "draft-reviewed-sources",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": false,
+              "atlas": false,
+              "flashcards": false,
+              "route": "intestine",
+              "hint": "Три конспекта, схема ворсинки и крипты, таблицы. Подготовка по кафедральным вопросам ещё требуется."
+            }
+          ]
+        },
+        {
+          "id": "respiratory",
+          "title": "Дыхательная система",
+          "subtitle": "Воздухоносные пути и лёгкие",
+          "topics": []
+        },
+        {
+          "id": "cardiovascular",
+          "title": "Сердечно-сосудистая система",
+          "subtitle": "Сердце, артерии, вены, микроциркуляция",
+          "topics": []
+        },
+        {
+          "id": "nervous",
+          "title": "Нервная система",
+          "subtitle": "Нейроны, глия, ЦНС и ПНС",
+          "topics": []
+        },
+        {
+          "id": "hematopoietic",
+          "title": "Кроветворение и иммунные органы",
+          "subtitle": "Костный мозг, тимус, лимфоузлы, селезёнка",
+          "topics": []
+        },
+        {
+          "id": "endocrine",
+          "title": "Эндокринная система",
+          "subtitle": "Эндокринные железы и их клетки",
+          "topics": []
+        },
+        {
+          "id": "urogenital",
+          "title": "Мочевая и половая системы",
+          "subtitle": "Почки, мочевые пути, половые органы",
+          "topics": []
+        },
+        {
+          "id": "integumentary",
+          "title": "Кожа и её производные",
+          "subtitle": "Кожа, волосы, ногти, железы",
+          "topics": []
+        }
+      ]
+    },
+    "normal-physiology": {
+      "sections": [
+        {
+          "id": "nervous-system",
+          "title": "Нервная система",
+          "subtitle": "Соматическая и вегетативная регуляция",
+          "topics": [
+            {
+              "id": "ans",
+              "title": "Вегетативная нервная система",
+              "status": "introductory",
+              "notes": {
+                "intro": true,
+                "brief": false,
+                "deep": false
+              },
+              "quiz": true,
+              "atlas": true,
+              "flashcards": true,
+              "route": "lesson",
+              "hint": "Вводный конспект, 20 вопросов, атлас рецепторов, карточки. Краткий и расширенный ещё в плане."
+            }
+          ]
+        },
+        {
+          "id": "cardiovascular",
+          "title": "Кровообращение",
+          "subtitle": "Сердце и гемодинамика",
+          "topics": []
+        },
+        {
+          "id": "respiration",
+          "title": "Дыхание",
+          "subtitle": "Вентиляция и газообмен",
+          "topics": []
+        },
+        {
+          "id": "digestion",
+          "title": "Пищеварение",
+          "subtitle": "Секреция, моторика и всасывание",
+          "topics": []
+        },
+        {
+          "id": "renal",
+          "title": "Почки и водно-солевой баланс",
+          "subtitle": "Фильтрация и регуляция",
+          "topics": []
+        }
+      ]
+    }
+  }
+}
