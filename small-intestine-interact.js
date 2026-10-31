@@ -87,9 +87,9 @@ function renderQuiz(host,bank,exit){
  }
  chooser();
 }
-function renderSlides(host,data,exit){
+function renderSlides(host,data,exit,initialIndex=0){
  const root=e('section','si-workspace');host.append(root);
- let slideIndex=0,mode='study',zoom=1,dx=0,dy=0,point=null;
+ let slideIndex=initialIndex,mode='study',zoom=1,dx=0,dy=0,point=null;
  const results=read();
  function show(){
   const slide=data.images[slideIndex];zoom=1;dx=0;dy=0;point=null;
@@ -108,11 +108,24 @@ function renderSlides(host,data,exit){
   if(mode==='study')root.append(e('h2','',slide.title));
   const frame=e('div','si-microscope');frame.style.aspectRatio=slide.aspect;
   const surface=e('div','si-surface');
-  const photo=e('img');photo.src=slide.src;photo.alt=mode==='study'?slide.title:'Неизвестный гистологический препарат тонкой кишки';photo.loading='lazy';
-  photo.addEventListener('error',()=>{
-    frame.classList.add('si-image-error');
-    if(!frame.querySelector('.si-fallback'))frame.append(e('p','si-fallback','Снимок не загрузился. Для изображений Commons нужен интернет; открой оригинал по ссылке ниже.'));
-  });
+  const photo=e('img');photo.alt=mode==='study'?slide.title:'Неизвестный гистологический препарат тонкой кишки';
+  photo.loading='eager';photo.decoding='async';
+  const loading=e('div','si-image-loading');
+  add(loading,e('span','si-loading-spinner'),e('span','','Открываем препарат…'));
+  frame.append(loading);
+  const markLoaded=()=>{
+    if(!photo.naturalWidth){markFailed();return;}
+    frame.classList.remove('si-image-error');loading.remove();
+  };
+  const markFailed=()=>{
+    frame.classList.add('si-image-error');loading.replaceChildren();
+    add(loading,e('strong','','Препарат не открылся'),
+      e('p','','Локальный файл недоступен или повреждён. Попробуй загрузить его повторно.'),
+      btn('Повторить загрузку',()=>{frame.classList.remove('si-image-error');loading.replaceChildren(e('span','si-loading-spinner'),e('span','','Повторная загрузка…'));photo.src=slide.src+'?retry='+Date.now();},'si-button secondary'));
+  };
+  photo.addEventListener('load',markLoaded);
+  photo.addEventListener('error',markFailed);
+  photo.src=slide.src;
   surface.append(photo);
   for(const ann of slide.annotations){
     const mark=e('span','si-pin',String(ann.n));mark.style.left=ann.x+'%';mark.style.top=ann.y+'%';
@@ -131,7 +144,7 @@ function renderSlides(host,data,exit){
   function done(event){if(point?.id===event.pointerId)point=null;}
   frame.addEventListener('pointerup',done);frame.addEventListener('pointercancel',done);
   frame.addEventListener('wheel',event=>{event.preventDefault();zoom=Math.max(1,Math.min(4,zoom+(event.deltaY<0?.25:-.25)));transform();},{passive:false});
-  frame.append(surface);root.append(frame);
+  frame.insertBefore(surface,loading);root.append(frame);
   const controls=e('div','si-choice-row');
   controls.append(btn('＋ Увеличить',()=>{zoom=Math.min(4,zoom+.5);transform();},'si-button secondary'),
      btn('－ Уменьшить',()=>{zoom=Math.max(1,zoom-.5);transform();},'si-button secondary'),
@@ -177,14 +190,73 @@ function renderSlides(host,data,exit){
     }));form.append(outcome);root.append(form);
   }
   const by=e('div','si-credit');
-  add(by,e('p','','Автор: '+slide.credit+' · '+slide.license+' · '+slide.stain));
+  add(by,e('p','','Автор: '+slide.credit+' · '+slide.license+' · '+slide.stain),
+    e('p','','Адаптация для Med Study: уменьшение разрешения и WebP-кодирование. Условия CC BY-SA 4.0 распространяются на модифицированную копию.'));
   for(const [label,url] of [['Источник снимка',slide.source],['Условия лицензии',slide.licenseUrl]]){
     const a=e('a','',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener noreferrer';by.append(a);
   }
-  root.append(by,notes('Снимки из Wikimedia Commons загружаются через интернет. Сверенные учебные объяснения и тесты остаются отдельными материалами.'),
+  root.append(by,notes('Локальные оптимизированные копии входят в сайт и Android APK. Подробные исходные фотографии доступны по ссылке автора.'),
     btn('← Вернуться к теме',exit,'si-button secondary'));
  }
  show();
 }
-window.MedStudySI={renderQuiz,renderSlides,readProgress:read};
+
+/* Optional study timer, not a claim that a whole course can be learned in 30min. */
+function renderFocus(host) {
+  const root=e('section','si-focus');
+  const title=e('h2','','30 минут фокуса + 5 минут отдыха');
+  const hint=e('p','si-instruction','Один цикл — один фрагмент тонкой кишки. Отвечай по памяти и сверяй себя по препарату. Пауза и сброс доступны всегда.');
+  root.append(e('div','kicker','УЧЕБНЫЙ МАРШРУТ · ПО ЖЕЛАНИЮ'),title,hint);
+  const phases=[
+   {s:0,name:'Подготовка',description:'Убери лишние уведомления, выбери конкретную цель, открой нужный фрагмент.'},
+   {s:120,name:'Карта темы',description:'Вспомни, какие оболочки и клетки ты уже знаешь, и что хочешь уточнить.'},
+   {s:300,name:'Активное чтение',description:'Связывай строение с функцией. Обращай внимание на NB и пояснения в скобках.'},
+   {s:900,name:'Микроскопия',description:'Посмотри схему и реальные препараты, попробуй самостоятельно назвать структуры.'},
+   {s:1260,name:'Восстановление по памяти',description:'Закрой объяснение и восстанови механизмы без подсказок.'},
+   {s:1620,name:'Самопроверка',description:'Сделай несколько тестов и отметь, что нужно повторить.'},
+   {s:1800,name:'Перерыв',description:'Пройдиcь, попей воды, поменяй фокус взгляда; при желании — лёгкая разминка.'},
+   {s:2100,name:'Готово',description:'Отдых завершён. Можно повторить трудный фрагмент в другое время.'}
+  ];
+  let elapsed=0,baseElapsed=0,runningSince=0,ticker=null;
+  const digital=e('div','si-focus-clock','30:00');
+  digital.setAttribute('role','timer');
+  const phase=e('strong','si-focus-phase','Подготовка');
+  const description=e('p','si-instruction','');
+  const timeline=e('div','si-focus-track');
+  const fill=e('div','si-focus-fill');timeline.append(fill);
+  const controls=e('div','si-choice-row');const start=btn('Начать',toggle),reset=btn('Сбросить',()=>{halt();elapsed=0;baseElapsed=0;draw();},'si-button secondary');
+  function halt(){
+    if(ticker!==null){clearInterval(ticker);ticker=null;}
+    runningSince=0;baseElapsed=elapsed;start.textContent='Продолжить';
+  }
+  function toggle(){
+    if(ticker!==null){refresh();halt();draw();return;}
+    if(elapsed>=2100){elapsed=0;baseElapsed=0;}
+    runningSince=Date.now();baseElapsed=elapsed;
+    ticker=setInterval(()=>{if(!root.isConnected){halt();return;}refresh();draw();},250);
+    start.textContent='Пауза';draw();
+  }
+  function refresh(){
+    if(!runningSince)return;
+    elapsed=Math.min(2100,baseElapsed+Math.floor((Date.now()-runningSince)/1000));
+    if(elapsed>=2100)halt();
+  }
+  function draw(){
+    const breakTime=elapsed>=1800;
+    const end=breakTime?2100:1800;
+    const remaining=end-elapsed;
+    const mm=Math.floor(remaining/60),ss=remaining%60;
+    digital.textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+    const step=[...phases].reverse().find(p=>elapsed>=p.s)||phases[0];
+    phase.textContent=step.name;description.textContent=step.description;
+    fill.style.width=(breakTime?(elapsed-1800)/300:elapsed/1800)*100+'%';
+    root.classList.toggle('si-focus-break',breakTime);
+    if(elapsed===2100){start.textContent='Новый цикл';digital.textContent='00:00';}
+  }
+  controls.append(start,reset);
+  add(root,digital,phase,description,timeline,controls);
+  host.append(root);draw();
+}
+
+window.MedStudySI={renderQuiz,renderSlides,renderFocus,readProgress:read};
 })();
