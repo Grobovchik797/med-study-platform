@@ -267,7 +267,7 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
    Android's three-button navigation area at the bottom of the screen. */
 @media (max-width:760px) {
   .app-shell { display:block; min-height:100dvh; }
-  .main-area { min-height:100dvh; padding-top:74px; padding-bottom:0; }
+  .main-area { min-height:100dvh; padding-top:0; padding-bottom:0; }
   .topbar {
     position:sticky; top:0; height:58px; z-index:90;
     background:#fff; box-shadow:0 1px 7px rgba(45,29,65,.035);
@@ -297,7 +297,7 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
   }
   .more-action {min-height:49px;touch-action:manipulation;}
   #mobile-more-close {touch-action:manipulation;}
-  .main-content {padding-bottom:24px;}
+  .main-content {padding-top:103px;padding-bottom:24px;}
   .footer {padding-bottom:18px;}
 }
 @media (max-width:760px) and (max-height:420px) {
