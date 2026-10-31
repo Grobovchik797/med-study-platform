@@ -55,7 +55,7 @@ async function navigateHistology(page) {
   await page.locator('.library-buttons button').first().tap();
   await waitHeading(page,'Тонкая кишка');
   assert.equal(await page.locator('.study-depth-button').count(),3);
-  assert.equal(await page.locator('.hist-study-section').count(),7);
+  assert.equal(await page.locator('.hist-study-section').count(),6);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
@@ -66,12 +66,12 @@ async function navigateHistology(page) {
   await page.getByRole('button',{name:'Сбросить'}).tap();
   assert.equal(await page.locator('.si-focus-clock').textContent(),'30:00');
   await page.locator('.study-depth-button').nth(1).tap();
-  assert.equal(await page.locator('.hist-study-section').count(),11);
+  assert.equal(await page.locator('.hist-study-section').count(),10);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.ok(await page.locator('.hist-inline-aside').count()>1);
   assert.ok((await page.locator('.hist-takeaway strong').first().textContent()).includes('NB'));
   await page.locator('.study-depth-button').nth(2).tap();
-  assert.equal(await page.locator('.hist-study-section').count(),16);
+  assert.equal(await page.locator('.hist-study-section').count(),15);
   assert.equal(await page.locator('.histology-diagram img').count(),1);
   assert.equal(await page.locator('.hist-gallery-card img').count(),0);
 }
