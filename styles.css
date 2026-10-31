@@ -394,7 +394,7 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .si-good{color:#197a56}.si-bad{color:#b13453}
 .si-source-note{font-size:12px;color:#7b7391;line-height:1.65;margin-top:12px;}
 .si-select{font-size:14px;border:1px solid #cfc1e6;border-radius:10px;padding:12px;background:#fff;max-width:100%;min-height:46px;touch-action:manipulation;}
-.si-microscope{position:relative;width:min(100%,650px);max-height:680px;overflow:hidden;background:#ebe9ee;border-radius:14px;border:1px solid #c5b5dc;touch-action:none;user-select:none;}
+.si-microscope{position:relative;width:min(100%,480px);overflow:hidden;background:#ebe9ee;border-radius:14px;border:1px solid #c5b5dc;touch-action:none;user-select:none;}
 .si-surface{position:absolute;inset:0;transform-origin:center center;}
 .si-surface img{width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;}
 .si-pin{position:absolute;display:grid;place-items:center;transform:translate(-50%,-50%);width:29px;height:29px;border-radius:50%;border:2px solid #fff;background:#7338ce;color:#fff;font-size:13px;font-weight:800;box-shadow:0 1px 7px #120d43aa;pointer-events:none;}
@@ -410,5 +410,5 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .si-credit a{color:#6a37ac;text-decoration:underline;}
 .si-note-actions{padding:9px 0 12px;}
 .si-note-actions button{min-width:190px;}
-@media(max-width:760px){.si-workspace{padding:16px;margin:12px 0;}.si-answers{gap:8px;}.si-answer{font-size:13px;padding:11px;}.si-microscope{max-height:490px;}.si-pin{width:25px;height:25px;}}
+@media(max-width:760px){.si-workspace{padding:16px;margin:12px 0;}.si-answers{gap:8px;}.si-answer{font-size:13px;padding:11px;} .si-microscope{max-width:100%;}.si-pin{width:25px;height:25px;}}
 @media(prefers-reduced-motion:reduce){.si-surface{transition:none!important;}}
