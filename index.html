@@ -6,6 +6,11 @@
   <meta name="theme-color" content="#7840de">
   <meta name="description" content="Med Study — учебная платформа с тестами, объяснениями и повторением ошибок.">
   <title>Med Study — учись с пониманием</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Med Study">
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
 </head>
@@ -21,18 +26,21 @@
         <button type="button" data-nav="home" class="nav-item selected"><span aria-hidden="true">◫</span> Обзор</button>
         <button type="button" data-nav="subjects" class="nav-item"><span aria-hidden="true">▤</span> Мои предметы</button>
         <button type="button" data-nav="lesson" class="nav-item"><span aria-hidden="true">▥</span> Конспект</button>
-        <button type="button" data-nav="mistakes" class="nav-item"><span aria-hidden="true">◎</span> Работа над ошибками <span id="side-errors" class="nav-count">0</span></button>
+        <button type="button" data-nav="flashcards" class="nav-item"><span aria-hidden="true">▦</span> Карточки</button>
+        <button type="button" data-nav="mistakes" class="nav-item"><span aria-hidden="true">◎</span> Ошибки <span id="side-errors" class="nav-count">0</span></button>
+        <button type="button" data-nav="stats" class="nav-item"><span aria-hidden="true">▥</span> Статистика</button>
+        <button type="button" data-nav="install" class="nav-item"><span aria-hidden="true">⇩</span> На телефон</button>
       </nav>
       <div class="side-bottom">
-        <div class="version-title">MED STUDY · BETA 0.2</div>
-        <p>Конспект по ВНС и 20 учебных вопросов. Без регистрации и передачи результатов на сервер.</p>
+        <div class="version-title">MED STUDY · BETA 0.3</div>
+        <p>Конспект, карточки, экзамен и работа над ошибками. Результаты сохраняются только на устройстве.</p>
       </div>
     </aside>
     <div class="main-area">
       <header class="topbar">
         <div class="mobile-brand">✚ <strong>medstudy</strong></div>
         <span class="topbar-note">Твоё пространство для знаний</span>
-        <span class="top-pill"><span class="status-dot"></span> Модуль ВНС · 20 вопросов</span>
+        <span class="top-pill"><span class="status-dot"></span> Med Study · 0.3</span>
       </header>
       <main id="main-content" class="main-content" tabindex="-1">
         <div class="loading-panel">Загружаем учебные материалы…</div>
