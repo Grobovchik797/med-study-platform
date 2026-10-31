@@ -41,6 +41,13 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.si-microscope').count(),1);
   assert.equal(await page.locator('.si-pin').count(),2);
   assert.equal(await page.locator('.si-microscope img').count(),1);
+  for(const value of ['0','1','2']){
+    await page.locator('.si-select').selectOption(value);
+    await page.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>420,{timeout:15000});
+    assert.ok((await page.locator('.si-microscope img').getAttribute('src')).startsWith('./photos/'),
+      'Microscope must use bundled local photo');
+  }
+  await page.locator('.si-select').selectOption('0');
   assert.equal(await page.locator('.si-choice-row').count()>0,true);
   await page.getByRole('button',{name:'Найди структуру'}).tap();
   assert.equal(await page.locator('.si-pin').count(),0);
