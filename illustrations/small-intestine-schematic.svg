@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="670" viewBox="0 0 1200 670" role="img" aria-labelledby="t d">
+<title id="t">Гистологическая схема тонкой кишки: ворсинки и крипты</title>
+<desc id="d">Схема: ворсинки с энтероцитами и бокаловидными клетками, кишечные крипты с клетками Панета, собственная пластинка слизистой, мышечная пластинка, подслизистая основа. Не настоящий препарат.</desc>
+<rect width="1200" height="670" rx="26" fill="#f8f8ff"/>
+<g font-family="Arial, sans-serif">
+<text x="48" y="52" font-size="30" font-weight="700" fill="#2d2d4b">Тонкая кишка: как связаны ворсинка и крипта</text>
+<text x="48" y="81" font-size="18" fill="#687086">Учебная схема · расположение структур, а не микрофотография</text>
+<!-- mucosa field -->
+<path d="M55 520 V245 Q110 245 123 205 Q151 112 190 134 Q228 151 234 245 Q258 246 295 244 Q312 241 329 196 Q352 112 397 128 Q434 139 450 244 Q480 245 517 244 Q542 243 561 197 Q589 110 625 132 Q664 155 679 244 Q713 245 752 244 V520 Z" fill="#ecdfff" stroke="#bca3ed" stroke-width="3"/>
+<!-- villi internal -->
+<path d="M150 252 Q154 170 189 153 Q210 157 214 249" fill="none" stroke="#f8b4c7" stroke-width="12" stroke-linecap="round"/>
+<path d="M360 252 Q362 166 395 147 Q420 162 424 249" fill="none" stroke="#f8b4c7" stroke-width="12" stroke-linecap="round"/>
+<path d="M584 252 Q587 158 625 151 Q651 171 654 250" fill="none" stroke="#f8b4c7" stroke-width="12" stroke-linecap="round"/>
+<!-- lacteals -->
+<path d="M188 229 V175 M397 232 V174 M625 230 V172" stroke="#21a998" stroke-width="9" stroke-linecap="round"/>
+<!-- goblet cells -->
+<g fill="#fceba2" stroke="#d59b48" stroke-width="2">
+<ellipse cx="150" cy="211" rx="15" ry="23"/><ellipse cx="229" cy="227" rx="15" ry="23"/>
+<ellipse cx="356" cy="221" rx="15" ry="23"/><ellipse cx="445" cy="223" rx="15" ry="23"/>
+<ellipse cx="575" cy="217" rx="15" ry="23"/><ellipse cx="670" cy="217" rx="15" ry="23"/>
+</g>
+<!-- crypts indent -->
+<g fill="#f8eeff" stroke="#a27ed3" stroke-width="7">
+<path d="M258 246 V428 Q275 464 301 428 V246" />
+<path d="M478 246 V428 Q495 465 518 426 V246" />
+<path d="M714 246 V427 Q727 460 752 425 V246" />
+</g>
+<!-- Paneth granules -->
+<g fill="#ee687c">
+<circle cx="269" cy="406" r="7"/><circle cx="286" cy="421" r="7"/><circle cx="291" cy="398" r="6"/>
+<circle cx="487" cy="406" r="7"/><circle cx="506" cy="423" r="7"/><circle cx="509" cy="402" r="6"/>
+<circle cx="721" cy="404" r="7"/><circle cx="738" cy="422" r="7"/><circle cx="740" cy="403" r="6"/>
+</g>
+<!-- muscularis mucosae -->
+<rect x="56" y="510" width="700" height="15" rx="6" fill="#be79b1"/>
+<!-- submucosa -->
+<rect x="56" y="530" width="700" height="87" rx="5" fill="#e8f2fd" stroke="#a9c4e3"/>
+<text x="385" y="576" font-size="21" text-anchor="middle" fill="#496b88" font-weight="700">Подслизистая основа</text>
+<text x="388" y="602" font-size="15" text-anchor="middle" fill="#627a99">Сосуды, нервы; в duodenum — железы Бруннера</text>
+<!-- labels right -->
+<g stroke="#8b70b9" stroke-width="3" fill="none">
+<path d="M199 120 L810 137"/><path d="M156 209 L812 205"/><path d="M387 185 L813 272"/>
+<path d="M293 353 L812 345"/><path d="M508 412 L812 419"/><path d="M557 516 L811 502"/>
+</g>
+<g font-size="19" fill="#3e4162">
+<text x="820" y="134" font-weight="700">Ворсинка</text><text x="820" y="158" font-size="15">Вырост слизистой оболочки</text>
+<text x="820" y="199" font-weight="700">Бокаловидная клетка</text><text x="820" y="224" font-size="15">Муцины → слизь</text>
+<text x="820" y="268" font-weight="700">Энтероцит</text><text x="820" y="294" font-size="15">Щёточная каёмка, всасывание</text>
+<text x="820" y="342" font-weight="700">Крипта</text><text x="820" y="368" font-size="15">Железа, обновление эпителия</text>
+<text x="820" y="416" font-weight="700">Клетки Панета</text><text x="820" y="442" font-size="15">Гранулы, антимикробная защита</text>
+<text x="820" y="499" font-weight="700">Мышечная пластинка</text><text x="820" y="525" font-size="15">Граница слизистой и подслизистой</text>
+</g>
+<text x="57" y="644" font-size="16" fill="#64748b">В строме ворсинки: кровеносные капилляры и центральный лимфатический капилляр (бирюзовый).</text>
+</g></svg>
