@@ -253,6 +253,8 @@ function showSmallIntestineQuiz() {
   window.scrollTo(0,0);
 }
 function showSmallIntestineSlides(initialIndex=0) {
+  // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
+  if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>2)initialIndex=0;
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
   window.MedStudySI.renderSlides(main,intestineSlides,()=>showTopic('histology-small-intestine'),initialIndex);
