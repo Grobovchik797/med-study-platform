@@ -88,7 +88,7 @@ async function navigateDigestiveCourse(page) {
   await waitHeading(page,'Желудок: оболочки');
   assert.equal(await page.locator('.gi-mini-card').count(),3);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
-  assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).includes('Верно'));
+  assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).length>30,'Inline question must reveal explanation regardless of randomized answer order');
   assert.equal(await page.locator('.gi-chapter-figure img').count(),1);
   await page.getByRole('button',{name:'Расширенный'}).tap();
   assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
