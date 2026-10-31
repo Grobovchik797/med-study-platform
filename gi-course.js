@@ -59,7 +59,7 @@ function renderMiniQuestions(host,items) {
  }
  host.append(wrap);
 }
-function renderChapter(host,{chapter,mini,workbook,onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
  let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
@@ -94,6 +94,14 @@ function renderChapter(host,{chapter,mini,workbook,onBack,onSlide,onExam,onWorkb
     host.append(box);
   }
   renderMiniQuestions(host,mini);
+  if(departmentQuestions.length){
+    const control=el('details','gi-method-card');
+    const summary=el('summary','','Контрольные вопросы по методичке · '+departmentQuestions.length);
+    const list=el('ol','gi-department-list');
+    for(const x of departmentQuestions)list.append(el('li','',x.text));
+    control.append(summary,list,paragraph('Для подробной подготовки используй весь конспект, а не только короткие мини-тесты.'));
+    host.append(control);
+  }
   const relevant=workbook.filter(m=>m.chapters.includes(chapter.id));
   if(relevant.length){
     const maps=el('section','gi-map-section');
@@ -109,13 +117,26 @@ function renderChapter(host,{chapter,mini,workbook,onBack,onSlide,onExam,onWorkb
  }
  show();
 }
-function renderWorkbook(host,{maps,onBack}){
+function renderWorkbook(host,{maps,department,onBack,onChapter}){
  host.replaceChildren();append(host,button('← К пищеварительной системе',onBack,'gi-back'),
    el('div','kicker','ПРАКТИЧЕСКАЯ ПОДГОТОВКА'),
    el('h1','','Заполненные ориентировочные карты'),
    paragraph('Схемы учебных таблиц из методических разработок АГМА 1999 г. Заполнения подготовлены самостоятельно; это не оригинальный официальный ключ кафедры.','gi-lead'));
  for(const map of maps)addMap(host,map);
- host.append(button('← К разделу',onBack,'gi-button gi-light'));
+ const source=el('section','gi-map-section');
+ append(source,sectionTitle('56 контрольных вопросов методички'),paragraph('Сверено по четырём кафедральным темам. Нажимай «Открыть конспект», чтобы перейти к связанному разделу.'));
+ for(const group of department.groups){
+   const details=el('details','gi-method-card');
+   const summary=el('summary','',group.topic+' · '+group.questions.length+' вопросов');
+   const list=el('ol','gi-department-list');
+   for(const q of group.questions){
+      const li=el('li');append(li,el('span','',q.text),
+        button('Открыть соответствующую главу →',()=>onChapter(q.chapter),'gi-question-link'));
+      list.append(li);
+   }
+   details.append(summary,list);source.append(details);
+ }
+ host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
 function renderExam(host,{bank,onBack}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
