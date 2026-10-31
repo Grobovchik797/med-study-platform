@@ -671,33 +671,37 @@ function showFlashcards() {
 
 function showStats() {
   view = 'stats'; updateNav(); main.replaceChildren();
-  main.append(titleArea('АНАЛИТИКА ТРЕНИРОВОК', 'Мой прогресс',
-    'Статистика каждого раздела хранится только на этом устройстве.'));
+  main.append(titleArea('АНАЛИТИКА ПО ТЕМАМ', 'Мой прогресс',
+    'Показываем все темы каталога. Результаты пока собираются только для тех, где уже созданы тесты.'));
   const grid = element('div', 'stats-grid');
   append(grid,
     stat('◷', progress.sessions, 'Завершённых тренировок'),
     stat('✦', progress.best === null ? '—' : progress.best + '%', 'Лучший результат'),
     stat('↺', progress.mistakes.length, 'Вопросов для повторения'));
   main.append(grid);
-  const rows = element('section', 'card topic-stats');
-  append(rows, element('h2', '', 'Результаты по разделам'),
-    element('p', 'muted', 'Считаются все ответы, включая повторные попытки.'));
-  const topics = [...new Set(questionBank.questions.map(q => q.topic))];
-  for (const topic of topics) {
-    const entry = progress.topicStats[topic] || { attempts: 0, correct: 0 };
-    const rate = entry.attempts ? Math.round(100 * entry.correct / entry.attempts) : 0;
-    const line = element('div', 'topic-stat-line');
-    append(line, element('strong', '', topic),
-      element('span', 'muted', entry.attempts
-        ? (entry.correct + ' / ' + entry.attempts + ' ответов · ' + rate + '%')
-        : 'Ответов пока нет'));
-    const bar = element('div', 'session-progress');
-    const fill = element('div');
-    fill.style.width = rate + '%';
-    bar.append(fill);
-    append(rows, line, bar);
+  for(const {subject,section,topic} of libraryEntries()) {
+    const box = element('section','card topic-stats');
+    append(box,element('div','kicker',subject.name+' · '+section.title),
+      element('h2','',topic.title));
+    if(!topic.quiz) {
+      append(box,element('p','note','По этой теме тестов пока нет, поэтому и статистика не собирается.'));
+      main.append(box);continue;
+    }
+    append(box,element('p','muted','Ниже результаты ВНС по смысловым разделам. Считаются все ответы, включая повторения.'));
+    const subtopics=[...new Set(questionBank.questions.map(q=>q.topic))];
+    for(const subtopic of subtopics){
+      const entry=progress.topicStats[subtopic]||{attempts:0,correct:0};
+      const rate=entry.attempts?Math.round(entry.correct/entry.attempts*100):0;
+      const row=element('div','topic-stat-line');
+      append(row,element('strong','',subtopic),
+        element('span','muted',entry.attempts?
+          entry.correct+' из '+entry.attempts+' · '+rate+'%':'Ответов пока нет'));
+      const bar=element('div','session-progress');
+      const fill=element('div');fill.style.width=rate+'%';bar.append(fill);
+      append(box,row,bar);
+    }
+    main.append(box);
   }
-  main.append(rows);
 }
 
 function showInstallGuide() {
@@ -734,17 +738,26 @@ function showInstallGuide() {
 
 function showMistakes() {
   view = 'mistakes'; updateNav(); main.replaceChildren();
-  main.append(titleArea('ПОВТОРЕНИЕ', 'Работа над ошибками', 'Сюда попадают вопросы, в которых ты ошибался. Когда отвечаешь верно при повторении, вопрос исчезает из списка.'));
-  const questions = questionBank.questions.filter(q => progress.mistakes.includes(q.id));
-  if (!questions.length) {
-    const empty = element('div', 'empty');
-    append(empty, element('div', 'empty-icon', '✓'), element('h2', '', 'Пока нет вопросов на повторение'), element('p', '', 'Пройди первый тест — сложные вопросы автоматически появятся здесь.'), button('Перейти к тесту →', () => begin(questionBank.questions)));
-    main.append(append(element('div', 'section-actions'), empty));
-  } else {
-    const card = element('div', 'card');
-    append(card, element('div', 'kicker', 'ПОВТОРИМ СЛОЖНОЕ'), element('h2', '', 'Осталось вопросов: ' + questions.length), element('p', 'intro', 'Пройди только те задания, в которых были ошибки. Успешный ответ удалит вопрос из повторения.'));
-    append(card, append(element('div', 'section-actions'), button('Повторить ошибки →', () => begin(questions))));
-    main.append(append(element('div', 'section-actions'), card));
+  main.append(titleArea('ПОВТОРЕНИЕ ПО ТЕМАМ', 'Работа над ошибками',
+    'Ошибки сохраняются по идентификаторам вопросов. Сейчас тестовый банк есть только по ВНС; по гистологии тесты в подготовке.'));
+  const entries=libraryEntries().filter(x=>x.topic.quiz);
+  if(!entries.length){main.append(element('p','note','Пока нет тестовых банков.'));return;}
+  for(const {subject,section,topic} of entries) {
+    const module=element('section','card topic-stats');
+    append(module,element('div','kicker',subject.name+' · '+section.title),
+      element('h2','',topic.title));
+    // Current quiz engine has one bank (ANS). Next banks will be registered
+    // by topicId and stored separately, without mixing question IDs.
+    const questions=topic.id==='ans'?
+      questionBank.questions.filter(q=>progress.mistakes.includes(q.id)):[];
+    if(!questions.length) {
+      append(module,element('p','muted','Ошибок на повторение пока нет.'),
+        button('Открыть тему →',()=>showTopic(topic.id),'alt-button'));
+    } else {
+      append(module,element('p','muted','Нужно повторить: '+questions.length),
+        button('Повторить ошибки →',()=>begin(questions),'library-action'));
+    }
+    main.append(module);
   }
 }
 
