@@ -8,8 +8,19 @@ android {
         applicationId 'io.github.grobovchik797.medstudy'
         minSdk 26
         targetSdk 35
-        versionCode 6
-        versionName '0.5.1'
+        versionCode 7
+        versionName '0.5.2'
+        manifestPlaceholders = [appLabel: 'Med Study']
+    }
+
+    buildTypes {
+        debug {
+            // Test APK installs alongside the previous package: no forced
+            // uninstall and no accidental deletion of locally saved progress.
+            applicationIdSuffix '.preview'
+            versionNameSuffix '-test'
+            manifestPlaceholders = [appLabel: 'Med Study (тест)']
+        }
     }
 
     compileOptions {

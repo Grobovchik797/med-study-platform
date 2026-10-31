@@ -25,6 +25,23 @@ async function run() {
     await waitForHeading(page, 'Твоя учёба');
     assert.equal(await page.locator('#mobile-more-toggle').isVisible(),true);
     assert.equal(await page.locator('.side-nav [data-nav="atlas"]').isVisible(),false);
+    // Critical regression: navigation must be at TOP, never within Android's
+    // bottom 3-button system navigation area (typically last 50-90 px).
+    const navRect = await page.locator('.sidebar').boundingBox();
+    assert.ok(navRect, 'Navigation not visible');
+    assert.ok(navRect.y >= 48 && navRect.y <= 75,
+      'Mobile navigation is not below the top header: ' + JSON.stringify(navRect));
+    assert.ok(navRect.y + navRect.height < 175,
+      'Top navigation unexpectedly low: ' + JSON.stringify(navRect));
+    assert.ok(navRect.y + navRect.height < 780 - 100,
+      'Navigation overlaps simulated Android navigation bar');
+    const hit = await page.locator('.side-nav [data-nav="home"]').evaluate(button => {
+      const rect = button.getBoundingClientRect();
+      const element = document.elementFromPoint(rect.left + rect.width / 2,rect.top + rect.height / 2);
+      return element === button || button.contains(element);
+    });
+    assert.equal(hit,true,'Mobile navigation button is obscured');
+
     const overflow = await page.evaluate(() =>
       document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 3,'Unexpected full-page horizontal overflow: ' + overflow);
@@ -34,6 +51,11 @@ async function run() {
     await waitForHeading(page, 'Вегетативная нервная система');
     await page.locator('#mobile-more-toggle').tap();
     assert.equal(await page.locator('#mobile-more-panel').isVisible(),true);
+    const panelRect = await page.locator('#mobile-more-panel').boundingBox();
+    assert.ok(panelRect && panelRect.y > navRect.y,
+      'More menu should drop from top navigation');
+    assert.ok(panelRect.y + panelRect.height < 780 - 50,
+      'More menu must not overlap Android system navigation region');
     await page.locator('#mobile-more-panel [data-nav="flashcards"]').tap();
     await waitForHeading(page, 'Карточки по ВНС');
     assert.equal(await page.locator('#mobile-more-panel').isVisible(),false);
@@ -73,6 +95,10 @@ async function run() {
       {waitUntil:'networkidle'});
     await waitForHeading(appPage, 'Твоя учёба');
     assert.equal(await appPage.locator('html').getAttribute('data-runtime'),'android-app');
+    const appNavRect = await appPage.locator('.sidebar').boundingBox();
+    assert.ok(appNavRect && appNavRect.y < 80 &&
+      appNavRect.y + appNavRect.height < 190,
+      'Android-origin navigation must be at the top: ' + JSON.stringify(appNavRect));
     await appPage.locator('#mobile-more-toggle').tap();
     assert.equal(await appPage.locator('#mobile-more-panel [data-nav="install"]').isVisible(),false);
     await appPage.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
