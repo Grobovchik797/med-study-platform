@@ -9,6 +9,7 @@ web.mkdir(parents=True, exist_ok=True)
 files = [
     "index.html", "styles.css", "app.js", "small-intestine-interact.js", "sw.js", "manifest.webmanifest",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
+    "media/histology/duodenum.webp", "media/histology/jejunum.webp", "media/histology/ileum.webp",
     "icons/icon-192.png", "icons/icon-512.png",
     "illustrations/pathways.svg", "illustrations/receptors.svg",
     "illustrations/organs.svg", "illustrations/small-intestine-schematic.svg",
