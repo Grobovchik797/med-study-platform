@@ -1,9 +1,12 @@
 package io.github.grobovchik797.medstudy;
 
 import android.app.Activity;
+import android.graphics.Insets;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Build;
+import android.view.WindowInsets;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -29,6 +32,17 @@ public final class MainActivity extends Activity {
         webView = new WebView(this);
         webView.setBackgroundColor(0xfff7f8fc);
         setContentView(webView);
+        // Android 15+ enforces edge-to-edge for apps targeting API 35.
+        // Reserve the status/navigation-bar insets so bottom navigation remains tappable.
+        if (Build.VERSION.SDK_INT >= 35) {
+            webView.setOnApplyWindowInsetsListener((view, windowInsets) -> {
+                Insets systemBars = windowInsets.getInsets(
+                    WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout());
+                view.setPadding(systemBars.left, systemBars.top,
+                    systemBars.right, systemBars.bottom);
+                return windowInsets;
+            });
+        }
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);

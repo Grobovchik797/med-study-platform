@@ -3,6 +3,31 @@
 const main = document.getElementById('main-content');
 const sideErrors = document.getElementById('side-errors');
 const STORAGE_KEY = 'med-study-progress-v1';
+const IS_ANDROID_APP = location.hostname === 'appassets.androidplatform.net';
+document.documentElement.dataset.runtime = IS_ANDROID_APP ? 'android-app' : 'web';
+const mobileMoreToggle = document.getElementById('mobile-more-toggle');
+const mobileMorePanel = document.getElementById('mobile-more-panel');
+const mobileMoreBackdrop = document.getElementById('mobile-more-backdrop');
+const mobileMoreClose = document.getElementById('mobile-more-close');
+const MORE_VIEWS = new Set(['atlas','flashcards','mistakes','stats','install']);
+
+function setMobileMore(open) {
+  if (!mobileMorePanel || !mobileMoreBackdrop || !mobileMoreToggle) return;
+  mobileMorePanel.hidden = !open;
+  mobileMoreBackdrop.hidden = !open;
+  mobileMoreToggle.setAttribute('aria-expanded', String(open));
+  mobileMoreToggle.setAttribute('aria-label', open ? 'Закрыть остальные разделы' : 'Открыть остальные разделы');
+  if (open) mobileMoreClose.focus();
+}
+if (mobileMoreToggle) mobileMoreToggle.addEventListener('click', () => setMobileMore(mobileMorePanel.hidden));
+if (mobileMoreClose) mobileMoreClose.addEventListener('click', () => setMobileMore(false));
+if (mobileMoreBackdrop) mobileMoreBackdrop.addEventListener('click', () => setMobileMore(false));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && mobileMorePanel && !mobileMorePanel.hidden) {
+    setMobileMore(false);
+    mobileMoreToggle.focus();
+  }
+});
 
 let questionBank = null;
 let lessonData = null;
@@ -78,9 +103,16 @@ function updateNav() {
     else item.removeAttribute('aria-current');
   }
   sideErrors.textContent = String(progress.mistakes.length);
+  if (mobileMoreToggle) {
+    mobileMoreToggle.classList.toggle('selected', MORE_VIEWS.has(view));
+    if (MORE_VIEWS.has(view)) mobileMoreToggle.setAttribute('aria-current', 'page');
+    else mobileMoreToggle.removeAttribute('aria-current');
+  }
 }
 
 function navigate(to) {
+  if (IS_ANDROID_APP && to === 'install') to = 'home';
+  setMobileMore(false);
   view = to;
   session = null;
   updateNav();
@@ -394,6 +426,7 @@ function showStats() {
 }
 
 function showInstallGuide() {
+  if (IS_ANDROID_APP) { navigate('home'); return; }
   view = 'install'; updateNav(); main.replaceChildren();
   main.append(titleArea('НА ТВОЁМ ТЕЛЕФОНЕ', 'Установить Med Study',
     'Один адрес для всех обновлений. На поддерживаемых устройствах сайт можно добавить как приложение.'));

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#7840de">
   <meta name="description" content="Med Study — учебная платформа с тестами, объяснениями и повторением ошибок.">
   <title>Med Study — учись с пониманием</title>
@@ -31,9 +31,19 @@
         <button type="button" data-nav="mistakes" class="nav-item"><span aria-hidden="true">◎</span> Ошибки <span id="side-errors" class="nav-count">0</span></button>
         <button type="button" data-nav="stats" class="nav-item"><span aria-hidden="true">▥</span> Статистика</button>
         <button type="button" data-nav="install" class="nav-item"><span aria-hidden="true">⇩</span> На телефон</button>
+        <button type="button" id="mobile-more-toggle" class="nav-item mobile-more-toggle" aria-controls="mobile-more-panel" aria-expanded="false" aria-label="Открыть остальные разделы"><span aria-hidden="true">☰</span> Ещё</button>
       </nav>
+      <div id="mobile-more-backdrop" class="mobile-more-backdrop" hidden></div>
+      <div id="mobile-more-panel" class="mobile-more-panel" aria-label="Остальные разделы" hidden>
+        <div class="mobile-more-heading">Остальные разделы <button type="button" id="mobile-more-close" aria-label="Закрыть меню">✕</button></div>
+        <button type="button" data-nav="atlas" class="more-action"><span aria-hidden="true">✦</span> Атлас</button>
+        <button type="button" data-nav="flashcards" class="more-action"><span aria-hidden="true">▦</span> Карточки</button>
+        <button type="button" data-nav="mistakes" class="more-action"><span aria-hidden="true">◎</span> Работа над ошибками</button>
+        <button type="button" data-nav="stats" class="more-action"><span aria-hidden="true">▥</span> Статистика</button>
+        <button type="button" data-nav="install" class="more-action"><span aria-hidden="true">⇩</span> Установка на телефон</button>
+      </div>
       <div class="side-bottom">
-        <div class="version-title">MED STUDY · BETA 0.5</div>
+        <div class="version-title">MED STUDY · BETA 0.5.1</div>
         <p>Цветные схемы ВНС, конспект, карточки и тесты. Прогресс сохраняется только на устройстве.</p>
       </div>
     </aside>
@@ -41,7 +51,7 @@
       <header class="topbar">
         <div class="mobile-brand">✚ <strong>medstudy</strong></div>
         <span class="topbar-note">Твоё пространство для знаний</span>
-        <span class="top-pill"><span class="status-dot"></span> Med Study · 0.5</span>
+        <span class="top-pill"><span class="status-dot"></span> Med Study · 0.5.1</span>
       </header>
       <main id="main-content" class="main-content" tabindex="-1">
         <div class="loading-panel">Загружаем учебные материалы…</div>
