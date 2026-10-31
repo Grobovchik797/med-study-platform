@@ -312,8 +312,8 @@ function showTopic(topicId) {
   const box=element('div','library-features');
   const notes=element('section','card library-feature');
   append(notes,element('h2','','Конспекты'),element('p','',
-    topic.id==='ans'?'Пока доступен вводный материал.':
-    'Три учебные версии на основе твоего материала. Все спорные уточнения отражены в журнале редакции; сторонние сведения выделены отдельно.'));
+    topic.id==='ans'?'Пока доступен существующий конспект; подробная научная редакция ещё запланирована.':
+    'Два формата конспекта на основе кафедральной тематики. Все спорные уточнения отражены в журнале редакции; сторонние сведения выделены отдельно.'));
   if(topic.route==='intestine') {
     const buttons=element('div','library-buttons');
     for(const item of [{id:'brief',label:'Краткий'},{id:'deep',label:'Расширенный'}]) {
@@ -322,7 +322,7 @@ function showTopic(topicId) {
     }
     notes.append(buttons);
   } else if(topic.route==='lesson') {
-    notes.append(button('Читать вводный конспект →',()=>navigate('lesson'),'library-action'));
+    notes.append(button('Читать конспект →',()=>navigate('lesson'),'library-action'));
   }
   box.append(notes);
   const tests=element('section','card library-feature');
