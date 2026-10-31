@@ -31,6 +31,9 @@ for q in exam['questions']:
  assert len(q['prompt'])>25 and len(q['explanation'])>30
  assert len(q['options'])==4 and len(set(q['options']))==4
  assert q['answer'] in range(4)
+method=load('gi-department-questions.json')
+assert len(method['groups'])==4 and sum(len(x['questions']) for x in method['groups'])==56
+assert all(q['chapter'] in ids for g in method['groups'] for q in g['questions'])
 assert len(maps['maps'])==7
 for m in maps['maps']:
  assert m['chapters'] and set(m['chapters']).issubset(ids)
