@@ -4,6 +4,7 @@ const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js",
   "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-workbook.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
+  "./illustrations/gi-tongue.svg", "./illustrations/gi-stomach.svg", "./illustrations/gi-liver.svg", "./illustrations/gi-pancreas.svg",
   "./illustrations/pathways.svg", "./illustrations/receptors.svg", "./illustrations/organs.svg"
 ];
 self.addEventListener("install", event => {
