@@ -87,11 +87,16 @@ async function navigateDigestiveCourse(page) {
   await page.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').tap();
   await waitHeading(page,'Желудок: оболочки');
   assert.equal(await page.locator('.gi-mini-card').count(),3);
+  assert.equal(await page.locator('.gi-brief-block').count(),5);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
   assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).length>30,'Inline question must reveal explanation regardless of randomized answer order');
   assert.equal(await page.locator('.gi-chapter-figure img').count(),1);
   await page.getByRole('button',{name:'Расширенный'}).tap();
-  assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
+  assert.equal(await page.locator('.gi-deep-block').count(),5);
+  assert.equal(await page.locator('.gi-checkpoint').count(),5);
+  assert.ok((await page.locator('.gi-content').textContent()).includes('Подробный разбор'));
+  await page.locator('.gi-checkpoint').first().locator('.gi-mini-choice').first().tap();
+  assert.ok((await page.locator('.gi-checkpoint .gi-mini-feedback').first().textContent()).length>25);
   await page.getByRole('button',{name:'Все заполненные карты'}).tap();
   await waitHeading(page,'Заполненные ориентировочные карты');
   assert.equal(await page.locator('.gi-method-card').count(),11); // 7 filled maps + 4 departmental question lists
