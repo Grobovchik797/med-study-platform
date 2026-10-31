@@ -5,7 +5,7 @@
 const el=(tag,cls,text)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=String(text);return x;};
 const button=(value,callback,cls='gi-button')=>{const x=el('button',cls,value);x.type='button';x.addEventListener('click',callback);return x;};
 const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
-const titles={intro:'Вводный',brief:'Краткий',deep:'Расширенный'};
+const titles={brief:'Краткий',deep:'Расширенный'};
 const randomize=a=>{const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
 const chapterDepths=Object.create(null);
 function paragraph(text,cls='gi-paragraph') {
@@ -70,7 +70,7 @@ function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack
     paragraph(chapter.intro,'gi-lead'),
     paragraph('Методичка: печатные страницы '+chapter.methodPage+'. Источник: АГМА, 1999 год. Современные пояснения добавлены отдельно; это не утверждённая преподавателем редакция.','gi-provenance'));
   const depths=el('div','gi-depths');
-  for(const key of ['intro','brief','deep']){
+  for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
     b.setAttribute('aria-pressed',String(current===key));depths.append(b);
   }host.append(depths);
@@ -92,7 +92,7 @@ function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack
   const content=el('article','card gi-content');
   append(content,el('h2','','Учебный конспект'),
     paragraph(chapter.intro));
-  if(current!=='intro')for(const x of chapter.brief)content.append(paragraph(x));
+  for(const x of chapter.brief)content.append(paragraph(x));
   if(current==='deep'){
     content.append(sectionTitle('Клеточный, функциональный и молекулярный уровень'));
     for(const x of chapter.deep)content.append(paragraph(x));
