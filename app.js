@@ -602,7 +602,7 @@ window.addEventListener('appinstalled', () => {
   installPrompt = null;
   if (view === 'install' && questionBank) showInstallGuide();
 });
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && location.hostname !== 'appassets.androidplatform.net') {
   navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
     .catch(() => { /* The website remains available online. */ });
 }
