@@ -25,11 +25,203 @@
         {
           "id": "digestive",
           "title": "Пищеварительная система",
-          "subtitle": "Эпителий и железы пищеварительного тракта",
+          "subtitle": "17 учебных подразделов, 51 мини-тест, 24 итоговых вопроса, методические карты и тематические препараты",
           "topics": [
             {
+              "id": "gi-plan",
+              "title": "Общий план пищеварительной трубки",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "plan",
+              "hint": "По методичке, стр. 96–99, 103–106 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-oral",
+              "title": "Слизистая ротовой полости, губы, щёки и нёбо",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "oral",
+              "hint": "По методичке, стр. 96–100 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-tongue",
+              "title": "Язык и сосочки",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "tongue",
+              "hint": "По методичке, стр. 96–100 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-taste",
+              "title": "Вкусовые почки и клетки рецепторного аппарата",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "taste",
+              "hint": "По методичке, стр. 96–100 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-tonsils",
+              "title": "Миндалины и лимфоэпителиальное глоточное кольцо",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "tonsils",
+              "hint": "По методичке, стр. 96–100 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-teeth",
+              "title": "Зуб: эмаль, дентин, цемент и пульпа",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "teeth",
+              "hint": "По методичке, стр. 100–103 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-salivary",
+              "title": "Слюнные железы",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "salivary",
+              "hint": "По методичке, стр. 100–103 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-pharynx",
+              "title": "Глотка: переход дыхательного и пищеварительного путей",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "pharynx",
+              "hint": "По методичке, стр. 96–103 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-esophagus",
+              "title": "Пищевод и пищеводно-желудочный переход",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "esophagus",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-stomach",
+              "title": "Желудок: оболочки, ямки и защитный барьер",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "stomach",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-gastric-glands",
+              "title": "Кардиальные, фундальные и пилорические железы желудка",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "gastric-glands",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-duodenum",
+              "title": "Двенадцатиперстная кишка",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": true,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "duodenum",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
               "id": "histology-small-intestine",
-              "title": "Тонкая кишка",
+              "title": "Тонкая кишка — исходный подробный пилот",
               "status": "source-mapped-pilot",
               "notes": {
                 "intro": true,
@@ -40,7 +232,111 @@
               "atlas": true,
               "flashcards": false,
               "route": "intestine",
-              "hint": "Три интегрированных конспекта, 30 тематических вопросов, 3 настоящих микропрепарата и два режима атласа."
+              "hint": "Продолжение модуля 0.9: 3 варианта, 30 тестов, 3 микропрепарата; научная редактура продолжается."
+            },
+            {
+              "id": "gi-jejunum",
+              "title": "Тощая кишка",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": true,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "jejunum",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-ileum",
+              "title": "Подвздошная кишка и пейеровы бляшки",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": true,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "ileum",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-colon",
+              "title": "Толстая кишка, аппендикс и прямая кишка",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "colon",
+              "hint": "По методичке, стр. 103–108 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-liver",
+              "title": "Печень: долька, синусоиды и желчные канальцы",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "liver",
+              "hint": "По методичке, стр. 108–110 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-pancreas",
+              "title": "Поджелудочная железа: ацинусы, протоки, островки",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true,
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-chapter",
+              "chapterId": "pancreas",
+              "hint": "По методичке, стр. 108–110 · три глубины, 3 мини-теста, практические карты."
+            },
+            {
+              "id": "gi-workbook",
+              "title": "Заполненные ориентировочные карты",
+              "status": "editorial-draft",
+              "notes": {
+                "intro": true
+              },
+              "quiz": false,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-workbook",
+              "hint": "7 учебных таблиц по кафедральной методичке 1999 года, с заполненными пояснениями."
+            },
+            {
+              "id": "gi-final-exam",
+              "title": "Итоговый тест пищеварительной системы",
+              "status": "editorial-draft",
+              "notes": {},
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "gi-exam",
+              "hint": "24 отдельных вопроса: лёгкий, средний, сложный. Не совпадают с вопросами после глав."
             }
           ]
         },
