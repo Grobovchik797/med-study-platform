@@ -252,10 +252,10 @@ function showSmallIntestineQuiz() {
   window.MedStudySI.renderQuiz(main,intestineQuizBank,()=>showTopic('histology-small-intestine'));
   window.scrollTo(0,0);
 }
-function showSmallIntestineSlides() {
+function showSmallIntestineSlides(initialIndex=0) {
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
-  window.MedStudySI.renderSlides(main,intestineSlides,()=>showTopic('histology-small-intestine'));
+  window.MedStudySI.renderSlides(main,intestineSlides,()=>showTopic('histology-small-intestine'),initialIndex);
   window.scrollTo(0,0);
 }
 
@@ -404,6 +404,41 @@ function showSubjects() {
   main.append(grid);
 }
 
+
+// Educational emphasis only: preserve the original wording and medical meaning.
+function histologyParagraph(value) {
+  const p=element('p','hist-paragraph');
+  const regex=/(\([^()]{4,170}\)|энтероцит\w*|микроворсинк\w*|ворсинк\w*|крипт\w*|клетк\w*\s+Панета|бокаловидн\w*\s+клетк\w*|пейеров\w*\s+бляшк\w*|микрофотографи\w*|GALT|H[⁺+]\/K[⁺+]-АТФаз\w*|Na[⁺+]\/K[⁺+]-АТФаз\w*|SGLT1|GLUT[25]|CFTR)/gi;
+  for(const part of String(value).split(regex)){
+    if(!part)continue;
+    if(part.startsWith('(')&&part.endsWith(')'))p.append(element('span','hist-inline-aside',part));
+    else if(/^(энтероцит|микроворсинк|ворсинк|крипт|клетк|бокаловидн|пейеров|GALT|H[⁺+]|Na[⁺+]|SGLT1|GLUT|CFTR)/i.test(part))
+      p.append(element('strong','hist-inline-term',part));
+    else p.append(document.createTextNode(part));
+  }
+  return p;
+}
+function intestineIllustrations() {
+  const gallery=element('section','hist-visual-gallery');
+  append(gallery,element('div','kicker','АТЛАС В КАЖДОМ КОНСПЕКТЕ'),
+    element('h2','','Увидеть строение на препарате'),
+    element('p','','Три настоящие микрофотографии, включённые в Med Study. Для изучения, увеличения и самопроверки выбери препарат.'));
+  const grid=element('div','hist-gallery-grid');
+  for(const [i,slide] of intestineSlides.images.entries()){
+    const card=element('article','hist-gallery-card');
+    const img=element('img');
+    img.src='./'+slide.src;img.alt='Гистологический препарат: '+slide.title;
+    img.loading='lazy';img.decoding='async';
+    append(card,img,element('h3','',slide.title),
+      element('p','',slide.id==='jejunum'?'Определение отдела; клеточные метки пока не подтверждены.':
+        'Проверенные ориентиры для изучения и самопроверки.'),
+      button('Открыть микроскоп →',()=>showSmallIntestineSlides(i),'library-action'));
+    grid.append(card);
+  }
+  gallery.append(grid);
+  return gallery;
+}
+
 function showIntestine() {
   view = 'intestine'; updateNav(); main.replaceChildren();
   if (!intestineData) {
@@ -429,12 +464,15 @@ function showIntestine() {
   append(header,element('div','kicker',version.label),element('h2','',version.title+' конспект'),
     element('p','',version.description));
   main.append(header);
+  const focus=element('div','si-focus-container');
+  main.append(focus);
+  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus);
   if(version.originStatement)main.append(element('p','si-source-note',version.originStatement));
   const activities=element('div','si-note-actions');
   append(activities,button('30 тестов →',showSmallIntestineQuiz,'library-action'),
     button('Препараты и самопроверка →',showSmallIntestineSlides,'alt-button'));
   main.append(activities);
-  if(intestineDepth==='intro') {
+  {
     const diagram=element('figure','histology-diagram');
     const img=element('img','','Учебная схема ворсинки и крипты тонкой кишки');
     img.src='./illustrations/small-intestine-schematic.svg';
@@ -443,6 +481,11 @@ function showIntestine() {
     diagram.append(img,element('figcaption','','Схема для ориентации, не реальный гистологический препарат.'));
     main.append(diagram);
   }
+  const legend=element('div','hist-reading-legend');
+  append(legend,element('span','','Фиолетовый · важный термин / NB'),
+    element('span','','Бирюзовый · пояснение в скобках'));
+  main.append(legend);
+  if(intestineSlides?.images?.length===3)main.append(intestineIllustrations());
   const toc=element('nav','study-toc');
   append(toc,element('strong','','Разделы · '+version.sections.length));
   for(let n=0;n<version.sections.length;n++) {
@@ -455,7 +498,7 @@ function showIntestine() {
     const section=version.sections[i],card=element('section','card hist-study-section');
     card.id='intestine-section-'+i;
     append(card,element('h2','',section.title));
-    for(const paragraph of section.paragraphs) card.append(element('p','hist-paragraph',paragraph));
+    for(const paragraph of section.paragraphs) card.append(histologyParagraph(paragraph));
     if(section.table) {
       const wrap=element('div','hist-table-scroll');
       const t=element('table','hist-table');
@@ -472,7 +515,7 @@ function showIntestine() {
     }
     if(section.userPages) card.append(element('p','si-source-note','В исходном конспекте: стр. '+section.userPages+'; редакционные пояснения и предложения — в журнале сверки.'));
     const takeaway=element('div','hist-takeaway');
-    append(takeaway,element('strong','','Запомни'),element('p','',section.key));
+    append(takeaway,element('strong','','NB · Обрати внимание'),histologyParagraph(section.key));
     card.append(takeaway);
     if(typeof section.source==='string'&&section.source.startsWith('https://')) {
       const link=element('a','hist-source-link','Проверить раздел по источнику ↗');
