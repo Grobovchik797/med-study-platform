@@ -371,3 +371,44 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .library-buttons button {min-height:43px;}
 .library-card button:focus-visible,.library-action:focus-visible,.library-back-link:focus-visible {outline:3px solid var(--purple);outline-offset:3px;}
 @media(max-width:800px){.library-grid,.library-features{grid-template-columns:1fr;}.library-card{padding:18px;}}
+
+/* Histology pilot 0.8: topic-specific quiz and authentic virtual slides */
+.si-workspace{max-width:940px;padding:24px;border-radius:18px;background:#fff;border:1px solid #e7e0f1;box-shadow:var(--shadow);margin:20px 0;}
+.si-workspace h1{font-size:clamp(25px,4vw,32px);margin:8px 0 16px;color:#382454;}
+.si-workspace h2{font-size:clamp(18px,3vw,23px);line-height:1.45;margin:20px 0 15px;color:#3a2a55;}
+.si-instruction{font-size:13px;color:#66657d;line-height:1.7;margin:9px 0 17px;}
+.si-choice-row,.si-note-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+.si-button,.si-note-actions button{border:0;min-height:45px;border-radius:11px;padding:11px 14px;background:#7640c6;color:#fff;cursor:pointer;font-size:13px;font-weight:800;touch-action:manipulation;}
+.si-button.secondary{background:#f3edfd;color:#65359e;border:1px solid #e2d3f9;}
+.si-button.current{background:#4c2288;box-shadow:0 2px 8px #7541ca3b;}
+.si-button:disabled{opacity:.55;cursor:not-allowed;}
+.si-info{border:1px solid #e6ddf2;background:#f8f6fd;border-radius:12px;padding:15px;margin:16px 0;font-size:14px;}
+.si-info p{font-size:13px;margin:8px 0 0;line-height:1.6;}
+.si-answers{display:grid;gap:10px;}
+.si-answer{display:flex;align-items:start;gap:12px;border-radius:12px;border:1px solid #e3d9f3;background:#faf9fe;padding:14px 13px;font-size:14px;line-height:1.6;cursor:pointer;}
+.si-answer:has(input:checked){border:2px solid #8d52ce;background:#f3ebfe;}
+.si-answer input{accent-color:#7741c9;min-width:20px;height:20px;flex:none;margin:1px 0;}
+.si-feedback{font-size:13px;line-height:1.7;margin-top:18px;}
+.si-feedback:not(:empty){border-top:1px solid #e8dff1;padding:16px 0;}
+.si-feedback strong{display:block;font-size:15px;margin-bottom:8px;}
+.si-good{color:#197a56}.si-bad{color:#b13453}
+.si-source-note{font-size:12px;color:#7b7391;line-height:1.65;margin-top:12px;}
+.si-select{font-size:14px;border:1px solid #cfc1e6;border-radius:10px;padding:12px;background:#fff;max-width:100%;min-height:46px;touch-action:manipulation;}
+.si-microscope{position:relative;width:min(100%,650px);max-height:680px;overflow:hidden;background:#ebe9ee;border-radius:14px;border:1px solid #c5b5dc;touch-action:none;user-select:none;}
+.si-surface{position:absolute;inset:0;transform-origin:center center;}
+.si-surface img{width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;}
+.si-pin{position:absolute;display:grid;place-items:center;transform:translate(-50%,-50%);width:29px;height:29px;border-radius:50%;border:2px solid #fff;background:#7338ce;color:#fff;font-size:13px;font-weight:800;box-shadow:0 1px 7px #120d43aa;pointer-events:none;}
+.si-image-error{background:#f5e9eb;}
+.si-fallback{position:absolute;z-index:5;inset:10px;padding:15px;background:#fff8;font-weight:700;color:#78344d;}
+.si-legend{padding-left:23px;font-size:13px;line-height:1.75;color:#49445f;}
+.si-legend li{padding:4px 0;}
+.si-test-form{border-top:1px solid #eee7f5;margin:16px 0;padding-top:15px;}
+.si-field{display:flex;flex-direction:column;align-items:flex-start;gap:7px;font-size:13px;font-weight:800;color:#49415b;margin:14px 0;}
+.si-field .si-select{width:min(100%,450px);font-weight:500;}
+.si-credit{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0 0;font-size:11px;color:#6c6280;line-height:1.6;}
+.si-credit p{width:100%;margin:0;}
+.si-credit a{color:#6a37ac;text-decoration:underline;}
+.si-note-actions{padding:9px 0 12px;}
+.si-note-actions button{min-width:190px;}
+@media(max-width:760px){.si-workspace{padding:16px;margin:12px 0;}.si-answers{gap:8px;}.si-answer{font-size:13px;padding:11px;}.si-microscope{max-height:490px;}.si-pin{width:25px;height:25px;}}
+@media(prefers-reduced-motion:reduce){.si-surface{transition:none!important;}}
