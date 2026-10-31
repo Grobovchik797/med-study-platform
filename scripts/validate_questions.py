@@ -1,49 +1,119 @@
 #!/usr/bin/env python3
-"""Validate the demonstration question bank (format only, not medical accuracy)."""
+"""Check structural integrity of the Med Study VNS learning module.
+
+Passing validation does not establish clinical or academic correctness.
+"""
 import json
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
-path = Path(__file__).resolve().parents[1] / "data" / "questions.json"
-errors = []
-try:
-    bank = json.loads(path.read_text(encoding="utf-8"))
-except (ValueError, OSError) as error:
-    raise SystemExit(f"Question file could not be read: {error}")
+ROOT = Path(__file__).resolve().parents[1]
+ERRORS = []
 
-if bank.get("version") != 1:
-    errors.append("Unsupported version")
-questions = bank.get("questions", [])
-if not isinstance(questions, list) or not questions:
-    errors.append("Question list is empty")
-    questions = []
 
-seen = set()
-for n, q in enumerate(questions, 1):
-    if not isinstance(q, dict):
-        errors.append(f"Question {n} not an object")
-        continue
-    for field in ("id", "question", "correct_answer", "explanation", "source"):
-        if not isinstance(q.get(field), str) or not q[field].strip():
-            errors.append(f"Question {n}: missing {field}")
-    ident = q.get("id")
-    if ident in seen:
-        errors.append(f"Duplicate question ID {ident}")
-    seen.add(ident)
-    options = q.get("options", [])
-    if not isinstance(options, list) or len(options) != 4:
-        errors.append(f"Question {n}: must have exactly four options")
-        continue
-    letters = [o.get("id") for o in options if isinstance(o, dict)]
-    texts = [o.get("text") for o in options if isinstance(o, dict)]
-    if sorted(letters) != ["A", "B", "C", "D"]:
-        errors.append(f"Question {n}: invalid option letters")
-    if any(not isinstance(t, str) or not t.strip() for t in texts):
-        errors.append(f"Question {n}: empty option")
-    if q.get("correct_answer") not in letters:
-        errors.append(f"Question {n}: correct_answer is not an option")
+def load(name):
+    try:
+        return json.loads((ROOT / "data" / name).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        ERRORS.append(f"{name}: cannot parse JSON: {exc}")
+        return {}
 
-if errors:
-    print("Validation errors:\n" + "\n".join(errors))
-    sys.exit(1)
-print(f"Validated {len(questions)} demo questions (structure only)")
+
+def required_text(obj, keys, context):
+    for key in keys:
+        if not isinstance(obj.get(key), str) or not obj[key].strip():
+            ERRORS.append(f"{context}: missing or empty {key}")
+
+
+def ncbi_link(url):
+    try:
+        p = urlparse(url)
+        return p.scheme == "https" and p.netloc == "www.ncbi.nlm.nih.gov" and p.path.startswith("/books/NBK")
+    except (ValueError, TypeError):
+        return False
+
+
+def check_questions(data):
+    if data.get("version") != 1:
+        ERRORS.append("questions.json: version must be 1")
+    required_text(data, ("subject", "topic", "status", "description"), "question bank")
+    questions = data.get("questions", [])
+    if not isinstance(questions, list) or len(questions) != 20:
+        ERRORS.append("questions.json: expected exactly 20 questions")
+        return
+    seen_ids, seen_stems = set(), set()
+    for index, q in enumerate(questions, 1):
+        tag = f"question {index}"
+        if not isinstance(q, dict):
+            ERRORS.append(f"{tag}: expected object")
+            continue
+        required_text(q, ("id", "topic", "question", "correct_answer", "explanation", "source"), tag)
+        if q.get("id") in seen_ids:
+            ERRORS.append(f"{tag}: duplicate id")
+        seen_ids.add(q.get("id"))
+        stem = " ".join(q.get("question", "").casefold().split())
+        if stem in seen_stems:
+            ERRORS.append(f"{tag}: duplicate wording")
+        seen_stems.add(stem)
+        if not ncbi_link(q.get("source", "")):
+            ERRORS.append(f"{tag}: source must link to NCBI Bookshelf")
+        options = q.get("options", [])
+        if not isinstance(options, list) or len(options) != 4:
+            ERRORS.append(f"{tag}: expected exactly 4 options")
+            continue
+        if any(not isinstance(opt, dict) for opt in options):
+            ERRORS.append(f"{tag}: malformed option")
+            continue
+        ids = [opt.get("id") for opt in options]
+        texts = [opt.get("text") for opt in options]
+        if sorted(ids) != ["A", "B", "C", "D"]:
+            ERRORS.append(f"{tag}: option IDs must be A–D once")
+        if not all(isinstance(t, str) and t.strip() for t in texts):
+            ERRORS.append(f"{tag}: option text is empty")
+        if len({" ".join(t.casefold().split()) for t in texts if isinstance(t, str)}) != 4:
+            ERRORS.append(f"{tag}: duplicate answer choice")
+        if q.get("correct_answer") not in ids:
+            ERRORS.append(f"{tag}: answer key not among choices")
+
+
+def check_lesson(data):
+    if data.get("version") != 1:
+        ERRORS.append("lesson.json: version must be 1")
+    required_text(data, ("subject", "topic", "subtitle", "intro", "disclaimer"), "lesson")
+    sections = data.get("sections", [])
+    if not isinstance(sections, list) or len(sections) != 5:
+        ERRORS.append("lesson.json: expected five sections")
+        return
+    for n, section in enumerate(sections, 1):
+        required_text(section, ("title", "lead", "takeaway"), f"section {n}")
+        facts = section.get("facts", [])
+        if not isinstance(facts, list) or len(facts) < 2:
+            ERRORS.append(f"section {n}: not enough facts")
+            continue
+        for f in facts:
+            required_text(f, ("term", "body"), f"section {n} fact")
+    sources = data.get("sources", [])
+    if not isinstance(sources, list) or len(sources) < 2:
+        ERRORS.append("lesson.json: expected authoritative sources")
+    else:
+        for source in sources:
+            required_text(source, ("title", "url"), "lesson source")
+            if not ncbi_link(source.get("url", "")):
+                ERRORS.append("lesson.json: invalid source link")
+    plan = data.get("plan", {})
+    if not isinstance(plan, dict) or not isinstance(plan.get("steps"), list) or len(plan["steps"]) != 4:
+        ERRORS.append("lesson.json: expected four study steps")
+
+
+if __name__ == "__main__":
+    questions = load("questions.json")
+    lesson = load("lesson.json")
+    check_questions(questions)
+    check_lesson(lesson)
+    if ERRORS:
+        print("VALIDATION FAILED")
+        for issue in ERRORS:
+            print(" -", issue)
+        sys.exit(1)
+    print("VALIDATION OK: 20 questions and 5 lesson sections (structural checks only)")
