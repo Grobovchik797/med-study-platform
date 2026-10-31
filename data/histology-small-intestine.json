@@ -54,6 +54,14 @@
     {
       "id": "em",
       "url": "https://histopathology.pennstatehealth.net/EM-view/EM-019-small-intestine/14-photo-1.html"
+    },
+    {
+      "id": "study-update-1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24694282/"
+    },
+    {
+      "id": "study-update-2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4956471/"
     }
   ],
   "variants": [
