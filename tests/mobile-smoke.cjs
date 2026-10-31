@@ -117,7 +117,7 @@ async function main() {
     assert.equal(await app.locator('#mobile-more-panel [data-nav="install"]').isVisible(),false);
     await app.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
     await waitHeading(app,'Работа над ошибками');
-    assert.equal(await app.locator('.topic-stats').count(),1);
+    assert.equal(await app.locator('.topic-stats').count(),2);
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
     assert.equal(await app.locator('.library-card').count(),2);
