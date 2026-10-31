@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate question data
-        run: python3 scripts/validate_questions.py
+        run: |
+          python3 scripts/validate_questions.py
+          python3 scripts/validate_subjects.py
       - name: Generate installable app icons
         run: python3 scripts/generate_icons.py
       - name: Validate PWA assets and manifest
@@ -49,7 +51,7 @@ jobs:
           python3 scripts/generate_icons.py
           mkdir -p _site/data _site/icons _site/illustrations
           cp index.html styles.css app.js sw.js manifest.webmanifest .nojekyll _site/
-          cp data/questions.json data/lesson.json data/atlas.json _site/data/
+          cp data/questions.json data/lesson.json data/atlas.json data/subjects.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/
       - name: Upload website artifact

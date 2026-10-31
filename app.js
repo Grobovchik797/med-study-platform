@@ -32,6 +32,7 @@ document.addEventListener('keydown', event => {
 let questionBank = null;
 let lessonData = null;
 let atlasData = null;
+let subjectCatalog = null;
 let selectedReceptor = 'beta1';
 let view = 'home';
 let session = null;
@@ -177,15 +178,56 @@ function showHome() {
     stat('✦', progress.best === null ? '—' : progress.best + '%', 'Лучший результат'),
     stat('↺', progress.mistakes.length, 'Вопросов на повторение'));
   main.append(stats);
-  const heading = append(element('div', 'section-head'), append(element('div'), element('h2', '', 'Доступные предметы'), element('p', 'section-subtitle', 'Начни обучение с первого модуля')));
-  main.append(heading, subjectCard(), disclaimer());
+  const heading = append(element('div', 'section-head'), append(element('div'), element('h2', '', 'Доступные предметы'), element('p', 'section-subtitle', '11 дисциплин университета · первая учебная тема — ВНС')));
+  main.append(heading, subjectCard(), append(element('div','section-actions'), button('Посмотреть все предметы →', () => navigate('subjects'),'alt-button')), disclaimer());
 }
 
 function showSubjects() {
   view = 'subjects'; updateNav(); main.replaceChildren();
-  main.append(titleArea('БИБЛИОТЕКА ПРЕДМЕТОВ', 'Мои предметы', 'Первый полный модуль: конспект по ВНС и 20 вопросов для тренировки. Другие предметы добавим позднее.'));
-  const heading = append(element('div', 'section-head'), append(element('div'), element('h2', '', 'Первый учебный модуль'), element('p', 'section-subtitle', 'Сейчас доступна демонстрационная тема')));
-  main.append(heading, subjectCard(), disclaimer());
+  main.append(titleArea('ТВОЙ УНИВЕРСИТЕТ', 'Мои предметы',
+    'Все дисциплины текущего семестра — от анатомии до философии. Пока учебный материал есть только по ВНС.'));
+  if (!subjectCatalog) {
+    main.append(element('p','note','Не удалось загрузить каталог предметов.'));
+    return;
+  }
+  const modes = element('div','note-modes');
+  for (const mode of subjectCatalog.note_modes) {
+    const card = element('div','note-mode');
+    append(card, element('h3','',mode.title),element('p','',mode.description));
+    modes.append(card);
+  }
+  main.append(modes);
+  const heading = append(element('div','section-head'), append(element('div'),
+    element('h2','', 'Предметы семестра'),
+    element('p','section-subtitle', subjectCatalog.subjects.length + ' дисциплин; новые материалы будем добавлять постепенно')));
+  main.append(heading);
+  const grid = element('div','catalog-grid');
+  for (const subject of subjectCatalog.subjects) {
+    const card = element('article','course-card');
+    const available = subject.status === 'learning-material';
+    append(card,
+      element('div','course-kind',subject.group === 'medical' ? 'МЕДИЦИНА' : 'ОБЩЕУНИВЕРСИТЕТСКИЙ'),
+      element('h3','',subject.name),
+      element('p','course-status',available ? 'ВНС: есть вводные материалы и 20 вопросов' : 'Материалы ещё не добавлены'));
+    if (available) {
+      const noteStatus = element('div','course-notes-status');
+      append(noteStatus,
+        element('span','', 'Краткий: вводный материал (ещё не сверен со всеми вопросами)'),
+        element('span','', 'Расширенный: в разработке'));
+      card.append(noteStatus);
+      const action = element('div','course-actions');
+      append(action, button('Открыть ВНС', () => navigate('lesson')),
+        button('20 вопросов', () => begin(questionBank.questions),'alt-button'));
+      card.append(action);
+    } else {
+      const pending = element('div','course-notes-status');
+      append(pending,element('span','', 'Краткий: планируется'),
+        element('span','', 'Расширенный: планируется'));
+      card.append(pending);
+    }
+    grid.append(card);
+  }
+  main.append(grid, disclaimer());
 }
 
 
@@ -204,7 +246,8 @@ function showLesson() {
     main.append(element('p','note','Конспект не загрузился. Попробуй обновить страницу.'));
     return;
   }
-  main.append(titleArea('УЧЕБНЫЙ КОНСПЕКТ', lessonData.topic, lessonData.subtitle));
+  main.append(titleArea('УЧЕБНЫЙ КОНСПЕКТ · ВВОДНАЯ ВЕРСИЯ', lessonData.topic, lessonData.subtitle));
+  main.append(element('p','note','Это первый учебный материал по ВНС, а не законченный краткий или расширенный конспект. Позже добавим две полноценно выверенные версии по контрольным вопросам: краткую с обязательной базой и расширенную до клеточных и молекулярных механизмов.'));
   const toolbar = element('div','lesson-toolbar');
   append(toolbar, element('span','lesson-label','5 разделов · теория + примеры'),
     button('Перейти к 20 вопросам →', () => begin(questionBank.questions)));
@@ -643,13 +686,18 @@ if ('serviceWorker' in navigator && location.hostname !== 'appassets.androidplat
 Promise.all([
   fetch('./data/questions.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/subjects.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
 ])
-  .then(([data, lesson, atlas]) => {
+  .then(([data, lesson, atlas, subjects]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
-    questionBank = data; lessonData = lesson; atlasData = atlas;
+    if (!subjects || !Array.isArray(subjects.subjects) || subjects.subjects.length !== 11 ||
+        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 2) {
+      throw new Error('Каталог предметов повреждён');
+    }
+    questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();

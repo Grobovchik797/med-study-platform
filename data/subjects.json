@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "description": "Дисциплины университета. Наличие карточки не означает, что материалы готовы.",
+  "note_modes": [
+    {
+      "id": "brief",
+      "title": "Краткий конспект",
+      "description": "Достаточный учебный минимум для уверенного базового ответа: определения, устройство, механизмы, ключевые схемы и часто задаваемые вопросы. Не просто несколько страниц."
+    },
+    {
+      "id": "deep",
+      "title": "Расширенный конспект",
+      "description": "Тема от органа до клеточных и субклеточных механизмов с междисциплинарными связями, иллюстрациями и проверкой полноты по вопросам кафедры."
+    }
+  ],
+  "subjects": [
+    {
+      "id": "anatomy",
+      "name": "Анатомия",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "histology-cytology",
+      "name": "Гистология, цитология",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "normal-physiology",
+      "name": "Нормальная физиология",
+      "group": "medical",
+      "status": "learning-material",
+      "topics": [
+        {
+          "id": "ans",
+          "name": "Вегетативная нервная система",
+          "status": "introductory",
+          "brief_status": "introductory",
+          "deep_status": "planned",
+          "questions": 20
+        }
+      ]
+    },
+    {
+      "id": "biochemistry",
+      "name": "Биохимия",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "immunology",
+      "name": "Иммунология",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "microbiology-virology",
+      "name": "Микробиология, вирусология",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "hygiene",
+      "name": "Гигиена",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "life-safety",
+      "name": "Безопасность жизнедеятельности",
+      "group": "general",
+      "status": "planned"
+    },
+    {
+      "id": "healthy-lifestyle",
+      "name": "Основы здорового образа жизни",
+      "group": "medical",
+      "status": "planned"
+    },
+    {
+      "id": "medical-it",
+      "name": "Информационные технологии в медицине",
+      "group": "general",
+      "status": "planned"
+    },
+    {
+      "id": "philosophy",
+      "name": "Философия",
+      "group": "general",
+      "status": "planned"
+    }
+  ]
+}
