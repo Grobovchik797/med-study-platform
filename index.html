@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7840de">
+  <meta name="description" content="Med Study — учебная платформа с тестами, объяснениями и повторением ошибок.">
+  <title>Med Study — учись с пониманием</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="#home" aria-label="Med Study — главная">
+        <span class="brand-mark" aria-hidden="true">✚</span>
+        <span>med<span class="brand-strong">study</span><small>учись с пониманием</small></span>
+      </a>
+      <div class="side-caption">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="side-nav">
+        <button type="button" data-nav="home" class="nav-item selected"><span aria-hidden="true">◫</span> Обзор</button>
+        <button type="button" data-nav="subjects" class="nav-item"><span aria-hidden="true">▤</span> Мои предметы</button>
+        <button type="button" data-nav="mistakes" class="nav-item"><span aria-hidden="true">◎</span> Работа над ошибками <span id="side-errors" class="nav-count">0</span></button>
+      </nav>
+      <div class="side-bottom">
+        <div class="version-title">MED STUDY · BETA 0.1</div>
+        <p>Первая демонстрационная версия. Без регистрации и передачи данных на сервер.</p>
+      </div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand">✚ <strong>medstudy</strong></div>
+        <span class="topbar-note">Твоё пространство для знаний</span>
+        <span class="top-pill"><span class="status-dot"></span> Демо-режим</span>
+      </header>
+      <main id="main-content" class="main-content" tabindex="-1">
+        <div class="loading-panel">Загружаем учебные материалы…</div>
+      </main>
+      <footer class="footer">Med Study · учебный прототип · результаты сохраняются только в этом браузере</footer>
+    </div>
+  </div>
+  <noscript><p class="no-script">Для прохождения тестов необходимо включить JavaScript.</p></noscript>
+</body>
+</html>
