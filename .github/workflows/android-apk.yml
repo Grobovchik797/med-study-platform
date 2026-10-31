@@ -40,10 +40,6 @@ jobs:
           python3 scripts/validate_small_intestine_pilot.py
           node --check app.js
           node --check small-intestine-interact.js
-      - name: Fetch and optimize licensed microscopy photos
-        run: |
-          python3 -m pip install --user Pillow==11.3.0
-          python3 scripts/build_histology_images.py
       - name: Prepare embedded offline website
         run: |
           python3 scripts/generate_icons.py
