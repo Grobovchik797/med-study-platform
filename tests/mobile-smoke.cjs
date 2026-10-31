@@ -46,6 +46,17 @@ async function run() {
       document.documentElement.scrollWidth - window.innerWidth);
     assert.ok(overflow <= 3,'Unexpected full-page horizontal overflow: ' + overflow);
 
+    // Course catalog remains tappable and honest about missing materials.
+    await page.locator('.side-nav [data-nav="subjects"]').tap();
+    await waitForHeading(page, 'Мои предметы');
+    assert.equal(await page.locator('.course-card').count(), 11);
+    assert.equal(await page.locator('.note-mode').count(), 2);
+    assert.equal(await page.locator('.course-card .course-actions').count(), 1);
+    const philosophy = await page.locator('.course-card').filter({ hasText: 'Философия' }).textContent();
+    assert.ok(philosophy.includes('планируется'));
+    await page.locator('.side-nav [data-nav="home"]').tap();
+    await waitForHeading(page, 'Твоя учёба');
+
     // Reproduces the broken hero tap reported by an Android user.
     await page.locator('.hero-action').tap();
     await waitForHeading(page, 'Вегетативная нервная система');
@@ -95,6 +106,11 @@ async function run() {
       {waitUntil:'networkidle'});
     await waitForHeading(appPage, 'Твоя учёба');
     assert.equal(await appPage.locator('html').getAttribute('data-runtime'),'android-app');
+    await appPage.locator('.side-nav [data-nav="subjects"]').tap();
+    await waitForHeading(appPage, 'Мои предметы');
+    assert.equal(await appPage.locator('.course-card').count(), 11);
+    await appPage.locator('.side-nav [data-nav="home"]').tap();
+    await waitForHeading(appPage, 'Твоя учёба');
     const appNavRect = await appPage.locator('.sidebar').boundingBox();
     assert.ok(appNavRect && appNavRect.y < 80 &&
       appNavRect.y + appNavRect.height < 190,
