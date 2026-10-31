@@ -412,3 +412,39 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .si-note-actions button{min-width:190px;}
 @media(max-width:760px){.si-workspace{padding:16px;margin:12px 0;}.si-answers{gap:8px;}.si-answer{font-size:13px;padding:11px;} .si-microscope{max-width:100%;}.si-pin{width:25px;height:25px;}}
 @media(prefers-reduced-motion:reduce){.si-surface{transition:none!important;}}
+
+/* 0.9 — readable medical explanations, NB, all-depth graphics, optional focus route */
+.hist-inline-term{color:#6732ad;font-weight:800;}
+.hist-inline-aside{color:#176b77;background:rgba(24,157,165,.085);border-radius:5px;padding:1px 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+.hist-reading-legend{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:#4a4570;margin:5px 0 17px;}
+.hist-reading-legend span{display:inline-block;border:1px solid #e3d8f2;border-radius:999px;background:#faf7ff;padding:7px 11px;}
+.hist-reading-legend span+span{background:#edf8f9;border-color:#cdebef;color:#176b77;}
+.hist-takeaway{background:#f2eaff;border-left:4px solid #7941be;}
+.hist-takeaway strong{letter-spacing:.07em;font-weight:900;}
+.hist-takeaway .hist-paragraph{color:#563579;margin:0;font-size:13px;line-height:1.7;}
+.hist-visual-gallery{padding:20px;margin:20px 0;border:1px solid #e6ddf2;border-radius:17px;background:linear-gradient(125deg,#f7f1ff,#fff);}
+.hist-visual-gallery h2{font-size:21px;line-height:1.4;margin:8px 0;color:#382450;}
+.hist-visual-gallery>p{font-size:13px;color:#6a6483;line-height:1.6;}
+.hist-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 0;}
+.hist-gallery-card{display:flex;flex-direction:column;min-width:0;border-radius:13px;border:1px solid #e8dff0;overflow:hidden;background:#fff;}
+.hist-gallery-card img{height:140px;width:100%;object-fit:cover;background:#eee8f2;}
+.hist-gallery-card h3{font-size:13px;margin:12px 10px 6px;line-height:1.45;}
+.hist-gallery-card p{font-size:11px;color:#66617b;line-height:1.5;margin:0 10px 10px;flex:1;}
+.hist-gallery-card button{margin:0 10px 11px;font-size:11px;min-height:40px;min-width:0;}
+.si-focus{margin:16px 0 22px;background:linear-gradient(128deg,#f1ecff,#fff);border:1px solid #ddd0f6;border-radius:16px;padding:20px;}
+.si-focus h2{font-size:20px;color:#3b2e5a;margin:9px 0;}
+.si-focus-clock{font-variant-numeric:tabular-nums;font-weight:900;font-size:clamp(32px,5vw,45px);letter-spacing:1px;color:#7140b2;}
+.si-focus-phase{display:block;color:#54327d;font-size:15px;margin:5px 0;}
+.si-focus-track{height:9px;border-radius:999px;background:#dfd5f1;overflow:hidden;}
+.si-focus-fill{height:100%;width:0%;background:#8147d6;transition:width .25s linear;}
+.si-focus-break .si-focus-clock,.si-focus-break .si-focus-phase{color:#187b81;}
+.si-focus-break .si-focus-fill{background:#27a5a3;}
+.si-image-loading{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:11px;background:#f3f0f7;color:#5d4f75;text-align:center;font-size:13px;padding:15px;z-index:6;pointer-events:auto;}
+.si-image-loading p{line-height:1.6;font-size:12px;}
+.si-image-loading strong{color:#82395c;}
+.si-loading-spinner{width:31px;height:31px;border-radius:50%;border:3px solid #d6cae5;border-top-color:#7640c6;animation:si-spin 1s linear infinite;}
+@keyframes si-spin{to{transform:rotate(360deg);}}
+.si-image-error .si-loading-spinner{display:none;}
+@media(max-width:760px){.hist-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.hist-visual-gallery{padding:14px;}.hist-gallery-card img{height:130px;}.si-focus{padding:16px;}}
+@media(max-width:430px){.hist-gallery-grid{grid-template-columns:1fr;}.hist-gallery-card img{height:165px;}.si-focus .si-choice-row button{flex:1;}}
+@media(prefers-reduced-motion:reduce){.si-loading-spinner{animation:none;}}

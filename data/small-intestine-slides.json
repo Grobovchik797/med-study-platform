@@ -1,7 +1,7 @@
 {
   "version": 1,
   "topicId": "histology-small-intestine",
-  "modeDescription": "Изучение: видимые маркеры с легендой. Самопроверка: скрытые названия, определение отдела и подписи по номерам. Изображения CC BY-SA; показ online, офлайн недоступен.",
+  "modeDescription": "Изучение и самопроверка по трём лицензированным фотографиям Wikimedia. Используются небольшие миниатюры, но их загрузка всё ещё зависит от внешнего сервера; на Android может быть недоступна.",
   "images": [
     {
       "id": "duodenum",
@@ -9,7 +9,7 @@
       "answer": "duodenum",
       "stain": "Микрофотография, окраска заявлена как гистологическая (точный протокол не указан автором)",
       "aspect": "0.75",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Duodenum_Microscopic_View.jpg/960px-Duodenum_Microscopic_View.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Duodenum_Microscopic_View.jpg/500px-Duodenum_Microscopic_View.jpg",
       "credit": "Lokeshmanikanta 22",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -30,7 +30,10 @@
           "label": "Подслизистая область",
           "note": "Область ниже мышечной пластинки; специфические структуры на таком увеличении требуют более качественного среза."
         }
-      ]
+      ],
+      "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Duodenum_Microscopic_View.jpg/960px-Duodenum_Microscopic_View.jpg",
+      "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Duodenum%20Microscopic%20View.jpg",
+      "isResizedCopy": false
     },
     {
       "id": "jejunum",
@@ -38,13 +41,16 @@
       "answer": "jejunum",
       "stain": "Гистологический препарат (окраска в карточке Commons не уточнена)",
       "aspect": "0.75",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/2/21/Jejunum.png",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Jejunum.png/576px-Jejunum.png",
       "credit": "Gnanadeep",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "source": "https://commons.wikimedia.org/wiki/File:Jejunum.png",
       "description": "Образец из медиатеки Commons с указанием jejunum. Точные клеточные подписи на этом изображении пока не верифицированы — тренировка определяет отдел, а не отдельные клетки.",
-      "annotations": []
+      "annotations": [],
+      "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Jejunum.png/960px-Jejunum.png",
+      "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jejunum.png",
+      "isResizedCopy": false
     },
     {
       "id": "ileum",
@@ -52,7 +58,7 @@
       "answer": "ileum",
       "stain": "Гематоксилин и эозин (H&E), биопсия терминального отдела",
       "aspect": "1.5",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/1/19/Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg/640px-Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg",
       "credit": "CoRus13",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -80,7 +86,10 @@
           "label": "Слизистая оболочка со стороны просвета",
           "note": "Верхняя область с покровным эпителием и элементами слизистой."
         }
-      ]
+      ],
+      "originalSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg/1280px-Ileum_biopsy_with_lymphoid_tissue%2C_intermed._mag.jpg",
+      "originalSourceUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ileum%20biopsy%20with%20lymphoid%20tissue%2C%20intermed.%20mag.jpg",
+      "isResizedCopy": false
     }
   ]
 }

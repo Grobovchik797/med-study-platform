@@ -39,6 +39,7 @@ jobs:
           python3 scripts/validate_library.py
           python3 scripts/validate_small_intestine_pilot.py
           node --check app.js
+          node --check small-intestine-interact.js
       - name: Prepare embedded offline website
         run: |
           python3 scripts/generate_icons.py
