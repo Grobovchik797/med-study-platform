@@ -5,6 +5,7 @@ const sideErrors = document.getElementById('side-errors');
 const STORAGE_KEY = 'med-study-progress-v1';
 
 let questionBank = null;
+let lessonData = null;
 let view = 'home';
 let session = null;
 let lastResult = null;
@@ -63,6 +64,7 @@ function navigate(to) {
   updateNav();
   if (!questionBank) return;
   if (to === 'subjects') showSubjects();
+  else if (to === 'lesson') showLesson();
   else if (to === 'mistakes') showMistakes();
   else showHome();
   window.scrollTo(0, 0);
@@ -81,13 +83,19 @@ function stat(icon, value, caption) {
 function subjectCard() {
   const card = element('article', 'subject-card');
   const info = element('div', 'subject-main');
-  append(info, element('div', 'subject-tag', 'ДОСТУПНЫЙ МОДУЛЬ'), element('h3', '', questionBank.subject), element('p', '', questionBank.topic + ' · ' + questionBank.questions.length + ' демонстрационных вопросов'));
-  append(card, element('div', 'subject-icon', '◈'), info, button('Начать тест →', () => begin(questionBank.questions)));
+  append(info, element('div', 'subject-tag', 'ДОСТУПНЫЙ МОДУЛЬ'), element('h3', '', questionBank.subject), element('p', '', questionBank.topic + ' · ' + questionBank.questions.length + ' вопросов с объяснениями'));
+  const actions = element('div', 'subject-actions');
+  append(actions,
+    button('Читать конспект', () => navigate('lesson'), 'alt-button'),
+    button('20 вопросов →', () => begin(questionBank.questions)),
+    button('10 случайных', () => begin(sampleQuestions(questionBank.questions, 10)), 'alt-button')
+  );
+  append(card, element('div', 'subject-icon', '◈'), info, actions);
   return card;
 }
 
 function disclaimer() {
-  return element('p', 'note', 'Учебный демонстрационный набор: вопросы ещё не сверены по конкретному изданию учебника. Не используйте его как единственный источник при подготовке к экзамену.');
+  return element('p', 'note', 'Учебный банк составлен и сверён по материалам NCBI Bookshelf, но не является официальным банком кафедры. Перед экзаменом сопоставляй ответы с программой курса и учебником.');
 }
 
 function showHome() {
@@ -95,7 +103,7 @@ function showHome() {
   main.append(titleArea('ДОБРО ПОЖАЛОВАТЬ', 'Твоя учёба — под контролем.', 'Учебные темы, тесты и повторение ошибок в одном месте. Начни с короткой тренировки и отслеживай свой прогресс.'));
   const hero = element('section', 'hero');
   const heroCopy = append(element('div', 'hero-copy'), element('div', 'kicker', 'СЕГОДНЯ МОЖНО НАЧАТЬ'), element('h2', '', 'Каждый правильный ответ — шаг вперёд.'), element('p', '', 'Выбирай тему, отвечай на вопросы и сразу узнавай, почему ответ правильный.'));
-  append(hero, heroCopy, button('Пройти тест →', () => begin(questionBank.questions), 'hero-action'));
+  append(hero, heroCopy, button('Изучить тему →', () => navigate('lesson'), 'hero-action'));
   main.append(hero);
   const stats = element('section', 'stats-grid');
   append(stats,
@@ -109,9 +117,66 @@ function showHome() {
 
 function showSubjects() {
   view = 'subjects'; updateNav(); main.replaceChildren();
-  main.append(titleArea('БИБЛИОТЕКА ПРЕДМЕТОВ', 'Мои предметы', 'Постепенно здесь появятся анатомия, биохимия, микробиология и конспекты по каждой теме.'));
+  main.append(titleArea('БИБЛИОТЕКА ПРЕДМЕТОВ', 'Мои предметы', 'Первый полный модуль: конспект по ВНС и 20 вопросов для тренировки. Другие предметы добавим позднее.'));
   const heading = append(element('div', 'section-head'), append(element('div'), element('h2', '', 'Первый учебный модуль'), element('p', 'section-subtitle', 'Сейчас доступна демонстрационная тема')));
   main.append(heading, subjectCard(), disclaimer());
+}
+
+
+function sampleQuestions(list, count) {
+  const copy = list.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, Math.min(count, copy.length));
+}
+
+function showLesson() {
+  view = 'lesson'; updateNav(); main.replaceChildren();
+  if (!lessonData) {
+    main.append(element('p','note','Конспект не загрузился. Попробуй обновить страницу.'));
+    return;
+  }
+  main.append(titleArea('УЧЕБНЫЙ КОНСПЕКТ', lessonData.topic, lessonData.subtitle));
+  const toolbar = element('div','lesson-toolbar');
+  append(toolbar, element('span','lesson-label','5 разделов · теория + примеры'),
+    button('Перейти к 20 вопросам →', () => begin(questionBank.questions)));
+  main.append(toolbar);
+  const intro = element('div','lesson-intro');
+  append(intro, element('strong','', 'О чём этот модуль'), element('p','',lessonData.intro));
+  main.append(intro);
+  for (const sec of lessonData.sections) {
+    const card = element('section','card lesson-section');
+    append(card, element('h2','',sec.title), element('p','lesson-lead',sec.lead));
+    const facts = element('div','lesson-facts');
+    for (const fact of sec.facts) {
+      const item = element('div','lesson-fact');
+      append(item, element('h3','',fact.term),element('p','',fact.body));
+      facts.append(item);
+    }
+    card.append(facts);
+    append(card, element('div','lesson-takeaway',sec.takeaway));
+    main.append(card);
+  }
+  const plan = element('section','card lesson-section');
+  append(plan,element('h2','',lessonData.plan.title));
+  const list = element('ol','lesson-plan');
+  for(const s of lessonData.plan.steps) list.append(element('li','',s));
+  append(plan,list,element('p','muted',lessonData.plan.note));
+  main.append(plan);
+  const refs = element('section','card lesson-section');
+  append(refs,element('h2','', 'Источники'));
+  const ul=element('ul','lesson-sources');
+  for(const source of lessonData.sources) {
+    const li=element('li');
+    const a=element('a','',source.title);
+    a.href=source.url; a.target='_blank';a.rel='noopener noreferrer';
+    li.append(a);ul.append(li);
+  }
+  append(refs,ul,element('p','muted',lessonData.disclaimer));
+  main.append(refs, append(element('div','section-actions'),button('Проверить знания: 20 вопросов →',()=>begin(questionBank.questions))));
+  window.scrollTo(0,0);
 }
 
 function showMistakes() {
@@ -192,6 +257,11 @@ function answer(q, selectedId, options, card) {
   const feedback = element('div', 'feedback ' + (correct ? 'good' : 'bad'));
   feedback.setAttribute('role', 'status');
   append(feedback, element('strong', '', correct ? 'Верно! Отличная работа.' : 'Не совсем. Разберём правильный ответ.'), element('p', '', q.explanation));
+  if (typeof q.source === 'string' && q.source.startsWith('https://www.ncbi.nlm.nih.gov/books/')) {
+    const sourceLink = element('a', 'question-source', 'Источник: NCBI Bookshelf ↗');
+    sourceLink.href = q.source; sourceLink.target = '_blank'; sourceLink.rel = 'noopener noreferrer';
+    feedback.append(sourceLink);
+  }
   const actions = element('div', 'quiz-actions');
   const next = button(session.index + 1 === session.questions.length ? 'Завершить тест →' : 'Следующий вопрос →', () => { session.index++; renderQuestion(); });
   append(actions, element('span', 'muted', 'Правильных ответов: ' + session.score), next);
@@ -214,7 +284,7 @@ function finishSession() {
   append(card, element('div', 'kicker', 'ГОТОВО!'), element('div', 'result-score', lastResult.score + ' / ' + lastResult.count), element('h2', '', percent + '% правильных ответов'), element('p', 'intro', lastResult.failures.length ? 'Ошибки сохранены в разделе «Работа над ошибками».' : 'Все ответы верные! Можно повторить тему или выбрать следующую.'));
   const actions = element('div', 'result-actions');
   if (lastResult.failures.length) actions.append(button('Повторить ошибки (' + lastResult.failures.length + ')', () => begin(lastResult.failures)));
-  append(actions, button('Пройти снова', () => begin(questionBank.questions), 'alt-button'), button('На главную', () => navigate('home'), 'alt-button'));
+  append(actions, button('Полный тест · 20 вопросов', () => begin(questionBank.questions), 'alt-button'), button('На главную', () => navigate('home'), 'alt-button'));
   append(card, actions);
   main.append(append(element('div', 'section-actions'), card), disclaimer());
   window.scrollTo(0, 0);
@@ -239,11 +309,14 @@ for (const item of document.querySelectorAll('[data-nav]')) {
   item.addEventListener('click', () => navigate(item.dataset.nav));
 }
 
-fetch('./data/questions.json', { cache: 'no-store' })
-  .then(response => { if (!response.ok) throw new Error('HTTP ' + response.status); return response.json(); })
-  .then(data => {
+Promise.all([
+  fetch('./data/questions.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+])
+  .then(([data, lesson]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
-    questionBank = data;
+    if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
+    questionBank = data; lessonData = lesson;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();
