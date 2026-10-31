@@ -37,7 +37,7 @@ let learningLibrary = null;
 let intestineData = null;
 let intestineQuizBank = null;
 let intestineSlides = null;
-let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null;
+let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null;
 let activeGIChapterId = null;
 let intestineDepth = 'intro';
 let selectedReceptor = 'beta1';
@@ -262,6 +262,7 @@ function showGIChapter(id) {
   view='gi-chapter';updateNav();main.replaceChildren();
   window.MedStudyGI.renderChapter(main,{
     chapter,mini:giInlineBank.chapterQuestions[id],workbook:giWorkbook.maps,
+    departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>showSmallIntestineSlides(giSlideIndex(slide)),
     onExam:showGIExam,onWorkbook:showGIWorkbook
@@ -271,8 +272,8 @@ function showGIChapter(id) {
 function giSlideIndex(id) {return Math.max(0,intestineSlides.images.findIndex(x=>x.id===id));}
 function showGIWorkbook() {
   view='gi-workbook';updateNav();main.replaceChildren();
-  window.MedStudyGI.renderWorkbook(main,{maps:giWorkbook.maps,
-    onBack:()=>showSection('histology-cytology','digestive')});
+  window.MedStudyGI.renderWorkbook(main,{maps:giWorkbook.maps,department:giDepartmentQuestions,
+    onBack:()=>showSection('histology-cytology','digestive'),onChapter:showGIChapter});
   window.scrollTo(0,0);
 }
 function showGIExam() {
@@ -1077,9 +1078,10 @@ Promise.all([
   fetch('./data/gi-curriculum.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI curriculum '+r.status);return r.json();}),
   fetch('./data/gi-inline-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI mini '+r.status);return r.json();}),
   fetch('./data/gi-final-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI exam '+r.status);return r.json();}),
-  fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();})
+  fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();}),
+  fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1101,8 +1103,10 @@ Promise.all([
         !slides || slides.images?.length !== 3 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.maps?.length!==7 ||
-      Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3))throw Error('Пищеварительная система: повреждены материалы');
-    giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;
+      Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
+      giMethodQuestions?.groups?.reduce((sum,g)=>sum+g.questions.length,0)!==56)
+      throw Error('Пищеварительная система: повреждены материалы');
+    giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
