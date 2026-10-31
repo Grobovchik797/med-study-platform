@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="635" viewBox="0 0 1120 635" role="img" aria-labelledby="title desc">
+<title id="title">Сравнение влияния симпатической и парасимпатической нервной системы на органы</title>
+<desc id="desc">Сравнение эффектов на зрачок, сердце, бронхи, желудочно-кишечный тракт и мочевой пузырь. Слева симпатические, справа парасимпатические ответы.</desc>
+<rect width="1120" height="635" rx="28" fill="#f8f9ff"/>
+<g font-family="Arial, sans-serif">
+<text x="48" y="56" font-size="31" font-weight="700" fill="#26324b">ВНС: эффекты на органы</text>
+<text x="49" y="89" font-size="18" fill="#63718a">Сравни типичные ответы. Цвета помогают запомнить, но не заменяют механизмы рецепторов.</text>
+<rect x="46" y="114" width="488" height="58" rx="15" fill="#fbe7d5"/>
+<rect x="584" y="114" width="488" height="58" rx="15" fill="#d7f5ed"/>
+<text x="290" y="151" text-anchor="middle" font-size="23" font-weight="700" fill="#a0521c">Симпатический отдел</text>
+<text x="828" y="151" text-anchor="middle" font-size="23" font-weight="700" fill="#08796b">Парасимпатический отдел</text>
+<g fill="#fff" stroke="#e5e8f1" stroke-width="2">
+<rect x="46" y="188" width="1026" height="72" rx="13"/>
+<rect x="46" y="270" width="1026" height="72" rx="13"/>
+<rect x="46" y="352" width="1026" height="72" rx="13"/>
+<rect x="46" y="434" width="1026" height="72" rx="13"/>
+<rect x="46" y="516" width="1026" height="72" rx="13"/>
+</g>
+<g font-size="19" fill="#334155">
+<text x="76" y="217" font-weight="700">Зрачок</text><text x="76" y="243" font-size="15" fill="#9b5b23">α1 → мидриаз ↑</text>
+<text x="612" y="217" font-weight="700">Зрачок</text><text x="612" y="243" font-size="15" fill="#168576">M3 → миоз ↓</text>
+<text x="76" y="299" font-weight="700">Сердце</text><text x="76" y="325" font-size="15" fill="#9b5b23">β1 → ЧСС ↑</text>
+<text x="612" y="299" font-weight="700">Сердце</text><text x="612" y="325" font-size="15" fill="#168576">M2 → ЧСС ↓</text>
+<text x="76" y="381" font-weight="700">Бронхи</text><text x="76" y="407" font-size="15" fill="#9b5b23">β2 → расслабление</text>
+<text x="612" y="381" font-weight="700">Бронхи</text><text x="612" y="407" font-size="15" fill="#168576">M3 → сокращение</text>
+<text x="76" y="463" font-weight="700">ЖКТ</text><text x="76" y="489" font-size="15" fill="#9b5b23">обычно моторика ↓</text>
+<text x="612" y="463" font-weight="700">ЖКТ</text><text x="612" y="489" font-size="15" fill="#168576">обычно моторика ↑</text>
+<text x="76" y="545" font-weight="700">Мочевой пузырь</text><text x="76" y="571" font-size="15" fill="#9b5b23">β3 → расслабление детрузора</text>
+<text x="612" y="545" font-weight="700">Мочевой пузырь</text><text x="612" y="571" font-size="15" fill="#168576">M3 → сокращение детрузора</text>
+</g>
+<path d="M560 188 V587" stroke="#d5d5e7" stroke-width="2" stroke-dasharray="6 7"/>
+<text x="560" y="616" font-size="16" fill="#6c7890" text-anchor="middle">Учебная схема · эффекты зависят от вида рецептора, ткани и состояния организма.</text>
+</g></svg>
