@@ -9,7 +9,7 @@ const mobileMoreToggle = document.getElementById('mobile-more-toggle');
 const mobileMorePanel = document.getElementById('mobile-more-panel');
 const mobileMoreBackdrop = document.getElementById('mobile-more-backdrop');
 const mobileMoreClose = document.getElementById('mobile-more-close');
-const MORE_VIEWS = new Set(['atlas','flashcards','mistakes','stats','install']);
+const MORE_VIEWS = new Set(['atlas','flashcards','atlases','cards','mistakes','stats','install']);
 
 function setMobileMore(open) {
   if (!mobileMorePanel || !mobileMoreBackdrop || !mobileMoreToggle) return;
@@ -33,6 +33,7 @@ let questionBank = null;
 let lessonData = null;
 let atlasData = null;
 let subjectCatalog = null;
+let learningLibrary = null;
 let intestineData = null;
 let intestineDepth = 'intro';
 let selectedReceptor = 'beta1';
@@ -100,7 +101,9 @@ function button(label, handler, className = 'action-button') {
 
 function updateNav() {
   for (const item of document.querySelectorAll('[data-nav]')) {
-    const selected = item.dataset.nav === view;
+    const navigationView = ({ lesson:'notes', intestine:'notes', atlas:'atlases',
+      flashcards:'cards', subject:'subjects', section:'subjects', topic:'subjects' })[view] || view;
+    const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
     if (selected) item.setAttribute('aria-current', 'page');
     else item.removeAttribute('aria-current');
@@ -121,6 +124,9 @@ function navigate(to) {
   updateNav();
   if (!questionBank) return;
   if (to === 'subjects') showSubjects();
+  else if (to === 'notes') showResourceLibrary('notes');
+  else if (to === 'atlases') showResourceLibrary('atlas');
+  else if (to === 'cards') showResourceLibrary('flashcards');
   else if (to === 'lesson') showLesson();
   else if (to === 'atlas') showAtlas();
   else if (to === 'intestine') showIntestine();
@@ -160,85 +166,211 @@ function disclaimer() {
   return element('p', 'note', 'Учебный банк составлен и сверён по материалам NCBI Bookshelf, но не является официальным банком кафедры. Перед экзаменом сопоставляй ответы с программой курса и учебником.');
 }
 
+
+function libraryEntries() {
+  if (!learningLibrary || !subjectCatalog) return [];
+  const entries = [];
+  for (const subject of subjectCatalog.subjects) {
+    const tree = learningLibrary.subjects[subject.id];
+    if (!tree) continue;
+    for (const section of tree.sections) {
+      for (const topic of section.topics) {
+        entries.push({subject, section, topic});
+      }
+    }
+  }
+  return entries;
+}
+
+function librarySubject(subjectId) {
+  return subjectCatalog?.subjects.find(s => s.id === subjectId);
+}
+
+function librarySection(subjectId, sectionId) {
+  return learningLibrary?.subjects[subjectId]?.sections.find(s => s.id === sectionId);
+}
+
+function contextLink(label, click) {
+  return button(label, click, 'library-back-link');
+}
+
+function showSubject(subjectId) {
+  view = 'subject'; updateNav(); main.replaceChildren();
+  const subject = librarySubject(subjectId), tree = learningLibrary?.subjects[subjectId];
+  if (!subject) { showSubjects(); return; }
+  main.append(contextLink('← Все предметы', () => navigate('subjects')));
+  main.append(titleArea('ПРЕДМЕТ', subject.name,
+    tree ? 'Выбери раздел. Тема появится внутри него, когда будет подготовлена.'
+         : 'Разделы для этого предмета пока не сформированы.'));
+  if (!tree || !tree.sections.length) {
+    main.append(element('p','note','Пока нет разделов и учебных материалов. Добавим их по программе курса.'));
+    return;
+  }
+  const grid=element('div','library-grid');
+  for(const section of tree.sections) {
+    const card=element('article','library-card');
+    const ready=section.topics.length;
+    append(card,element('div','course-kind',ready?'ЕСТЬ ТЕМЫ':'ПЛАНИРУЕТСЯ'),
+      element('h3','',section.title),element('p','',section.subtitle),
+      element('div','library-status',ready?(ready+' учебная тема'):'Материалы будут добавлены'),
+      button(ready?'Открыть раздел →':'Посмотреть раздел →',
+        () => showSection(subjectId,section.id),'library-go'));
+    grid.append(card);
+  }
+  main.append(grid);
+}
+
+function showSection(subjectId,sectionId) {
+  const subject=librarySubject(subjectId), section=librarySection(subjectId,sectionId);
+  if(!subject||!section){showSubjects();return;}
+  view='section';updateNav();main.replaceChildren();
+  main.append(contextLink('← '+subject.name,()=>showSubject(subjectId)));
+  main.append(titleArea(subject.name.toUpperCase(),section.title,section.subtitle));
+  if(!section.topics.length) {
+    main.append(element('p','note','Раздел создан. Конспекты и тесты появятся после проверки материалов.'));
+    return;
+  }
+  const grid=element('div','library-grid');
+  for(const topic of section.topics) {
+    const card=element('article','library-card');
+    append(card,element('div','course-kind','УЧЕБНАЯ ТЕМА'),
+      element('h3','',topic.title),element('p','',topic.hint),
+      button('Открыть тему →',()=>showTopic(topic.id),'library-go'));
+    grid.append(card);
+  }
+  main.append(grid);
+}
+
+function showTopic(topicId) {
+  const entry=libraryEntries().find(x=>x.topic.id===topicId);
+  if(!entry){showSubjects();return;}
+  view='topic';updateNav();main.replaceChildren();
+  const {subject,section,topic}=entry;
+  main.append(contextLink('← '+section.title,()=>showSection(subject.id,section.id)));
+  main.append(titleArea(subject.name+' · '+section.title,topic.title,topic.hint));
+  const box=element('div','library-features');
+  const notes=element('section','card library-feature');
+  append(notes,element('h2','','Конспекты'),element('p','',
+    topic.id==='ans'?'Пока доступен вводный материал.':
+    'Три авторские версии. Сверка с твоим кафедральным конспектом ещё впереди.'));
+  if(topic.route==='intestine') {
+    const buttons=element('div','library-buttons');
+    for(const item of [{id:'intro',label:'Вводный'},{id:'brief',label:'Краткий'},{id:'deep',label:'Расширенный'}]) {
+      buttons.append(button(item.label,()=>{intestineDepth=item.id;showIntestine();window.scrollTo(0,0);},
+        'library-action'));
+    }
+    notes.append(buttons);
+  } else if(topic.route==='lesson') {
+    notes.append(button('Читать вводный конспект →',()=>navigate('lesson'),'library-action'));
+  }
+  box.append(notes);
+  const tests=element('section','card library-feature');
+  append(tests,element('h2','','Тестирование'),
+    element('p','',topic.quiz?'20 учебных вопросов с объяснениями.':
+      'Тесты по этой теме пока не подготовлены.'));
+  if(topic.quiz) append(tests,button('Начать тест →',()=>begin(questionBank.questions),'library-action'),
+    button('Экзамен без подсказок',()=>begin(questionBank.questions,'exam'),'alt-button'));
+  box.append(tests);
+  const atlas=element('section','card library-feature');
+  append(atlas,element('h2','','Атлас и изображения'),
+    element('p','',topic.atlas?'Доступен интерактивный атлас рецепторов.':
+      'Виртуальные препараты и атлас для этой темы ещё планируются.'));
+  if(topic.atlas) atlas.append(button('Открыть атлас →',()=>navigate('atlas'),'library-action'));
+  box.append(atlas);
+  const cards=element('section','card library-feature');
+  append(cards,element('h2','','Карточки для повторения'),
+    element('p','',topic.flashcards?'Повторение основных понятий темы.':
+      'Карточки появятся после проверки учебных материалов.'));
+  if(topic.flashcards) cards.append(button('Учить карточки →',()=>navigate('flashcards'),'library-action'));
+  box.append(cards);
+  main.append(box);
+}
+
+function showResourceLibrary(kind) {
+  const settings={
+    notes:['КОНСПЕКТЫ','Библиотека конспектов','Выбери предмет и тему — больше ни одна вкладка не привязана к ВНС.'],
+    atlas:['АТЛАСЫ','Библиотека атласов','Интерактивные материалы организованы по темам.'],
+    flashcards:['ЗАПОМИНАНИЕ','Карточки по темам','Выбирай нужную учебную тему для повторения.']
+  }[kind];
+  view=kind==='notes'?'notes':kind==='atlas'?'atlases':'cards';
+  updateNav();main.replaceChildren();
+  main.append(titleArea(...settings));
+  const entries=libraryEntries().filter(({topic})=>kind==='notes'?
+    Object.values(topic.notes||{}).some(Boolean) : kind==='atlas'?topic.atlas:topic.flashcards);
+  const grid=element('div','library-grid');
+  for(const entry of entries) {
+    const {subject,section,topic}=entry;
+    const card=element('article','library-card');
+    append(card,element('div','course-kind',subject.name+' · '+section.title),
+      element('h3','',topic.title));
+    if(kind==='notes') {
+      append(card,element('p','',topic.hint),
+        button('Выбрать конспект →',()=>showTopic(topic.id),'library-go'));
+    } else if(kind==='atlas') {
+      append(card,element('p','','Атлас доступен в разделе выбранной темы.'),
+        button('Открыть атлас →',()=>navigate('atlas'),'library-go'));
+    } else {
+      append(card,element('p','','Карточки для активного повторения.'),
+        button('Начать повторение →',()=>navigate('flashcards'),'library-go'));
+    }
+    grid.append(card);
+  }
+  main.append(grid);
+  if(!entries.length) main.append(element('p','note','Материалы этого типа пока готовятся.'));
+  const next=element('div','section-actions');
+  next.append(button('Посмотреть все предметы →',()=>navigate('subjects'),'alt-button'));
+  main.append(next);
+}
+
 function showHome() {
-  view = 'home'; updateNav(); main.replaceChildren();
-  main.append(titleArea('ДОБРО ПОЖАЛОВАТЬ', 'Твоя учёба — под контролем.', 'Учебные темы, тесты и повторение ошибок в одном месте. Начни с короткой тренировки и отслеживай свой прогресс.'));
-  const hero = element('section', 'hero');
-  const heroCopy = append(element('div', 'hero-copy'), element('div', 'kicker', 'СЕГОДНЯ МОЖНО НАЧАТЬ'), element('h2', '', 'Каждый правильный ответ — шаг вперёд.'), element('p', '', 'Выбирай тему, отвечай на вопросы и сразу узнавай, почему ответ правильный.'));
-  append(hero, heroCopy, button('Изучить тему →', () => navigate('lesson'), 'hero-action'));
+  view='home';updateNav();main.replaceChildren();
+  main.append(titleArea('ТВОЁ ОБУЧЕНИЕ','Med Study — библиотека знаний',
+    'Начни с предмета, выбери раздел и тему. Конспекты, тесты, атласы и повторение открываются в контексте выбранной темы.'));
+  const hero=element('section','hero');
+  const copy=append(element('div','hero-copy'),
+    element('div','kicker','УНИВЕРСИТЕТ · МНОГО ПРЕДМЕТОВ'),
+    element('h2','','Выбирай, что изучать сегодня.'),
+    element('p','','Перейди от предмета к нужной теме и работай с доступными материалами.'));
+  append(hero,copy,button('Выбрать предмет →',()=>navigate('subjects'),'hero-action'));
   main.append(hero);
-  const histShortcut = element('section','histology-spotlight');
-  append(histShortcut,
-    element('div','kicker','ПЕРВЫЙ МОДУЛЬ ГИСТОЛОГИИ'),
-    element('h2','','Тонкая кишка: три уровня понимания'),
-    element('p','','Вводный обзор, содержательная базовая версия и расширенный разбор до клеток, ультраструктуры, секреции и иммунной защиты.'),
-    button('Выбрать уровень конспекта →', () => navigate('intestine'),'histology-spotlight-button'));
-  main.append(histShortcut);
-  const atlasShortcut = element('section', 'atlas-home-link');
-  append(atlasShortcut, element('div', 'kicker', 'НОВОЕ · ИНТЕРАКТИВНЫЙ АТЛАС'), element('h2', '', 'Нажимай на рецепторы — изучай эффекты'), element('p','', 'Шесть рецепторов ВНС с объяснениями, примерами и источниками.'), button('Открыть атлас →', () => navigate('atlas')));
-  main.append(atlasShortcut);
-  const shortcuts = element('div', 'feature-grid');
-  append(shortcuts,
-    button('🧠  Карточки для повторения', () => navigate('flashcards'), 'feature-button'),
-    button('⏱  Режим экзамена — 20 вопросов', () => begin(questionBank.questions, 'exam'), 'feature-button'));
-  main.append(shortcuts);
-  const stats = element('section', 'stats-grid');
+  const stats=element('section','stats-grid');
   append(stats,
-    stat('◷', progress.sessions, 'Пройдено тренировок'),
-    stat('✦', progress.best === null ? '—' : progress.best + '%', 'Лучший результат'),
-    stat('↺', progress.mistakes.length, 'Вопросов на повторение'));
+    stat('▤',subjectCatalog?.subjects.length||0,'Предметов в каталоге'),
+    stat('◈',libraryEntries().length,'Тем с материалами'),
+    stat('↺',progress.mistakes.length,'Вопросов на повторение'));
   main.append(stats);
-  const heading = append(element('div', 'section-head'), append(element('div'), element('h2', '', 'Доступные предметы'), element('p', 'section-subtitle', '11 дисциплин университета · первая учебная тема — ВНС')));
-  main.append(heading, subjectCard(), append(element('div','section-actions'), button('Посмотреть все предметы →', () => navigate('subjects'),'alt-button')), disclaimer());
+  const heading=element('div','section-head');
+  append(heading,append(element('div'),
+    element('h2','','Продолжить обучение'),
+    element('p','section-subtitle','Все темы с материалами, которые уже есть в Med Study')));
+  main.append(heading);
+  const grid=element('div','library-grid');
+  for(const {subject,section,topic} of libraryEntries()){
+    const card=element('article','library-card');
+    append(card,element('div','course-kind',subject.name+' · '+section.title),
+      element('h3','',topic.title),element('p','',topic.hint),
+      button('Открыть тему →',()=>showTopic(topic.id),'library-go'));
+    grid.append(card);
+  }
+  main.append(grid);
+  main.append(append(element('div','section-actions'),
+    button('Все конспекты →',()=>navigate('notes'),'alt-button')));
 }
 
 function showSubjects() {
-  view = 'subjects'; updateNav(); main.replaceChildren();
-  main.append(titleArea('ТВОЙ УНИВЕРСИТЕТ', 'Мои предметы',
-    'В каталоге 11 дисциплин. Сейчас доступен вводный материал по ВНС и первый пилот гистологии тонкой кишки.'));
-  if (!subjectCatalog) {
-    main.append(element('p','note','Не удалось загрузить каталог предметов.'));return;
-  }
-  const modes = element('div','note-modes');
-  for (const mode of subjectCatalog.note_modes) {
-    const card = element('div','note-mode');
-    append(card,element('h3','',mode.title),element('p','',mode.description));
-    modes.append(card);
-  }
-  main.append(modes);
-  const heading = append(element('div','section-head'),
-    append(element('div'),element('h2','','Предметы семестра'),
-      element('p','section-subtitle','Выбирай готовую тему. Для остальных материалов пока указан статус подготовки.')));
-  main.append(heading);
-  const grid = element('div','catalog-grid');
-  for (const subject of subjectCatalog.subjects) {
-    const card = element('article','course-card');
-    const hist = subject.id === 'histology-cytology';
-    const normal = subject.id === 'normal-physiology';
-    const summary = hist ? 'Тонкая кишка · три формата учебного материала'
-      : normal ? 'ВНС · вводный конспект и 20 вопросов' : 'Материалы ещё не добавлены';
-    append(card,
-      element('div','course-kind',subject.group === 'medical' ? 'МЕДИЦИНА' : 'ОБЩЕУНИВЕРСИТЕТСКИЙ'),
-      element('h3','',subject.name),element('p','course-status',summary));
-    const state = element('div','course-notes-status');
-    if (hist) {
-      append(state,element('span','','Вводный, краткий и расширенный: авторские материалы с проверкой по открытым источникам'),
-        element('span','','Требуется сверка с кафедрой; гистопрепараты будут позже'));
-    } else if (normal) {
-      append(state,element('span','','ВНС: вводный материал'),
-        element('span','','Полноценные краткий и расширенный: ещё не готовы'));
-    } else {
-      append(state,element('span','','Вводный: планируется'),
-        element('span','','Краткий и расширенный: планируются'));
-    }
-    card.append(state);
-    if(hist||normal) {
-      const actions = element('div','course-actions');
-      if(hist) append(actions,button('Тонкая кишка →',() => navigate('intestine')));
-      if(normal) append(actions,button('Читать ВНС',() => navigate('lesson')),
-        button('20 вопросов',() => begin(questionBank.questions),'alt-button'));
-      card.append(actions);
-    }
+  view='subjects';updateNav();main.replaceChildren();
+  main.append(titleArea('УНИВЕРСИТЕТ','Мои предметы',
+    'Выбери предмет, затем его раздел и конкретную тему. Неактивные разделы остаются в планах.'));
+  const grid=element('div','library-grid');
+  for(const subject of subjectCatalog.subjects) {
+    const tree=learningLibrary?.subjects[subject.id];
+    const count=(tree?.sections||[]).reduce((sum,sec)=>sum+sec.topics.length,0);
+    const card=element('article','library-card');
+    append(card,element('div','course-kind',subject.group==='general'?'ОБЩЕУНИВЕРСИТЕТСКИЙ':'МЕДИЦИНА'),
+      element('h3','',subject.name),
+      element('p','',tree?tree.sections.length+' разделов в структуре':'Разделы ещё не сформированы'),
+      element('div','library-status',count?count+' тема(ы) с материалами':'Материалы готовятся'),
+      button('Открыть предмет →',()=>showSubject(subject.id),'library-go'));
     grid.append(card);
   }
   main.append(grid);
@@ -788,9 +920,10 @@ Promise.all([
   fetch('./data/lesson.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/atlas.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/subjects.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
-  fetch('./data/histology-small-intestine.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
+  fetch('./data/histology-small-intestine.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/library.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); })
 ])
-  .then(([data, lesson, atlas, subjects, intestine]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -803,7 +936,12 @@ Promise.all([
         !['intro','brief','deep'].every(key => intestine.variants.some(v => v.id === key && Array.isArray(v.sections)))) {
       throw new Error('Материал по тонкой кишке повреждён');
     }
-    questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine;
+    if (!library || library.version !== 1 || !library.subjects ||
+        !Array.isArray(library.subjects['histology-cytology']?.sections) ||
+        !Array.isArray(library.subjects['normal-physiology']?.sections)) {
+      throw Error('Структура библиотеки повреждена');
+    }
+    questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();
