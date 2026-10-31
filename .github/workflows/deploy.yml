@@ -49,7 +49,7 @@ jobs:
           python3 scripts/generate_icons.py
           mkdir -p _site/data _site/icons _site/illustrations
           cp index.html styles.css app.js sw.js manifest.webmanifest .nojekyll _site/
-          cp data/questions.json data/lesson.json _site/data/
+          cp data/questions.json data/lesson.json data/atlas.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/
       - name: Upload website artifact
