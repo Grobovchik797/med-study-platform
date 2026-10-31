@@ -37,7 +37,7 @@ let learningLibrary = null;
 let intestineData = null;
 let intestineQuizBank = null;
 let intestineSlides = null;
-let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null;
+let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -262,6 +262,7 @@ function showGIChapter(id) {
   view='gi-chapter';updateNav();main.replaceChildren();
   window.MedStudyGI.renderChapter(main,{
     chapter,mini:giInlineBank.chapterQuestions[id],workbook:giWorkbook.maps,
+    deepBlocks:giDeepBlocks[id],
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>showSmallIntestineSlides(giSlideIndex(slide)),
@@ -1079,14 +1080,16 @@ Promise.all([
   fetch('./data/gi-inline-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI mini '+r.status);return r.json();}),
   fetch('./data/gi-final-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI exam '+r.status);return r.json();}),
   fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();}),
-  fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();})
+  fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();}),
+  fetch('./data/gi-deep-a.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep A '+r.status);return r.json();}),
+  fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
     if (!subjects || !Array.isArray(subjects.subjects) || subjects.subjects.length !== 11 ||
-        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 3) {
+        !Array.isArray(subjects.note_modes) || subjects.note_modes.length !== 2) {
       throw new Error('Каталог предметов повреждён');
     }
     if (!intestine || !Array.isArray(intestine.variants) ||
@@ -1106,6 +1109,9 @@ Promise.all([
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
       giMethodQuestions?.groups?.reduce((sum,g)=>sum+g.questions.length,0)!==56)
       throw Error('Пищеварительная система: повреждены материалы');
+    giDeepBlocks=Object.assign(Object.create(null),giDeepA?.blocks,giDeepB?.blocks);
+    if(giCourse.chapters.some(ch=>giDeepBlocks[ch.id]?.length!==5))
+      throw Error('Не хватает подробных гистологических блоков');
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;
