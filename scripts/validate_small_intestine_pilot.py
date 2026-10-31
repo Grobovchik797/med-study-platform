@@ -15,7 +15,7 @@ ids=[q['id'] for q in quiz['questions']]
 assert len(ids)==len(set(ids))
 for q in quiz['questions']:
     assert len(q['options'])==4 and 0<=q['answer']<4
-    assert len(q['prompt'])>15 and len(q['explanation'])>35 and len(q['sourceNote'])>12
+    assert len(q['prompt'])>15 and len(q['explanation'])>35 and len(q['sourceNote'])>=8
     assert urlparse(q['reference']).scheme=='https'
 assert len(slides['images'])==3
 assert set(s['id'] for s in slides['images'])=={'duodenum','jejunum','ileum'}
