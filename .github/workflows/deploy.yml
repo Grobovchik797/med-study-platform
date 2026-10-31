@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p _site/data
           cp index.html styles.css app.js .nojekyll _site/
-          cp data/questions.json _site/data/
+          cp data/questions.json data/lesson.json _site/data/
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v4
         with:
