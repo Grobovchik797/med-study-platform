@@ -194,3 +194,26 @@ p { margin:0; }
   .mobile-compare-label {display:inline-block;font-size:11px;min-width:104px;font-weight:750;white-space:nowrap;}
 }
 @media(prefers-reduced-motion:reduce){.lesson-visual-open {scroll-behavior:auto;}}
+
+/* Med Study 0.5 — receptor atlas */
+.atlas-home-link { background:linear-gradient(125deg,#f0e8ff,#fff);border:1px solid #d9c5f7;border-radius:18px;padding:26px;margin:22px 0;box-shadow:var(--shadow); }
+.atlas-home-link h2 {font-size:clamp(20px,3vw,27px);margin:10px 0 8px;letter-spacing:-.5px;}
+.atlas-home-link p {color:#65718a;margin:0 0 17px;}
+.atlas-layout {display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:start;}
+.atlas-selector h2,.atlas-detail h2 {margin:0 0 8px;font-size:clamp(21px,3vw,27px);}
+.atlas-receptors {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0 22px;}
+.atlas-receptor {border-radius:14px;padding:15px 12px;border:2px solid transparent;font-size:23px;font-weight:850;transition:transform .12s ease,box-shadow .12s ease;}
+.atlas-receptor:hover {transform:translateY(-2px);}
+.atlas-receptor:focus-visible {outline-offset:3px;}
+.atlas-sym {background:#fff0e3;color:#964913;border-color:#f6d9bc;}
+.atlas-para {background:#e3f8f2;color:#047a6a;border-color:#bbebdd;}
+.atlas-receptor.active {box-shadow:0 0 0 3px rgba(120,64,222,.24);border-color:var(--purple);}
+.atlas-overview {display:block;width:100%;height:auto;border-radius:12px;background:#f8f9ff;}
+.atlas-detail {border-top:5px solid #e6a475;}
+.atlas-detail.detail-para {border-top-color:#51bea6;}
+.atlas-detail h2 {margin:8px 0 19px;}
+.atlas-detail-row {border-bottom:1px solid var(--line);padding:11px 0;}
+.atlas-detail-row strong {font-size:13px;color:#4a5269;}
+.atlas-detail-row p {font-size:14px;line-height:1.65;margin:6px 0 0;color:#626b7f;}
+@media(max-width:1000px){.atlas-layout{grid-template-columns:1fr;}}
+@media(max-width:570px){.atlas-receptor{font-size:21px;padding:13px 7px;}.atlas-selector,.atlas-detail{padding:17px;}.atlas-home-link{padding:20px;}}
