@@ -89,6 +89,7 @@ async function navigateDigestiveCourse(page) {
   assert.equal(await page.locator('.gi-mini-card').count(),3);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
   assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).includes('Верно'));
+  assert.equal(await page.locator('.gi-chapter-figure img').count(),1);
   await page.getByRole('button',{name:'Расширенный'}).tap();
   assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
   await page.getByRole('button',{name:'Все заполненные карты'}).tap();
