@@ -69,20 +69,7 @@ function button(label, handler, className = 'action-button') {
 }
 
 function updateNav() {
-  window.addEventListener('beforeinstallprompt', event => {
-  event.preventDefault();
-  installPrompt = event;
-});
-window.addEventListener('appinstalled', () => { installPrompt = null; });
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
-      .catch(() => { /* App remains usable online without offline support. */ });
-  });
-}
-
-for (const item of document.querySelectorAll('[data-nav]')) {
+  for (const item of document.querySelectorAll('[data-nav]')) {
     const selected = item.dataset.nav === view;
     item.classList.toggle('selected', selected);
     if (selected) item.setAttribute('aria-current', 'page');
@@ -187,6 +174,13 @@ function showLesson() {
   const intro = element('div','lesson-intro');
   append(intro, element('strong','', 'О чём этот модуль'), element('p','',lessonData.intro));
   main.append(intro);
+  if (lessonData.visualTip) {
+    const legend = element('div', 'visual-legend');
+    append(legend, element('span', 'legend-chip sympathy', '● Симпатический'),
+      element('span', 'legend-chip parasympathy', '● Парасимпатический'),
+      element('span', 'legend-note', 'Цвета различают отделы; эффекты определяются рецепторами.'));
+    main.append(legend);
+  }
   for (const sec of lessonData.sections) {
     const card = element('section','card lesson-section');
     append(card, element('h2','',sec.title), element('p','lesson-lead',sec.lead));
@@ -197,9 +191,56 @@ function showLesson() {
       facts.append(item);
     }
     card.append(facts);
+    if (sec.illustration && typeof sec.illustration.src === 'string' &&
+        /^\.\/illustrations\/[a-z-]+\.svg$/.test(sec.illustration.src)) {
+      const figure = element('figure', 'lesson-visual');
+      append(figure, element('h3', 'lesson-visual-title', sec.illustration.title));
+      const link = element('a', 'lesson-visual-open');
+      link.href = sec.illustration.src;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.title = 'Открыть схему в полном размере';
+      const img = element('img', 'lesson-visual-image');
+      img.src = sec.illustration.src;
+      img.alt = sec.illustration.alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      link.append(img);
+      figure.append(link);
+      const bottom = element('figcaption', 'lesson-visual-caption');
+      append(bottom, element('span', '', sec.illustration.caption));
+      const enlarge = element('a', 'enlarge-link', 'Увеличить ↗');
+      enlarge.href = sec.illustration.src; enlarge.target = '_blank'; enlarge.rel = 'noopener noreferrer';
+      bottom.append(enlarge); figure.append(bottom); card.append(figure);
+    }
     append(card, element('div','lesson-takeaway',sec.takeaway));
     main.append(card);
   }
+  const comparison = element('section', 'card lesson-section');
+  append(comparison, element('h2', '', 'Сравнительная таблица: 5 органов'),
+    element('p', 'lesson-lead', 'Симпатика и парасимпатика могут действовать противоположно, но правильнее запоминать их рецепторы.'));
+  const compareGrid = element('div', 'comparison-grid');
+  const entries = [
+    ['Зрачок', 'α1 · расширение (мидриаз)', 'M3 · сужение (миоз)'],
+    ['Сердце', 'β1 · учащение ЧСС', 'M2 · урежение ЧСС'],
+    ['Бронхи', 'β2 · расслабление', 'M3 · сокращение'],
+    ['ЖКТ', 'Часто ↓ моторика', 'Часто ↑ моторика'],
+    ['Мочевой пузырь', 'β3 · расслабление детрузора', 'M3 · сокращение детрузора']
+  ];
+  const colHead = element('div', 'compare-header');
+  append(colHead, element('strong', '', 'Орган'),
+    element('strong', 'sympathy-text', 'Симпатический'),
+    element('strong', 'parasympathy-text', 'Парасимпатический'));
+  compareGrid.append(colHead);
+  for (const [organ, sym, para] of entries) {
+    const row = element('div', 'compare-row');
+    append(row, element('strong', 'compare-organ', organ),
+      append(element('div', 'compare-effect sym-effect'), element('span', 'mobile-compare-label', 'Симпатика'), element('span', '', sym)),
+      append(element('div', 'compare-effect para-effect'), element('span', 'mobile-compare-label', 'Парасимпатика'), element('span', '', para)));
+    compareGrid.append(row);
+  }
+  comparison.append(compareGrid);
+  main.append(comparison);
   const plan = element('section','card lesson-section');
   append(plan,element('h2','',lessonData.plan.title));
   const list = element('ol','lesson-plan');
@@ -299,12 +340,21 @@ function showInstallGuide() {
   main.append(titleArea('НА ТВОЁМ ТЕЛЕФОНЕ', 'Установить Med Study',
     'Один адрес для всех обновлений. На поддерживаемых устройствах сайт можно добавить как приложение.'));
   const info = element('section', 'card lesson-section');
-  append(info, element('h2', '', 'Android — Chrome'),
-    element('p', 'intro', 'Открой меню браузера ⋮ и выбери «Установить приложение» или «Добавить на главный экран».'),
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const status = element('div', 'install-status');
+  append(status, element('strong', '', standalone ? '✓ Запущено как отдельное веб-приложение' : 'Открыто в браузере'),
+    element('p', '', standalone
+      ? 'Иконка Med Study работает в отдельном окне без стандартной адресной строки.'
+      : 'Обычное открытие ссылки не устанавливает приложение. Ниже — варианты для твоего устройства.'));
+  info.append(status);
+  append(info, element('h2', '', 'Android — Google Chrome'),
+    element('p', 'intro', 'Открой этот адрес в Google Chrome, а не во встроенном браузере Telegram или другой программы. Нажми ⋮ → «Установить приложение» или «Добавить на главный экран». На совместимых устройствах Chrome может установить WebAPK, а на других — только ярлык.'),
+    element('h2', '', 'Как понять, что это приложение, а не ярлык?'),
+    element('p', 'intro', 'Если при запуске с иконки нет адресной строки, а Med Study отображается отдельным окном в списке приложений — это установленное PWA. Если просто открывается вкладка браузера, перед тобой ярлык.'),
     element('h2', '', 'iPhone — Safari'),
-    element('p', 'intro', 'Открой «Поделиться» и нажми «На экран Домой» → «Добавить».'),
-    element('h2', '', 'Данные и обновления'),
-    element('p', 'intro', 'Прогресс хранится локально в браузере или установленном приложении. Между телефоном и компьютером он не синхронизируется. Обновления загружаются по той же ссылке, когда есть интернет.'));
+    element('p', 'intro', 'Открой сайт в Safari → «Поделиться» → «На экран Домой» → «Добавить». На совместимых версиях iOS установленное веб-приложение может открываться отдельно.'),
+    element('h2', '', 'Один адрес и обновления'),
+    element('p', 'intro', 'При новых версиях ссылка остаётся той же; открой приложение с интернетом и при необходимости перезапусти, чтобы получить изменения. Прогресс хранится локально, на другом телефоне он не появится.'));
   if (installPrompt) info.append(button('Установить на устройство', async () => {
     if (!installPrompt) return;
     const currentPrompt = installPrompt;
@@ -483,6 +533,20 @@ function showLoadError(error) {
 
 for (const item of document.querySelectorAll('[data-nav]')) {
   item.addEventListener('click', () => navigate(item.dataset.nav));
+}
+
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  installPrompt = event;
+  if (view === 'install' && questionBank) showInstallGuide();
+});
+window.addEventListener('appinstalled', () => {
+  installPrompt = null;
+  if (view === 'install' && questionBank) showInstallGuide();
+});
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
+    .catch(() => { /* The website remains available online. */ });
 }
 
 Promise.all([
