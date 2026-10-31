@@ -73,6 +73,21 @@ function renderChapter(host,{chapter,mini,workbook,departmentQuestions=[],onBack
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
     b.setAttribute('aria-pressed',String(current===key));depths.append(b);
   }host.append(depths);
+  const imageByChapter={
+    tongue:'gi-tongue.svg',taste:'gi-tongue.svg',
+    stomach:'gi-stomach.svg','gastric-glands':'gi-stomach.svg',
+    liver:'gi-liver.svg',pancreas:'gi-pancreas.svg'
+  };
+  const schematic=imageByChapter[chapter.id];
+  if(schematic){
+    const figure=el('figure','gi-chapter-figure');
+    const picture=el('img');
+    picture.src='./illustrations/'+schematic;
+    picture.alt='Авторская учебная схема: '+chapter.title;
+    picture.loading='lazy';
+    figure.append(picture,el('figcaption','','Авторская учебная схема, не реальная микрофотография.'));
+    host.append(figure);
+  }
   const content=el('article','card gi-content');
   append(content,el('h2','','Учебный конспект'),
     paragraph(chapter.intro));
