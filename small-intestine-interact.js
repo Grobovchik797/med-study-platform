@@ -103,8 +103,12 @@ function renderSlides(host,data,exit,initialIndex=0){
   slidesSelect.addEventListener('change',()=>{slideIndex=Number(slidesSelect.value);show();});
   const study=btn('Изучение',()=>{mode='study';show();},'si-button'+(mode==='study'?' current':' secondary'));
   const check=btn('Самопроверка',()=>{mode='test';show();},'si-button'+(mode==='test'?' current':' secondary'));
-  selectors.append(slidesSelect,study,check);root.append(selectors);
-  root.append(e('p','si-instruction',mode==='study'?'Подсказки включены. Все номера обозначают области, подтверждённые по конкретному снимку.':'Сначала определи отдел кишки; затем подпиши отмеченные области. Названия скрыты.'));
+  const find=btn('Найди структуру',()=>{mode='find';show();},'si-button'+(mode==='find'?' current':' secondary'));
+  selectors.append(slidesSelect,study,check,find);root.append(selectors);
+  root.append(e('p','si-instruction',
+    mode==='study'?'Подсказки включены. Номера показывают только достаточно крупные области.' :
+    mode==='test'?'Определи отдел кишки и подпиши отмеченные области. Названия скрыты.' :
+    'Найди отмеченную область на изображении без маркеров. Только проверенные крупные структуры; точные клеточные координаты не заявлены.'));
   if(mode==='study')root.append(e('h2','',slide.title));
   const frame=e('div','si-microscope');frame.style.aspectRatio=slide.aspect;
   const surface=e('div','si-surface');
@@ -128,6 +132,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   photo.src=slide.src;
   surface.append(photo);
   for(const ann of slide.annotations){
+    if(mode==='find')continue;
     const mark=e('span','si-pin',String(ann.n));mark.style.left=ann.x+'%';mark.style.top=ann.y+'%';
     mark.title=mode==='study'?ann.label:'Структура '+ann.n;mark.setAttribute('aria-label',mark.title);surface.append(mark);
   }
@@ -145,6 +150,36 @@ function renderSlides(host,data,exit,initialIndex=0){
   frame.addEventListener('pointerup',done);frame.addEventListener('pointercancel',done);
   frame.addEventListener('wheel',event=>{event.preventDefault();zoom=Math.max(1,Math.min(4,zoom+(event.deltaY<0?.25:-.25)));transform();},{passive:false});
   frame.insertBefore(surface,loading);root.append(frame);
+  if(mode==='find'){
+    frame.classList.add('si-find-mode');
+    if(!slide.annotations.length){
+      root.append(e('p','si-find-hint','Для данного снимка координаты структур не подтверждены. Режим «Найди структуру» пока доступен только на двух других препаратах.'));
+    }else{
+      let current=0,success=0;
+      const prompt=e('div','si-find-hint','Найди: '+slide.annotations[0].label);
+      const feedback=e('div','si-find-feedback','Коснись нужной области на снимке; допускается приблизительное попадание в большую структуру.');
+      root.append(prompt,feedback);
+      let startPoint=null;
+      surface.addEventListener('pointerdown',ev=>{startPoint={x:ev.clientX,y:ev.clientY};});
+      surface.addEventListener('click',ev=>{
+        if(current>=slide.annotations.length)return;
+        if(startPoint&&Math.hypot(ev.clientX-startPoint.x,ev.clientY-startPoint.y)>12)return;
+        const box=surface.getBoundingClientRect();
+        if(box.width===0||box.height===0)return;
+        const x=100*(ev.clientX-box.left)/box.width;
+        const y=100*(ev.clientY-box.top)/box.height;
+        const target=slide.annotations[current];
+        const near=Math.abs(x-target.x)<=11&&Math.abs(y-target.y)<=11;
+        if(near)success++;
+        feedback.textContent=near?'Верно! Найдена область: '+target.label:
+          'Не совсем. Ориентир: '+target.note;
+        current++;
+        prompt.textContent=current<slide.annotations.length?
+          'Найди: '+slide.annotations[current].label:
+          'Готово: '+success+' из '+slide.annotations.length+'. Области приблизительные, а не контуры отдельных клеток.';
+      });
+    }
+  }
   const controls=e('div','si-choice-row');
   controls.append(btn('＋ Увеличить',()=>{zoom=Math.min(4,zoom+.5);transform();},'si-button secondary'),
      btn('－ Уменьшить',()=>{zoom=Math.max(1,zoom-.5);transform();},'si-button secondary'),
@@ -156,7 +191,7 @@ function renderSlides(host,data,exit,initialIndex=0){
       const legend=e('ol','si-legend');
       slide.annotations.forEach(ann=>{const li=e('li','',ann.label+' — '+ann.note);li.value=ann.n;legend.append(li);});root.append(legend);
     }else root.append(e('p','si-instruction','Пока нет подписей отдельных структур, достоверно привязанных к данному кадру. Не будем придумывать их координаты.'));
-  }else{
+  }else if(mode==='test'){
     const form=e('div','si-test-form');
     const label=e('label','si-field','Какой это отдел тонкой кишки?');
     const identity=e('select','si-select');identity.append(e('option','','Выбери ответ'));
