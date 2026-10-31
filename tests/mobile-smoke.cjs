@@ -93,7 +93,7 @@ async function navigateDigestiveCourse(page) {
   assert.ok((await page.locator('.gi-content').textContent()).includes('Клеточный, функциональный'));
   await page.getByRole('button',{name:'Все заполненные карты'}).tap();
   await waitHeading(page,'Заполненные ориентировочные карты');
-  assert.equal(await page.locator('.gi-method-card').count(),7);
+  assert.equal(await page.locator('.gi-method-card').count(),11); // 7 filled maps + 4 departmental question lists
   await page.locator('.gi-method-card summary').first().tap();
   assert.equal(await page.locator('.gi-table').count(),7);
   await page.getByRole('button',{name:'← К пищеварительной системе'}).first().tap();
