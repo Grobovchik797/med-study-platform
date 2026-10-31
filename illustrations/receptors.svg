@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="580" viewBox="0 0 1120 580" role="img" aria-labelledby="title desc">
+<title id="title">Карта рецепторов ВНС: α1, β1, β2, β3, M2 и M3</title>
+<desc id="desc">Шесть карточек с рецепторами, медиаторами и основным эффектом на сосуды, сердце, бронхи, детрузор, сердце и сфинктер зрачка.</desc>
+<rect width="1120" height="580" rx="28" fill="#f8f9ff"/>
+<g font-family="Arial, sans-serif">
+<text x="47" y="58" font-size="31" font-weight="700" fill="#26324b">Рецептор определяет ответ органа</text>
+<text x="48" y="89" font-size="18" fill="#63718a">Симпатика: норадреналин → α / β (обычно) · Парасимпатика: ацетилхолин → M</text>
+<g>
+<rect x="46" y="120" width="326" height="190" rx="21" fill="#fff4ec" stroke="#f0b583" stroke-width="2"/>
+<circle cx="101" cy="170" r="32" fill="#f9c697"/><text x="101" y="181" font-size="29" font-weight="700" fill="#9d4f10" text-anchor="middle">α1</text>
+<text x="150" y="163" font-size="21" font-weight="700" fill="#9d4f10">Сосуды</text><text x="150" y="189" font-size="17" fill="#ac6940">Сужение артериол</text>
+<text x="72" y="241" font-size="18" fill="#79411a">Сокращение гладких мышц</text>
+<text x="72" y="271" font-size="16" fill="#a36e4a">+ расширение зрачка</text>
+</g>
+<g>
+<rect x="397" y="120" width="326" height="190" rx="21" fill="#fff4ec" stroke="#f0b583" stroke-width="2"/>
+<circle cx="451" cy="170" r="32" fill="#f9c697"/><text x="451" y="181" font-size="29" font-weight="700" fill="#9d4f10" text-anchor="middle">β1</text>
+<text x="500" y="163" font-size="21" font-weight="700" fill="#9d4f10">Сердце</text><text x="500" y="189" font-size="17" fill="#ac6940">ЧСС ↑</text>
+<text x="420" y="241" font-size="18" fill="#79411a">Сила сокращений ↑</text>
+<text x="420" y="271" font-size="16" fill="#a36e4a">Положительный хронотропный эффект</text>
+</g>
+<g>
+<rect x="748" y="120" width="326" height="190" rx="21" fill="#fff4ec" stroke="#f0b583" stroke-width="2"/>
+<circle cx="803" cy="170" r="32" fill="#f9c697"/><text x="803" y="181" font-size="29" font-weight="700" fill="#9d4f10" text-anchor="middle">β2</text>
+<text x="853" y="163" font-size="21" font-weight="700" fill="#9d4f10">Бронхи</text><text x="853" y="189" font-size="17" fill="#ac6940">Расширение</text>
+<text x="775" y="241" font-size="18" fill="#79411a">Расслабление мышц</text>
+<text x="775" y="271" font-size="16" fill="#a36e4a">Просвет бронхов ↑</text>
+</g>
+<g>
+<rect x="46" y="332" width="326" height="189" rx="21" fill="#fff4ec" stroke="#f0b583" stroke-width="2"/>
+<circle cx="101" cy="381" r="32" fill="#f9c697"/><text x="101" y="392" font-size="29" font-weight="700" fill="#9d4f10" text-anchor="middle">β3</text>
+<text x="150" y="375" font-size="21" font-weight="700" fill="#9d4f10">Детрузор</text><text x="150" y="399" font-size="17" fill="#ac6940">Расслабление</text>
+<text x="72" y="454" font-size="18" fill="#79411a">Фаза накопления мочи</text>
+<text x="72" y="484" font-size="16" fill="#a36e4a">Симпатическое влияние</text>
+</g>
+<g>
+<rect x="397" y="332" width="326" height="189" rx="21" fill="#effbf9" stroke="#89d9cb" stroke-width="2"/>
+<circle cx="451" cy="381" r="32" fill="#a1e5d8"/><text x="451" y="392" font-size="29" font-weight="700" fill="#087164" text-anchor="middle">M2</text>
+<text x="500" y="375" font-size="21" font-weight="700" fill="#087164">Сердце</text><text x="500" y="399" font-size="17" fill="#308b7e">ЧСС ↓</text>
+<text x="425" y="454" font-size="18" fill="#12685e">Замедление ритма</text>
+<text x="425" y="484" font-size="16" fill="#3b887c">Парасимпатическое влияние</text>
+</g>
+<g>
+<rect x="748" y="332" width="326" height="189" rx="21" fill="#effbf9" stroke="#89d9cb" stroke-width="2"/>
+<circle cx="803" cy="381" r="32" fill="#a1e5d8"/><text x="803" y="392" font-size="29" font-weight="700" fill="#087164" text-anchor="middle">M3</text>
+<text x="853" y="375" font-size="21" font-weight="700" fill="#087164">Гладкие мышцы</text><text x="853" y="399" font-size="17" fill="#308b7e">Сокращение</text>
+<text x="776" y="454" font-size="18" fill="#12685e">Миоз, детрузор</text>
+<text x="776" y="484" font-size="16" fill="#3b887c">Также холинергическая бронхоконстрикция</text>
+</g>
+<text x="559" y="556" text-anchor="middle" font-size="17" fill="#62718b">Схема показывает типичные эффекты; конкретная реакция зависит от ткани и контекста.</text>
+</g></svg>

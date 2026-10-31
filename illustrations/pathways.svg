@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="550" viewBox="0 0 1120 550" role="img" aria-labelledby="title desc">
+<title id="title">Двухнейронный эфферентный путь симпатического и парасимпатического отделов</title>
+<desc id="desc">Слева короткое преганглионарное симпатическое волокно и длинное постганглионарное; справа длинное преганглионарное парасимпатическое и короткое постганглионарное. В обоих ганглиях медиатор ацетилхолин действует на Nn рецепторы.</desc>
+<rect width="1120" height="550" rx="28" fill="#f8f9ff"/>
+<g font-family="Arial, sans-serif">
+<text x="52" y="54" font-size="31" font-weight="700" fill="#26324b">Два нейрона в эфферентной цепи ВНС</text>
+<text x="52" y="87" font-size="18" fill="#64748b">ЦНС → преганглионарное волокно → ганглий → постганглионарное волокно → орган</text>
+<rect x="40" y="118" width="510" height="354" rx="23" fill="#fff8f0" stroke="#f2bd85" stroke-width="2"/>
+<rect x="570" y="118" width="510" height="354" rx="23" fill="#effbf9" stroke="#89d9cb" stroke-width="2"/>
+<text x="70" y="159" font-size="26" font-weight="700" fill="#a54b13">СИМПАТИЧЕСКИЙ</text><text x="70" y="184" font-size="17" fill="#9a6035">T1–L2 · ганглий чаще ближе к ЦНС</text>
+<text x="602" y="159" font-size="26" font-weight="700" fill="#047568">ПАРАСИМПАТИЧЕСКИЙ</text><text x="602" y="184" font-size="17" fill="#377e74">Ствол мозга, S2–S4 · ганглий у органа</text>
+<rect x="73" y="248" width="89" height="87" rx="13" fill="#fbdbb9" stroke="#df9a52"/>
+<text x="117" y="281" text-anchor="middle" font-size="17" font-weight="700" fill="#80410d">ЦНС</text><text x="117" y="303" text-anchor="middle" font-size="15" fill="#80410d">T1–L2</text>
+<path d="M162 289 H224" fill="none" stroke="#b75c1b" stroke-width="8" stroke-linecap="round"/>
+<path d="M224 289 H273" fill="none" stroke="#c37531" stroke-width="3" stroke-dasharray="4 7"/>
+<circle cx="288" cy="289" r="30" fill="#ffdaa4" stroke="#bc6b1d" stroke-width="3"/>
+<circle cx="288" cy="289" r="10" fill="#b75c1b"/>
+<path d="M318 289 H468" stroke="#a84e1a" stroke-width="8" stroke-linecap="round"/>
+<rect x="468" y="250" width="58" height="79" rx="12" fill="#e7c1a0" stroke="#b36d3b"/>
+<text x="496" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#7d3e1b">ОРГАН</text>
+<text x="190" y="230" font-size="16" fill="#915118">короткое</text><text x="368" y="230" font-size="16" fill="#915118">длинное</text>
+<text x="288" y="345" font-size="17" text-anchor="middle" font-weight="700" fill="#93460b">ганглий</text>
+<text x="288" y="372" font-size="17" text-anchor="middle" fill="#93460b">ACh → Nn</text>
+<text x="399" y="351" font-size="16" fill="#93460b" text-anchor="middle">обычно NE</text><text x="399" y="371" font-size="15" fill="#93460b" text-anchor="middle">→ α / β</text>
+<rect x="598" y="248" width="88" height="87" rx="13" fill="#b7eae3" stroke="#43ad9b"/>
+<text x="642" y="280" text-anchor="middle" font-size="17" font-weight="700" fill="#05695e">ЦНС</text><text x="642" y="303" text-anchor="middle" font-size="13" fill="#05695e">III,VII,IX,X</text>
+<path d="M686 289 H891" stroke="#159887" stroke-width="8" stroke-linecap="round"/>
+<circle cx="907" cy="289" r="30" fill="#b9ecdd" stroke="#038c80" stroke-width="3"/>
+<circle cx="907" cy="289" r="10" fill="#038c80"/>
+<path d="M937 289 H988" stroke="#038c80" stroke-width="8" stroke-linecap="round"/>
+<rect x="988" y="250" width="64" height="79" rx="12" fill="#97ddd3" stroke="#2a9e90"/>
+<text x="1020" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#0d625a">ОРГАН</text>
+<text x="778" y="230" font-size="16" fill="#086d62">длинное</text><text x="956" y="230" font-size="16" fill="#086d62">короткое</text>
+<text x="905" y="345" font-size="17" text-anchor="middle" font-weight="700" fill="#087267">ганглий</text>
+<text x="907" y="372" font-size="17" text-anchor="middle" fill="#087267">ACh → Nn</text>
+<text x="1006" y="351" font-size="16" fill="#0a786b" text-anchor="middle">ACh</text><text x="1006" y="371" font-size="15" fill="#0a786b" text-anchor="middle">→ M</text>
+<rect x="40" y="488" width="1040" height="43" rx="11" fill="#eeedff"/>
+<text x="560" y="516" font-size="17" fill="#4c3c98" text-anchor="middle">Исключение: мозговое вещество надпочечников получает сигнал прямо от преганглионарных симпатических волокон.</text>
+</g></svg>
