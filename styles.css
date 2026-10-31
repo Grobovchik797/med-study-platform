@@ -152,3 +152,45 @@ p { margin:0; }
   .topic-stat-line {align-items:flex-start;flex-direction:column;gap:4px;}
   .flashcard {padding:25px 16px;min-height:240px;}
 }
+
+/* Med Study 0.4 — visual study guide. Original SVG illustrations */
+.visual-legend {display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:18px 0 23px;}
+.legend-chip {font-size:12px;font-weight:800;white-space:nowrap;border-radius:99px;padding:8px 13px;}
+.legend-chip.sympathy {background:#ffebd9;color:#a34e15;}
+.legend-chip.parasympathy {background:#d8f6ed;color:#087566;}
+.legend-note {font-size:12px;color:var(--muted);}
+.lesson-section:nth-of-type(even) .lesson-fact {background:#f6f9ff;border-color:#e5ebfa;}
+.lesson-fact {border-left:3px solid #9371e5;}
+.lesson-fact:nth-child(even) {border-left-color:#24a39a;}
+.lesson-fact h3 {font-weight:800;}
+.lesson-visual {margin:25px 0 2px;background:#f8f9ff;border:1px solid #e2e6f0;border-radius:17px;overflow:hidden;}
+.lesson-visual-title {font-size:17px;margin:0;padding:17px 19px 0;color:#33405c;}
+.lesson-visual-open {display:block;overflow-x:auto;overflow-y:hidden;max-width:100%;background:#f8f9ff;overscroll-behavior-x:contain;}
+.lesson-visual-open:focus-visible {outline-offset:-4px;}
+.lesson-visual-image {display:block;width:100%;height:auto;min-width:650px;}
+.lesson-visual-caption {display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 18px 16px;color:#667087;font-size:12px;line-height:1.55;background:#fff;}
+.enlarge-link {flex:none;font-weight:800;color:var(--purple-dark);text-decoration:underline;text-underline-offset:3px;}
+.comparison-grid {border:1px solid #e3e8ef;border-radius:13px;overflow:hidden;}
+.compare-header,.compare-row {display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,1.6fr) minmax(0,1.6fr);align-items:stretch;}
+.compare-header {background:#f2f3fa;font-size:12px;text-align:left;}
+.compare-header > *,.compare-row > * {padding:13px 15px;}
+.compare-row {font-size:13px;color:#435067;background:#fff;border-top:1px solid #e8eaf1;}
+.compare-row:nth-child(odd) {background:#fbfcff;}
+.compare-row > :first-child {display:flex;align-items:center;color:#2f3d55;}
+.sympathy-text,.sym-effect {color:#9f541d;}
+.parasympathy-text,.para-effect {color:#087d70;}
+.sym-effect {background:#fff8f1;}
+.para-effect {background:#f2fffa;}
+.mobile-compare-label {display:none;}
+@media(max-width:720px){
+  .lesson-visual-image {width:750px;min-width:750px;}
+  .lesson-visual-title {font-size:15px;}
+  .lesson-visual-caption {align-items:flex-start;flex-direction:column;gap:7px;}
+  .compare-header {display:none;}
+  .compare-row {grid-template-columns:1fr;border-top:1px solid #e5e8ef;}
+  .compare-row > * {padding:9px 14px;}
+  .compare-organ {font-size:15px;background:#f0effb;padding-top:11px;padding-bottom:11px;}
+  .compare-effect {display:flex;align-items:flex-start;gap:10px;justify-content:space-between;}
+  .mobile-compare-label {display:inline-block;font-size:11px;min-width:104px;font-weight:750;white-space:nowrap;}
+}
+@media(prefers-reduced-motion:reduce){.lesson-visual-open {scroll-behavior:auto;}}
