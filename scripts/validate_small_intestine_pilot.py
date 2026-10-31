@@ -20,8 +20,10 @@ for q in quiz['questions']:
 assert len(slides['images'])==3
 assert set(s['id'] for s in slides['images'])=={'duodenum','jejunum','ileum'}
 for s in slides['images']:
-    for k in ('src','source','licenseUrl'):
+    assert s['src'] == 'media/histology/'+s['id']+'.webp'
+    for k in ('originalSrc','originalSourceUrl','source','licenseUrl'):
         assert urlparse(s[k]).scheme=='https'
+    assert s['isResizedCopy'] is True
     assert s['credit'] and s['license']=='CC BY-SA 4.0'
     assert s['answer']==s['id']
     assert float(s['aspect'])>0.5
