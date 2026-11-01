@@ -171,6 +171,7 @@ function renderSlides(host,data,exit,initialIndex=0){
       }
     }else{
       let current=0,success=0;
+      const canGrade=slide.annotations.every(ann=>ann.autoGrade!==false);
       const prompt=e('div','si-find-hint','Найди: '+slide.annotations[0].label);
       const feedback=e('div','si-find-feedback','Коснись нужной области на снимке; допускается приблизительное попадание в большую структуру.');
       root.append(prompt,feedback);
@@ -193,18 +194,18 @@ function renderSlides(host,data,exit,initialIndex=0){
         if(x<0||x>100||y<0||y>100)return;
         const target=slide.annotations[current];
         const near=Math.abs(x-target.x)<=11&&Math.abs(y-target.y)<=11;
-        if(near)success++;
+        if(canGrade&&near)success++;
         const mark=e('span','si-pin si-pin-revealed',String(target.n));
         mark.style.left=target.x+'%';mark.style.top=target.y+'%';
         mark.title=target.label;mark.setAttribute('aria-label','Открытый ориентир: '+target.label);
         surface.append(mark);
-        feedback.textContent=(near?'Верно! ':'Не совсем. ')+
-          'Правильная область №'+target.n+': '+target.label+'. '+target.note;
+        feedback.textContent=(canGrade?(near?'Верно! ':'Не совсем. '):'Учебная метка без автоматических баллов. ')+
+          'Ориентир, область №'+target.n+': '+target.label+'. '+target.note;
         current++;
         prompt.textContent=current<slide.annotations.length?
           'Найди: '+slide.annotations[current].label:
-          'Готово: '+success+' из '+slide.annotations.length+
-          '. Метки показывают приблизительные области, а не границы отдельных клеток.';
+          (canGrade?'Готово: '+success+' из '+slide.annotations.length+'.':'Все ориентиры разобраны без автоматической оценки.')+
+          ' Метки показывают приблизительные области, а не границы отдельных клеток.';
       });
     }
   }
