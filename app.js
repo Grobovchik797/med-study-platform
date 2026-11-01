@@ -403,7 +403,7 @@ function showTopic(topicId) {
   box.append(cards);
   main.append(box);
   if(topic.route==='lesson'&&window.MedStudySI?.renderFocus){
-    const timer=element('div','gi-topic-focus');window.MedStudySI.renderFocus(timer,{topicTitle:topic.title});
+    const timer=element('div','gi-topic-focus');window.MedStudySI.renderFocus(timer,{topicTitle:topic.title,topicKey:topic.id});
     main.append(timer);
   }
   window.scrollTo(0,0);
