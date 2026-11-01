@@ -20,22 +20,32 @@ function paragraph(text,cls='gi-paragraph') {
 }
 function sectionTitle(text){return el('h2','gi-subheading',text);}
 function workbookTable(item) {
- const wrap=el('div','gi-table-scroll'),table=el('table','gi-table');
- const head=el('thead'),tr=el('tr');
- for(const name of item.columns)tr.append(el('th','',name));
- head.append(tr);table.append(head);
+ const wrap=el('div','gi-table-scroll');
+ wrap.setAttribute('role','region');
+ wrap.setAttribute('tabindex','0');
+ wrap.setAttribute('aria-label','Таблица из кафедральной методички: '+item.title);
+ const table=el('table','gi-table gi-original-table');
  const body=el('tbody');
- for(const values of item.rows){
-  const row=el('tr');
-  for(const value of values)row.append(el('td','',value));
-  body.append(row);
+ for(const cells of item.rows) {
+  const tr=el('tr');
+  for(const cell of cells) {
+   const header=cell.kind!=='answer';
+   const node=el(header?'th':'td',cell.kind==='title'?'gi-map-title-cell':'',cell.text);
+   if(cell.colspan>1)node.colSpan=cell.colspan;
+   if(cell.rowspan>1)node.rowSpan=cell.rowspan;
+   if(header)node.setAttribute('scope','col');
+   tr.append(node);
+  }
+  body.append(tr);
  }
- table.append(body);wrap.append(table);return wrap;
+ table.append(body);wrap.append(table);
+ return wrap;
 }
 function addMap(host,map) {
  const details=el('details','gi-method-card');
  const summary=el('summary','',map.title+' · '+map.page);
- details.append(summary,paragraph('Ориентировочная карта из методички: форма сохранена по смыслу; заполнение — новая учебная редакция.'),
+ details.append(summary,
+  paragraph('Структура и формулировки граф соответствуют кафедральному оригиналу. Заполнения — учебные ответы, не официальный ключ кафедры.'),
   workbookTable(map));
  host.append(details);
 }
@@ -156,7 +166,7 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
   if(relevant.length){
     const maps=el('section','gi-map-section');
     append(maps,sectionTitle('Ориентировочные карты к этой теме'),
-      paragraph('Задания из методички доступны в заполненном виде; материалы не заменяют проверку преподавателем.'));
+      paragraph('Карты по оригинальным таблицам кафедральной методички: сохранены строки, графы и объединения ячеек. Заполнения учебные и требуют сверки с преподавателем.'));
     for(const map of relevant)addMap(maps,map);
     host.append(maps);
   }
@@ -171,7 +181,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  host.replaceChildren();append(host,button('← К пищеварительной системе',onBack,'gi-back'),
    el('div','kicker','ПРАКТИЧЕСКАЯ ПОДГОТОВКА'),
    el('h1','','Заполненные ориентировочные карты'),
-   paragraph('Схемы учебных таблиц из методических разработок АГМА 1999 г. Заполнения подготовлены самостоятельно; это не оригинальный официальный ключ кафедры.','gi-lead'));
+   paragraph('8 кафедральных ориентировочных карт по оригинальным страницам АГМА, 1999 г. Заголовки, строки, столбцы и объединения ячеек воспроизведены по методичке; ответы учебные, не официальный ключ. Широкие таблицы на телефоне прокручиваются по горизонтали.','gi-lead'));
  for(const map of maps)addMap(host,map);
  const source=el('section','gi-map-section');
  append(source,sectionTitle('56 контрольных вопросов методички'),paragraph('Сверено по четырём кафедральным темам. Нажимай «Открыть конспект», чтобы перейти к связанному разделу.'));

@@ -47,14 +47,35 @@ for q in exam['questions']:
 method=load('gi-department-questions.json')
 assert len(method['groups'])==4 and sum(len(x['questions']) for x in method['groups'])==56
 assert all(q['chapter'] in ids for g in method['groups'] for q in g['questions'])
-assert len(maps['maps'])==7
+assert maps['version']==2 and len(maps['maps'])==8
+assert set(m['id'] for m in maps['maps'])=={'wall','tongue','tonsils','salivary','tooth','gastric','villi','liver'}
+expected_widths={'wall':5,'tongue':4,'tonsils':2,'salivary':6,'tooth':4,'gastric':4,'villi':4,'liver':6}
+expected_pages={'wall':[98],'tongue':[99],'tonsils':[99],'salivary':[102],'tooth':[102],'gastric':[106,107],'villi':[107],'liver':[110]}
 for m in maps['maps']:
- assert m['chapters'] and set(m['chapters']).issubset(ids)
- assert len(m['columns'])>=3 and len(m['rows'])>=2
- assert all(len(row)==len(m['columns']) for row in m['rows'])
+ assert m['chapters'] and set(m['chapters']).issubset(ids),m['id']
+ assert m['width']==expected_widths[m['id']] and m['pdfPages']==expected_pages[m['id']],m['id']
+ assert len(m['rows'])>=3 and len(m['title'])>6,m['id']
+ pending=[0]*m['width']
+ for row in m['rows']:
+  # Existing rowspans occupy their columns in the present row.
+  used=[span>0 for span in pending]
+  pending=[max(0,span-1) for span in pending]
+  for cell in row:
+   assert isinstance(cell['text'],str) and isinstance(cell['kind'],str),m['id']
+   assert cell['kind'] in {'title','header','rowheader','answer','number'},m['id']
+   cols=cell.get('colspan',1);rows=cell.get('rowspan',1)
+   assert 1<=cols<=m['width'] and 1<=rows<=4,m['id']
+   try: at=used.index(False)
+   except ValueError: raise AssertionError(('No space for cell',m['id']))
+   assert at+cols<=m['width'] and not any(used[at:at+cols]),m['id']
+   for j in range(at,at+cols):
+    used[j]=True
+    if rows>1: pending[j]=rows-1
+  assert all(used),('Unfilled table columns',m['id'],used)
+ assert not any(pending),('Unclosed row span',m['id'])
 topics=next(s for s in library['subjects']['histology-cytology']['sections'] if s['id']=='digestive')['topics']
 assert len(topics)==20
 assert set('gi-'+i for i in ids).issubset(set(x['id'] for x in topics))
 assert 'histology-small-intestine' in {x['id'] for x in topics}
 assert {'gi-workbook','gi-final-exam'}.issubset({x['id'] for x in topics})
-print('PASS: 17 mapped GI chapters, 51 distinct inline MCQs, 24 independent exam items, 7 complete methodology maps and 20 catalog entries')
+print('PASS: 17 mapped GI chapters, 51 distinct inline MCQs, 24 independent exam items, 8 original-structure methodology maps and 20 catalog entries')

@@ -518,3 +518,19 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .gi-checkpoint .gi-mini-answers{margin-top:10px;}
 .gi-brief-block{padding:12px 0;border-bottom:1px solid #ede8f4;}
 .gi-brief-block h3{color:#60418b;font-size:15px;margin:0 0 7px;}
+
+
+/* Original departmental card structure (1999): merged cells are preserved. */
+.gi-original-table{border-collapse:collapse;width:max-content;min-width:100%;table-layout:auto;}
+.gi-original-table th,.gi-original-table td{
+  min-width:135px;max-width:380px;padding:10px 12px;vertical-align:top;
+  white-space:pre-line;overflow-wrap:break-word;line-height:1.55;
+  border:1px solid #8c80a1;
+}
+.gi-original-table th{background:#f1eafb;font-weight:750;}
+.gi-original-table .gi-map-title-cell{text-align:center;background:#e9dffa;font-weight:850;}
+.gi-table-scroll{scrollbar-width:thin;overscroll-behavior-x:contain;}
+.gi-table-scroll:focus-visible{outline:3px solid #7b2ce6;outline-offset:2px;}
+@media(max-width:650px){
+  .gi-original-table th,.gi-original-table td{min-width:115px;max-width:260px;padding:9px;}
+}

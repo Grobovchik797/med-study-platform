@@ -1170,7 +1170,7 @@ Promise.all([
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
         !slides || slides.images?.length !== 3 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
-    if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.maps?.length!==7 ||
+    if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
       giMethodQuestions?.groups?.reduce((sum,g)=>sum+g.questions.length,0)!==56)
       throw Error('Пищеварительная система: повреждены материалы');
