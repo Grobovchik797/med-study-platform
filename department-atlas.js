@@ -34,12 +34,15 @@ function db(){
 async function getAll(){
  try{
   const database=await db();
-  return await new Promise((resolve,reject)=>{
+  const persisted=await new Promise((resolve,reject)=>{
    const tx=database.transaction(STORE,'readonly');
    const q=tx.objectStore(STORE).getAll();
    q.onsuccess=()=>resolve(q.result||[]);
    q.onerror=()=>reject(q.error);
   });
+  const combined=new Map(persisted.map(x=>[x.name,x.blob]));
+  for(const [name,blob] of session)combined.set(name,blob);
+  return [...combined].map(([name,blob])=>({name,blob}));
  }catch{return [...session].map(([name,blob])=>({name,blob}));}
 }
 async function put(name,blob){
