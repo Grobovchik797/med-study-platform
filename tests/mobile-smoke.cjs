@@ -312,10 +312,15 @@ async function main() {
     await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
     await waitHeading(desktop,'Изучение и самопроверка');
     assert.equal(await desktop.locator('.si-select option').count(),19);
+    await desktop.locator('.si-select').first().selectOption('10');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Gastro-esophageal junction should have 3 spatial markers on photo');
+    await desktop.locator('.si-select').first().selectOption('9');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Developing tooth enamel-organ should have 3 spatial markers');
     await desktop.locator('.si-select').first().selectOption('18');
     assert.equal(await desktop.locator('.si-microscope img').count(),1);
     assert.ok(await desktop.getByRole('heading',{name:'РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ'}).isVisible());
     assert.equal(await desktop.locator('.si-legend li').count(),3,'Expected three numbered visible learning cues');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Developing enamel and dentin need 3 real image labels');
     await desktop.getByRole('button',{name:'Найди структуру'}).click();
     assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
     assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
