@@ -33,7 +33,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         raise SystemExit("Missing Commons provenance for "+slide["id"])
     err=None
     for url in sources:
-        for retry in range(2):
+        for retry in range(3):
             try:
                 req=urllib.request.Request(url, headers={
                     "User-Agent":"MedStudyEducation/1.4 (GitHub grobovchik797/med-study-platform; noncommercial attribution)",
@@ -56,11 +56,13 @@ for slide in SLIDES["images"]+EXTRA["images"]:
                 assert path.stat().st_size>30000
                 print(f"Ready {slide['id']}: {path.name} ({path.stat().st_size} bytes)")
                 err=None
+                # Wikimedia rate limits automated requests. Space requests between assets.
+                time.sleep(11)
                 break
             except (Exception) as exc:
                 err=exc
                 print(f"Image attempt {slide['id']}, {retry+1}: {str(exc)[:160]}")
-                time.sleep(2+retry*2)
+                time.sleep((15, 25, 40)[retry] if isinstance(exc, urllib.error.HTTPError) and exc.code == 429 else 2+retry*3)
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
