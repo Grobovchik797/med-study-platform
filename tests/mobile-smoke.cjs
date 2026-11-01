@@ -52,6 +52,12 @@ async function navigateHistology(page) {
   await page.getByRole('button',{name:'Найди структуру'}).tap();
   assert.equal(await page.locator('.si-pin').count(),0);
   assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
+  const microscope=page.locator('.si-microscope');
+  const microscopeBox=await microscope.boundingBox();
+  assert.ok(microscopeBox,'Need a visible microscope to test pointer search');
+  await microscope.tap({position:{x:microscopeBox.width*.41,y:microscopeBox.height*.51}});
+  assert.equal(await page.locator('.si-pin-revealed').count(),1,'First numbered target should appear after tap');
+  assert.ok((await page.locator('.si-find-feedback').textContent()).includes('область №1'));
   await page.getByRole('button',{name:'Изучение'}).tap();
   await page.getByRole('button',{name:'Самопроверка'}).tap();
   assert.equal(await page.locator('.si-field').count(),3);
