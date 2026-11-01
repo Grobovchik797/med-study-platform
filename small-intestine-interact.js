@@ -272,10 +272,10 @@ function renderSlides(host,data,exit,initialIndex=0){
 }
 
 /* Optional study timer, not a claim that a whole course can be learned in 30min. */
-function renderFocus(host) {
+function renderFocus(host,{topicTitle='Тонкая кишка'}={}) {
   const root=e('section','si-focus');
   const title=e('h2','','30 минут фокуса + 5 минут отдыха');
-  const hint=e('p','si-instruction','Один цикл — один фрагмент тонкой кишки. Отвечай по памяти и сверяй себя по препарату. Пауза и сброс доступны всегда.');
+  const hint=e('p','si-instruction','Один цикл — один фрагмент темы «'+String(topicTitle)+'». Отвечай по памяти и сверяй себя по учебному материалу. Пауза и сброс доступны всегда.');
   root.append(e('div','kicker','УЧЕБНЫЙ МАРШРУТ · ПО ЖЕЛАНИЮ'),title,hint);
   const phases=[
    {s:0,name:'Подготовка',description:'Убери лишние уведомления, выбери конкретную цель, открой нужный фрагмент.'},
