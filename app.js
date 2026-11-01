@@ -105,9 +105,11 @@ function button(label, handler, className = 'action-button') {
 }
 
 function updateNav() {
+  const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
+    'gi-workbook':'notes','gi-exam':'subjects',atlas:'atlases','si-slides':'atlases',
+    'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
+    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
-    const navigationView = ({ lesson:'notes', intestine:'notes', 'gi-chapter':'notes', 'gi-workbook':'notes', 'gi-exam':'subjects', atlas:'atlases',
-      flashcards:'cards', subject:'subjects', section:'subjects', topic:'subjects' })[view] || view;
     const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
     if (selected) item.setAttribute('aria-current', 'page');
@@ -115,8 +117,8 @@ function updateNav() {
   }
   sideErrors.textContent = String(progress.mistakes.length);
   if (mobileMoreToggle) {
-    mobileMoreToggle.classList.toggle('selected', MORE_VIEWS.has(view));
-    if (MORE_VIEWS.has(view)) mobileMoreToggle.setAttribute('aria-current', 'page');
+    mobileMoreToggle.classList.toggle('selected', MORE_VIEWS.has(navigationView));
+    if (MORE_VIEWS.has(navigationView)) mobileMoreToggle.setAttribute('aria-current', 'page');
     else mobileMoreToggle.removeAttribute('aria-current');
   }
 }
@@ -314,7 +316,7 @@ function showGIFlashcards(id){
   {prompt:'Что особенно важно не перепутать (NB)?',answer:chapter.nb}
  ];
  view='gi-cards';updateNav();main.replaceChildren();
- window.MedStudyGI.renderCards(main,{title:chapter.title,cards,onBack:()=>showGIChapter(id)});
+ window.MedStudyGI.renderCards(main,{title:chapter.title,cards,topicKey:id,onBack:()=>showGIChapter(id)});
  window.scrollTo(0,0);
 }
 function showIntestineFlashcards(){
@@ -322,7 +324,7 @@ function showIntestineFlashcards(){
  const cards=(version?.sections||[]).map(s=>({prompt:'Вспомни: '+s.title,
   answer:s.key||s.paragraphs.join(' ')}));
  view='si-cards';updateNav();main.replaceChildren();
- window.MedStudyGI.renderCards(main,{title:'Тонкая кишка',cards,
+ window.MedStudyGI.renderCards(main,{title:'Тонкая кишка',cards,topicKey:'small-intestine',
   onBack:()=>showTopic('histology-small-intestine')});
  window.scrollTo(0,0);
 }
@@ -1178,6 +1180,12 @@ function showLoadError(error) {
 for (const item of document.querySelectorAll('[data-nav]')) {
   item.addEventListener('click', () => navigate(item.dataset.nav));
 }
+/* Clicking the visible desktop logo must really navigate home, not just change a URL hash. */
+document.querySelector('.brand')?.addEventListener('click', event=>{
+  event.preventDefault();
+  navigate('home');
+});
+
 
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
