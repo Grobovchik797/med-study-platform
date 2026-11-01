@@ -169,7 +169,9 @@ async function main() {
       ['Толстая кишка, аппендикс','6'],
       ['Печень: долька','7'],
       ['Поджелудочная железа: ацинусы','8'],
-      ['Зуб: эмаль, дентин','9']
+      ['Зуб: эмаль, дентин','9'],
+      ['Язык и сосочки','14'],
+      ['Миндалины и лимфоэпителиальное','15']
     ]) {
       await page.locator('#mobile-more-toggle').tap();
       await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
@@ -306,6 +308,19 @@ async function main() {
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
 
+    // v1.7: ordinary gallery has 19 distinct real Commons specimens, all 14 departmental types.
+    await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
+    await waitHeading(desktop,'Изучение и самопроверка');
+    assert.equal(await desktop.locator('.si-select option').count(),19);
+    await desktop.locator('.si-select').first().selectOption('18');
+    assert.equal(await desktop.locator('.si-microscope img').count(),1);
+    assert.ok(await desktop.getByRole('heading',{name:'РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ'}).isVisible());
+    assert.equal(await desktop.locator('.si-legend li').count(),3,'Expected three numbered visible learning cues');
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
+    assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
+    await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
+    await waitHeading(desktop,'Библиотека атласов');
     // Regression 1.6: public departmental atlas has all real source JPGs and video frames.
     await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
     await waitHeading(desktop,'Кафедральные микропрепараты');
