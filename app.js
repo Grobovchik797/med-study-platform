@@ -387,8 +387,8 @@ function showResourceLibrary(kind) {
   if(kind==='atlas'){
     const department=element('section','card dept-banner');
     append(department,element('div','kicker','КОЛЛОКВИУМ · КАФЕДРАЛЬНЫЕ ПРЕПАРАТЫ'),
-      element('h2','','Семь кафедральных микропрепаратов'),
-      element('p','','Исходные названия файлов сохранены без изменений. Добавь свои JPG прямо в браузере: изображения не отправляются на сервер. Справочные фото из Commons остаются ниже.'),
+      element('h2','','14 кафедральных микропрепаратов'),
+      element('p','','Исходные названия сохранены без изменений. Реальные фотографии и видеокадры уже доступны. Отдельно открыт справочный атлас лицензированных препаратов.'),
       button('Открыть кафедральный атлас →',()=>showDepartmentAtlas(),'library-action'));
     main.append(department);
   }
@@ -1187,7 +1187,7 @@ Promise.all([
       throw Error('Структура библиотеки повреждена');
     }
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
-        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==6 || !window.MedStudySI)
+        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==8 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
