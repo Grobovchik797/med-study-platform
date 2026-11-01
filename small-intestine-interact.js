@@ -95,7 +95,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   const slide=data.images[slideIndex];zoom=1;dx=0;dy=0;point=null;
   root.replaceChildren();add(root,e('div','kicker','ВИРТУАЛЬНЫЕ МИКРОПРЕПАРАТЫ'),
    e('h1','','Изучение и самопроверка'),
-   e('p','si-instruction','Увеличивай изображение кнопками или жестами, перемещай пальцем. Для проверки правильности пока использованы только надёжно различимые области.'));
+   e('p','si-instruction','Увеличивай и перемещай реальную микрофотографию. Точечные метки есть только у проверенных областей. На остальных препаратах доступны тренировки распознавания органа и самостоятельный поиск признаков.'));
   const selectors=e('div','si-choice-row');
   const slidesSelect=e('select','si-select');slidesSelect.setAttribute('aria-label','Выбрать препарат');
   data.images.forEach((s,i)=>{const opt=e('option','', 'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
@@ -108,11 +108,11 @@ function renderSlides(host,data,exit,initialIndex=0){
   root.append(e('p','si-instruction',
     mode==='study'?'Подсказки включены. Номера показывают только достаточно крупные области.' :
     mode==='test'?'Определи отдел кишки и подпиши отмеченные области. Названия скрыты.' :
-    'Найди отмеченную область на изображении без маркеров. Только проверенные крупные структуры; точные клеточные координаты не заявлены.'));
+    'Найди характерные структуры на снимке. Координаты проверяются автоматически только на препаратах с подтверждёнными метками.'));
   if(mode==='study')root.append(e('h2','',slide.title));
   const frame=e('div','si-microscope');frame.style.aspectRatio=slide.aspect;
   const surface=e('div','si-surface');
-  const photo=e('img');photo.alt=mode==='study'?slide.title:'Неизвестный гистологический препарат тонкой кишки';
+  const photo=e('img');photo.alt=mode==='study'?slide.title:'Учебный гистологический микропрепарат: определи орган';
   photo.loading='eager';photo.decoding='async';
   const loading=e('div','si-image-loading');
   add(loading,e('span','si-loading-spinner'),e('span','','Открываем препарат…'));
@@ -153,7 +153,22 @@ function renderSlides(host,data,exit,initialIndex=0){
   if(mode==='find'){
     frame.classList.add('si-find-mode');
     if(!slide.annotations.length){
-      root.append(e('p','si-find-hint','Для данного снимка координаты структур не подтверждены. Режим «Найди структуру» пока доступен только на двух других препаратах.'));
+      const targets=Array.isArray(slide.landmarks)?slide.landmarks:[];
+      if(!targets.length){
+        root.append(e('p','si-find-hint','На данном изображении ещё нет подтверждённых координат. Режим определения органа доступен в «Самопроверке».'));
+      }else{
+        let at=0;const line=e('p','si-find-hint','');
+        const tip=e('p','si-find-feedback','');
+        const next=btn('Показать ориентир',()=>{
+          if(at>=targets.length)return;
+          tip.textContent=targets[at].note;
+          next.textContent=at+1===targets.length?'Закончить разбор':'Следующая структура →';
+          at++;if(at<targets.length)line.textContent='Найди: '+targets[at].label;
+          else line.textContent='Разбор завершён. Координаты не оценивались, это самопроверка по описанию.';
+        },'si-button secondary');
+        line.textContent='Найди: '+targets[0].label;
+        root.append(line,tip,next,e('p','si-instruction','Коснись на микрофотографии предполагаемой области, затем открой подсказку и сравни самостоятельно. Без проверенной разметки автоматические баллы не начисляются.'));
+      }
     }else{
       let current=0,success=0;
       const prompt=e('div','si-find-hint','Найди: '+slide.annotations[0].label);
@@ -193,10 +208,10 @@ function renderSlides(host,data,exit,initialIndex=0){
     }else root.append(e('p','si-instruction','Пока нет подписей отдельных структур, достоверно привязанных к данному кадру. Не будем придумывать их координаты.'));
   }else if(mode==='test'){
     const form=e('div','si-test-form');
-    const label=e('label','si-field','Какой это отдел тонкой кишки?');
+    const label=e('label','si-field','Какой орган или отдел показан на препарате?');
     const identity=e('select','si-select');identity.append(e('option','','Выбери ответ'));
     identity.firstChild.value='';
-    for(const pair of [['duodenum','Двенадцатиперстная'],['jejunum','Тощая'],['ileum','Подвздошная']]){
+    for(const pair of [...new Map(data.images.map(x=>[x.answer,[x.answer,x.title]])).values()]){
       const o=e('option','',pair[1]);o.value=pair[0];identity.append(o);
     }
     label.append(identity);form.append(label);
@@ -226,11 +241,11 @@ function renderSlides(host,data,exit,initialIndex=0){
   }
   const by=e('div','si-credit');
   add(by,e('p','','Автор: '+slide.credit+' · '+slide.license+' · '+slide.stain),
-    e('p','','Показ уменьшенной миниатюры с сохранением авторства и лицензии CC BY-SA 4.0. Источник — Wikimedia Commons.'));
+    e('p','','Оптимизированная локальная копия микрофотографии с сохранением указанной лицензии. Источник — Wikimedia Commons. Для публикации и распространения действует конкретная лицензия автора.'));
   for(const [label,url] of [['Источник снимка',slide.source],['Условия лицензии',slide.licenseUrl]]){
     const a=e('a','',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener noreferrer';by.append(a);
   }
-  root.append(by,notes('Для снимков пока нужен интернет: сервер Wikimedia может ограничивать доступ. Схема и учебные тексты доступны отдельно; ссылка на оригинал приведена ниже.'),
+  root.append(by,notes('Фотографии включены в сборку сайта и Android APK. После первой установки сайт может показывать ранее сохранённые изображения офлайн; ссылки на первоисточники требуют интернет.'),
     btn('← Вернуться к теме',exit,'si-button secondary'));
  }
  show();
