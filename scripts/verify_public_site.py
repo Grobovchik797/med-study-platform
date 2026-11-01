@@ -38,7 +38,7 @@ def main():
             if EXPECTED not in sw:
                 raise ValueError("CDN still serves a previous service worker")
             for path, marker in [
-                ("index.html", '<html lang="ru">'),
+                ("index.html", 'Med Study · 1.8.1'),
                 ("app.js", "'gi-cards':'cards'"),
                 ("gi-course.js", "Повторить ↺"),
                 ("styles.css", "gi-recall-meter-fill"),
