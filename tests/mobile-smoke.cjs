@@ -182,7 +182,7 @@ async function main() {
       await page.getByRole('button',{name:'Самопроверка'}).tap();
       assert.ok(await page.getByText('Какой орган или отдел показан на препарате?').isVisible());
       await page.getByRole('button',{name:'Найди структуру'}).tap();
-      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №'));
+      assert.match(await page.locator('.si-find-hint').textContent(),/Найди структуру №|Найди:/,'Find prompt must work for both spatially marked and guide-only slides');
       assert.ok((await page.locator('.si-find-mode .si-pin').count())===0,'Do not invent coordinates on new slides');
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
