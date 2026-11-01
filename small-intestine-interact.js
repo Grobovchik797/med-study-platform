@@ -98,7 +98,7 @@ function renderSlides(host,data,exit,initialIndex=0){
    e('p','si-instruction','Увеличивай и перемещай реальную микрофотографию. Точечные метки есть только у проверенных областей. На остальных препаратах доступны тренировки распознавания органа и самостоятельный поиск признаков.'));
   const selectors=e('div','si-choice-row');
   const slidesSelect=e('select','si-select');slidesSelect.setAttribute('aria-label','Выбрать препарат');
-  data.images.forEach((s,i)=>{const opt=e('option','',mode==='study'?s.title:'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
+  data.images.forEach((s,i)=>{const label=s.departmentTitle&&s.departmentTitle!==s.title?s.departmentTitle+' · '+s.title:s.title;const opt=e('option','',mode==='study'?label:'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
   slidesSelect.value=String(slideIndex);
   slidesSelect.addEventListener('change',()=>{slideIndex=Number(slidesSelect.value);show();});
   const study=btn('Изучение',()=>{mode='study';show();},'si-button'+(mode==='study'?' current':' secondary'));
