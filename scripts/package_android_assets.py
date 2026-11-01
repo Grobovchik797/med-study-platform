@@ -15,6 +15,7 @@ files = [
     "photos/salivary-submandibular.jpg", "photos/esophagus.jpg", "photos/stomach-fundus.jpg",
     "photos/colon.jpg", "photos/liver.jpg", "photos/pancreas.jpg",
     "photos/tooth-enamel-organ.jpg", "photos/gastro-esophageal-junction.jpg",
+    "photos/tooth-enamel-dentin.jpg", "photos/mixed-salivary.jpg", "photos/palatine-tonsil.jpg", "photos/stomach-pyloric.jpg", "photos/parotid.jpg", "photos/foliate-papillae.jpg", "photos/filiform-papillae.jpg",
     "illustrations/gi-tongue.svg", "illustrations/gi-stomach.svg", "illustrations/gi-liver.svg", "illustrations/gi-pancreas.svg",
     "illustrations/pathways.svg", "illustrations/receptors.svg",
     "illustrations/organs.svg", "illustrations/small-intestine-schematic.svg",
