@@ -135,6 +135,51 @@ async function main() {
     await waitHeading(page,'Мои предметы');
     await navigateHistology(page);
     await navigateDigestiveCourse(page);
+    // Regression 1.2: every GI atlas entry routes to the matching intestinal slide.
+    for(const [chapterTitle,index] of [
+      ['Двенадцатиперстная кишка','0'],
+      ['Тощая кишка','1'],
+      ['Подвздошная кишка и пейеровы бляшки','2']
+    ]) {
+      await page.locator('#mobile-more-toggle').tap();
+      await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+      await waitHeading(page,'Библиотека атласов');
+      await page.locator('.library-card').filter({hasText:chapterTitle}).locator('.library-go').tap();
+      await waitHeading(page,'Изучение и самопроверка');
+      assert.equal(await page.locator('.si-select').inputValue(),index,'Wrong GI microscopy slide: '+chapterTitle);
+      assert.equal(await page.getByRole('heading',{name:'Интерактивный атлас рецепторов'}).count(),0);
+      await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
+      await waitHeading(page,chapterTitle);
+    }
+    // Regression 1.2: a chapter test must never redirect to the GI-wide final examination.
+    await page.locator('.side-nav [data-nav="subjects"]').tap();
+    await waitHeading(page,'Мои предметы');
+    await page.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').tap();
+    await page.locator('.library-card').filter({hasText:'Пищеварительная система'}).locator('.library-go').tap();
+    await page.locator('.library-card').filter({hasText:'Слизистая ротовой полости, губы, щёки и нёбо'}).locator('.library-go').tap();
+    await waitHeading(page,'Слизистая ротовой полости');
+    await page.getByRole('button',{name:'Тесты по этой теме'}).tap();
+    await waitHeading(page,'Слизистая ротовой полости');
+    const beginTopic=page.getByRole('button',{name:/Начать тематический тест/});
+    const totalQuestions=Number((await beginTopic.textContent()).match(/\d+/)[0]);
+    assert.ok(totalQuestions>=3 && totalQuestions<=8,'Topic quiz must show its real question count');
+    await beginTopic.tap();
+    for(let i=0;i<totalQuestions;i++){
+      assert.ok((await page.locator('.gi-question-heading').textContent()).length>10);
+      await page.locator('.gi-mini-choice').first().tap();
+      await page.getByRole('button',{name:i+1===totalQuestions?'Завершить':'Следующий вопрос'}).tap();
+    }
+    await waitHeading(page,'Верно:');
+    const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('med-study-gi-topic-v1')||'[]'));
+    assert.equal(saved.at(-1).chapter,'oral','Topic result must be stored with chapter ID');
+    await page.getByRole('button',{name:'К конспекту'}).tap();
+    await waitHeading(page,'Слизистая ротовой полости');
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="stats"]').tap();
+    await waitHeading(page,'Мой прогресс');
+    const plan=page.locator('.topic-stats').filter({hasText:'Общий план пищеварительной трубки'});
+    assert.ok(!(await plan.textContent()).includes('Результаты ВНС'));
+    assert.ok((await page.locator('.topic-stats').filter({hasText:'Слизистая ротовой полости'}).textContent()).includes('Тематических тренировок'));
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=3,'Unexpected page overflow: '+overflow);
 
