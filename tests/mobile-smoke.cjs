@@ -192,6 +192,21 @@ async function main() {
     await page.locator('.si-select').first().selectOption('10');
     assert.ok(await page.getByRole('heading',{name:'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК'}).isVisible());
     await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
+    // Reference atlas independently covers the additional departmental examples.
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+    await waitHeading(page,'Библиотека атласов');
+    await page.getByRole('button',{name:'Открыть справочный атлас'}).tap();
+    await waitHeading(page,'Изучение и самопроверка');
+    assert.equal(await page.locator('.si-select').first().locator('option').count(),18);
+    await page.locator('.si-select').first().selectOption('14');
+    await page.getByRole('button',{name:'Найди структуру'}).tap();
+    assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
+    await page.locator('.si-microscope').tap({position:{x:120,y:120}});
+    assert.equal(await page.locator('.si-pin-user').count(),1,'Tap creates user-placed numbered marker');
+    await page.getByRole('button',{name:'Показать объяснение / дальше'}).tap();
+    await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
+    await waitHeading(page,'Библиотека атласов');
     // Regression 1.4: topics without a verified image are not falsely shown as atlas entries.
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
