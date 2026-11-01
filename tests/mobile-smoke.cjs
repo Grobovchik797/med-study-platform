@@ -190,7 +190,7 @@ async function main() {
     await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
     await page.locator('.library-card').filter({hasText:'Пищевод и пищеводно-желудочный переход'}).locator('.library-go').tap();
     await page.locator('.si-select').first().selectOption('10');
-    assert.ok(await page.getByRole('heading',{name:'Переход пищевода в желудок'}).isVisible());
+    assert.ok(await page.getByRole('heading',{name:'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК'}).isVisible());
     await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
     // Regression 1.4: topics without a verified image are not falsely shown as atlas entries.
     await page.locator('#mobile-more-toggle').tap();
