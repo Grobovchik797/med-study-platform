@@ -281,6 +281,272 @@
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
       "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
       "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК"
+    },
+    {
+      "id": "tooth-enamel-dentin",
+      "title": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "credit": "Dozenist",
+      "license": "CC BY-SA 3.0",
+      "file": "Enamelmineralization11-17-05.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Enamelmineralization11-17-05.jpg",
+      "aspect": "0.97",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Срез развивающегося зуба на стадии формирования коронки; исходный снимок уже содержит авторские подписи эмали, дентина, амелобластов и одонтобластов.",
+      "landmarks": [
+        {
+          "label": "Эмаль — минерализующийся наружный слой коронки",
+          "note": "Найди подписанную в оригинале эмаль, но не принимай её за дентин."
+        },
+        {
+          "label": "Дентин — слой под эмалью",
+          "note": "Найди подписанный дентин под эмалью."
+        },
+        {
+          "label": "Амелобласты и одонтобласты — клетки по разные стороны границы эмаль/дентин",
+          "note": "Сравни авторские подписи амелобластов и одонтобластов; не смешивай клеточные слои."
+        }
+      ],
+      "answer": "tooth-enamel-dentin",
+      "src": "./photos/tooth-enamel-dentin.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Enamelmineralization11-17-05.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/1/1c/Enamelmineralization11-17-05.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "mixed-salivary",
+      "title": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "departmentTitle": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "credit": "Sahithi Adapala",
+      "license": "CC BY-SA 4.0",
+      "file": "Histology of mixed salivary gland.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg",
+      "aspect": "0.75",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Микрофотография смешанной слюнной железы. Наличие серозных и слизистых секреторных отделов следует оценивать на реальном срезе.",
+      "landmarks": [
+        {
+          "label": "Серозные секреторные отделы",
+          "note": "Серозные отделы обычно окрашены интенсивнее, с небольшими просветами."
+        },
+        {
+          "label": "Слизистые секреторные отделы",
+          "note": "Слизистые отделы обычно светлее, со смещёнными к основанию ядрами."
+        },
+        {
+          "label": "Выводные протоки железы",
+          "note": "Ищи протоки с чёткой эпителиальной выстилкой; не путай их с сосудом."
+        }
+      ],
+      "answer": "mixed-salivary",
+      "src": "./photos/mixed-salivary.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_mixed_salivary_gland.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "palatine-tonsil",
+      "title": "НЕБНАЯ МИНДАЛИНА",
+      "departmentTitle": "НЕБНАЯ МИНДАЛИНА",
+      "credit": "Bhuvana Syama",
+      "license": "CC BY-SA 4.0",
+      "file": "Histology of palatine tonsil.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg",
+      "aspect": "1.57",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Гистологическое изображение небной миндалины; диагностические ориентиры — лимфоидная ткань, крипты и покровный эпителий, если соответствующие области различимы.",
+      "landmarks": [
+        {
+          "label": "Многослойный плоский эпителий",
+          "note": "Сверь покровный эпителий; у миндалины эпителий может быть инфильтрирован лимфоцитами."
+        },
+        {
+          "label": "Крипта миндалины",
+          "note": "Ищи углубление эпителия внутрь лимфоидной ткани."
+        },
+        {
+          "label": "Лимфоидные фолликулы",
+          "note": "Ищи лимфоидные скопления с возможными светлыми центрами размножения."
+        }
+      ],
+      "answer": "palatine-tonsil",
+      "src": "./photos/palatine-tonsil.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_palatine_tonsil.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "stomach-pyloric",
+      "title": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "departmentTitle": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "credit": "Jpogi",
+      "license": "Public domain",
+      "file": "Pyloric stomach LPO.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG",
+      "aspect": "1.33",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Микрофотография пилорического отдела желудка человека. Отличается от фундального отдела строением ямок и желез.",
+      "landmarks": [
+        {
+          "label": "Желудочные ямки",
+          "note": "Ищи углубления поверхности слизистой."
+        },
+        {
+          "label": "Пилорические железы",
+          "note": "В собственной пластинке ищи преимущественно слизистые пилорические железы."
+        },
+        {
+          "label": "Мышечная пластинка слизистой",
+          "note": "Ищи тонкую гладкомышечную границу слизистой, если видна на этом увеличении."
+        }
+      ],
+      "answer": "stomach-pyloric",
+      "src": "./photos/stomach-pyloric.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Pyloric_stomach_LPO.JPG",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "parotid",
+      "title": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "departmentTitle": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "credit": "Wbensmith; contrast/crop by Prof. Squirrel",
+      "license": "CC BY 3.0",
+      "file": "WVSOM Parotid Gland1.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/WVSOM_Parotid_Gland1.JPG",
+      "aspect": "1.22",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Снимок протока околоушной железы со слоистым кубическим или цилиндрическим эпителием и соединительнотканной стромой; обзор всей паренхимы железы не гарантирован.",
+      "landmarks": [
+        {
+          "label": "Просвет выводного протока",
+          "note": "Найди центральную полость протока."
+        },
+        {
+          "label": "Многослойная эпителиальная выстилка протока",
+          "note": "Найди несколько слоёв клеток, ограничивающих проток."
+        },
+        {
+          "label": "Соединительная ткань вокруг протока",
+          "note": "Отличай соединительную ткань вокруг протока от его эпителия."
+        }
+      ],
+      "answer": "parotid",
+      "src": "./photos/parotid.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:WVSOM_Parotid_Gland1.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/bd/WVSOM_Parotid_Gland1.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "foliate-papillae",
+      "title": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "departmentTitle": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "credit": "Reytan",
+      "license": "Public domain",
+      "file": "Papillae foliatae.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Papillae_foliatae.jpg",
+      "aspect": "1.33",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Гистологическая микрофотография листовидных сосочков языка. Из-за ограниченного разрешения отдельные вкусовые почки могут быть неразличимы.",
+      "landmarks": [
+        {
+          "label": "Складки слизистой языка",
+          "note": "Ищи параллельные листовидные складки на поверхности языка."
+        },
+        {
+          "label": "Межсосочковые борозды",
+          "note": "Ищи промежутки между соседними складками."
+        },
+        {
+          "label": "Эпителиальный покров сосочков",
+          "note": "Ищи многослойный плоский эпителий на поверхности складок."
+        }
+      ],
+      "answer": "foliate-papillae",
+      "src": "./photos/foliate-papillae.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Papillae_foliatae.jpg",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/3c/Papillae_foliatae.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+    },
+    {
+      "id": "filiform-papillae",
+      "title": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "departmentTitle": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "credit": "Vamsi kumar Pabolu",
+      "license": "CC BY-SA 4.0",
+      "file": "Fungiform papillae and Filiform papillae.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg",
+      "aspect": "1.12",
+      "stain": "Окраска не подтверждена по описанию файла; не назначать автоматически",
+      "description": "Гистологический учебный снимок/иллюстрация нитевидных и грибовидных сосочков; использовать для сравнения, не выдавая грибовидные сосочки за нитевидные.",
+      "landmarks": [
+        {
+          "label": "Нитевидные сосочки",
+          "note": "Ищи тонкие конические отростки; не путай их с грибовидными."
+        },
+        {
+          "label": "Грибовидные сосочки для сравнения",
+          "note": "Сравни с более округлыми грибовидными сосочками на том же материале."
+        },
+        {
+          "label": "Многослойный плоский эпителий",
+          "note": "Проверь покрывающий многослойный плоский эпителий; степень ороговения различается."
+        }
+      ],
+      "answer": "filiform-papillae",
+      "src": "./photos/filiform-papillae.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Fungiform_papillae_and_Filiform_papillae.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
+      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
     }
   ]
 }
