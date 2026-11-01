@@ -363,7 +363,16 @@ async function main() {
     assert.equal(await desktop.locator('.si-select option').count(),19);
     await desktop.locator('.si-select').first().selectOption('10');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Gastro-esophageal junction should have 3 spatial markers on photo');
+    await desktop.getByRole('button',{name:'＋ Увеличить'}).click();
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1.5)'),
+      'Zoom should be active before switching study modes');
+    await desktop.getByRole('button',{name:'Самопроверка'}).click();
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1.5)'),
+      'Switching modes must preserve the area being studied');
+    await desktop.getByRole('button',{name:'Изучение'}).click();
     await desktop.locator('.si-select').first().selectOption('9');
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1)'),
+      'Selecting another specimen must reset microscope zoom');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Developing tooth enamel-organ should have 3 spatial markers');
     await desktop.locator('.si-select').first().selectOption('18');
     assert.equal(await desktop.locator('.si-microscope img').count(),1);
