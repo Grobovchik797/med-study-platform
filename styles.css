@@ -585,3 +585,12 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .dept-license{font-size:.86rem;color:#676070;line-height:1.6;margin-top:24px}
 .dept-in-chapter{border:1px solid #ceb9eb}
 @media(max-width:650px){.dept-file-grid{grid-template-columns:1fr}.dept-modes .gi-button{flex:1}.dept-panel{padding:14px}}
+
+/* 1.6 — public faculty photos, with separate actual fields of view for video. */
+.dept-public-frames{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0}
+.dept-public-figure{background:#292431;color:#f5f0ff;margin:0;border-radius:13px;overflow:hidden}
+.dept-public-figure .dept-image-wrap{max-height:65vh;min-height:300px;overflow:auto}
+.dept-public-figure .dept-image{display:block;width:100%;height:auto;max-width:none}
+.dept-caption{font-size:.85rem;padding:11px 13px}
+.dept-image-missing{padding:25px;color:#fff7c5}
+@media(max-width:670px){.dept-public-frames{grid-template-columns:1fr}}
