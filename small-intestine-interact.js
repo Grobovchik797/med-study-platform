@@ -89,10 +89,14 @@ function renderQuiz(host,bank,exit){
 }
 function renderSlides(host,data,exit,initialIndex=0){
  const root=e('section','si-workspace');host.append(root);
- let slideIndex=initialIndex,mode='study',zoom=1,dx=0,dy=0,point=null;
+ let slideIndex=initialIndex,visibleSlideIndex=initialIndex,mode='study',zoom=1,dx=0,dy=0,point=null;
  const results=read();
  function show(){
-  const slide=data.images[slideIndex];zoom=1;dx=0;dy=0;point=null;
+  const slide=data.images[slideIndex];
+  // Keep the inspected area when switching study/find/self-check. Reset only
+  // when changing to another specimen, or after pressing the explicit reset.
+  if(slideIndex!==visibleSlideIndex){zoom=1;dx=0;dy=0;}
+  visibleSlideIndex=slideIndex;point=null;
   root.replaceChildren();add(root,e('div','kicker','ВИРТУАЛЬНЫЕ МИКРОПРЕПАРАТЫ'),
    e('h1','','Изучение и самопроверка'),
    e('p','si-instruction','Увеличивай и перемещай реальную микрофотографию. Точечные метки есть только у проверенных областей. На остальных препаратах доступны тренировки распознавания органа и самостоятельный поиск признаков.'));
@@ -149,7 +153,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   function done(event){if(point?.id===event.pointerId)point=null;}
   frame.addEventListener('pointerup',done);frame.addEventListener('pointercancel',done);
   frame.addEventListener('wheel',event=>{event.preventDefault();zoom=Math.max(1,Math.min(4,zoom+(event.deltaY<0?.25:-.25)));transform();},{passive:false});
-  frame.insertBefore(surface,loading);root.append(frame);
+  frame.insertBefore(surface,loading);root.append(frame);transform();
   if(mode==='find'){
     frame.classList.add('si-find-mode');
     if(!slide.annotations.length){
