@@ -115,14 +115,14 @@ function render(host,{onBack,chapterId=null}={}){
   const panel=el('section','dept-panel');
   panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА ПО КАФЕДРАЛЬНОМУ ПРЕПАРАТУ':'КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',mode==='check'?'Определи препарат по фотографии':spec.file));
   const controls=el('div','dept-modes');
-  for(const [key,title] of [['study','Изучение'],['check','Самопроверка'],['find','Найди структуру']]){
+  for(const [key,title] of [['study','Изучение'],['check','Самопроверка']]){
    controls.append(btn(title,()=>{mode=key;paint();},'gi-button'+(mode===key?' gi-active':' gi-light')));
   }
   panel.append(controls);
   if(records.has(selected)){
    const box=el('div','dept-image-wrap'),img=el('img','dept-image');
    objectUrl=URL.createObjectURL(records.get(selected));
-   img.src=objectUrl;img.alt='Кафедральный препарат: '+selected;img.loading='eager';
+   img.src=objectUrl;img.alt=mode==='check'?'Кафедральный препарат: название скрыто':'Кафедральный препарат: '+selected;img.loading='eager';
    box.append(img);panel.append(box);
    const zoom=el('input','dept-zoom');zoom.type='range';zoom.min='100';zoom.max='300';zoom.step='25';zoom.value='100';
    zoom.setAttribute('aria-label','Масштаб фотографии');
@@ -145,17 +145,8 @@ function render(host,{onBack,chapterId=null}={}){
    panel.append(question,select,btn('Проверить название',()=>{
     answer.textContent=select.value===selected?'Верно: '+selected:'Кафедральное название этого препарата: '+selected+'.';
    }),answer);
-  }else{
-   panel.append(el('p','dept-caution','Пока координаты на этих кафедральных фотографиях не прошли научную сверку. Здесь нет автоматических баллов или выдуманных цифр.'));
-   const line=el('p','dept-question',''),hint=el('p','dept-feedback','');
-   let at=0;
-   function prompt(){line.textContent=at<spec.focus.length?'Попробуй самостоятельно найти: '+spec.focus[at]:'Все ориентиры разобраны. Вернись в «Изучение».';}
-   prompt();panel.append(line,hint,btn('Показать учебный ориентир / дальше',()=>{
-    if(at>=spec.focus.length)return;
-    hint.textContent='Ориентир '+(at+1)+': '+spec.focus[at]+'. '+spec.notice;at++;prompt();
-   }));
   }
-  const note=el('p','dept-license','Происхождение: кафедральный препарат по сообщению владельца. Публичное размещение исходного фото не выполняется. Формальное подтверждение права публикации и окончательная научная разметка — отдельные этапы.');
+  const note=el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Происхождение: кафедральный препарат по сообщению владельца. Публичное размещение исходного фото не выполняется. Формальное подтверждение права публикации и окончательная научная разметка — отдельные этапы.');
   panel.append(note);
   if(records.has(selected))panel.append(btn('Удалить локальную копию',async()=>{
    if(!window.confirm('Удалить локальную копию «'+selected+'» из этого браузера?'))return;
