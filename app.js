@@ -309,7 +309,9 @@ function showGIFlashcards(id){
  if(!chapter)return showSection('histology-cytology','digestive');
  const blocks=giDeepBlocks[id]||[];
  const cards=[
-  ...blocks.map(x=>({prompt:'Объясни: '+x.title,answer:x.text})),
+  // Existing verified checkpoint prompts are shorter than full deep-block prose.
+  ...blocks.map(x=>({prompt:x.checkpoint.prompt,
+    answer:x.checkpoint.options[x.checkpoint.answer]+'. '+x.checkpoint.explanation})),
   ...chapter.brief.slice(0,2).map((text,i)=>({prompt:i===0?
    'Какие основные структуры и признаки у этой темы?':'Как связаны строение и функция?',
    answer:text})),
