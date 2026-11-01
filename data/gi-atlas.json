@@ -1,0 +1,206 @@
+{
+  "version": 1,
+  "title": "Дополнительные лицензионные препараты ЖКТ",
+  "scope": "Публично лицензированные микрофотографии; анонимные материалы из пользовательского PDF не публикуются.",
+  "sourceType": "Wikimedia Commons image pages (human-authored atlas descriptions)",
+  "images": [
+    {
+      "id": "salivary-submandibular",
+      "title": "Подчелюстная слюнная железа",
+      "credit": "Lucy mode (Jagiellonian University)",
+      "license": "CC BY-SA 4.0",
+      "file": "Submandibular gland loves you.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Submandibular_gland_loves_you.jpg",
+      "aspect": "1.10",
+      "stain": "Гистологическая микрофотография; точный протокол окраски в карточке не указан",
+      "description": "Срез подчелюстной слюнной железы. Подходит для обзора железистой паренхимы; точные подписи отдельных ацинусов пока не подтверждены координатами.",
+      "landmarks": [
+        {
+          "label": "Серозные и слизистые секреторные отделы",
+          "note": "Попробуй отличить по окраске цитоплазмы и просветам, затем сверяй признаки в конспекте."
+        },
+        {
+          "label": "Выводной проток",
+          "note": "Ищи эпителиальный просвет внутри соединительнотканной стромы, не путай с кровеносным сосудом."
+        }
+      ],
+      "answer": "salivary-submandibular",
+      "src": "./photos/salivary-submandibular.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Submandibular_gland_loves_you.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/d9/Submandibular_gland_loves_you.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "esophagus",
+      "title": "Пищевод — слизистая, H&E, ×100",
+      "credit": "Guido Fregapani",
+      "license": "CC BY-SA 4.0",
+      "file": "Esôfago – HE – 100x.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png",
+      "aspect": "1.31",
+      "stain": "Гематоксилин и эозин (H&E), ×100 (авторская карточка)",
+      "description": "Фрагмент слизистой пищевода с многослойным плоским неороговевающим эпителием и собственной пластинкой. На исходном снимке есть авторские цифровые обозначения.",
+      "landmarks": [
+        {
+          "label": "Многослойный плоский неороговевающий эпителий",
+          "note": "Большая многослойная полоса клеток у просвета; сравни с железистым эпителием желудка."
+        },
+        {
+          "label": "Собственная пластинка слизистой",
+          "note": "Соединительная ткань сразу под эпителием."
+        }
+      ],
+      "answer": "esophagus",
+      "src": "./photos/esophagus.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/9/94/Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "stomach-fundus",
+      "title": "Желудок — фундальные железы",
+      "credit": "Димитър Митев",
+      "license": "CC BY-SA 3.0",
+      "file": "Stomach-fundus.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Stomach-fundus.jpg",
+      "aspect": "1.15",
+      "stain": "Гистологический препарат, точная окраска в карточке Commons не уточнена",
+      "description": "Фундальный отдел желудка с собственными желудочными железами. По этому снимку не оцениваем точные координаты отдельных главных и париетальных клеток.",
+      "landmarks": [
+        {
+          "label": "Фундальные железы",
+          "note": "В собственной пластинке слизистой ищи плотно расположенные трубчатые железы."
+        },
+        {
+          "label": "Поверхностный железистый эпителий",
+          "note": "Отличай однослойную слизистую выстилку желудка от многослойного эпителия пищевода."
+        }
+      ],
+      "answer": "stomach-fundus",
+      "src": "./photos/stomach-fundus.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Stomach-fundus.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/8/86/Stomach-fundus.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "colon",
+      "title": "Толстая кишка — гистология",
+      "credit": "Josef Reischig / наследники автора",
+      "license": "CC BY-SA 3.0",
+      "file": "Large intestine (254 15) Human large intestine.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Large_intestine_(254_15)_Human_large_intestine.jpg",
+      "aspect": "1.56",
+      "stain": "Световая микроскопия, ×400 (для исходного формата 26 см); окраска не уточнена",
+      "description": "Микропрепарат толстой кишки человека, из открытого архива Josef Reischig. Проверяем строение слизистой, но не приписываем автоматические координаты клеток.",
+      "landmarks": [
+        {
+          "label": "Кишечные крипты",
+          "note": "В толстой кишке отсутствуют типичные ворсинки тонкой кишки, выражены прямые крипты."
+        },
+        {
+          "label": "Бокаловидные клетки",
+          "note": "Ищи светлые слизь-содержащие клетки в кишечном эпителии; точные координаты не размечены."
+        }
+      ],
+      "answer": "colon",
+      "src": "./photos/colon.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Large_intestine_(254_15)_Human_large_intestine.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/60/Large_intestine_(254_15)_Human_large_intestine.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "liver",
+      "title": "Печень — портальный тракт и центральная вена",
+      "credit": "Alexander Boyd, Owen Cain, Abhishek Chauhan, Gwilym James Webb; via Mikael Häggström",
+      "license": "CC BY 4.0",
+      "file": "Histopathology of liver zones.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Histopathology_of_liver_zones.jpg",
+      "aspect": "1.20",
+      "stain": "Ретикулиновая окраска; нормальная паренхима с обозначенными зонами",
+      "description": "Обзор нормальной паренхимы печени при ретикулиновой окраске: портальный тракт (P) и центральная вена (V) уже обозначены в оригинальном изображении. Это НЕ окраска H&E.",
+      "landmarks": [
+        {
+          "label": "Портальный тракт (P)",
+          "note": "Исходный снимок содержит обозначение P в верхней левой области."
+        },
+        {
+          "label": "Центральная вена (V)",
+          "note": "Исходный снимок содержит обозначение V в нижней правой области."
+        }
+      ],
+      "answer": "liver",
+      "src": "./photos/liver.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Histopathology_of_liver_zones.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/8/82/Histopathology_of_liver_zones.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "pancreas",
+      "title": "Поджелудочная железа",
+      "credit": "SGnanadeep",
+      "license": "CC BY-SA 4.0",
+      "file": "Pancreas histology.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Pancreas_histology.jpg",
+      "aspect": "0.75",
+      "stain": "Гистологический препарат, точная окраска в Commons не указана",
+      "description": "Обзорный микропрепарат поджелудочной железы; используем для распознавания паренхимы и сравнения с другими железами, без неподтверждённых точечных меток.",
+      "landmarks": [
+        {
+          "label": "Экзокринная ацинарная ткань",
+          "note": "Основная масса паренхимы представлена секреторными ацинусами."
+        },
+        {
+          "label": "Островки Лангерганса",
+          "note": "Если на данном увеличении отчётливо различим светлый клеточный островок, сравни его с окружающей экзокринной тканью. Если нет — не угадывай."
+        }
+      ],
+      "answer": "pancreas",
+      "src": "./photos/pancreas.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Pancreas_histology.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/0/03/Pancreas_histology.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    }
+  ]
+}
