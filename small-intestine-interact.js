@@ -157,17 +157,41 @@ function renderSlides(host,data,exit,initialIndex=0){
       if(!targets.length){
         root.append(e('p','si-find-hint','На данном изображении ещё нет подтверждённых координат. Режим определения органа доступен в «Самопроверке».'));
       }else{
-        let at=0;const line=e('p','si-find-hint','');
+        let at=0,placementStart=null;
+        const line=e('p','si-find-hint','');
         const tip=e('p','si-find-feedback','');
-        const next=btn('Показать ориентир',()=>{
+        const instruction=e('p','si-instruction','Коснись на микрофотографии места, где, по твоему мнению, находится названная структура. На снимке появится номер. Это ТВОЯ отметка, а не проверенная научная координата. Для реальных учебных меток нужна отдельная экспертная проверка. Баллы не начисляются.');
+        const placed=[];
+        const prompt=()=>{line.textContent=at<targets.length?'Найди структуру №'+(at+1)+': '+targets[at].label:'Все структуры отмечены. Сравни свои номера с подсказками.';};
+        const next=btn('Показать объяснение / дальше',()=>{
           if(at>=targets.length)return;
-          tip.textContent='Структура №'+(at+1)+': '+targets[at].label+'. '+targets[at].note;
-          next.textContent=at+1===targets.length?'Закончить разбор':'Следующая структура →';
-          at++;if(at<targets.length)line.textContent='Найди структуру №'+(at+1)+': '+targets[at].label;
-          else line.textContent='Разбор завершён. Координаты не оценивались, это самопроверка по описанию.';
+          tip.textContent='№'+(at+1)+' — '+targets[at].label+'. '+targets[at].note+' (Точное место твоей метки не проверялось.)';
+          at++;prompt();
         },'si-button secondary');
-        line.textContent='Найди структуру №1: '+targets[0].label;
-        root.append(line,tip,next,e('p','si-instruction','Коснись на микрофотографии предполагаемой области, затем открой подсказку и сравни самостоятельно. Без проверенной разметки автоматические баллы не начисляются.'));
+        const reset=btn('Сбросить свои метки',()=>{
+          placed.forEach(mark=>mark.remove());placed.length=0;at=0;tip.textContent='';prompt();
+        },'si-button secondary');
+        frame.addEventListener('pointerdown',ev=>{
+          if(ev.pointerType==='mouse'&&ev.button!==0)return;
+          placementStart={id:ev.pointerId,x:ev.clientX,y:ev.clientY};
+        });
+        frame.addEventListener('pointerup',ev=>{
+          if(!placementStart||placementStart.id!==ev.pointerId)return;
+          const distance=Math.hypot(ev.clientX-placementStart.x,ev.clientY-placementStart.y);
+          placementStart=null;
+          if(distance>12||at>=targets.length)return;
+          const bounds=surface.getBoundingClientRect();
+          if(bounds.width<1||bounds.height<1)return;
+          const x=100*(ev.clientX-bounds.left)/bounds.width,y=100*(ev.clientY-bounds.top)/bounds.height;
+          if(x<0||x>100||y<0||y>100)return;
+          const previous=placed[at];if(previous)previous.remove();
+          const mark=e('span','si-pin si-pin-revealed si-pin-user',String(at+1));
+          mark.style.left=x+'%';mark.style.top=y+'%';
+          mark.title='Моя отметка №'+(at+1)+': '+targets[at].label+' (не проверена)';
+          mark.setAttribute('aria-label',mark.title);surface.append(mark);placed[at]=mark;
+          tip.textContent='Ты отметил №'+(at+1)+'. Проверь себя: '+targets[at].note+' (Без автоматической оценки.)';
+        });
+        prompt();root.append(line,tip,next,reset,instruction);
       }
     }else{
       let current=0,success=0;
