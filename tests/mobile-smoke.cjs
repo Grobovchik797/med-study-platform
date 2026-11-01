@@ -328,6 +328,7 @@ async function main() {
     await desktop.locator('.si-microscope').click({position:{x:photoBounds.width*.52,y:photoBounds.height*.42}});
     assert.ok((await desktop.locator('.si-find-feedback').textContent()).includes('без автоматических баллов'));
     await desktop.getByRole('button',{name:'Изучение'}).click();
+    await desktop.locator('.si-select').first().selectOption('3'); // guide-only submandibular gland
     await desktop.getByRole('button',{name:'Найди структуру'}).click();
     assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
     assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
