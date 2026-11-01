@@ -17,7 +17,7 @@ SLIDES=json.loads((ROOT/"data/small-intestine-slides.json").read_text("utf-8"))
 EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
-assert len(SLIDES["images"])==3 and len(EXTRA["images"])==8
+assert len(SLIDES["images"])==3 and len(EXTRA["images"])==15
 for slide in SLIDES["images"]+EXTRA["images"]:
     local=slide.get("src","")
     if not local.startswith("./photos/") or ".." in local:
@@ -66,4 +66,4 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
-print("PASS: eleven Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
+print("PASS: eighteen Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
