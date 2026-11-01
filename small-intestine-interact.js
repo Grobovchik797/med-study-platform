@@ -98,7 +98,7 @@ function renderSlides(host,data,exit,initialIndex=0){
    e('p','si-instruction','Увеличивай и перемещай реальную микрофотографию. Точечные метки есть только у проверенных областей. На остальных препаратах доступны тренировки распознавания органа и самостоятельный поиск признаков.'));
   const selectors=e('div','si-choice-row');
   const slidesSelect=e('select','si-select');slidesSelect.setAttribute('aria-label','Выбрать препарат');
-  data.images.forEach((s,i)=>{const opt=e('option','', 'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
+  data.images.forEach((s,i)=>{const opt=e('option','',mode==='study'?s.title:'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
   slidesSelect.value=String(slideIndex);
   slidesSelect.addEventListener('change',()=>{slideIndex=Number(slidesSelect.value);show();});
   const study=btn('Изучение',()=>{mode='study';show();},'si-button'+(mode==='study'?' current':' secondary'));
@@ -106,7 +106,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   const find=btn('Найди структуру',()=>{mode='find';show();},'si-button'+(mode==='find'?' current':' secondary'));
   selectors.append(slidesSelect,study,check,find);root.append(selectors);
   root.append(e('p','si-instruction',
-    mode==='study'?'Подсказки включены. Номера показывают только достаточно крупные области.' :
+    mode==='study'?'Изучай название, видимые ориентиры и легенду 1/2/3. Метки на фотографии есть только там, где проверено их положение.' :
     mode==='test'?'Определи отдел кишки и подпиши отмеченные области. Названия скрыты.' :
     'Найди характерные структуры на снимке. Координаты проверяются автоматически только на препаратах с подтверждёнными метками.'));
   if(mode==='study')root.append(e('h2','',slide.title));
@@ -167,7 +167,7 @@ function renderSlides(host,data,exit,initialIndex=0){
           else line.textContent='Разбор завершён. Координаты не оценивались, это самопроверка по описанию.';
         },'si-button secondary');
         line.textContent='Найди структуру №1: '+targets[0].label;
-        root.append(line,tip,next,e('p','si-instruction','Коснись на микрофотографии предполагаемой области, затем открой подсказку и сравни самостоятельно. Без проверенной разметки автоматические баллы не начисляются.'));
+        root.append(line,tip,next,e('p','si-instruction','Номера 1/2/3 пока обозначают задания, а не координаты. Коснись предполагаемой области и затем открой подсказку; без утверждённой разметки баллы не начисляются.'));
       }
     }else{
       let current=0,success=0;
