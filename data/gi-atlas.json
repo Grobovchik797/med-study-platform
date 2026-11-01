@@ -352,11 +352,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 32,
+          "y": 26,
+          "label": "Железистая паренхима",
+          "note": "Обзорный участок секреторных отделов внутри дольки. Не отдельная клетка."
+        },
+        {
+          "n": 2,
+          "x": 49,
+          "y": 43,
+          "label": "Соединительнотканная перегородка",
+          "note": "Светлая междольковая соединительная ткань, разделяющая железистые участки."
+        },
+        {
+          "n": 3,
+          "x": 22,
+          "y": 31,
+          "label": "Железистые отделы с просветами",
+          "note": "Область с несколькими просветами железистых элементов; отдельный проток здесь достоверно не определён."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
-      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+      "reviewStatus": "preliminary-visual-regions; spatial-expert-review-pending"
     },
     {
       "id": "palatine-tonsil",
@@ -428,11 +450,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 61,
+          "y": 24,
+          "label": "Желудочные ямки",
+          "note": "Ямочные углубления поверхностного эпителия в верхней части микрофотографии. Предварительная обзорная метка."
+        },
+        {
+          "n": 2,
+          "x": 44,
+          "y": 56,
+          "label": "Пилорические железы",
+          "note": "Железистые структуры слизистой ниже ямок. Предварительная обзорная метка."
+        },
+        {
+          "n": 3,
+          "x": 77,
+          "y": 92,
+          "label": "Граница слизистой и мышечных слоёв",
+          "note": "Область в нижней части кадра: границу нужно дополнительно сверить по исходному полю зрения."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия; координаты структур пока не верифицированы. Пользовательские номера не считаются эталонной разметкой.",
-      "reviewStatus": "source-license-reviewed; spatial-markers-pending"
+      "reviewStatus": "preliminary-visual-regions; spatial-expert-review-pending"
     },
     {
       "id": "parotid",
