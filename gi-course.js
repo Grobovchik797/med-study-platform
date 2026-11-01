@@ -89,7 +89,7 @@ function briefExtract(text){
   return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
 }
 
-function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,depth='brief'}) {
  let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
@@ -162,6 +162,14 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
          'В атлас включаются только снимки с подтверждённым органом и условиями использования. Для этой главы нет отдельной проверенной микрофотографии — не подставляем чужой препарат.'));
     if(chapter.slideId&&onSlide)box.append(button('Открыть препарат и вернуться сюда →',()=>onSlide(chapter.slideId),'gi-button'));
     host.append(box);
+  }
+  if(onDepartment && window.MedStudyDepartment?.catalog.some(x=>x.chapters.includes(chapter.id))){
+    const faculty=el('section','gi-slide-in-text dept-in-chapter');
+    append(faculty,el('div','kicker','МИКРОПРЕПАРАТЫ КАФЕДРЫ'),
+      el('h2','','Снимки для коллоквиума'),
+      paragraph('Здесь можно изучить фотографии по названиям, как они обозначены на кафедре. Твои JPG хранятся только в браузере и не заменяют справочные препараты.'),
+      button('Открыть кафедральные препараты →',onDepartment,'gi-button'));
+    host.append(faculty);
   }
   renderMiniQuestions(host,mini);
   if(departmentQuestions.length){
