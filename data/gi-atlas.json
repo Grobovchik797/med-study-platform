@@ -263,11 +263,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/4/48/Earlybellstage11-18-05.jpg"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 35,
+          "y": 61,
+          "label": "Эмалевый орган",
+          "note": "Ищи эпителиальную структуру колоколообразной формы вокруг зубного сосочка; координаты на данной фотографии ещё не подтверждены."
+        },
+        {
+          "n": 2,
+          "x": 49,
+          "y": 62,
+          "label": "Зубной сосочек",
+          "note": "Ищи скопление эктомезенхимных клеток под вогнутой поверхностью внутреннего эмалевого эпителия."
+        },
+        {
+          "n": 3,
+          "x": 84,
+          "y": 78,
+          "label": "Зубной мешочек",
+          "note": "Ищи окружающую зачаток мезенхиму; точную границу без экспертной сверки не оцениваем."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims",
       "departmentTitle": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН"
     },
     {
@@ -301,11 +323,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/8/8e/Gastro-esophageal_jxn.JPG"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 76,
+          "y": 24,
+          "label": "Многослойный плоский эпителий пищевода",
+          "note": "Для пищеводной стороны характерен многослойный плоский неороговевающий эпителий; проверь, виден ли он в этом поле."
+        },
+        {
+          "n": 2,
+          "x": 19,
+          "y": 53,
+          "label": "Железистый эпителий желудка",
+          "note": "Для желудочной стороны характерен однослойный цилиндрический эпителий с желудочными ямками."
+        },
+        {
+          "n": 3,
+          "x": 32,
+          "y": 27,
+          "label": "Граница смены эпителия",
+          "note": "Если переход двух эпителиев отчётливо различим, определи область смены; точное положение пока не размечено."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims",
       "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК"
     },
     {
@@ -340,11 +384,26 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 51,
+          "y": 31,
+          "label": "Желудочные ямки",
+          "note": "Ищи углубления поверхности слизистой, куда открываются железы желудка. В пилорической зоне ямки обычно относительно глубокие."
+        },
+        {
+          "n": 2,
+          "x": 44,
+          "y": 70,
+          "label": "Пилорические железы слизистой",
+          "note": "Ищи слизепродуцирующие разветвлённые трубчатые железы в собственной пластинке; не путай с прямыми кишечными криптами."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
     },
     {
       "id": "esophagus-cross-section",
@@ -378,11 +437,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/5/54/Trasversal_histologic_section_of_human_esophagus.jpg"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 44,
+          "y": 22,
+          "label": "Просвет пищевода",
+          "note": "Просвет на поперечном срезе может иметь складчатую, нередко звёздчатую форму при спавшейся стенке."
+        },
+        {
+          "n": 2,
+          "x": 52,
+          "y": 40,
+          "label": "Многослойный плоский эпителий",
+          "note": "У просвета ищи толстую многослойную выстилку из плоских клеток без ороговения (для нормального пищевода)."
+        },
+        {
+          "n": 3,
+          "x": 67,
+          "y": 78,
+          "label": "Мышечная оболочка",
+          "note": "Кнаружи от подслизистой — два выраженных мышечных слоя; тип мышечных волокон зависит от уровня пищевода."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
     },
     {
       "id": "tongue-foliate",
@@ -416,23 +497,45 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/3/3c/Papillae_foliatae.jpg"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 34,
+          "y": 28,
+          "label": "Складки листовидных сосочков",
+          "note": "На боковой стороне языка листовидные сосочки формируют параллельные листообразные складки слизистой, между которыми располагаются борозды."
+        },
+        {
+          "n": 2,
+          "x": 51,
+          "y": 29,
+          "label": "Боковая эпителиальная поверхность",
+          "note": "По боковым сторонам складок ищи многослойный плоский эпителий; вкусовые почки можно распознать только если позволяет разрешение."
+        },
+        {
+          "n": 3,
+          "x": 42,
+          "y": 44,
+          "label": "Соединительнотканная основа",
+          "note": "Внутри каждой складки находится соединительнотканная основа; не принимай её за мышечные волокна."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
     },
     {
       "id": "tongue-filiform",
       "title": "НИТЕВИДНЫЕ СОСОЧКИ",
       "departmentTitle": "НИТЕВИДНЫЕ СОСОЧКИ",
-      "credit": "Vamsi kumar Pabolu",
+      "credit": "Mohit Lalwani",
       "license": "CC BY-SA 4.0",
-      "file": "Fungiform papillae and Filiform papillae.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg",
-      "aspect": "1.12",
-      "stain": "Окраска по источнику: не подтверждена",
-      "description": "The source is a human histology photograph/diagram showing both fungiform and filiform papillae; do not confuse the two.",
+      "file": "Rabbit tongue.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Rabbit_tongue.jpg",
+      "aspect": "0.75",
+      "stain": "Трихром Массона, язык кролика",
+      "description": "Реальная гистологическая микрофотография нитевидных сосочков языка кролика (×40, трихром Массона). Это учебный сравнительный срез другого вида, не человеческий кафедральный препарат.",
       "landmarks": [
         {
           "label": "Нитевидный сосочек",
@@ -449,48 +552,48 @@
       ],
       "answer": "tongue-filiform",
       "src": "./photos/tongue-filiform.jpg",
-      "source": "https://commons.wikimedia.org/wiki/File:Fungiform_papillae_and_Filiform_papillae.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Rabbit_tongue.jpg",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "buildSources": [
-        "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/9/94/Rabbit_tongue.jpg"
       ],
       "annotations": [],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; rabbit histology; spatial-markers-unverified"
     },
     {
       "id": "palatine-tonsil",
       "title": "НЕБНАЯ МИНДАЛИНА",
       "departmentTitle": "НЕБНАЯ МИНДАЛИНА",
-      "credit": "Bhuvana Syama",
-      "license": "CC BY-SA 4.0",
-      "file": "Histology of palatine tonsil.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg",
-      "aspect": "1.57",
-      "stain": "Окраска по источнику: не подтверждена",
-      "description": "Palatine tonsil histology original from Commons; mucosal epithelium and lymphoid follicles are teaching cues.",
+      "credit": "Josef Reischig / наследники",
+      "license": "CC BY-SA 3.0",
+      "file": "Human tonsils (26 2 05) Cross-section; embedded in Epon.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Human_tonsils_%2826_2_05%29_Cross-section%3B_embedded_in_Epon.jpg",
+      "aspect": "1.56",
+      "stain": "Полутонкий срез в эпоксидной смоле Epon, светлопольная микроскопия",
+      "description": "Настоящая микрофотография небной миндалины человека с большим увеличением (1120× относительно исходного размера отпечатка). На этом поле могут отсутствовать общие ориентиры крипт и фолликулов.",
       "landmarks": [
         {
-          "label": "Крипта миндалины",
-          "note": "Крипта — глубокое впячивание поверхностного эпителия внутрь миндалины; просвет может быть неровным."
+          "label": "Лимфоидные клетки миндалины",
+          "note": "Ищи плотные группы мелких клеток с округлыми ядрами; индивидуальная принадлежность по одному увеличенному полю ограничена."
         },
         {
-          "label": "Лимфоидная ткань",
-          "note": "Многочисленные лимфоциты формируют плотную тёмную ткань под эпителием и вокруг крипт."
+          "label": "Строма лимфоидной ткани",
+          "note": "В соединительнотканной сети лежат лимфоидные клетки; увидеть её элементы можно не в каждом поле."
         },
         {
-          "label": "Лимфоидный фолликул",
-          "note": "Лимфоидный фолликул нередко отличается более светлым герминативным центром и более тёмной периферией."
+          "label": "Межклеточные пространства",
+          "note": "Сверяй границы клеточных групп, не выдавая просветы сосудов или артефакты окраски за крипты."
         }
       ],
       "answer": "palatine-tonsil",
       "src": "./photos/palatine-tonsil.jpg",
-      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_palatine_tonsil.jpg",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Human_tonsils_(26_2_05)_Cross-section;_embedded_in_Epon.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "buildSources": [
-        "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/2/2f/Human_tonsils_%2826_2_05%29_Cross-section%3B_embedded_in_Epon.jpg"
       ],
       "annotations": [],
       "localAsset": true,
@@ -530,23 +633,45 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/b/bd/WVSOM_Parotid_Gland1.JPG"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 80,
+          "y": 53,
+          "label": "Серозные секреторные отделы",
+          "note": "Для околоушной железы типичны преимущественно серозные ацинусы с компактными тёмно окрашенными секреторными клетками."
+        },
+        {
+          "n": 2,
+          "x": 20,
+          "y": 59,
+          "label": "Выводные протоки",
+          "note": "Ищи проток с заметным просветом и эпителиальной выстилкой между секреторными отделами."
+        },
+        {
+          "n": 3,
+          "x": 43,
+          "y": 37,
+          "label": "Междольковая соединительная ткань",
+          "note": "Соединительнотканные перегородки разделяют дольки железы, здесь могут идти сосуды и более крупные протоки."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
     },
     {
       "id": "mixed-salivary-gland",
       "title": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
       "departmentTitle": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
-      "credit": "Sahithi Adapala",
-      "license": "CC BY-SA 4.0",
-      "file": "Histology of mixed salivary gland.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg",
-      "aspect": "0.75",
-      "stain": "Окраска по источнику: не подтверждена",
-      "description": "Mixed salivary gland micrograph; individual serous demilunes and ducts require sufficient resolution.",
+      "credit": "Wbensmith",
+      "license": "CC BY 3.0",
+      "file": "WVSOM Submandibular Gland.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/WVSOM_Submandibular_Gland.JPG",
+      "aspect": "1.33",
+      "stain": "Световая микрофотография; протокол окраски в Commons не указан",
+      "description": "Реальный срез смешанной подчелюстной слюнной железы: серозные и слизистые секреторные клетки, крупные протоки и соединительная ткань. Справочный аналог темы «СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА», но не оригинальное кафедральное фото.",
       "landmarks": [
         {
           "label": "Слизистые секреторные отделы",
@@ -563,10 +688,10 @@
       ],
       "answer": "mixed-salivary-gland",
       "src": "./photos/mixed-salivary-gland.jpg",
-      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_mixed_salivary_gland.jpg",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:WVSOM_Submandibular_Gland.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
       "buildSources": [
-        "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/e/e2/WVSOM_Submandibular_Gland.JPG"
       ],
       "annotations": [],
       "localAsset": true,
@@ -595,8 +720,8 @@
           "note": "Эмаль располагается наружнее дентина в области коронки; её вид зависит от метода подготовки и зрелости зуба."
         },
         {
-          "label": "Амелобласты и одонтобласты",
-          "note": "Амелобласты формируют эмаль с её внешней стороны, одонтобласты — дентин со стороны зубного сосочка/пульпы; при наличии авторских подписей сверяй с ними."
+          "label": "Амелобласты",
+          "note": "На исходном снимке амелобласты подписаны автором снаружи от формирующейся эмали. Одонтобласты расположены со стороны зубного сосочка; их можно найти по другой авторской стрелке."
         }
       ],
       "answer": "tooth-dentin-enamel",
@@ -606,11 +731,33 @@
       "buildSources": [
         "https://upload.wikimedia.org/wikipedia/commons/1/1c/Enamelmineralization11-17-05.jpg"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "n": 1,
+          "x": 54,
+          "y": 41,
+          "label": "Слой дентина",
+          "note": "Дентин лежит глубже эмали со стороны пульпы; на препарате ищи плотный слой минерализованного матрикса."
+        },
+        {
+          "n": 2,
+          "x": 54,
+          "y": 32,
+          "label": "Слой эмали",
+          "note": "Эмаль располагается наружнее дентина в области коронки; её вид зависит от метода подготовки и зрелости зуба."
+        },
+        {
+          "n": 3,
+          "x": 40,
+          "y": 27,
+          "label": "Амелобласты",
+          "note": "На исходном снимке амелобласты подписаны автором снаружи от формирующейся эмали. Одонтобласты расположены со стороны зубного сосочка; их можно найти по другой авторской стрелке."
+        }
+      ],
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
     }
   ]
 }
