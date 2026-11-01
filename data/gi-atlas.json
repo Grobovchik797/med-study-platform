@@ -208,7 +208,7 @@
     },
     {
       "id": "tooth-enamel-organ",
-      "title": "Развитие зуба — эмалевый орган",
+      "title": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН",
       "credit": "Dozenist",
       "license": "CC BY-SA 3.0",
       "file": "Earlybellstage11-18-05.jpg",
@@ -241,11 +241,12 @@
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН"
     },
     {
       "id": "gastro-esophageal-junction",
-      "title": "Переход пищевода в желудок",
+      "title": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК",
       "credit": "Jpogi",
       "license": "Public domain",
       "file": "Gastro-esophageal jxn.JPG",
@@ -278,7 +279,8 @@
       "localAsset": true,
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
-      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК"
     }
   ]
 }
