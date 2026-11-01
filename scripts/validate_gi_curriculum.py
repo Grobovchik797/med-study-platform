@@ -75,16 +75,16 @@ for m in maps['maps']:
  assert not any(pending),('Unclosed row span',m['id'])
 topics=next(s for s in library['subjects']['histology-cytology']['sections'] if s['id']=='digestive')['topics']
 extra=load('gi-atlas.json')
-assert extra['version']==1 and len(extra['images'])==6
+assert extra['version']==1 and len(extra['images'])==8
 base=load('small-intestine-slides.json')['images']
 slide_ids={s['id'] for s in base+extra['images']}
-assert len(slide_ids)==9
-assert sum(bool(c.get('slideId')) for c in course['chapters'])==10
+assert len(slide_ids)==11
+assert sum(bool(c.get('slideId')) for c in course['chapters'])==11
 for chapter in course['chapters']:
  if chapter.get('slideId'):
   assert chapter['slideId'] in slide_ids,chapter['id']
 for image in extra['images']:
- assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0'}
+ assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0','Public domain'}
  assert image['localAsset'] and image['src']=='./photos/'+image['id']+'.jpg'
  assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')
  assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
