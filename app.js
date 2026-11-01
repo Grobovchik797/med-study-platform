@@ -305,13 +305,14 @@ function showSmallIntestineSlides(initialIndex=0,originChapterId=null) {
   // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
   const slides=originChapterId?giAtlasSlides:intestineSlides;
   if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>=(slides?.images?.length||0))initialIndex=0;
-  const from=originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
+  const from=originChapterId==='reference-atlas'?'reference-atlas':originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
     chapterId=originChapterId||activeGIChapterId,depth=intestineDepth;
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !slides?.images?.length) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
   const back=()=>{
     if(from==='intestine'){intestineDepth=depth;showIntestine();}
     else if(from==='gi-chapter'&&chapterId)showGIChapter(chapterId);
+    else if(from==='reference-atlas')showResourceLibrary('atlas');
     else showTopic('histology-small-intestine');
     requestAnimationFrame(()=>window.scrollTo(0,scrollY));
   };
@@ -391,6 +392,12 @@ function showResourceLibrary(kind) {
       element('p','','Исходные названия сохранены без изменений. Реальные фотографии и видеокадры уже доступны. Отдельно открыт справочный атлас лицензированных препаратов.'),
       button('Открыть кафедральный атлас →',()=>showDepartmentAtlas(),'library-action'));
     main.append(department);
+    const reference=element('section','card dept-banner');
+    append(reference,element('div','kicker','СПРАВОЧНЫЙ АТЛАС · ОТКРЫТЫЕ МИКРОФОТО'),
+      element('h2','','Все 18 справочных препаратов'),
+      element('p','','Разные реальные микрофотографии для подготовки к кафедральным препаратам. В режиме «Найди структуру» можно самостоятельно ставить номера на снимке; автоматическая оценка доступна только для проверенных координат.'),
+      button('Открыть справочный атлас →',()=>showSmallIntestineSlides(0,'reference-atlas'),'library-action'));
+    main.append(reference);
   }
   const entries=libraryEntries().filter(({topic})=>kind==='notes'?
     Object.values(topic.notes||{}).some(Boolean) : kind==='atlas'?topic.atlas:topic.flashcards);
@@ -1187,7 +1194,7 @@ Promise.all([
       throw Error('Структура библиотеки повреждена');
     }
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
-        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==8 || !window.MedStudySI)
+        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==15 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
