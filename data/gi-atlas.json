@@ -39,14 +39,14 @@
     },
     {
       "id": "esophagus",
-      "title": "Пищевод — слизистая, H&E, ×100",
-      "credit": "Guido Fregapani",
-      "license": "CC BY-SA 4.0",
+      "title": "Пищевод — слизистая оболочка",
+      "credit": "Димитър Митев",
+      "license": "CC BY-SA 3.0",
       "file": "Esôfago – HE – 100x.png",
       "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png",
-      "aspect": "1.31",
-      "stain": "Гематоксилин и эозин (H&E), ×100 (авторская карточка)",
-      "description": "Фрагмент слизистой пищевода с многослойным плоским неороговевающим эпителием и собственной пластинкой. На исходном снимке есть авторские цифровые обозначения.",
+      "aspect": "1.14",
+      "stain": "Гистологическая микрофотография; точная окраска в карточке Commons не указана",
+      "description": "Фрагмент стенки пищевода с многослойным плоским эпителием и собственной пластинкой слизистой. Изображение не содержит авторской нумерации клеточных структур; координаты не размечены.",
       "landmarks": [
         {
           "label": "Многослойный плоский неороговевающий эпителий",
@@ -59,10 +59,10 @@
       ],
       "answer": "esophagus",
       "src": "./photos/esophagus.jpg",
-      "source": "https://commons.wikimedia.org/wiki/File:Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Oesophagus.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
       "buildSources": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/94/Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png"
+        "https://upload.wikimedia.org/wikipedia/commons/c/c2/Oesophagus.jpg"
       ],
       "annotations": [],
       "localAsset": true,
