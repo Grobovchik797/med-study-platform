@@ -129,7 +129,7 @@ function render(host,{onBack,chapterId=null}={}){
    zoom.addEventListener('input',()=>{img.style.width=zoom.value+'%';});
    panel.append(el('label','dept-zoom-label','Увеличение фото: от 100 до 300%'),zoom);
   }else{
-   panel.append(el('p','dept-placeholder','Фотография ещё не выбрана в этом браузере. Нажми «Выбрать файлы» выше и выбери исходный «'+selected+'».'));
+   panel.append(el('p','dept-placeholder',mode==='check'?'Для этого препарата ещё нет загруженной фотографии. Перейди в «Изучение», чтобы увидеть нужное имя файла и загрузить снимок.':'Фотография ещё не выбрана в этом браузере. Нажми «Выбрать файлы» выше и выбери исходный «'+selected+'».'));
   }
   if(mode==='study'){
    panel.append(el('h3','','Что необходимо проверить на срезе по гистологии'));
