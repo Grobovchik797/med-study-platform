@@ -42,7 +42,15 @@ async function navigateHistology(page) {
   assert.ok((await page.locator('.gi-recall-card').count())===1);
   await page.getByRole('button',{name:'Показать ответ'}).tap();
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>85);
-  await page.getByRole('button',{name:'Следующая'}).tap();
+  await page.getByRole('button',{name:'Знаю ✓'}).tap();
+  assert.ok((await page.locator('.gi-recall-count').textContent()).includes('Знаю: 1'));
+  await page.getByRole('button',{name:'Показать ответ'}).tap();
+  await page.getByRole('button',{name:'Повторить ↺'}).tap();
+  assert.ok((await page.locator('.gi-recall-count').textContent()).includes('Повторить: 1'));
+  await page.getByRole('button',{name:/Повторить трудные/}).tap();
+  assert.ok((await page.locator('.gi-provenance').textContent()).includes('Повторение трудных'));
+  assert.equal(await page.locator('.gi-recall-meter').getAttribute('aria-valuenow'),'2');
+  await page.getByRole('button',{name:'Показать все карточки'}).tap();
   await page.getByRole('button',{name:'← К теме'}).tap();
   await waitHeading(page,'Тонкая кишка');
   await page.locator('.library-feature').nth(2).locator('button').tap();
@@ -122,8 +130,13 @@ async function navigateDigestiveCourse(page) {
   await page.getByRole('button',{name:'Следующая'}).tap();
   await page.getByRole('button',{name:'Показать ответ'}).tap();
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>90);
+  assert.equal(await page.locator('#mobile-more-toggle').getAttribute('aria-current'),'page',
+    'Flashcards must highlight the Cards navigation section');
   await page.getByRole('button',{name:'← К теме'}).tap();
   await waitHeading(page,'Желудок: оболочки');
+  const accents=await page.locator('.gi-topic-features .library-feature').evaluateAll(nodes=>
+    nodes.map(node=>getComputedStyle(node).borderTopColor));
+  assert.equal(new Set(accents).size,4,'Four study resources should have distinct colour accents');
   assert.equal(await page.getByRole('button',{name:'Пауза',exact:true}).count(),1,'Timer must continue across topic cards');
   await page.getByRole('button',{name:'Пауза',exact:true}).tap();
   await page.getByRole('button',{name:'Сбросить',exact:true}).tap();
@@ -392,6 +405,10 @@ async function main() {
     assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
     await desktop.getByRole('button',{name:'Изучение'}).click();
     assert.equal(await desktop.locator('.dept-modes button').count(),2);
+    await desktop.locator('.brand').click();
+    await waitHeading(desktop,'Med Study — библиотека знаний');
+    assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
+      'page','Clicking the logo should really navigate to the home view');
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
     console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');
