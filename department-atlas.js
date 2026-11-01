@@ -103,9 +103,9 @@ function render(host,{onBack,chapterId=null}={}){
   section.append(importer);
   if(notice)section.append(el('p','dept-message',notice));
   const grid=el('div','dept-file-grid');
-  for(const spec of scope){
+  for(const [i,spec] of scope.entries()){
    const card=el('button','dept-file-card'+(selected===spec.file?' active':''));card.type='button';
-   card.append(el('strong','',spec.file),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
+   card.append(el('strong','',mode==='check'?'Препарат '+(i+1):spec.file),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
    card.addEventListener('click',()=>{selected=spec.file;mode='study';paint();});
    grid.append(card);
   }
@@ -113,7 +113,7 @@ function render(host,{onBack,chapterId=null}={}){
   const spec=byName.get(selected);
   if(!scope.includes(spec))return;
   const panel=el('section','dept-panel');
-  panel.append(el('div','kicker','КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',spec.file));
+  panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА ПО КАФЕДРАЛЬНОМУ ПРЕПАРАТУ':'КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',mode==='check'?'Определи препарат по фотографии':spec.file));
   const controls=el('div','dept-modes');
   for(const [key,title] of [['study','Изучение'],['check','Самопроверка'],['find','Найди структуру']]){
    controls.append(btn(title,()=>{mode=key;paint();},'gi-button'+(mode===key?' gi-active':' gi-light')));
