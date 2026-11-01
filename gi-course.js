@@ -89,7 +89,9 @@ function briefExtract(text){
   return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
 }
 
-function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,depth='brief'}) {
+ const focusMount=el('div','gi-topic-focus');
+ if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focusMount,{topicTitle:chapter.title,topicKey:chapter.id});
  let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
@@ -98,6 +100,25 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     el('h1','',chapter.title),
     paragraph(chapter.intro,'gi-lead'),
     paragraph('Методичка: печатные страницы '+chapter.methodPage+'. Источник: АГМА, 1999 год. Современные пояснения добавлены отдельно; это не утверждённая преподавателем редакция.','gi-provenance'));
+  // Four real resources on each chapter page, following the small-intestine pilot.
+  const resources=el('div','library-features gi-topic-features');
+  const notesTile=el('section','card library-feature');
+  append(notesTile,el('h2','','Конспект'),paragraph('Краткий и расширенный разбор по главе. Переключатель глубины расположен непосредственно перед текстом.'),
+    button('Перейти к конспекту →',()=>host.querySelector('#gi-chapter-notes')?.scrollIntoView(),'gi-button'));
+  const testsTile=el('section','card library-feature');
+  const n=mini.length+deepBlocks.filter(b=>b.checkpoint).length;
+  append(testsTile,el('h2','','Тесты'),paragraph('Не менее '+n+' вопросов из учебных материалов этой главы, с разбором ответа.'),
+    button('Начать тест →',onExam,'gi-button'));
+  const atlasTile=el('section','card library-feature');
+  append(atlasTile,el('h2','','Атлас'),paragraph(chapter.slideId?
+    'Реальный справочный микропрепарат: изучение, самопроверка и поиск структур.':
+    'Отдельной подтверждённой микрофотографии для этой главы пока нет.'));
+  if(chapter.slideId&&onSlide)atlasTile.append(button('Открыть микропрепарат →',()=>onSlide(chapter.slideId),'gi-button'));
+  const cardsTile=el('section','card library-feature');
+  append(cardsTile,el('h2','','Карточки'),paragraph('Вспомни признаки и механизмы по восьми карточкам этой темы.'),
+    button('Учить карточки →',onFlashcards,'gi-button'));
+  append(resources,notesTile,testsTile,atlasTile,cardsTile);
+  host.append(resources,focusMount);
   const depths=el('div','gi-depths');
   for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
@@ -119,6 +140,7 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     host.append(figure);
   }
   const content=el('article','card gi-content');
+  content.id='gi-chapter-notes';
   append(content,el('h2','','Учебный конспект'),
     paragraph(chapter.intro));
   for(const x of chapter.brief)content.append(paragraph(x));
@@ -216,7 +238,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[]}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
  const topicMode=Boolean(chapterId);
@@ -225,6 +247,11 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
   ...mini.map(([prompt,options,answer,explanation],i)=>({
    id:'gi-mini-'+chapterId+'-'+i,chapter:chapterId,difficulty:'practice',
    prompt,options,answer,explanation
+  })),
+  ...deepBlocks.filter(block=>block.checkpoint).map(block=>({
+   id:'gi-checkpoint-'+block.id,chapter:chapterId,difficulty:'practice',
+   prompt:block.checkpoint.prompt,options:block.checkpoint.options,
+   answer:block.checkpoint.answer,explanation:block.checkpoint.explanation
   }))
  ]:[];
  let quizQuestions=[];
@@ -246,7 +273,7 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
    el('div','kicker',topicMode?'ТЕСТ ПО ТЕМЕ':'ИТОГОВОЕ ТЕСТИРОВАНИЕ'),
    el('h1','',topicMode?chapterTitle:'Контроль знаний по пищеварительной системе'),
    paragraph(topicMode?
-    'В этом разделе доступно '+topicQuestions.length+' проверочных вопросов по выбранной теме: 3 мини-вопроса и дополнительные вопросы из общего банка, если они есть. Это учебный черновик; полная кафедральная сверка впереди.':
+    'В этой теме '+topicQuestions.length+' вопросов: 3 коротких, 5 проверок из расширенного конспекта и дополнительные из итогового банка, если они предусмотрены. После каждого ответа — объяснение; проверка преподавателем ещё требуется.':
     'Итоговый тест охватывает весь курс. Выбери уровень сложности.','gi-lead'));
   const controls=el('div','gi-depths');
   if(topicMode){
@@ -301,5 +328,32 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
  }
  selectLevel();
 }
-window.MedStudyGI={renderChapter,renderWorkbook,renderExam};
+// Flashcards use ONLY existing authored teaching material; no synthetic facts
+// or externally generated questions are added to the medical syllabus.
+function renderCards(host,{title,cards,onBack}){
+ let order=cards.map((_,i)=>i),index=0,revealed=false;
+ function show(){
+  const item=cards[order[index]];
+  host.replaceChildren();
+  append(host,button('← К теме',onBack,'gi-back'),
+    el('div','kicker','АКТИВНОЕ ВОСПРОИЗВЕДЕНИЕ'),
+    el('h1','',title+' · карточки'),
+    paragraph('Сначала сформулируй ответ самостоятельно, затем открой объяснение из конспекта.','gi-lead'),
+    el('p','gi-provenance','Карточка '+(index+1)+' из '+order.length+'. Формулировки взяты из существующего материала темы.'));
+  const card=el('article','card gi-recall-card');
+  append(card,el('div','kicker',revealed?'ПРОВЕРЬ СЕБЯ':'ВСПОМНИ БЕЗ ПОДСКАЗКИ'),el('h2','',item.prompt));
+  if(revealed)card.append(paragraph(item.answer));
+  else card.append(paragraph('Попробуй ответить своими словами, только затем открой объяснение.'));
+  const controls=el('div','gi-end-actions');
+  append(controls,button(revealed?'Скрыть ответ':'Показать ответ',()=>{revealed=!revealed;show();},'gi-button'),
+   button('← Назад',()=>{index=(index-1+order.length)%order.length;revealed=false;show();},'gi-button gi-light'),
+   button('Следующая →',()=>{index=(index+1)%order.length;revealed=false;show();},'gi-button gi-light'),
+   button('Перемешать',()=>{order=randomize(order);index=0;revealed=false;show();},'gi-button gi-light'));
+  host.append(card,controls);
+ }
+ if(!cards.length){host.replaceChildren(paragraph('Карточки этой темы ещё не подготовлены.'));return;}
+ show();
+}
+
+window.MedStudyGI={renderChapter,renderWorkbook,renderExam,renderCards};
 })();

@@ -272,60 +272,79 @@ function renderSlides(host,data,exit,initialIndex=0){
 }
 
 /* Optional study timer, not a claim that a whole course can be learned in 30min. */
-function renderFocus(host) {
-  const root=e('section','si-focus');
-  const title=e('h2','','30 минут фокуса + 5 минут отдыха');
-  const hint=e('p','si-instruction','Один цикл — один фрагмент тонкой кишки. Отвечай по памяти и сверяй себя по препарату. Пауза и сброс доступны всегда.');
-  root.append(e('div','kicker','УЧЕБНЫЙ МАРШРУТ · ПО ЖЕЛАНИЮ'),title,hint);
-  const phases=[
-   {s:0,name:'Подготовка',description:'Убери лишние уведомления, выбери конкретную цель, открой нужный фрагмент.'},
-   {s:120,name:'Карта темы',description:'Вспомни, какие оболочки и клетки ты уже знаешь, и что хочешь уточнить.'},
-   {s:300,name:'Активное чтение',description:'Связывай строение с функцией. Обращай внимание на NB и пояснения в скобках.'},
-   {s:900,name:'Микроскопия',description:'Посмотри схему и реальные препараты, попробуй самостоятельно назвать структуры.'},
-   {s:1260,name:'Восстановление по памяти',description:'Закрой объяснение и восстанови механизмы без подсказок.'},
-   {s:1620,name:'Самопроверка',description:'Сделай несколько тестов и отметь, что нужно повторить.'},
-   {s:1800,name:'Перерыв',description:'Пройдись, попей воды, поменяй фокус взгляда; при желании — лёгкая разминка.'},
-   {s:2100,name:'Готово',description:'Отдых завершён. Можно повторить трудный фрагмент в другое время.'}
-  ];
-  let elapsed=0,baseElapsed=0,runningSince=0,ticker=null;
-  const digital=e('div','si-focus-clock','30:00');
-  digital.setAttribute('role','timer');
-  const phase=e('strong','si-focus-phase','Подготовка');
-  const description=e('p','si-instruction','');
-  const timeline=e('div','si-focus-track');
-  const fill=e('div','si-focus-fill');timeline.append(fill);
-  const controls=e('div','si-choice-row');const start=btn('Начать',toggle),reset=btn('Сбросить',()=>{halt();elapsed=0;baseElapsed=0;draw();},'si-button secondary');
-  function halt(){
-    if(ticker!==null){clearInterval(ticker);ticker=null;}
-    runningSince=0;baseElapsed=elapsed;start.textContent='Продолжить';
-  }
-  function toggle(){
-    if(ticker!==null){refresh();halt();draw();return;}
-    if(elapsed>=2100){elapsed=0;baseElapsed=0;}
-    runningSince=Date.now();baseElapsed=elapsed;
-    ticker=setInterval(()=>{if(!root.isConnected){halt();return;}refresh();draw();},250);
-    start.textContent='Пауза';draw();
-  }
-  function refresh(){
-    if(!runningSince)return;
-    elapsed=Math.min(2100,baseElapsed+Math.floor((Date.now()-runningSince)/1000));
-    if(elapsed>=2100)halt();
-  }
-  function draw(){
-    const breakTime=elapsed>=1800;
-    const end=breakTime?2100:1800;
-    const remaining=end-elapsed;
-    const mm=Math.floor(remaining/60),ss=remaining%60;
-    digital.textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
-    const step=[...phases].reverse().find(p=>elapsed>=p.s)||phases[0];
-    phase.textContent=step.name;description.textContent=step.description;
-    fill.style.width=(breakTime?(elapsed-1800)/300:elapsed/1800)*100+'%';
-    root.classList.toggle('si-focus-break',breakTime);
-    if(elapsed===2100){start.textContent='Новый цикл';digital.textContent='00:00';}
-  }
-  controls.append(start,reset);
-  add(root,digital,phase,description,timeline,controls);
-  host.append(root);draw();
+function renderFocus(host,{topicTitle='Тонкая кишка',topicKey=null}={}) {
+ const root=e('section','si-focus');
+ const title=e('h2','','30 минут фокуса + 5 минут отдыха');
+ const hint=e('p','si-instruction','Один цикл — один фрагмент темы «'+String(topicTitle)+'». Пауза и сброс доступны всегда; таймер не ограничивает время на конспект.');
+ root.append(e('div','kicker','УЧЕБНЫЙ МАРШРУТ · ПО ЖЕЛАНИЮ'),title,hint);
+ const phases=[
+  {s:0,name:'Подготовка',description:'Убери лишние уведомления, выбери конкретную цель, открой нужный фрагмент.'},
+  {s:120,name:'Карта темы',description:'Вспомни, какие структуры и функции уже знаешь, что нужно уточнить.'},
+  {s:300,name:'Активное чтение',description:'Связывай строение с функцией. Обращай внимание на NB и пояснения в скобках.'},
+  {s:900,name:'Микроскопия',description:'Посмотри схему или настоящий препарат, если он доступен; попробуй назвать структуры.'},
+  {s:1260,name:'Восстановление по памяти',description:'Скрой объяснение и восстанови механизмы или признаки без подсказок.'},
+  {s:1620,name:'Самопроверка',description:'Ответь на вопросы или открой карточки; отметь трудные пункты.'},
+  {s:1800,name:'Перерыв',description:'Пройдись, попей воды, поменяй фокус взгляда; при желании — лёгкая разминка.'},
+  {s:2100,name:'Готово',description:'Отдых завершён. Можно повторить трудный фрагмент в другое время.'}
+ ];
+ // Time survives opening cards/tests and revisiting the chapter, with no server.
+ const key=typeof topicKey==='string'&&/^[a-z0-9-]{1,60}$/.test(topicKey)?
+  'med-study-focus-'+topicKey+'-v1':null;
+ let saved=null;
+ if(key)try{saved=JSON.parse(localStorage.getItem(key)||'null');}catch{}
+ const valid=saved&&typeof saved==='object'&&Number.isInteger(saved.elapsed)&&
+  saved.elapsed>=0&&saved.elapsed<=2100&&
+  Number.isFinite(saved.startedAt)&&saved.startedAt>=0&&saved.startedAt<=Date.now();
+ let elapsed=valid?saved.elapsed:0,baseElapsed=elapsed,
+  runningSince=valid&&saved.running?saved.startedAt:0,ticker=null;
+ const digital=e('div','si-focus-clock','30:00');
+ digital.setAttribute('role','timer');
+ const phase=e('strong','si-focus-phase','Подготовка'),description=e('p','si-instruction','');
+ const timeline=e('div','si-focus-track'),fill=e('div','si-focus-fill');timeline.append(fill);
+ const controls=e('div','si-choice-row');
+ const start=btn('Начать',toggle),reset=btn('Сбросить',()=>{
+   halt();elapsed=0;baseElapsed=0;persist();draw();
+ },'si-button secondary');
+ function persist(){
+  if(!key)return;
+  try{localStorage.setItem(key,JSON.stringify({elapsed:baseElapsed,startedAt:runningSince,
+   running:Boolean(runningSince)}));}catch{}
+ }
+ function halt(){
+  if(ticker!==null){clearInterval(ticker);ticker=null;}
+  runningSince=0;baseElapsed=elapsed;start.textContent='Продолжить';persist();
+ }
+ function refresh(){
+  if(!runningSince)return;
+  elapsed=Math.min(2100,baseElapsed+Math.floor((Date.now()-runningSince)/1000));
+  if(elapsed>=2100)halt();
+ }
+ function tick(){
+  if(!root.isConnected){if(ticker!==null)clearInterval(ticker);ticker=null;return;}
+  refresh();draw();
+ }
+ function toggle(){
+  if(runningSince){refresh();halt();draw();return;}
+  if(elapsed>=2100){elapsed=0;baseElapsed=0;}
+  runningSince=Date.now();baseElapsed=elapsed;persist();
+  if(ticker!==null)clearInterval(ticker);
+  ticker=setInterval(tick,250);
+  start.textContent='Пауза';draw();
+ }
+ function draw(){
+  const breakTime=elapsed>=1800,end=breakTime?2100:1800,remaining=end-elapsed;
+  digital.textContent=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0');
+  const step=[...phases].reverse().find(p=>elapsed>=p.s)||phases[0];
+  phase.textContent=step.name;description.textContent=step.description;
+  fill.style.width=(breakTime?(elapsed-1800)/300:elapsed/1800)*100+'%';
+  root.classList.toggle('si-focus-break',breakTime);
+  start.textContent=runningSince?'Пауза':elapsed===2100?'Новый цикл':elapsed>0?'Продолжить':'Начать';
+ }
+ controls.append(start,reset);
+ add(root,digital,phase,description,timeline,controls);
+ host.append(root);
+ refresh();draw();
+ if(runningSince)ticker=setInterval(tick,250);
 }
 
 window.MedStudySI={renderQuiz,renderSlides,renderFocus,readProgress:read};

@@ -36,6 +36,18 @@ for c in course['chapters']:
   assert len(prompt)>20 and len(options)==3 and len(set(options))==3 and answer in (0,1,2)
   assert len(explanation)>25
 assert sum(len(v) for v in mini['chapterQuestions'].values())==51
+# 1.8: reuse five authored deep-block checkpoints in each chapter quiz.
+# The source-of-truth questions remain in gi-deep-a/b, not generated from prose.
+for c in course['chapters']:
+ chapter_id=c['id']
+ cp=[b['checkpoint'] for b in deep_blocks[chapter_id]]
+ assert len(cp)==5 and len(mini['chapterQuestions'][chapter_id])==3
+ assert len({b['id'] for b in deep_blocks[chapter_id]})==5
+ assert all(b['checkpoint']['explanation'].strip() for b in deep_blocks[chapter_id])
+ assert len(c['brief'])>=2 and len(c['nb'].strip())>=25
+ # Five cards from authored blocks + two from brief + NB = eight source-backed cards.
+ assert 5+min(2,len(c['brief']))+1==8
+
 assert len(exam['questions'])==24
 assert Counter(q['difficulty'] for q in exam['questions'])=={'easy':8,'medium':8,'hard':8}
 assert len(set(q['id'] for q in exam['questions']))==24

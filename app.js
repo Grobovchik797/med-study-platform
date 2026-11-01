@@ -267,7 +267,7 @@ function showGIChapter(id) {
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index,id);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
-    onExam:()=>showGIExam(id),onWorkbook:showGIWorkbook,
+    onExam:()=>showGIExam(id),onFlashcards:()=>showGIFlashcards(id),onWorkbook:showGIWorkbook,
     onDepartment:()=>showDepartmentAtlas(id)
   });
   window.scrollTo(0,0);
@@ -298,8 +298,33 @@ function showGIExam(chapterId=null) {
   window.MedStudyGI.renderExam(main,{bank:giFinalBank,
     chapterId:chapter?.id||null,chapterTitle:chapter?.title||'',
     mini:chapter?giInlineBank.chapterQuestions[chapter.id]||[]:[],
+    deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],
     onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
+}
+function showGIFlashcards(id){
+ const chapter=giCurriculum?.chapters.find(x=>x.id===id);
+ if(!chapter)return showSection('histology-cytology','digestive');
+ const blocks=giDeepBlocks[id]||[];
+ const cards=[
+  ...blocks.map(x=>({prompt:'Объясни: '+x.title,answer:x.text})),
+  ...chapter.brief.slice(0,2).map((text,i)=>({prompt:i===0?
+   'Какие основные структуры и признаки у этой темы?':'Как связаны строение и функция?',
+   answer:text})),
+  {prompt:'Что особенно важно не перепутать (NB)?',answer:chapter.nb}
+ ];
+ view='gi-cards';updateNav();main.replaceChildren();
+ window.MedStudyGI.renderCards(main,{title:chapter.title,cards,onBack:()=>showGIChapter(id)});
+ window.scrollTo(0,0);
+}
+function showIntestineFlashcards(){
+ const version=intestineData?.variants.find(v=>v.id==='brief');
+ const cards=(version?.sections||[]).map(s=>({prompt:'Вспомни: '+s.title,
+  answer:s.key||s.paragraphs.join(' ')}));
+ view='si-cards';updateNav();main.replaceChildren();
+ window.MedStudyGI.renderCards(main,{title:'Тонкая кишка',cards,
+  onBack:()=>showTopic('histology-small-intestine')});
+ window.scrollTo(0,0);
 }
 function showReferenceAtlas(initialIndex=0) {
   showSmallIntestineSlides(initialIndex,null,true);
@@ -373,9 +398,14 @@ function showTopic(topicId) {
   append(cards,element('h2','','Карточки для повторения'),
     element('p','',topic.flashcards?'Повторение основных понятий темы.':
       'Карточки появятся после проверки учебных материалов.'));
-  if(topic.flashcards) cards.append(button('Учить карточки →',()=>navigate('flashcards'),'library-action'));
+  if(topic.flashcards) cards.append(button('Учить карточки →',
+    topic.route==='intestine'?showIntestineFlashcards:()=>navigate('flashcards'),'library-action'));
   box.append(cards);
   main.append(box);
+  if(topic.route==='lesson'&&window.MedStudySI?.renderFocus){
+    const timer=element('div','gi-topic-focus');window.MedStudySI.renderFocus(timer,{topicTitle:topic.title,topicKey:topic.id});
+    main.append(timer);
+  }
   window.scrollTo(0,0);
 }
 
@@ -420,7 +450,10 @@ function showResourceLibrary(kind) {
           topic.route==='gi-chapter'?()=>showGIAtlasChapter(topic.chapterId):()=>navigate('atlas'),'library-go'));
     } else {
       append(card,element('p','','Карточки для активного повторения.'),
-        button('Начать повторение →',()=>navigate('flashcards'),'library-go'));
+        button('Начать повторение →',
+          topic.route==='gi-chapter'?()=>showGIFlashcards(topic.chapterId):
+          topic.route==='intestine'?showIntestineFlashcards:
+          ()=>navigate('flashcards'),'library-go'));
     }
     grid.append(card);
   }
@@ -540,7 +573,7 @@ function showIntestine() {
   main.append(header);
   const focus=element('div','si-focus-container');
   main.append(focus);
-  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus);
+  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus,{topicTitle:'Тонкая кишка',topicKey:'intestine'});
   if(version.originStatement)main.append(element('p','si-source-note',version.originStatement));
   // Resources belong near the content they illustrate, not above every note.
 

@@ -37,7 +37,7 @@
               },
               "quiz": true,
               "atlas": false,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "plan",
               "hint": "По методичке, стр. 96–99, 103–106 · два формата, 3 мини-теста, практические карты."
@@ -52,7 +52,7 @@
               },
               "quiz": true,
               "atlas": false,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "oral",
               "hint": "По методичке, стр. 96–100 · два формата, 3 мини-теста, практические карты."
@@ -67,7 +67,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "tongue",
               "hint": "По методичке, стр. 96–100 · два формата, 3 мини-теста, практические карты."
@@ -82,7 +82,7 @@
               },
               "quiz": true,
               "atlas": false,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "taste",
               "hint": "По методичке, стр. 96–100 · два формата, 3 мини-теста, практические карты."
@@ -97,7 +97,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "tonsils",
               "hint": "По методичке, стр. 96–100 · два формата, 3 мини-теста, практические карты."
@@ -112,7 +112,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "teeth",
               "hint": "По методичке, стр. 100–103 · два формата, 3 мини-теста, практические карты."
@@ -127,7 +127,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "salivary",
               "hint": "По методичке, стр. 100–103 · два формата, 3 мини-теста, практические карты."
@@ -142,7 +142,7 @@
               },
               "quiz": true,
               "atlas": false,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "pharynx",
               "hint": "По методичке, стр. 96–103 · два формата, 3 мини-теста, практические карты."
@@ -157,7 +157,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "esophagus",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -172,7 +172,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "stomach",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -187,7 +187,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "gastric-glands",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -202,7 +202,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "duodenum",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -217,7 +217,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "intestine",
               "hint": "Продолжение модуля 0.9: 3 варианта, 30 тестов, 3 микропрепарата; научная редактура продолжается."
             },
@@ -231,7 +231,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "jejunum",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -246,7 +246,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "ileum",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -261,7 +261,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "colon",
               "hint": "По методичке, стр. 103–108 · два формата, 3 мини-теста, практические карты."
@@ -276,7 +276,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "liver",
               "hint": "По методичке, стр. 108–110 · два формата, 3 мини-теста, практические карты."
@@ -291,7 +291,7 @@
               },
               "quiz": true,
               "atlas": true,
-              "flashcards": false,
+              "flashcards": true,
               "route": "gi-chapter",
               "chapterId": "pancreas",
               "hint": "По методичке, стр. 108–110 · два формата, 3 мини-теста, практические карты."
