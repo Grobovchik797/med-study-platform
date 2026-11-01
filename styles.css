@@ -534,3 +534,24 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 @media(max-width:650px){
   .gi-original-table th,.gi-original-table td{min-width:115px;max-width:260px;padding:9px;}
 }
+
+/* Desktop: always-visible navigation while scrolling long medical notes.
+   Keep the mobile fixed top navigation unchanged below 760px. */
+@media (min-width:761px) {
+  .sidebar {
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    height:100dvh;
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    z-index:20;
+  }
+  .side-nav { flex-shrink:0; }
+}
+
+/* Revealed source-checked target after a structure-finding attempt. */
+.si-pin-revealed { background:#167c57; z-index:4; }

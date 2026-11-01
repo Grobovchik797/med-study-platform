@@ -175,23 +175,36 @@ function renderSlides(host,data,exit,initialIndex=0){
       const feedback=e('div','si-find-feedback','Коснись нужной области на снимке; допускается приблизительное попадание в большую структуру.');
       root.append(prompt,feedback);
       let startPoint=null;
-      surface.addEventListener('pointerdown',ev=>{startPoint={x:ev.clientX,y:ev.clientY};});
-      surface.addEventListener('click',ev=>{
-        if(current>=slide.annotations.length)return;
-        if(startPoint&&Math.hypot(ev.clientX-startPoint.x,ev.clientY-startPoint.y)>12)return;
+      frame.addEventListener('pointerdown',ev=>{
+        if(ev.pointerType==='mouse'&&ev.button!==0)return;
+        startPoint={id:ev.pointerId,x:ev.clientX,y:ev.clientY};
+      });
+      // The microscope captures the pointer for panning. Handle selection on the frame,
+      // because capture retargets click events away from the scaled surface.
+      frame.addEventListener('pointerup',ev=>{
+        if(!startPoint||startPoint.id!==ev.pointerId)return;
+        const delta=Math.hypot(ev.clientX-startPoint.x,ev.clientY-startPoint.y);
+        startPoint=null;
+        if(delta>12||current>=slide.annotations.length)return;
         const box=surface.getBoundingClientRect();
-        if(box.width===0||box.height===0)return;
+        if(box.width<1||box.height<1)return;
         const x=100*(ev.clientX-box.left)/box.width;
         const y=100*(ev.clientY-box.top)/box.height;
+        if(x<0||x>100||y<0||y>100)return;
         const target=slide.annotations[current];
         const near=Math.abs(x-target.x)<=11&&Math.abs(y-target.y)<=11;
         if(near)success++;
-        feedback.textContent=near?'Верно! Найдена область: '+target.label:
-          'Не совсем. Ориентир: '+target.note;
+        const mark=e('span','si-pin si-pin-revealed',String(target.n));
+        mark.style.left=target.x+'%';mark.style.top=target.y+'%';
+        mark.title=target.label;mark.setAttribute('aria-label','Открытый ориентир: '+target.label);
+        surface.append(mark);
+        feedback.textContent=(near?'Верно! ':'Не совсем. ')+
+          'Правильная область №'+target.n+': '+target.label+'. '+target.note;
         current++;
         prompt.textContent=current<slide.annotations.length?
           'Найди: '+slide.annotations[current].label:
-          'Готово: '+success+' из '+slide.annotations.length+'. Области приблизительные, а не контуры отдельных клеток.';
+          'Готово: '+success+' из '+slide.annotations.length+
+          '. Метки показывают приблизительные области, а не границы отдельных клеток.';
       });
     }
   }
