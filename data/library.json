@@ -111,7 +111,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "teeth",
