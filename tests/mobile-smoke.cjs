@@ -115,6 +115,7 @@ async function navigateDigestiveCourse(page) {
   await page.getByRole('button',{name:'Пауза',exact:true}).tap();
   await page.getByRole('button',{name:'Сбросить',exact:true}).tap();
   assert.equal(await page.locator('.si-focus-clock').textContent(),'30:00');
+  await page.getByRole('button',{name:'Начать',exact:true}).tap();
   await page.locator('.gi-topic-features .library-feature').nth(3).locator('button').tap();
   await waitHeading(page,'Желудок: оболочки, ямки');
   assert.equal(await page.locator('.gi-recall-card').count(),1);
@@ -123,6 +124,9 @@ async function navigateDigestiveCourse(page) {
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>90);
   await page.getByRole('button',{name:'← К теме'}).tap();
   await waitHeading(page,'Желудок: оболочки');
+  assert.equal(await page.getByRole('button',{name:'Пауза',exact:true}).count(),1,'Timer must continue across topic cards');
+  await page.getByRole('button',{name:'Пауза',exact:true}).tap();
+  await page.getByRole('button',{name:'Сбросить',exact:true}).tap();
   assert.equal(await page.locator('.gi-mini-card').count(),3);
   assert.equal(await page.locator('.gi-brief-block').count(),5);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
