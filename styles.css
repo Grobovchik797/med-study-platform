@@ -609,3 +609,49 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
   .gi-recall-card{padding:16px;min-height:220px;}
   .gi-topic-features .gi-button{width:100%;}
 }
+
+
+/* 1.8.1: Meaningful subject-section colours, with words always conveying meaning. */
+.library-features .library-feature { --resource-color:#285d91; --resource-soft:#edf5ff;
+  border-top:4px solid var(--resource-color);
+  background:linear-gradient(180deg,var(--resource-soft) 0,#fff 125px);
+  transition:box-shadow .16s ease,transform .16s ease;
+}
+.library-features .library-feature:nth-child(2) { --resource-color:#805000; --resource-soft:#fff6e7; }
+.library-features .library-feature:nth-child(3) { --resource-color:#006e68; --resource-soft:#e8f8f5; }
+.library-features .library-feature:nth-child(4) { --resource-color:#723b97; --resource-soft:#f5eeff; }
+.library-features .library-feature h2 {color:var(--resource-color);}
+.library-features .library-feature p {font-size:14px;line-height:1.62;color:#3f4b60;}
+.library-features .library-feature .gi-button:not(.gi-light),
+.library-features .library-feature .library-action {background:var(--resource-color);color:#fff;}
+.library-features .library-feature .gi-button:not(.gi-light):hover,
+.library-features .library-feature .library-action:hover {filter:brightness(.91);}
+.library-features .library-feature button:focus-visible {outline:3px solid var(--resource-color);outline-offset:3px;}
+.gi-learning-guide {max-width:980px;padding:15px 18px;border:1px solid #c8ddeb;border-radius:13px;
+  background:#f6faff;color:#284c6c;margin:10px 0 16px;}
+.gi-learning-guide strong {display:block;font-size:14px;margin-bottom:9px;}
+.gi-learning-steps {display:flex;gap:14px 24px;flex-wrap:wrap;margin:0;padding-left:19px;
+  color:#365575;font-size:13.5px;line-height:1.7;}
+.gi-learning-steps li {padding-right:8px;}
+.gi-recall-card {border-top:4px solid #79419f;background:linear-gradient(180deg,#f8f3ff,#fff 120px);}
+.gi-recall-statistics {max-width:850px;margin:17px 0 10px;}
+.gi-recall-count {font-size:14px;font-weight:700;color:#3b4160;margin-bottom:8px;}
+.gi-recall-meter {height:9px;border-radius:99px;background:#e9eaf1;overflow:hidden;}
+.gi-recall-meter-fill {height:100%;background:#278375;border-radius:99px;transition:width .18s ease;}
+.gi-recall-judgement,.gi-recall-filter {display:flex;flex-wrap:wrap;gap:10px;margin-top:17px;}
+.gi-recall-judgement .gi-button {min-height:44px;}
+.gi-recall-known {background:#176b58;color:#fff;border-color:#176b58;}
+.gi-recall-review {background:#925808;color:#fff;border-color:#925808;}
+.gi-recall-known:hover {background:#10523f;}
+.gi-recall-review:hover {background:#704506;}
+.gi-recall-rating {color:#4e5370;font-weight:750;font-size:13px;margin-top:12px;}
+@media (max-width:600px){
+  .library-features .library-feature {background:linear-gradient(180deg,var(--resource-soft),#fff 142px);}
+  .gi-learning-steps {display:block;}
+  .gi-recall-judgement .gi-button {flex:1 1 45%;}
+  .gi-recall-count {font-size:13px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto;}
+  .library-features .library-feature,.gi-recall-meter-fill {transition:none;}
+}
