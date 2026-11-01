@@ -155,6 +155,35 @@ async function main() {
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
     }
+    // Regression 1.4: six additional licensed photos must route to their own GI chapter.
+    for(const [chapterTitle,slideIndex] of [
+      ['Слюнные железы','3'],
+      ['Пищевод и пищеводно-желудочный переход','4'],
+      ['Желудок: оболочки, ямки','5'],
+      ['Толстая кишка, аппендикс','6'],
+      ['Печень: долька','7'],
+      ['Поджелудочная железа: ацинусы','8']
+    ]) {
+      await page.locator('#mobile-more-toggle').tap();
+      await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+      await waitHeading(page,'Библиотека атласов');
+      await page.locator('.library-card').filter({hasText:chapterTitle}).locator('.library-go').tap();
+      await waitHeading(page,'Изучение и самопроверка');
+      assert.equal(await page.locator('.si-select').first().inputValue(),slideIndex,'Wrong real GI specimen for '+chapterTitle);
+      await page.getByRole('button',{name:'Самопроверка'}).tap();
+      assert.ok(await page.getByText('Какой орган или отдел показан на препарате?').isVisible());
+      await page.getByRole('button',{name:'Найди структуру'}).tap();
+      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
+      assert.ok((await page.locator('.si-find-mode .si-pin').count())===0,'Do not invent coordinates on new slides');
+      await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
+      await waitHeading(page,chapterTitle);
+    }
+    // Regression 1.4: topics without a verified image are not falsely shown as atlas entries.
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+    await waitHeading(page,'Библиотека атласов');
+    assert.equal(await page.locator('.library-card').filter({hasText:'Вкусовые почки'}).count(),0);
+    assert.ok(await page.locator('.library-card').count()>=11);
     // Regression 1.2: a chapter test must never redirect to the GI-wide final examination.
     await page.locator('.side-nav [data-nav="subjects"]').tap();
     await waitHeading(page,'Мои предметы');
