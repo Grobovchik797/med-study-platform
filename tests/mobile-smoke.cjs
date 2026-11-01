@@ -293,7 +293,7 @@ async function main() {
     const sideBox=await desktop.locator('.sidebar').boundingBox();
     assert.ok(sideBox && sideBox.y>=-2 && sideBox.y<=2 &&
       sideBox.height>=790 && sideBox.height<=802,'Desktop sidebar should remain visible and viewport-tall');
-    const atlasNav=desktop.locator('.sidebar [data-nav="atlases"]');
+    const atlasNav=desktop.locator('.side-nav .nav-item[data-nav="atlases"]');
     assert.ok(await atlasNav.isVisible(),'Atlas navigation disappeared at chapter end');
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
