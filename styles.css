@@ -552,3 +552,6 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
   }
   .side-nav { flex-shrink:0; }
 }
+
+/* Revealed source-checked target after a structure-finding attempt. */
+.si-pin-revealed { background:#167c57; z-index:4; }
