@@ -32,9 +32,10 @@ for subject_id, subject_data in library["subjects"].items():
             if topic["route"]=="intestine":
                 assert topic["id"]=="histology-small-intestine"
                 assert all(topic["notes"].values())
-                assert topic["quiz"] and topic["atlas"] and not topic["flashcards"]
+                assert topic["quiz"] and topic["atlas"] and topic["flashcards"]
             if topic["route"]=="gi-chapter":
                 assert topic["chapterId"] and all(topic["notes"].values())
+                assert topic["quiz"] and topic["flashcards"],topic["id"]
             if topic["route"]=="gi-exam":
                 assert topic["quiz"] and not topic["atlas"]
             if topic["route"]=="lesson":
