@@ -94,6 +94,7 @@ for image in extra['images']:
   assert len({a['n'] for a in image['annotations']})==len(image['annotations'])
   assert [a['n'] for a in image['annotations']]==list(range(1,len(image['annotations'])+1))
   assert all(a['label']==image['landmarks'][i]['label'] for i,a in enumerate(image['annotations']))
+  assert all(a.get('autoGrade') is False for a in image['annotations']), 'New coarse annotations must never award automatic grades'
 
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
 map_data=load('gi-department-reference-map.json')
