@@ -161,7 +161,7 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     host.append(maps);
   }
   const actions=el('div','gi-end-actions');
-  append(actions,button('Итоговые тесты (другие вопросы) →',onExam,'gi-button'),
+  append(actions,button('Тесты по этой теме →',onExam,'gi-button'),
     button('Все заполненные карты →',onWorkbook,'gi-button gi-light'),button('← Назад к темам',onBack,'gi-button gi-light'));
   host.append(actions);
  }
@@ -188,24 +188,59 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
+ const topicMode=Boolean(chapterId);
+ const topicQuestions=topicMode?[
+  ...bank.questions.filter(q=>q.chapter===chapterId),
+  ...mini.map(([prompt,options,answer,explanation],i)=>({
+   id:'gi-mini-'+chapterId+'-'+i,chapter:chapterId,difficulty:'practice',
+   prompt,options,answer,explanation
+  }))
+ ]:[];
+ let quizQuestions=[];
+ function trackMistake(question,isCorrect){
+  if(!topicMode)return;
+  try{
+   const key='med-study-gi-mistakes-v1';
+   const raw=JSON.parse(localStorage.getItem(key)||'{}');
+   const all=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};
+   const existing=Array.isArray(all[chapterId])?all[chapterId].filter(id=>typeof id==='string'):[];
+   all[chapterId]=isCorrect?existing.filter(id=>id!==question.id):
+    [...new Set([...existing,question.id])];
+   localStorage.setItem(key,JSON.stringify(all));
+  }catch{}
+ }
  function selectLevel(){
   host.replaceChildren();
-  append(host,button('← К пищеварительной системе',onBack,'gi-back'),
-    el('div','kicker','ИТOГОВОЕ ТЕСТИРОВАНИЕ'),el('h1','','Контроль знаний по пищеварительной системе'),
-    paragraph('По 8 новых вопросов на каждый уровень; эти задания не повторяют три мини-теста в конце подразделов.','gi-lead'));
+  append(host,button(topicMode?'← К конспекту':'← К пищеварительной системе',onBack,'gi-back'),
+   el('div','kicker',topicMode?'ТЕСТ ПО ТЕМЕ':'ИТОГОВОЕ ТЕСТИРОВАНИЕ'),
+   el('h1','',topicMode?chapterTitle:'Контроль знаний по пищеварительной системе'),
+   paragraph(topicMode?
+    'В этом разделе доступно '+topicQuestions.length+' проверочных вопросов по выбранной теме: 3 мини-вопроса и дополнительные вопросы из общего банка, если они есть. Это учебный черновик; полная кафедральная сверка впереди.':
+    'Итоговый тест охватывает весь курс. Выбери уровень сложности.','gi-lead'));
   const controls=el('div','gi-depths');
-  for(const key of Object.keys(levels))controls.append(button(levels[key]+' · 8',()=>{
-    level=key;idx=0;correct=0;done=[];question();
-  },'gi-button'));host.append(controls);
+  if(topicMode){
+   if(topicQuestions.length)controls.append(button('Начать тематический тест · '+topicQuestions.length,()=>{
+    level='topic';quizQuestions=randomize(topicQuestions);idx=0;correct=0;done=[];question();
+   },'gi-button'));
+   else controls.append(paragraph('Проверенные вопросы по этой теме пока не добавлены.','gi-lead'));
+  }else{
+   for(const key of Object.keys(levels)){
+    const available=bank.questions.filter(q=>q.difficulty===key);
+    controls.append(button(levels[key]+' · '+available.length,()=>{
+     level=key;quizQuestions=available;idx=0;correct=0;done=[];question();
+    },'gi-button'));
+   }
+  }
+  host.append(controls);
  }
  function question(){
-  const set=bank.questions.filter(q=>q.difficulty===level);
+  const set=quizQuestions;
   if(idx>=set.length){finish();return;}
   const q=set[idx];chosen=-1;host.replaceChildren();
-  append(host,el('div','kicker',levels[level]+' · '+(idx+1)+'/'+set.length),
+  append(host,el('div','kicker',(topicMode?'Тематический тест':levels[level])+' · '+(idx+1)+'/'+set.length),
     el('h2','gi-question-heading',q.prompt));
   const choices=el('div','gi-mini-answers'),result=el('div','gi-mini-feedback'),actions=el('div','gi-end-actions');
   const randomized=randomize(q.options.map((value,i)=>({value,good:i===q.answer})));
@@ -213,6 +248,7 @@ function renderExam(host,{bank,onBack}){
     choices.append(button(option.value,()=>{
       if(chosen!==-1)return;
       chosen=i;done.push({id:q.id,correct:option.good});if(option.good)correct++;
+      trackMistake(q,option.good);
       for(const b of choices.querySelectorAll('button'))b.disabled=true;
       append(result,el('strong','',option.good?'Верно!':'Правильный ответ: '+q.options[q.answer]),paragraph(q.explanation));
       actions.append(button(idx+1===set.length?'Завершить':'Следующий вопрос →',()=>{idx++;question();},'gi-button'));
@@ -224,13 +260,16 @@ function renderExam(host,{bank,onBack}){
  function finish(){
   const total=done.length,percentage=Math.round(correct/total*100);
   try{
-   const old=JSON.parse(localStorage.getItem('med-study-gi-exam-v1')||'[]');
-   if(Array.isArray(old))localStorage.setItem('med-study-gi-exam-v1',JSON.stringify([...old.slice(-29),{at:new Date().toISOString(),difficulty:level,score:correct,total}]));
+   const key=topicMode?'med-study-gi-topic-v1':'med-study-gi-exam-v1';
+   const old=JSON.parse(localStorage.getItem(key)||'[]');
+   const record={at:new Date().toISOString(),difficulty:level,score:correct,total};
+   if(topicMode)record.chapter=chapterId;
+   if(Array.isArray(old))localStorage.setItem(key,JSON.stringify([...old.slice(-99),record]));
   }catch{}
   host.replaceChildren();
   append(host,el('div','kicker','РЕЗУЛЬТАТ'),el('h1','','Верно: '+correct+' из '+total),
    paragraph('Результат: '+percentage+'%. Неотвеченных вопросов нет. Прогресс хранится только на устройстве.','gi-lead'),
-   button('Другой уровень',selectLevel,'gi-button'),button('К темам',onBack,'gi-button gi-light'));
+   button(topicMode?'Ещё раз':'Другой уровень',selectLevel,'gi-button'),button(topicMode?'К конспекту':'К темам',onBack,'gi-button gi-light'));
  }
  selectLevel();
 }

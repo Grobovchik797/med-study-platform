@@ -265,28 +265,38 @@ function showGIChapter(id) {
     deepBlocks:giDeepBlocks[id],
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
-    onSlide:slide=>showSmallIntestineSlides(giSlideIndex(slide)),
-    onExam:showGIExam,onWorkbook:showGIWorkbook
+    onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
+    onExam:()=>showGIExam(id),onWorkbook:showGIWorkbook
   });
   window.scrollTo(0,0);
 }
-function giSlideIndex(id) {return Math.max(0,intestineSlides.images.findIndex(x=>x.id===id));}
+function giSlideIndex(id) {return intestineSlides?.images?.findIndex(x=>x.id===id)??-1;}
+function showGIAtlasChapter(chapterId){
+  const chapter=giCurriculum?.chapters.find(x=>x.id===chapterId);
+  const index=giSlideIndex(chapter?.slideId);
+  if(index<0){showGIChapter(chapterId);main.append(element('p','note','Подтверждённого микропрепарата для этой темы пока нет.'));return;}
+  showSmallIntestineSlides(index,chapterId);
+}
 function showGIWorkbook() {
   view='gi-workbook';updateNav();main.replaceChildren();
   window.MedStudyGI.renderWorkbook(main,{maps:giWorkbook.maps,department:giDepartmentQuestions,
     onBack:()=>showSection('histology-cytology','digestive'),onChapter:showGIChapter});
   window.scrollTo(0,0);
 }
-function showGIExam() {
+function showGIExam(chapterId=null) {
   view='gi-exam';updateNav();main.replaceChildren();
+  const chapter=chapterId?giCurriculum?.chapters.find(x=>x.id===chapterId):null;
   window.MedStudyGI.renderExam(main,{bank:giFinalBank,
-    onBack:()=>showSection('histology-cytology','digestive')});
+    chapterId:chapter?.id||null,chapterTitle:chapter?.title||'',
+    mini:chapter?giInlineBank.chapterQuestions[chapter.id]||[]:[],
+    onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
 }
-function showSmallIntestineSlides(initialIndex=0) {
+function showSmallIntestineSlides(initialIndex=0,originChapterId=null) {
   // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
   if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>2)initialIndex=0;
-  const from=view, scrollY=window.scrollY, chapterId=activeGIChapterId,depth=intestineDepth;
+  const from=originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
+    chapterId=originChapterId||activeGIChapterId,depth=intestineDepth;
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
   const back=()=>{
@@ -378,7 +388,8 @@ function showResourceLibrary(kind) {
     } else if(kind==='atlas') {
       append(card,element('p','','Атлас доступен в разделе выбранной темы.'),
         button('Открыть атлас →',
-          topic.id==='histology-small-intestine'?showSmallIntestineSlides:()=>navigate('atlas'),'library-go'));
+          topic.id==='histology-small-intestine'?showSmallIntestineSlides:
+          topic.route==='gi-chapter'?()=>showGIAtlasChapter(topic.chapterId):()=>navigate('atlas'),'library-go'));
     } else {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',()=>navigate('flashcards'),'library-go'));
@@ -789,46 +800,93 @@ function showFlashcards() {
   main.append(card, actions);
 }
 
+function readGIHistory(key) {
+  try {
+    const data=JSON.parse(localStorage.getItem(key)||'[]');
+    return Array.isArray(data)?data.filter(x=>x&&Number.isSafeInteger(x.score)&&
+      Number.isSafeInteger(x.total)&&x.total>0&&x.score>=0&&x.score<=x.total):[];
+  } catch {return [];}
+}
+function readGIMistakes() {
+  try{
+    const data=JSON.parse(localStorage.getItem('med-study-gi-mistakes-v1')||'{}');
+    if(!data||typeof data!=='object'||Array.isArray(data))return {};
+    const out={};
+    for(const [id,values] of Object.entries(data)){
+      if(Array.isArray(values))out[id]=[...new Set(values.filter(x=>typeof x==='string'))];
+    }
+    return out;
+  }catch{return {};}
+}
 function showStats() {
   view = 'stats'; updateNav(); main.replaceChildren();
   main.append(titleArea('АНАЛИТИКА ПО ТЕМАМ', 'Мой прогресс',
-    'Показываем все темы каталога. Результаты пока собираются только для тех, где уже созданы тесты.'));
+    'Результаты разделены по учебным темам. В статистику входят завершённые тесты; три мини-вопроса внутри каждой главы отдельно не учитываются.'));
+  const giTopics=readGIHistory('med-study-gi-topic-v1');
+  const giFinals=readGIHistory('med-study-gi-exam-v1');
+  const giMissed=readGIMistakes();
+  const si=window.MedStudySI?.readProgress();
+  const allScores=[progress.best,...giTopics,...giFinals].filter(x=>typeof x==='number');
+  const allTests=[...giTopics,...giFinals];
+  const percents=allTests.map(x=>Math.round(x.score/x.total*100));
+  const bestScores=[...(progress.best===null?[]:[progress.best]),...percents,...(si?.byDifficulty?Object.values(si.byDifficulty).filter(Boolean).map(x=>x.best).filter(Number.isFinite):[])];
+  const best=bestScores.length?Math.max(...bestScores):null;
+  const totalMissed=progress.mistakes.length+Object.values(giMissed).reduce((sum,a)=>sum+a.length,0)+(si?.missed?.length||0);
   const grid = element('div', 'stats-grid');
   append(grid,
-    stat('◷', progress.sessions, 'Завершённых тренировок'),
-    stat('✦', progress.best === null ? '—' : progress.best + '%', 'Лучший результат'),
-    stat('↺', progress.mistakes.length, 'Вопросов для повторения'));
+    stat('◷', progress.sessions+allTests.length+(si?.sessions||0), 'Завершённых тренировок (все модули)'),
+    stat('✦', best===null?'—':best+'%', 'Лучший результат (все модули)'),
+    stat('↺', totalMissed, 'Вопросов на повторение (все модули)'));
   main.append(grid);
   for(const {subject,section,topic} of libraryEntries()) {
     const box = element('section','card topic-stats');
-    append(box,element('div','kicker',subject.name+' · '+section.title),
-      element('h2','',topic.title));
-    if(!topic.quiz) {
+    append(box,element('div','kicker',subject.name+' · '+section.title),element('h2','',topic.title));
+    if(!topic.quiz){
       append(box,element('p','note','По этой теме тестов пока нет, поэтому и статистика не собирается.'));
       main.append(box);continue;
     }
     if(topic.id==='histology-small-intestine'){
-      const data=window.MedStudySI?.readProgress();
-      if(data){
-        append(box,element('p','muted','Завершено тренировок по тонкой кишке: '+data.sessions+' · вопросов на повторение: '+data.missed.length));
+      if(si){
+        append(box,element('p','muted','Завершено тренировок по тонкой кишке: '+si.sessions+' · вопросов на повторение: '+si.missed.length));
         for(const [level,name] of [['easy','Лёгкий'],['medium','Средний'],['hard','Сложный']]){
-          const x=data.byDifficulty[level],label=element('div','topic-stat-line');
+          const x=si.byDifficulty[level],label=element('div','topic-stat-line');
           append(label,element('strong','',name),element('span','muted',x?'Тренировок: '+x.sessions+' · лучший результат '+x.best+'%':'Тренировок пока нет'));
           box.append(label);
         }
       }
-      main.append(box);
-      continue;
+      main.append(box);continue;
     }
-    append(box,element('p','muted','Результаты ВНС по смысловым разделам. Считаются все ответы, включая повторения.'));
+    if(topic.route==='gi-chapter'){
+      const sessions=giTopics.filter(x=>x.chapter===topic.chapterId);
+      const missed=giMissed[topic.chapterId]?.length||0;
+      if(sessions.length){
+        const best=Math.max(...sessions.map(x=>Math.round(100*x.score/x.total)));
+        const last=sessions[sessions.length-1];
+        append(box,element('p','muted','Тематических тренировок: '+sessions.length+
+          ' · лучший результат: '+best+'% · последняя: '+last.score+' из '+last.total+
+          ' · вопросов на повторение: '+missed));
+      }else append(box,element('p','muted','По этой главе ещё нет завершённых тематических тестов. Три мини-вопроса в конспекте в статистику не входят.'));
+      main.append(box);continue;
+    }
+    if(topic.route==='gi-exam'){
+      if(giFinals.length){
+        const best=Math.max(...giFinals.map(x=>Math.round(100*x.score/x.total)));
+        append(box,element('p','muted','Итоговых тренировок по всему курсу: '+giFinals.length+' · лучший результат: '+best+'%.'));
+      }else append(box,element('p','muted','Итоговых тренировок по пищеварительной системе пока нет.'));
+      main.append(box);continue;
+    }
+    if(topic.id!=='ans'){
+      append(box,element('p','muted','Для этого раздела отдельная статистика ещё не предусмотрена.'));
+      main.append(box);continue;
+    }
+    append(box,element('p','muted','ВНС: результаты по смысловым разделам. Считаются все ответы, включая повторения.'));
     const subtopics=[...new Set(questionBank.questions.map(q=>q.topic))];
     for(const subtopic of subtopics){
       const entry=progress.topicStats[subtopic]||{attempts:0,correct:0};
       const rate=entry.attempts?Math.round(entry.correct/entry.attempts*100):0;
       const row=element('div','topic-stat-line');
-      append(row,element('strong','',subtopic),
-        element('span','muted',entry.attempts?
-          entry.correct+' из '+entry.attempts+' · '+rate+'%':'Ответов пока нет'));
+      append(row,element('strong','',subtopic),element('span','muted',
+        entry.attempts?entry.correct+' из '+entry.attempts+' · '+rate+'%':'Ответов пока нет'));
       const bar=element('div','session-progress');
       const fill=element('div');fill.style.width=rate+'%';bar.append(fill);
       append(box,row,bar);
@@ -886,6 +944,13 @@ function showMistakes() {
           m?showSmallIntestineQuiz:()=>showTopic(topic.id),'library-action'));
       main.append(module);
       continue;
+    }
+    if(topic.route==='gi-chapter'){
+      const missed=readGIMistakes()[topic.chapterId]||[];
+      append(module,element('p','muted',missed.length?'Ошибок на повторение: '+missed.length:'Ошибок на повторение пока нет.'),
+        button(missed.length?'Открыть конспект и повторить →':'Открыть тему →',
+          ()=>showGIChapter(topic.chapterId),'library-action'));
+      main.append(module);continue;
     }
     const questions=topic.id==='ans'?
       questionBank.questions.filter(q=>progress.mistakes.includes(q.id)):[];
