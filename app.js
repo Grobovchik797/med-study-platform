@@ -267,8 +267,16 @@ function showGIChapter(id) {
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index,id);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
-    onExam:()=>showGIExam(id),onWorkbook:showGIWorkbook
+    onExam:()=>showGIExam(id),onWorkbook:showGIWorkbook,
+    onDepartment:()=>showDepartmentAtlas(id)
   });
+  window.scrollTo(0,0);
+}
+function showDepartmentAtlas(chapterId=null){
+  view='department-atlas';updateNav();main.replaceChildren();
+  if(!window.MedStudyDepartment){main.append(element('p','note','Личный атлас не загрузился.'));return;}
+  const back=chapterId?()=>showGIChapter(chapterId):()=>showResourceLibrary('atlas');
+  window.MedStudyDepartment.render(main,{onBack:back,chapterId});
   window.scrollTo(0,0);
 }
 function giSlideIndex(id) {return giAtlasSlides?.images?.findIndex(x=>x.id===id)??-1;}
@@ -376,6 +384,14 @@ function showResourceLibrary(kind) {
   view=kind==='notes'?'notes':kind==='atlas'?'atlases':'cards';
   updateNav();main.replaceChildren();
   main.append(titleArea(...settings));
+  if(kind==='atlas'){
+    const department=element('section','card dept-banner');
+    append(department,element('div','kicker','КОЛЛОКВИУМ · КАФЕДРАЛЬНЫЕ ПРЕПАРАТЫ'),
+      element('h2','','Семь кафедральных микропрепаратов'),
+      element('p','','Исходные названия файлов сохранены без изменений. Добавь свои JPG прямо в браузере: изображения не отправляются на сервер. Справочные фото из Commons остаются ниже.'),
+      button('Открыть кафедральный атлас →',()=>showDepartmentAtlas(),'library-action'));
+    main.append(department);
+  }
   const entries=libraryEntries().filter(({topic})=>kind==='notes'?
     Object.values(topic.notes||{}).some(Boolean) : kind==='atlas'?topic.atlas:topic.flashcards);
   const grid=element('div','library-grid');
