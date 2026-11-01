@@ -106,9 +106,13 @@ async function navigateDigestiveCourse(page) {
   assert.ok((await page.locator('.gi-checkpoint .gi-mini-feedback').first().textContent()).length>25);
   await page.getByRole('button',{name:'Все заполненные карты'}).tap();
   await waitHeading(page,'Заполненные ориентировочные карты');
-  assert.equal(await page.locator('.gi-method-card').count(),11); // 7 filled maps + 4 departmental question lists
+  assert.equal(await page.locator('.gi-method-card').count(),12); // 8 original maps + 4 departmental question lists
   await page.locator('.gi-method-card summary').first().tap();
-  assert.equal(await page.locator('.gi-table').count(),7);
+  assert.equal(await page.locator('.gi-table').count(),8);
+  assert.equal(await page.locator('.gi-original-table').count(),8);
+  assert.equal(await page.locator('.gi-original-table').first().locator('th[rowspan="3"]').count(),1);
+  assert.equal(await page.locator('.gi-original-table').nth(2).locator('th[rowspan="4"]').count(),1);
+  assert.equal(await page.locator('.gi-original-table').nth(3).locator('tr').count(),5);
   await page.getByRole('button',{name:'← К пищеварительной системе'}).first().tap();
   await waitHeading(page,'Пищеварительная система');
   await page.locator('.library-card').filter({hasText:'Итоговый тест пищеварительной системы'}).locator('.library-go').tap();
