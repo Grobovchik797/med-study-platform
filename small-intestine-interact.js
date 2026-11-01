@@ -161,12 +161,12 @@ function renderSlides(host,data,exit,initialIndex=0){
         const tip=e('p','si-find-feedback','');
         const next=btn('Показать ориентир',()=>{
           if(at>=targets.length)return;
-          tip.textContent=targets[at].note;
+          tip.textContent='Структура №'+(at+1)+': '+targets[at].label+'. '+targets[at].note;
           next.textContent=at+1===targets.length?'Закончить разбор':'Следующая структура →';
-          at++;if(at<targets.length)line.textContent='Найди: '+targets[at].label;
+          at++;if(at<targets.length)line.textContent='Найди структуру №'+(at+1)+': '+targets[at].label;
           else line.textContent='Разбор завершён. Координаты не оценивались, это самопроверка по описанию.';
         },'si-button secondary');
-        line.textContent='Найди: '+targets[0].label;
+        line.textContent='Найди структуру №1: '+targets[0].label;
         root.append(line,tip,next,e('p','si-instruction','Коснись на микрофотографии предполагаемой области, затем открой подсказку и сравни самостоятельно. Без проверенной разметки автоматические баллы не начисляются.'));
       }
     }else{
@@ -218,6 +218,12 @@ function renderSlides(host,data,exit,initialIndex=0){
     if(slide.annotations.length){
       const legend=e('ol','si-legend');
       slide.annotations.forEach(ann=>{const li=e('li','',ann.label+' — '+ann.note);li.value=ann.n;legend.append(li);});root.append(legend);
+    }else if(slide.landmarks?.length){
+      const legend=e('ol','si-legend');
+      slide.landmarks.forEach((landmark,i)=>{
+        const li=e('li','',landmark.label+' — '+landmark.note);li.value=i+1;legend.append(li);
+      });
+      root.append(e('p','si-instruction','Учебный список структур 1/2/3: ищи эти признаки самостоятельно. Номера в списке не являются метками на самой фотографии — координаты ожидают научной проверки.'),legend);
     }else root.append(e('p','si-instruction','Пока нет подписей отдельных структур, достоверно привязанных к данному кадру. Не будем придумывать их координаты.'));
   }else if(mode==='test'){
     const form=e('div','si-test-form');

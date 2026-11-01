@@ -205,6 +205,82 @@
       "isResizedCopy": true,
       "assetDescription": "Локальная оптимизированная копия без изменения анатомических структур; автоматические точечные подписи отсутствуют.",
       "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "tooth-enamel-organ",
+      "title": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН",
+      "credit": "Dozenist",
+      "license": "CC BY-SA 3.0",
+      "file": "Earlybellstage11-18-05.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Earlybellstage11-18-05.jpg",
+      "aspect": "0.70",
+      "stain": "Точный протокол окраски в карточке Commons не указан",
+      "description": "Реальная микрофотография зубного зачатка на ранней стадии колокола. Относится к теме развития зуба и эмалевого органа, не доказывает наличие уже сформированной эмали или дентина на этом кадре.",
+      "landmarks": [
+        {
+          "label": "Эмалевый орган",
+          "note": "Ищи эпителиальную структуру колоколообразной формы вокруг зубного сосочка; координаты на данной фотографии ещё не подтверждены."
+        },
+        {
+          "label": "Зубной сосочек",
+          "note": "Ищи скопление эктомезенхимных клеток под вогнутой поверхностью внутреннего эмалевого эпителия."
+        },
+        {
+          "label": "Зубной мешочек",
+          "note": "Ищи окружающую зачаток мезенхиму; точную границу без экспертной сверки не оцениваем."
+        }
+      ],
+      "answer": "tooth-enamel-organ",
+      "src": "./photos/tooth-enamel-organ.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Earlybellstage11-18-05.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/4/48/Earlybellstage11-18-05.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН"
+    },
+    {
+      "id": "gastro-esophageal-junction",
+      "title": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК",
+      "credit": "Jpogi",
+      "license": "Public domain",
+      "file": "Gastro-esophageal jxn.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Gastro-esophageal_jxn.JPG",
+      "aspect": "1.33",
+      "stain": "Микрофотография; метод окрашивания автором не указан",
+      "description": "Микрофотография пищеводно-желудочного перехода человека. Название источника подтверждает область, но индивидуальные точки границы эпителиев и желез на кадре требуют экспертной визуальной проверки.",
+      "landmarks": [
+        {
+          "label": "Многослойный плоский эпителий пищевода",
+          "note": "Для пищеводной стороны характерен многослойный плоский неороговевающий эпителий; проверь, виден ли он в этом поле."
+        },
+        {
+          "label": "Железистый эпителий желудка",
+          "note": "Для желудочной стороны характерен однослойный цилиндрический эпителий с желудочными ямками."
+        },
+        {
+          "label": "Граница смены эпителия",
+          "note": "Если переход двух эпителиев отчётливо различим, определи область смены; точное положение пока не размечено."
+        }
+      ],
+      "answer": "gastro-esophageal-junction",
+      "src": "./photos/gastro-esophageal-junction.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Gastro-esophageal_jxn.JPG",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/8/8e/Gastro-esophageal_jxn.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
+      "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК"
     }
   ]
 }

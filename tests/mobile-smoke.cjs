@@ -161,14 +161,15 @@ async function main() {
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
     }
-    // Regression 1.4: six additional licensed photos must route to their own GI chapter.
+    // Regression: existing references and newly sourced tooth slide must route correctly.
     for(const [chapterTitle,slideIndex] of [
       ['Слюнные железы','3'],
       ['Пищевод и пищеводно-желудочный переход','4'],
       ['Желудок: оболочки, ямки','5'],
       ['Толстая кишка, аппендикс','6'],
       ['Печень: долька','7'],
-      ['Поджелудочная железа: ацинусы','8']
+      ['Поджелудочная железа: ацинусы','8'],
+      ['Зуб: эмаль, дентин','9']
     ]) {
       await page.locator('#mobile-more-toggle').tap();
       await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
@@ -179,11 +180,18 @@ async function main() {
       await page.getByRole('button',{name:'Самопроверка'}).tap();
       assert.ok(await page.getByText('Какой орган или отдел показан на препарате?').isVisible());
       await page.getByRole('button',{name:'Найди структуру'}).tap();
-      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
+      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №'));
       assert.ok((await page.locator('.si-find-mode .si-pin').count())===0,'Do not invent coordinates on new slides');
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
     }
+    // A separate genuine photo of the gastro-esophageal transition is available in the references.
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
+    await page.locator('.library-card').filter({hasText:'Пищевод и пищеводно-желудочный переход'}).locator('.library-go').tap();
+    await page.locator('.si-select').first().selectOption('10');
+    assert.ok(await page.getByRole('heading',{name:'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК'}).isVisible());
+    await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
     // Regression 1.4: topics without a verified image are not falsely shown as atlas entries.
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
@@ -318,10 +326,10 @@ async function main() {
     await desktop.locator('.dept-answer').selectOption('ЛИСТОВИДНЫЕ СОСОЧКИ');
     await desktop.getByRole('button',{name:'Проверить ответ'}).click();
     assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Верно:'));
-    await desktop.getByRole('button',{name:'Найди структуру'}).click();
-    assert.equal(await desktop.locator('.si-pin').count(),0,'Do not show unreviewed cell coordinates');
-    await desktop.getByRole('button',{name:'Показать ориентир / следующий'}).click();
-    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Ориентир 1'));
+    assert.equal(await desktop.locator('.dept-modes button').count(),2,'Department must have only study and self-check');
+    assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
+    await desktop.getByRole('button',{name:'Изучение'}).click();
+    assert.equal(await desktop.locator('.dept-modes button').count(),2);
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
     console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');
