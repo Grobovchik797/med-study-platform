@@ -14,6 +14,7 @@ files = [
     "photos/duodenum.jpg", "photos/jejunum.jpg", "photos/ileum.jpg",
     "photos/salivary-submandibular.jpg", "photos/esophagus.jpg", "photos/stomach-fundus.jpg",
     "photos/colon.jpg", "photos/liver.jpg", "photos/pancreas.jpg",
+    "photos/tooth-enamel-organ.jpg", "photos/gastro-esophageal-junction.jpg",
     "illustrations/gi-tongue.svg", "illustrations/gi-stomach.svg", "illustrations/gi-liver.svg", "illustrations/gi-pancreas.svg",
     "illustrations/pathways.svg", "illustrations/receptors.svg",
     "illustrations/organs.svg", "illustrations/small-intestine-schematic.svg",
