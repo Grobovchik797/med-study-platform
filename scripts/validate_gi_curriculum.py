@@ -89,6 +89,12 @@ for image in extra['images']:
  assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')
  assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
  assert all(a.get('n') in (1,2,3) and 0<a.get('x',-1)<100 and 0<a.get('y',-1)<100 for a in image['annotations']), image['id']
+ if image['annotations']:
+  assert image['reviewStatus'].find('spatial markers reviewed')>=0,image['id']
+  assert len({a['n'] for a in image['annotations']})==len(image['annotations'])
+  assert [a['n'] for a in image['annotations']]==list(range(1,len(image['annotations'])+1))
+  assert all(a['label']==image['landmarks'][i]['label'] for i,a in enumerate(image['annotations']))
+
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
 map_data=load('gi-department-reference-map.json')
 department=load('department-public.json')
