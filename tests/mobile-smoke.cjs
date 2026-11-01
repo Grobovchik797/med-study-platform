@@ -268,7 +268,32 @@ async function main() {
     assert.equal(await app.locator('.library-card').count(),20);
     assert.equal(errors.length,0,errors.join('\n'));
     await appctx.close();await ctx.close();
-    console.log('PASS: multi-topic navigation, global resources, 3 notes depths and Android menu');
+
+    // Regression 1.4.1: the desktop sidebar must remain visible at the end of a long GI chapter.
+    const desktopCtx=await browser.newContext({viewport:{width:1280,height:800}});
+    const desktop=await desktopCtx.newPage();
+    desktop.on('pageerror',e=>errors.push(e.message));
+    await desktop.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
+    await waitHeading(desktop,'Med Study — библиотека знаний');
+    await desktop.locator('.side-nav [data-nav="subjects"]').click();
+    await desktop.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Пищеварительная система'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').click();
+    await waitHeading(desktop,'Желудок: оболочки');
+    await desktop.getByRole('button',{name:'Расширенный'}).click();
+    assert.ok((await desktop.locator('.gi-deep-block').count())===5);
+    await desktop.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
+    await desktop.waitForFunction(()=>window.scrollY>700);
+    const sideBox=await desktop.locator('.sidebar').boundingBox();
+    assert.ok(sideBox && sideBox.y>=-2 && sideBox.y<=2 &&
+      sideBox.height>=790 && sideBox.height<=802,'Desktop sidebar should remain visible and viewport-tall');
+    const atlasNav=desktop.locator('.sidebar [data-nav="atlases"]');
+    assert.ok(await atlasNav.isVisible(),'Atlas navigation disappeared at chapter end');
+    await atlasNav.click();
+    await waitHeading(desktop,'Библиотека атласов');
+    assert.equal(errors.length,0,errors.join('\n'));
+    await desktopCtx.close();
+    console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');
   } finally {await browser.close();}
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});
