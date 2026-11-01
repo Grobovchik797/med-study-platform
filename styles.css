@@ -594,3 +594,18 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .dept-caption{font-size:.85rem;padding:11px 13px}
 .dept-image-missing{padding:25px;color:#fff7c5}
 @media(max-width:670px){.dept-public-frames{grid-template-columns:1fr}}
+
+
+/* Med Study 1.8: consistent four-resource study pages and topic-specific recall. */
+.gi-topic-features{max-width:980px;margin:20px 0 14px;}
+.gi-topic-features .library-feature{min-width:0;gap:9px;}
+.gi-topic-features .gi-button{max-width:100%;white-space:normal;text-align:left;min-height:44px;}
+.gi-topic-focus{max-width:940px;margin-bottom:22px;}
+.gi-recall-card{max-width:880px;min-height:240px;padding:24px;margin:20px 0;}
+.gi-recall-card h2{font-size:clamp(19px,2.7vw,26px);line-height:1.4;margin:9px 0 17px;}
+.gi-recall-card .gi-paragraph{max-width:800px;line-height:1.85;white-space:normal;}
+#gi-chapter-notes{scroll-margin-top:110px;}
+@media(max-width:600px){
+  .gi-recall-card{padding:16px;min-height:220px;}
+  .gi-topic-features .gi-button{width:100%;}
+}
