@@ -573,7 +573,7 @@ function showIntestine() {
   main.append(header);
   const focus=element('div','si-focus-container');
   main.append(focus);
-  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus);
+  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focus,{topicTitle:'Тонкая кишка',topicKey:'intestine'});
   if(version.originStatement)main.append(element('p','si-source-note',version.originStatement));
   // Resources belong near the content they illustrate, not above every note.
 
