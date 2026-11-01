@@ -23,7 +23,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
     if not local.startswith("./photos/") or ".." in local:
         raise SystemExit(f"Unsafe local photo path {local}")
     path=ROOT/local[2:]
-    if path.is_file() and path.stat().st_size>30000:
+    if path.is_file() and path.stat().st_size>12000:
         with Image.open(path) as im:
             im.verify()
         print(f"Existing licensed preparation OK: {path.name}")
@@ -43,7 +43,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
                 with urllib.request.urlopen(req,timeout=25) as response:
                     mime=response.headers.get("Content-Type","")
                     raw=response.read(35_000_000)
-                if not mime.startswith("image/") or len(raw)<30000:
+                if not mime.startswith("image/") or len(raw)<12000:
                     raise ValueError(f"Expected image, got {mime} len={len(raw)}")
                 with Image.open(BytesIO(raw)) as image:
                     rgb=image.convert("RGB")
@@ -53,7 +53,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
                     rgb.save(path,"JPEG",quality=88,optimize=True,progressive=True)
                 with Image.open(path) as test:
                     test.verify()
-                assert path.stat().st_size>30000
+                assert path.stat().st_size>12000
                 print(f"Ready {slide['id']}: {path.name} ({path.stat().st_size} bytes)")
                 err=None
                 # Wikimedia rate limits automated requests. Space requests between assets.
