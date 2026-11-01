@@ -1,5 +1,5 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v1.8.0-topics";
+const CACHE = "med-study-shell-v1.8.1-learning-ux";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./department-atlas.js", "./department-public.js",
   "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
@@ -32,6 +32,23 @@ self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
   const basePath = new URL(self.registration.scope).pathname;
   if (url.origin !== self.location.origin || !url.pathname.startsWith(basePath)) return;
+  // Real microscopy photos change only with a versioned release. Use offline copies
+  // immediately on repeat visits instead of re-downloading huge JPGs on each mode change.
+  if (url.pathname.startsWith(basePath + "photos/")) {
+    event.respondWith(
+      caches.match(event.request, { ignoreSearch: true }).then(cached => {
+        if (cached) return cached;
+        return fetch(event.request).then(response => {
+          if (response.ok && response.type === "basic") {
+            const copy = response.clone();
+            event.waitUntil(caches.open(CACHE).then(cache => cache.put(event.request, copy)));
+          }
+          return response;
+        });
+      }).catch(() => Response.error())
+    );
+    return;
+  }
   event.respondWith(
     fetch(event.request)
       .then(response => {
