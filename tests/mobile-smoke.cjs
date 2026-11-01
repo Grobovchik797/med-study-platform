@@ -42,7 +42,15 @@ async function navigateHistology(page) {
   assert.ok((await page.locator('.gi-recall-card').count())===1);
   await page.getByRole('button',{name:'Показать ответ'}).tap();
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>85);
-  await page.getByRole('button',{name:'Следующая'}).tap();
+  await page.getByRole('button',{name:'Знаю ✓'}).tap();
+  assert.ok((await page.locator('.gi-recall-count').textContent()).includes('Знаю: 1'));
+  await page.getByRole('button',{name:'Показать ответ'}).tap();
+  await page.getByRole('button',{name:'Повторить ↺'}).tap();
+  assert.ok((await page.locator('.gi-recall-count').textContent()).includes('Повторить: 1'));
+  await page.getByRole('button',{name:/Повторить трудные/}).tap();
+  assert.ok((await page.locator('.gi-provenance').textContent()).includes('Повторение трудных'));
+  assert.equal(await page.locator('.gi-recall-meter').getAttribute('aria-valuenow'),'2');
+  await page.getByRole('button',{name:'Показать все карточки'}).tap();
   await page.getByRole('button',{name:'← К теме'}).tap();
   await waitHeading(page,'Тонкая кишка');
   await page.locator('.library-feature').nth(2).locator('button').tap();
@@ -122,8 +130,13 @@ async function navigateDigestiveCourse(page) {
   await page.getByRole('button',{name:'Следующая'}).tap();
   await page.getByRole('button',{name:'Показать ответ'}).tap();
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>90);
+  assert.equal(await page.locator('#mobile-more-toggle').getAttribute('aria-current'),'page',
+    'Flashcards must highlight the Cards navigation section');
   await page.getByRole('button',{name:'← К теме'}).tap();
   await waitHeading(page,'Желудок: оболочки');
+  const accents=await page.locator('.gi-topic-features .library-feature').evaluateAll(nodes=>
+    nodes.map(node=>getComputedStyle(node).borderTopColor));
+  assert.equal(new Set(accents).size,4,'Four study resources should have distinct colour accents');
   assert.equal(await page.getByRole('button',{name:'Пауза',exact:true}).count(),1,'Timer must continue across topic cards');
   await page.getByRole('button',{name:'Пауза',exact:true}).tap();
   await page.getByRole('button',{name:'Сбросить',exact:true}).tap();
@@ -167,6 +180,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.8.1'),
+      'Top navigation must show the release version, not stale 1.6.0');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -348,7 +363,16 @@ async function main() {
     assert.equal(await desktop.locator('.si-select option').count(),19);
     await desktop.locator('.si-select').first().selectOption('10');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Gastro-esophageal junction should have 3 spatial markers on photo');
+    await desktop.getByRole('button',{name:'＋ Увеличить'}).click();
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1.5)'),
+      'Zoom should be active before switching study modes');
+    await desktop.getByRole('button',{name:'Самопроверка'}).click();
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1.5)'),
+      'Switching modes must preserve the area being studied');
+    await desktop.getByRole('button',{name:'Изучение'}).click();
     await desktop.locator('.si-select').first().selectOption('9');
+    assert.ok((await desktop.locator('.si-surface').getAttribute('style')).includes('scale(1)'),
+      'Selecting another specimen must reset microscope zoom');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Developing tooth enamel-organ should have 3 spatial markers');
     await desktop.locator('.si-select').first().selectOption('18');
     assert.equal(await desktop.locator('.si-microscope img').count(),1);
@@ -392,6 +416,10 @@ async function main() {
     assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
     await desktop.getByRole('button',{name:'Изучение'}).click();
     assert.equal(await desktop.locator('.dept-modes button').count(),2);
+    await desktop.locator('.brand').click();
+    await waitHeading(desktop,'Med Study — библиотека знаний');
+    assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
+      'page','Clicking the logo should really navigate to the home view');
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
     console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');

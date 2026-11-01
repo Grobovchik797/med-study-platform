@@ -24,6 +24,7 @@ jobs:
           python3 scripts/validate_small_intestine_pilot.py
           python3 scripts/validate_gi_curriculum.py
           python3 scripts/validate_department_public.py
+          python3 -m py_compile scripts/verify_public_site.py
       - name: Generate installable app icons
         run: python3 scripts/generate_icons.py
       - name: Validate PWA assets and manifest
@@ -79,3 +80,5 @@ jobs:
       - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published version and core assets on GitHub Pages
+        run: python3 scripts/verify_public_site.py
