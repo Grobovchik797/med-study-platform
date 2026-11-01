@@ -7,7 +7,7 @@ root = Path(__file__).resolve().parents[1]
 web = root / "android" / "app" / "src" / "main" / "assets" / "www"
 web.mkdir(parents=True, exist_ok=True)
 files = [
-    "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "sw.js", "manifest.webmanifest",
+    "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "department-atlas.js", "sw.js", "manifest.webmanifest",
     "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-workbook.json", "data/gi-atlas.json",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
     "icons/icon-192.png", "icons/icon-512.png",

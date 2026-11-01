@@ -297,6 +297,37 @@ async function main() {
     assert.ok(await atlasNav.isVisible(),'Atlas navigation disappeared at chapter end');
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
+
+    // Regression 1.5: exact faculty filenames, browser-local import and no invented image annotations.
+    await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
+    await waitHeading(desktop,'Кафедральные микропрепараты');
+    assert.equal(await desktop.locator('.dept-file-card').count(),7);
+    const exactNames=[
+      '12 ПЕРСТНАЯ КИШКА.jpg','ТОНКАЯ КИШКА.jpg','ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА.jpg',
+      'ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА.jpg','ДНО ЖЕЛУДКА.jpg','ТОЛСТАЯ КИШКА.jpg',
+      'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК.jpg'
+    ];
+    assert.deepEqual((await desktop.locator('.dept-file-card strong').allTextContents()),exactNames);
+    assert.equal(await desktop.locator('.dept-image').count(),0,'User photos must not be included in public build');
+    const example=await fs.readFile(path.join(process.cwd(),'photos','duodenum.jpg'));
+    await desktop.locator('.dept-file-input').setInputFiles({
+      name:exactNames[0],mimeType:'image/jpeg',buffer:example
+    });
+    await desktop.waitForFunction(()=>document.querySelector('.dept-image')?.naturalWidth>400);
+    assert.ok((await desktop.locator('.dept-file-card').first().textContent()).includes('Фото сохранено'));
+    await desktop.getByRole('button',{name:'Самопроверка'}).click();
+    await desktop.locator('.dept-answer').selectOption(exactNames[0]);
+    await desktop.getByRole('button',{name:'Проверить название'}).click();
+    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Верно:'));
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.equal(await desktop.locator('.si-pin').count(),0,'No unverified coordinates in faculty atlas');
+    await desktop.getByRole('button',{name:'Показать учебный ориентир / дальше'}).click();
+    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Ориентир 1'));
+    await desktop.reload({waitUntil:'networkidle'});
+    await waitHeading(desktop,'Med Study — библиотека знаний');
+    await desktop.locator('.side-nav .nav-item[data-nav="atlases"]').click();
+    await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
+    await desktop.waitForFunction(()=>document.querySelector('.dept-file-card')?.textContent?.includes('Фото сохранено'));
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
     console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');
