@@ -152,7 +152,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   frame.insertBefore(surface,loading);root.append(frame);
   if(mode==='find'){
     frame.classList.add('si-find-mode');
-    if(!slide.annotations.length){
+    if(!slide.annotations.length || slide.reviewStatus?.includes('preliminary-visual-regions')){
       const targets=Array.isArray(slide.landmarks)?slide.landmarks:[];
       if(!targets.length){
         root.append(e('p','si-find-hint','На данном изображении ещё нет подтверждённых координат. Режим определения органа доступен в «Самопроверке».'));
@@ -240,6 +240,7 @@ function renderSlides(host,data,exit,initialIndex=0){
   if(mode==='study'){
     root.append(e('p','si-instruction',slide.description));
     if(slide.annotations.length){
+      if(slide.reviewStatus?.includes('preliminary-visual-regions'))root.append(e('p','si-instruction','Номера на фото — предварительные обзорные области, отмеченные по видимому изображению. Это не проверенные специалистом координаты: баллы за касание отключены.'));
       const legend=e('ol','si-legend');
       slide.annotations.forEach(ann=>{const li=e('li','',ann.label+' — '+ann.note);li.value=ann.n;legend.append(li);});root.append(legend);
     }else if(slide.landmarks?.length){
