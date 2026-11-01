@@ -169,7 +169,9 @@ async function main() {
       ['Толстая кишка, аппендикс','6'],
       ['Печень: долька','7'],
       ['Поджелудочная железа: ацинусы','8'],
-      ['Зуб: эмаль, дентин','9']
+      ['Зуб: эмаль, дентин','9'],
+      ['Язык и сосочки','14'],
+      ['Миндалины и лимфоэпителиальное','15']
     ]) {
       await page.locator('#mobile-more-toggle').tap();
       await page.locator('#mobile-more-panel [data-nav="atlases"]').tap();
@@ -180,7 +182,7 @@ async function main() {
       await page.getByRole('button',{name:'Самопроверка'}).tap();
       assert.ok(await page.getByText('Какой орган или отдел показан на препарате?').isVisible());
       await page.getByRole('button',{name:'Найди структуру'}).tap();
-      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №'));
+      assert.match(await page.locator('.si-find-hint').textContent(),/Найди структуру №|Найди:/,'Find prompt must work for both spatially marked and guide-only slides');
       assert.ok((await page.locator('.si-find-mode .si-pin').count())===0,'Do not invent coordinates on new slides');
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
@@ -306,6 +308,31 @@ async function main() {
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
 
+    // v1.7: ordinary gallery has 19 distinct real Commons specimens, all 14 departmental types.
+    await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
+    await waitHeading(desktop,'Изучение и самопроверка');
+    assert.equal(await desktop.locator('.si-select option').count(),19);
+    await desktop.locator('.si-select').first().selectOption('10');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Gastro-esophageal junction should have 3 spatial markers on photo');
+    await desktop.locator('.si-select').first().selectOption('9');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Developing tooth enamel-organ should have 3 spatial markers');
+    await desktop.locator('.si-select').first().selectOption('18');
+    assert.equal(await desktop.locator('.si-microscope img').count(),1);
+    assert.ok(await desktop.getByRole('heading',{name:'РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ'}).isVisible());
+    assert.equal(await desktop.locator('.si-legend li').count(),3,'Expected three numbered visible learning cues');
+    assert.equal(await desktop.locator('.si-pin').count(),3,'Developing enamel and dentin need 3 real image labels');
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди:'));
+    const photoBounds=await desktop.locator('.si-microscope').boundingBox();
+    assert.ok(photoBounds,'Microscope should remain visible');
+    await desktop.locator('.si-microscope').click({position:{x:photoBounds.width*.52,y:photoBounds.height*.42}});
+    assert.ok((await desktop.locator('.si-find-feedback').textContent()).includes('без автоматических баллов'));
+    await desktop.getByRole('button',{name:'Изучение'}).click();
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
+    assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
+    await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
+    await waitHeading(desktop,'Библиотека атласов');
     // Regression 1.6: public departmental atlas has all real source JPGs and video frames.
     await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
     await waitHeading(desktop,'Кафедральные микропрепараты');

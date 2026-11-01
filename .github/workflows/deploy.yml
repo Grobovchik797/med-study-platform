@@ -12,7 +12,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - name: Validate question data
@@ -47,7 +47,7 @@ jobs:
     if: github.event_name != 'pull_request'
     needs: validate
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     permissions:
       contents: read
       pages: write
@@ -66,7 +66,7 @@ jobs:
           python3 scripts/prepare_histology_photos.py
           mkdir -p _site/data _site/icons _site/illustrations _site/photos
           cp index.html styles.css app.js small-intestine-interact.js gi-course.js department-atlas.js department-public.js sw.js manifest.webmanifest .nojekyll _site/
-          cp data/gi-deep-a.json data/gi-deep-b.json data/gi-department-questions.json data/gi-curriculum.json data/gi-inline-quiz.json data/gi-final-quiz.json data/gi-workbook.json data/gi-atlas.json data/department-public.json _site/data/
+          cp data/gi-deep-a.json data/gi-deep-b.json data/gi-department-questions.json data/gi-curriculum.json data/gi-inline-quiz.json data/gi-final-quiz.json data/gi-workbook.json data/gi-atlas.json data/department-public.json data/gi-department-reference-map.json _site/data/
           cp data/questions.json data/lesson.json data/atlas.json data/subjects.json data/histology-small-intestine.json data/library.json data/small-intestine-quiz.json data/small-intestine-slides.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/

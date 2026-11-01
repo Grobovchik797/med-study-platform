@@ -66,7 +66,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "tongue",
@@ -96,7 +96,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "tonsils",

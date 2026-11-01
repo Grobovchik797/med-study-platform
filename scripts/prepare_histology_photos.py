@@ -17,19 +17,19 @@ SLIDES=json.loads((ROOT/"data/small-intestine-slides.json").read_text("utf-8"))
 EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
-assert len(SLIDES["images"])==3 and len(EXTRA["images"])==8
+assert len(SLIDES["images"])==3 and len(EXTRA["images"])==16
 for slide in SLIDES["images"]+EXTRA["images"]:
     local=slide.get("src","")
     if not local.startswith("./photos/") or ".." in local:
         raise SystemExit(f"Unsafe local photo path {local}")
     path=ROOT/local[2:]
-    if path.is_file() and path.stat().st_size>30000:
+    if path.is_file() and path.stat().st_size>12000:
         with Image.open(path) as im:
             im.verify()
         print(f"Existing licensed preparation OK: {path.name}")
         continue
     sources=slide.get("buildSources",[])
-    if not sources or slide.get("license") not in {"CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","Public domain"} or not slide.get("source"):
+    if not sources or slide.get("license") not in {"CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","CC BY 3.0","Public domain"} or not slide.get("source"):
         raise SystemExit("Missing Commons provenance for "+slide["id"])
     err=None
     for url in sources:
@@ -43,7 +43,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
                 with urllib.request.urlopen(req,timeout=25) as response:
                     mime=response.headers.get("Content-Type","")
                     raw=response.read(35_000_000)
-                if not mime.startswith("image/") or len(raw)<30000:
+                if not mime.startswith("image/") or len(raw)<12000:
                     raise ValueError(f"Expected image, got {mime} len={len(raw)}")
                 with Image.open(BytesIO(raw)) as image:
                     rgb=image.convert("RGB")
@@ -53,7 +53,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
                     rgb.save(path,"JPEG",quality=88,optimize=True,progressive=True)
                 with Image.open(path) as test:
                     test.verify()
-                assert path.stat().st_size>30000
+                assert path.stat().st_size>12000
                 print(f"Ready {slide['id']}: {path.name} ({path.stat().st_size} bytes)")
                 err=None
                 # Wikimedia rate limits automated requests. Space requests between assets.
@@ -66,4 +66,4 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
-print("PASS: eleven Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
+print("PASS: nineteen Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")

@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "title": "Кафедральный список и соответствующие справочные препараты",
+  "note": "Равенство названий означает соответствие тем; изображения из Commons не являются кафедральными оригиналами. Нумерацию на самом фото разрешено использовать только после проверки координат.",
+  "items": [
+    {
+      "departmentTitle": "12 ПЕРСТНАЯ КИШКА",
+      "referenceIds": [
+        "duodenum"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ТОНКАЯ КИШКА",
+      "referenceIds": [
+        "jejunum",
+        "ileum",
+        "duodenum"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "referenceIds": [
+        "pyloric-stomach"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА",
+      "referenceIds": [
+        "esophagus-cross-section"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ДНО ЖЕЛУДКА",
+      "referenceIds": [
+        "stomach-fundus"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ТОЛСТАЯ КИШКА",
+      "referenceIds": [
+        "colon"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК",
+      "referenceIds": [
+        "gastro-esophageal-junction"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "referenceIds": [
+        "tongue-foliate"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "НЕБНАЯ МИНДАЛИНА",
+      "referenceIds": [
+        "palatine-tonsil"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "referenceIds": [
+        "tongue-filiform"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "referenceIds": [
+        "parotid-gland"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "referenceIds": [
+        "tooth-dentin-enamel"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН",
+      "referenceIds": [
+        "tooth-enamel-organ"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "referenceIds": [
+        "mixed-salivary-gland"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
+    }
+  ]
+}

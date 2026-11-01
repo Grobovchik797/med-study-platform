@@ -75,21 +75,41 @@ for m in maps['maps']:
  assert not any(pending),('Unclosed row span',m['id'])
 topics=next(s for s in library['subjects']['histology-cytology']['sections'] if s['id']=='digestive')['topics']
 extra=load('gi-atlas.json')
-assert extra['version']==1 and len(extra['images'])==8
+assert extra['version']==1 and len(extra['images'])==16
 base=load('small-intestine-slides.json')['images']
 slide_ids={s['id'] for s in base+extra['images']}
-assert len(slide_ids)==11
-assert sum(bool(c.get('slideId')) for c in course['chapters'])==11
+assert len(slide_ids)==19
+assert sum(bool(c.get('slideId')) for c in course['chapters'])==13
 for chapter in course['chapters']:
  if chapter.get('slideId'):
   assert chapter['slideId'] in slide_ids,chapter['id']
 for image in extra['images']:
- assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0','Public domain'}
+ assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0','CC BY 3.0','Public domain'}
  assert image['localAsset'] and image['src']=='./photos/'+image['id']+'.jpg'
  assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')
  assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
- assert not image['annotations'],'New slide landmarks are NOT spatially verified'
+ assert all(a.get('n') in (1,2,3) and 0<a.get('x',-1)<100 and 0<a.get('y',-1)<100 for a in image['annotations']), image['id']
+ if image['annotations']:
+  assert image['reviewStatus'].find('spatial markers reviewed')>=0,image['id']
+  assert len({a['n'] for a in image['annotations']})==len(image['annotations'])
+  assert [a['n'] for a in image['annotations']]==list(range(1,len(image['annotations'])+1))
+  assert all(a['label']==image['landmarks'][i]['label'] for i,a in enumerate(image['annotations']))
+  assert all(a.get('autoGrade') is False for a in image['annotations']), 'New coarse annotations must never award automatic grades'
+
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
+map_data=load('gi-department-reference-map.json')
+department=load('department-public.json')
+assert map_data['version']==1 and len(map_data['items'])==14
+department_titles={item['title'] for item in department['specimens']}
+assert {item['departmentTitle'] for item in map_data['items']}==department_titles
+for item in map_data['items']:
+ assert item['referenceIds'] and set(item['referenceIds']).issubset(slide_ids),item
+ # A shared reference is allowed for one general category, but no unverified
+ # source may be substituted for a completely different anatomical organ.
+for item in extra['images']:
+ if item.get('departmentTitle'):
+  assert item['departmentTitle'] in department_titles
+ assert item['reviewStatus'] and len(item['landmarks'])>=2
 assert len(topics)==20
 assert set('gi-'+i for i in ids).issubset(set(x['id'] for x in topics))
 assert 'histology-small-intestine' in {x['id'] for x in topics}

@@ -301,17 +301,21 @@ function showGIExam(chapterId=null) {
     onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
 }
-function showSmallIntestineSlides(initialIndex=0,originChapterId=null) {
+function showReferenceAtlas(initialIndex=0) {
+  showSmallIntestineSlides(initialIndex,null,true);
+}
+function showSmallIntestineSlides(initialIndex=0,originChapterId=null,allReferences=false) {
   // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
-  const slides=originChapterId?giAtlasSlides:intestineSlides;
+  const slides=(originChapterId||allReferences)?giAtlasSlides:intestineSlides;
   if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>=(slides?.images?.length||0))initialIndex=0;
-  const from=originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
+  const from=allReferences?'atlases':originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
     chapterId=originChapterId||activeGIChapterId,depth=intestineDepth;
   view='si-slides';updateNav();main.replaceChildren();
   if(!window.MedStudySI || !slides?.images?.length) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
   const back=()=>{
     if(from==='intestine'){intestineDepth=depth;showIntestine();}
     else if(from==='gi-chapter'&&chapterId)showGIChapter(chapterId);
+     else if(from==='atlases')showResourceLibrary('atlas');
     else showTopic('histology-small-intestine');
     requestAnimationFrame(()=>window.scrollTo(0,scrollY));
   };
@@ -391,6 +395,12 @@ function showResourceLibrary(kind) {
       element('p','','Исходные названия сохранены без изменений. Реальные фотографии и видеокадры уже доступны. Отдельно открыт справочный атлас лицензированных препаратов.'),
       button('Открыть кафедральный атлас →',()=>showDepartmentAtlas(),'library-action'));
     main.append(department);
+    const reference=element('section','card dept-banner');
+    append(reference,element('div','kicker','СПРАВОЧНЫЕ · РЕАЛЬНЫЕ МИКРОПРЕПАРАТЫ'),
+      element('h2','','Обычные препараты · 19 фотографий'),
+      element('p','','Все 14 кафедральных названий покрыты отдельными справочными изображениями. В изучении доступны пронумерованные ориентиры; цифры непосредственно на микрофотографии и автоматическая оценка — только у проверенной разметки.'),
+      button('Открыть обычные препараты →',()=>showReferenceAtlas(),'library-action'));
+    main.append(reference);
   }
   const entries=libraryEntries().filter(({topic})=>kind==='notes'?
     Object.values(topic.notes||{}).some(Boolean) : kind==='atlas'?topic.atlas:topic.flashcards);
@@ -1187,7 +1197,7 @@ Promise.all([
       throw Error('Структура библиотеки повреждена');
     }
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
-        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==8 || !window.MedStudySI)
+        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==16 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
