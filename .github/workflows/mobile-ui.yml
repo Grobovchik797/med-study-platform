@@ -30,3 +30,32 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/med-study-test-server.log 2>&1 &
       - name: Test mobile interactions (browser and Android origin)
         run: node tests/mobile-smoke.cjs
+      # TEMPORARY — review browser screenshots, then remove before merging PR.
+      - name: Temporary visual review of desktop, mobile and recall cards
+        run: |
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            try{
+              for(const [label,config] of [['DESKTOP',{viewport:{width:1280,height:820}}],
+                ['MOBILE',{viewport:{width:390,height:800},isMobile:true,hasTouch:true}]]){
+                const page=await browser.newPage(config);
+                await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
+                await page.locator('.side-nav [data-nav="subjects"]').click();
+                await page.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').click();
+                await page.locator('.library-card').filter({hasText:'Пищеварительная система'}).locator('.library-go').click();
+                await page.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').click();
+                await page.locator('.gi-topic-features .library-feature').first().waitFor();
+                console.log('MEDSTUDY_UX_'+label+':'+(await page.screenshot({type:'jpeg',quality:58})).toString('base64'));
+                if(label==='MOBILE'){
+                  await page.locator('.gi-topic-features .library-feature').nth(3).locator('button').click();
+                  await page.getByRole('button',{name:'Показать ответ'}).click();
+                  console.log('MEDSTUDY_UX_CARDS:'+(await page.screenshot({type:'jpeg',quality:58})).toString('base64'));
+                }
+                await page.close();
+              }
+            }finally{await browser.close();}
+          })().catch(error=>{console.error(error);process.exitCode=1;});
+          NODE
+
