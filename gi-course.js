@@ -118,7 +118,15 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
   append(cardsTile,el('h2','','Карточки'),paragraph('Вспомни признаки и механизмы по восьми карточкам этой темы.'),
     button('Учить карточки →',onFlashcards,'gi-button'));
   append(resources,notesTile,testsTile,atlasTile,cardsTile);
-  host.append(resources,focusMount);
+  const guide=el('aside','gi-learning-guide');
+  const path=el('ol','gi-learning-steps');
+  for(const step of [
+    'Прочитай основные признаки в конспекте',
+    'Вспомни определения с карточками',
+    'Закрепи тестом и препаратом, если он есть'
+  ])path.append(el('li','',step));
+  append(guide,el('strong','','Три шага, чтобы запомнить материал'),path);
+  host.append(resources,guide,focusMount);
   const depths=el('div','gi-depths');
   for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
