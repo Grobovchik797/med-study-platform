@@ -37,6 +37,7 @@ let learningLibrary = null;
 let intestineData = null;
 let intestineQuizBank = null;
 let intestineSlides = null;
+let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
@@ -265,12 +266,12 @@ function showGIChapter(id) {
     deepBlocks:giDeepBlocks[id],
     departmentQuestions:giDepartmentQuestions.groups.flatMap(g=>g.questions).filter(q=>q.chapter===id),
     onBack:()=>showSection('histology-cytology','digestive'),
-    onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
+    onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index,id);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
     onExam:()=>showGIExam(id),onWorkbook:showGIWorkbook
   });
   window.scrollTo(0,0);
 }
-function giSlideIndex(id) {return intestineSlides?.images?.findIndex(x=>x.id===id)??-1;}
+function giSlideIndex(id) {return giAtlasSlides?.images?.findIndex(x=>x.id===id)??-1;}
 function showGIAtlasChapter(chapterId){
   const chapter=giCurriculum?.chapters.find(x=>x.id===chapterId);
   const index=giSlideIndex(chapter?.slideId);
@@ -294,18 +295,19 @@ function showGIExam(chapterId=null) {
 }
 function showSmallIntestineSlides(initialIndex=0,originChapterId=null) {
   // Button callbacks can pass a click event; only trusted numeric slide indices are valid.
-  if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>2)initialIndex=0;
+  const slides=originChapterId?giAtlasSlides:intestineSlides;
+  if(!Number.isInteger(initialIndex)||initialIndex<0||initialIndex>=(slides?.images?.length||0))initialIndex=0;
   const from=originChapterId?'gi-chapter':view, scrollY=originChapterId?0:window.scrollY,
     chapterId=originChapterId||activeGIChapterId,depth=intestineDepth;
   view='si-slides';updateNav();main.replaceChildren();
-  if(!window.MedStudySI || !intestineSlides) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
+  if(!window.MedStudySI || !slides?.images?.length) {main.append(element('p','note','Гистологические препараты не загрузились.'));return;}
   const back=()=>{
     if(from==='intestine'){intestineDepth=depth;showIntestine();}
     else if(from==='gi-chapter'&&chapterId)showGIChapter(chapterId);
     else showTopic('histology-small-intestine');
     requestAnimationFrame(()=>window.scrollTo(0,scrollY));
   };
-  window.MedStudySI.renderSlides(main,intestineSlides,back,initialIndex);
+  window.MedStudySI.renderSlides(main,slides,back,initialIndex);
   window.scrollTo(0,0);
 }
 
@@ -1141,6 +1143,7 @@ Promise.all([
   fetch('./data/library.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/small-intestine-quiz.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
   fetch('./data/small-intestine-slides.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw Error('HTTP ' + response.status); return response.json(); }),
+  fetch('./data/gi-atlas.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI atlas '+r.status);return r.json();}),
   fetch('./data/gi-curriculum.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI curriculum '+r.status);return r.json();}),
   fetch('./data/gi-inline-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI mini '+r.status);return r.json();}),
   fetch('./data/gi-final-quiz.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI exam '+r.status);return r.json();}),
@@ -1149,7 +1152,7 @@ Promise.all([
   fetch('./data/gi-deep-a.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep A '+r.status);return r.json();}),
   fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1168,7 +1171,7 @@ Promise.all([
       throw Error('Структура библиотеки повреждена');
     }
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
-        !slides || slides.images?.length !== 3 || !window.MedStudySI)
+        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==6 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||
@@ -1180,6 +1183,7 @@ Promise.all([
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;
+    giAtlasSlides={images:[...slides.images,...extraAtlas.images]};
     progress.mistakes = progress.mistakes.filter(id => questionBank.questions.some(q => q.id === id));
     persistProgress();
     showHome();

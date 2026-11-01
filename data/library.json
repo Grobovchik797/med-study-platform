@@ -126,7 +126,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "salivary",
@@ -156,7 +156,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "esophagus",
@@ -171,7 +171,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "stomach",
@@ -186,7 +186,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "gastric-glands",
@@ -260,7 +260,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "colon",
@@ -275,7 +275,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "liver",
@@ -290,7 +290,7 @@
                 "deep": true
               },
               "quiz": true,
-              "atlas": false,
+              "atlas": true,
               "flashcards": false,
               "route": "gi-chapter",
               "chapterId": "pancreas",

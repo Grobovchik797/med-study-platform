@@ -74,6 +74,22 @@ for m in maps['maps']:
   assert all(used),('Unfilled table columns',m['id'],used)
  assert not any(pending),('Unclosed row span',m['id'])
 topics=next(s for s in library['subjects']['histology-cytology']['sections'] if s['id']=='digestive')['topics']
+extra=load('gi-atlas.json')
+assert extra['version']==1 and len(extra['images'])==6
+base=load('small-intestine-slides.json')['images']
+slide_ids={s['id'] for s in base+extra['images']}
+assert len(slide_ids)==9
+assert sum(bool(c.get('slideId')) for c in course['chapters'])==10
+for chapter in course['chapters']:
+ if chapter.get('slideId'):
+  assert chapter['slideId'] in slide_ids,chapter['id']
+for image in extra['images']:
+ assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0'}
+ assert image['localAsset'] and image['src']=='./photos/'+image['id']+'.jpg'
+ assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')
+ assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
+ assert not image['annotations'],'New slide landmarks are NOT spatially verified'
+ assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
 assert len(topics)==20
 assert set('gi-'+i for i in ids).issubset(set(x['id'] for x in topics))
 assert 'histology-small-intestine' in {x['id'] for x in topics}
