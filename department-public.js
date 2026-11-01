@@ -32,7 +32,7 @@ async function render(host,{onBack,chapterId=null}={}){
  }
  const list=chapterId?data.specimens.filter(x=>x.chapters.includes(chapterId)):data.specimens;
  if(!list.length){root.replaceChildren(el('p','note','Для этой главы пока нет кафедрального препарата.'));return;}
- let active=list[0],mode='study',step=0,zoom=100;
+ let active=list[0],mode='study',zoom=100;
  function redraw(){
   root.replaceChildren();
   if(onBack)root.append(btn('← Назад',onBack,'gi-back'));
@@ -42,7 +42,7 @@ async function render(host,{onBack,chapterId=null}={}){
   list.forEach((x,i)=>{
    const b=el('button','dept-file-card'+(x===active?' active':''));b.type='button';
    b.append(el('strong','',mode==='check'?'Препарат '+(i+1):x.title),el('small','',x.kind==='photo'?'Кафедральная фотография':'Кадры из кафедрального видео'));
-   b.onclick=()=>{active=x;mode='study';step=0;zoom=100;redraw();};
+   b.onclick=()=>{active=x;mode='study';zoom=100;redraw();};
    files.append(b);
   });
   root.append(files);
@@ -50,8 +50,8 @@ async function render(host,{onBack,chapterId=null}={}){
   panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА':'КАФЕДРАЛЬНЫЙ ПРЕПАРАТ'),
     el('h2','',mode==='check'?'Определи препарат по изображению':active.title));
   const modes=el('div','dept-modes');
-  for(const [id,label] of [['study','Изучение'],['check','Самопроверка'],['find','Найди структуру']]){
-   modes.append(btn(label,()=>{mode=id;step=0;redraw();},'gi-button'+(id===mode?' gi-active':' gi-light')));
+  for(const [id,label] of [['study','Изучение'],['check','Самопроверка']]){
+   modes.append(btn(label,()=>{mode=id;redraw();},'gi-button'+(id===mode?' gi-active':' gi-light')));
   }
   panel.append(modes);
   const grid=el('div','dept-public-frames');
@@ -83,17 +83,8 @@ async function render(host,{onBack,chapterId=null}={}){
    panel.append(select,btn('Проверить ответ',()=>{
     feedback.textContent=(select.value===active.title?'Верно: ':'Правильный ответ: ')+active.title;
    }),feedback);
-  }else{
-   panel.append(el('p','dept-caution','На новых снимках координаты структур не подтверждены. Самостоятельно найди ориентир, затем открой описание — баллы за касание не начисляются.'));
-   const question=el('p','dept-question',''),answer=el('p','dept-feedback','');
-   function setPrompt(){question.textContent=step<active.cues.length?'Найди на срезе: '+active.cues[step]:'Все ориентиры разобраны.';}
-   setPrompt();panel.append(question,answer,btn('Показать ориентир / следующий',()=>{
-    if(step>=active.cues.length)return;
-    answer.textContent='Ориентир '+(step+1)+': '+active.cues[step]+'. Сравни с тем, что реально видно на фотографии.';
-    step++;setPrompt();
-   }));
   }
-  panel.append(el('p','dept-license','Кафедральный источник: '+active.source_filename+'. '+active.review+'. Видео представлены отдельными кадрами, без дорисовки и синтетической панорамы.'));
+  panel.append(el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Кафедральный источник: '+active.source_filename+'. '+active.review+'. Видео представлены отдельными кадрами, без дорисовки и синтетической панорамы.'));
   root.append(panel);
  }
  redraw();
