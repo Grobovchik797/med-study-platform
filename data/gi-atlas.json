@@ -281,6 +281,310 @@
       "assetDescription": "Локальная оптимизированная копия без ретуши морфологии. Цифровые координаты структур не проверены.",
       "reviewStatus": "source-and-license-checked; spatial-markers-unverified",
       "departmentTitle": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК"
+    },
+    {
+      "id": "pyloric-stomach",
+      "title": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "departmentTitle": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "credit": "Jpogi",
+      "license": "Public domain",
+      "file": "Pyloric stomach LPO.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG",
+      "aspect": "1.33",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Human pyloric stomach from Commons. Identify structures only where visible at this field.",
+      "landmarks": [
+        {
+          "label": "Желудочные ямки",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Пилорические железы слизистой",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Мышечная пластинка слизистой",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "pyloric-stomach",
+      "src": "./photos/pyloric-stomach.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Pyloric_stomach_LPO.JPG",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/e/e3/Pyloric_stomach_LPO.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "esophagus-cross-section",
+      "title": "ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА",
+      "departmentTitle": "ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА",
+      "credit": "Lorenzo Apolloni",
+      "license": "CC BY 4.0",
+      "file": "Trasversal histologic section of human esophagus.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Trasversal_histologic_section_of_human_esophagus.jpg",
+      "aspect": "1",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Transverse human oesophagus section (original departmental label is 'ПОПЕРЕЧНЫЙ РАЗМЕР' rather than a verified section plane).",
+      "landmarks": [
+        {
+          "label": "Просвет пищевода",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Многослойный плоский эпителий",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Мышечная оболочка",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "esophagus-cross-section",
+      "src": "./photos/esophagus-cross-section.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Trasversal_histologic_section_of_human_esophagus.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/5/54/Trasversal_histologic_section_of_human_esophagus.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "tongue-foliate",
+      "title": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "departmentTitle": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "credit": "Reytan",
+      "license": "Public domain",
+      "file": "Papillae foliatae.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Papillae_foliatae.jpg",
+      "aspect": "1.33",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Commons historical histology source; modest 640×480 resolution, fine taste buds may not be visible.",
+      "landmarks": [
+        {
+          "label": "Складки листовидных сосочков",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Боковая эпителиальная поверхность",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Соединительнотканная основа",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "tongue-foliate",
+      "src": "./photos/tongue-foliate.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Papillae_foliatae.jpg",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/3c/Papillae_foliatae.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "tongue-filiform",
+      "title": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "departmentTitle": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "credit": "Vamsi kumar Pabolu",
+      "license": "CC BY-SA 4.0",
+      "file": "Fungiform papillae and Filiform papillae.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg",
+      "aspect": "1.12",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "The source is a human histology photograph/diagram showing both fungiform and filiform papillae; do not confuse the two.",
+      "landmarks": [
+        {
+          "label": "Нитевидный сосочек",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Многослойный плоский эпителий",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Соединительнотканная основа",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "tongue-filiform",
+      "src": "./photos/tongue-filiform.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Fungiform_papillae_and_Filiform_papillae.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/1/18/Fungiform_papillae_and_Filiform_papillae.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "palatine-tonsil",
+      "title": "НЕБНАЯ МИНДАЛИНА",
+      "departmentTitle": "НЕБНАЯ МИНДАЛИНА",
+      "credit": "Bhuvana Syama",
+      "license": "CC BY-SA 4.0",
+      "file": "Histology of palatine tonsil.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg",
+      "aspect": "1.57",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Palatine tonsil histology original from Commons; mucosal epithelium and lymphoid follicles are teaching cues.",
+      "landmarks": [
+        {
+          "label": "Крипта миндалины",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Лимфоидная ткань",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Лимфоидный фолликул",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "palatine-tonsil",
+      "src": "./photos/palatine-tonsil.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_palatine_tonsil.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/Histology_of_palatine_tonsil.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "parotid-gland",
+      "title": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "departmentTitle": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "credit": "Wbensmith",
+      "license": "CC BY 3.0",
+      "file": "WVSOM Parotid Gland1.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/WVSOM_Parotid_Gland1.JPG",
+      "aspect": "1.22",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Source describes parotid gland; differentiated acini and duct lumina only if adequately visible.",
+      "landmarks": [
+        {
+          "label": "Серозные секреторные отделы",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Выводные протоки",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Междольковая соединительная ткань",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "parotid-gland",
+      "src": "./photos/parotid-gland.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:WVSOM_Parotid_Gland1.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/bd/WVSOM_Parotid_Gland1.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "mixed-salivary-gland",
+      "title": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "departmentTitle": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "credit": "Sahithi Adapala",
+      "license": "CC BY-SA 4.0",
+      "file": "Histology of mixed salivary gland.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg",
+      "aspect": "0.75",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Mixed salivary gland micrograph; individual serous demilunes and ducts require sufficient resolution.",
+      "landmarks": [
+        {
+          "label": "Слизистые секреторные отделы",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Серозные секреторные отделы",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Выводной проток",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "mixed-salivary-gland",
+      "src": "./photos/mixed-salivary-gland.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Histology_of_mixed_salivary_gland.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/f/f7/Histology_of_mixed_salivary_gland.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "tooth-dentin-enamel",
+      "title": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "departmentTitle": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "credit": "Dozenist",
+      "license": "CC BY-SA 3.0",
+      "file": "Enamelmineralization11-17-05.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Enamelmineralization11-17-05.jpg",
+      "aspect": "0.97",
+      "stain": "Окраска по источнику: не подтверждена",
+      "description": "Maturing tooth germ with author-labeled enamel, dentin, ameloblasts and odontoblasts. Do not erase source labels.",
+      "landmarks": [
+        {
+          "label": "Слой дентина",
+          "note": "Учебный ориентир №1. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Слой эмали",
+          "note": "Учебный ориентир №2. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        },
+        {
+          "label": "Амелобласты и одонтобласты",
+          "note": "Учебный ориентир №3. Найди только если эта структура действительно видима на данном срезе; точные координаты ещё не утверждены."
+        }
+      ],
+      "answer": "tooth-dentin-enamel",
+      "src": "./photos/tooth-dentin-enamel.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Enamelmineralization11-17-05.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/1/1c/Enamelmineralization11-17-05.jpg"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
     }
   ]
 }
