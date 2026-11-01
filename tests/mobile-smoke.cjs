@@ -51,7 +51,7 @@ async function navigateHistology(page) {
   assert.equal(await page.locator('.si-choice-row').count()>0,true);
   await page.getByRole('button',{name:'Найди структуру'}).tap();
   assert.equal(await page.locator('.si-pin').count(),0);
-  assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №'));
+  assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
   const microscope=page.locator('.si-microscope');
   const microscopeBox=await microscope.boundingBox();
   assert.ok(microscopeBox,'Need a visible microscope to test pointer search');
@@ -180,7 +180,7 @@ async function main() {
       await page.getByRole('button',{name:'Самопроверка'}).tap();
       assert.ok(await page.getByText('Какой орган или отдел показан на препарате?').isVisible());
       await page.getByRole('button',{name:'Найди структуру'}).tap();
-      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди:'));
+      assert.ok((await page.locator('.si-find-hint').textContent()).includes('Найди структуру №'));
       assert.ok((await page.locator('.si-find-mode .si-pin').count())===0,'Do not invent coordinates on new slides');
       await page.getByRole('button',{name:'← Вернуться к теме'}).tap();
       await waitHeading(page,chapterTitle);
