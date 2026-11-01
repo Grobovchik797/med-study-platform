@@ -239,7 +239,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[]}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
  const topicMode=Boolean(chapterId);
@@ -248,6 +248,11 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
   ...mini.map(([prompt,options,answer,explanation],i)=>({
    id:'gi-mini-'+chapterId+'-'+i,chapter:chapterId,difficulty:'practice',
    prompt,options,answer,explanation
+  })),
+  ...deepBlocks.filter(block=>block.checkpoint).map(block=>({
+   id:'gi-checkpoint-'+block.id,chapter:chapterId,difficulty:'practice',
+   prompt:block.checkpoint.prompt,options:block.checkpoint.options,
+   answer:block.checkpoint.answer,explanation:block.checkpoint.explanation
   }))
  ]:[];
  let quizQuestions=[];
@@ -269,7 +274,7 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[]}){
    el('div','kicker',topicMode?'ТЕСТ ПО ТЕМЕ':'ИТОГОВОЕ ТЕСТИРОВАНИЕ'),
    el('h1','',topicMode?chapterTitle:'Контроль знаний по пищеварительной системе'),
    paragraph(topicMode?
-    'В этом разделе доступно '+topicQuestions.length+' проверочных вопросов по выбранной теме: 3 мини-вопроса и дополнительные вопросы из общего банка, если они есть. Это учебный черновик; полная кафедральная сверка впереди.':
+    'В этой теме '+topicQuestions.length+' вопросов: 3 коротких, 5 проверок из расширенного конспекта и дополнительные из итогового банка, если они предусмотрены. После каждого ответа — объяснение; проверка преподавателем ещё требуется.':
     'Итоговый тест охватывает весь курс. Выбери уровень сложности.','gi-lead'));
   const controls=el('div','gi-depths');
   if(topicMode){
