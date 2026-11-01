@@ -103,9 +103,8 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
   // Four real resources on each chapter page, following the small-intestine pilot.
   const resources=el('div','library-features gi-topic-features');
   const notesTile=el('section','card library-feature');
-  append(notesTile,el('h2','','Конспект'),paragraph('Краткий и расширенный разбор по главе.'),
-    button('Читать краткий →',()=>{current='brief';chapterDepths[chapter.id]=current;show();host.querySelector('#gi-chapter-notes')?.scrollIntoView();},'gi-button'),
-    button('Читать расширенный →',()=>{current='deep';chapterDepths[chapter.id]=current;show();host.querySelector('#gi-chapter-notes')?.scrollIntoView();},'gi-button gi-light'));
+  append(notesTile,el('h2','','Конспект'),paragraph('Краткий и расширенный разбор по главе. Переключатель глубины расположен непосредственно перед текстом.'),
+    button('Перейти к конспекту →',()=>host.querySelector('#gi-chapter-notes')?.scrollIntoView(),'gi-button'));
   const testsTile=el('section','card library-feature');
   const n=mini.length+deepBlocks.filter(b=>b.checkpoint).length;
   append(testsTile,el('h2','','Тесты'),paragraph('Не менее '+n+' вопросов из учебных материалов этой главы, с разбором ответа.'),
