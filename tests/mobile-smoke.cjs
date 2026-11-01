@@ -322,6 +322,13 @@ async function main() {
     assert.equal(await desktop.locator('.si-legend li').count(),3,'Expected three numbered visible learning cues');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Developing enamel and dentin need 3 real image labels');
     await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди:'));
+    const photoBounds=await desktop.locator('.si-microscope').boundingBox();
+    assert.ok(photoBounds,'Microscope should remain visible');
+    await desktop.locator('.si-microscope').click({position:{x:photoBounds.width*.52,y:photoBounds.height*.42}});
+    assert.ok((await desktop.locator('.si-find-feedback').textContent()).includes('без автоматических баллов'));
+    await desktop.getByRole('button',{name:'Изучение'}).click();
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
     assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
     assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
     await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
