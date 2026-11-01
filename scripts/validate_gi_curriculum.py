@@ -88,7 +88,11 @@ for image in extra['images']:
  assert image['localAsset'] and image['src']=='./photos/'+image['id']+'.jpg'
  assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')
  assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
- assert not image['annotations'],'New slide landmarks are NOT spatially verified'
+ if image['annotations']:
+  assert image['id'] in {'stomach-pyloric','mixed-salivary'}
+  assert image.get('reviewStatus')=='preliminary-visual-regions; spatial-expert-review-pending'
+  assert [a['n'] for a in image['annotations']]==[1,2,3]
+  assert all(0<a['x']<100 and 0<a['y']<100 and a['label'] and a['note'] for a in image['annotations'])
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
 assert len(topics)==20
 assert set('gi-'+i for i in ids).issubset(set(x['id'] for x in topics))
