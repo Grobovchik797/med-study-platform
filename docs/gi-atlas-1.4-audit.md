@@ -19,7 +19,7 @@
 | Ключ | Что подтверждено на странице источника | Автор и лицензия | Ограничение |
 | --- | --- | --- | --- |
 | `salivary-submandibular` | [Подчелюстная железа](https://commons.wikimedia.org/wiki/File:Submandibular_gland_loves_you.jpg) | Lucy mode, CC BY-SA 4.0 | Не обозначаем координаты серозных/слизистых ацинусов |
-| `esophagus` | [Esôfago – HE – 100x](https://commons.wikimedia.org/wiki/File:Es%C3%B4fago_%E2%80%93_HE_%E2%80%93_100x.png) | Guido Fregapani, CC BY-SA 4.0 | На оригинале уже есть авторские числовые подписи |
+| `esophagus` | [Пищевод](https://commons.wikimedia.org/wiki/File:Oesophagus.jpg) | Димитър Митев, CC BY-SA 3.0 | Слизистая и собственная пластинка, без точечной разметки |
 | `stomach-fundus` | [Фундальный желудок](https://commons.wikimedia.org/wiki/File:Stomach-fundus.jpg) | Димитър Митев, CC BY-SA 3.0 | Не подменяет пилорический и кардиальный отделы |
 | `colon` | [Толстая кишка человека](https://commons.wikimedia.org/wiki/File:Large_intestine_(254_15)_Human_large_intestine.jpg) | Josef Reischig / правообладатели, CC BY-SA 3.0 | Увеличение заявлено относительно исходного отпечатка |
 | `liver` | [Зоны печени, ретикулин](https://commons.wikimedia.org/wiki/File:Histopathology_of_liver_zones.jpg) | Alexander Boyd, Owen Cain, Abhishek Chauhan, Gwilym James Webb, CC BY 4.0 | Не H&E: в оригинале уже обозначены P и V |
