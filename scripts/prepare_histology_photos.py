@@ -17,7 +17,7 @@ SLIDES=json.loads((ROOT/"data/small-intestine-slides.json").read_text("utf-8"))
 EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
-assert len(SLIDES["images"])==3 and len(EXTRA["images"])==8
+assert len(SLIDES["images"])==3 and len(EXTRA["images"])==16
 for slide in SLIDES["images"]+EXTRA["images"]:
     local=slide.get("src","")
     if not local.startswith("./photos/") or ".." in local:
@@ -29,7 +29,7 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         print(f"Existing licensed preparation OK: {path.name}")
         continue
     sources=slide.get("buildSources",[])
-    if not sources or slide.get("license") not in {"CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","Public domain"} or not slide.get("source"):
+    if not sources or slide.get("license") not in {"CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","CC BY 3.0","Public domain"} or not slide.get("source"):
         raise SystemExit("Missing Commons provenance for "+slide["id"])
     err=None
     for url in sources:
@@ -66,4 +66,4 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
-print("PASS: eleven Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
+print("PASS: nineteen Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
