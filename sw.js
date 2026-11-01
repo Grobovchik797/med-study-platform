@@ -36,16 +36,16 @@ self.addEventListener("fetch", event => {
   // immediately on repeat visits instead of re-downloading huge JPGs on each mode change.
   if (url.pathname.startsWith(basePath + "photos/")) {
     event.respondWith(
-      caches.match(event.request, { ignoreSearch: true }).then(cached => {
+      caches.open(CACHE).then(cache => cache.match(event.request, { ignoreSearch: true }).then(cached => {
         if (cached) return cached;
         return fetch(event.request).then(response => {
           if (response.ok && response.type === "basic") {
             const copy = response.clone();
-            event.waitUntil(caches.open(CACHE).then(cache => cache.put(event.request, copy)));
+            event.waitUntil(cache.put(event.request, copy));
           }
           return response;
         });
-      }).catch(() => Response.error())
+      })).catch(() => Response.error())
     );
     return;
   }
