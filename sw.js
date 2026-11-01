@@ -1,5 +1,5 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v1.7.0-atlas";
+const CACHE = "med-study-shell-v1.8.0-topics";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./department-atlas.js", "./department-public.js",
   "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
