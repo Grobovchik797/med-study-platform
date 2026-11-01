@@ -90,6 +90,19 @@ for image in extra['images']:
  assert image['buildSources'] and all(u.startswith('https://upload.wikimedia.org/') for u in image['buildSources'])
  assert all(a.get('n') in (1,2,3) and 0<a.get('x',-1)<100 and 0<a.get('y',-1)<100 for a in image['annotations']), image['id']
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
+map_data=load('gi-department-reference-map.json')
+department=load('department-public.json')
+assert map_data['version']==1 and len(map_data['items'])==14
+department_titles={item['title'] for item in department['specimens']}
+assert {item['departmentTitle'] for item in map_data['items']}==department_titles
+for item in map_data['items']:
+ assert item['referenceIds'] and set(item['referenceIds']).issubset(slide_ids),item
+ # A shared reference is allowed for one general category, but no unverified
+ # source may be substituted for a completely different anatomical organ.
+for item in extra['images']:
+ if item.get('departmentTitle'):
+  assert item['departmentTitle'] in department_titles
+ assert item['reviewStatus'] and len(item['landmarks'])>=2
 assert len(topics)==20
 assert set('gi-'+i for i in ids).issubset(set(x['id'] for x in topics))
 assert 'histology-small-intestine' in {x['id'] for x in topics}
