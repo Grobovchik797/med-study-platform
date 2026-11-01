@@ -330,28 +330,76 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
 }
 // Flashcards use ONLY existing authored teaching material; no synthetic facts
 // or externally generated questions are added to the medical syllabus.
-function renderCards(host,{title,cards,onBack}){
- let order=cards.map((_,i)=>i),index=0,revealed=false;
+function renderCards(host,{title,cards,onBack,topicKey=null}){
+ if(!cards.length){host.replaceChildren(paragraph('Карточки этой темы ещё не подготовлены.'));return;}
+ const savedKey=typeof topicKey==='string'&&/^[a-z0-9-]{1,60}$/.test(topicKey)?
+  'med-study-card-recall-'+topicKey+'-v1':null;
+ let ratings=Array(cards.length).fill('');
+ if(savedKey)try{
+  const saved=JSON.parse(localStorage.getItem(savedKey)||'null');
+  if(saved&&saved.version===1&&Array.isArray(saved.ratings))
+   ratings=ratings.map((_,i)=>['known','review'].includes(saved.ratings[i])?saved.ratings[i]:'');
+ }catch{}
+ function persist(){
+  if(!savedKey)return;
+  try{localStorage.setItem(savedKey,JSON.stringify({version:1,ratings}));}catch{}
+ }
+ let order=cards.map((_,i)=>i),index=0,revealed=false,reviewOnly=false;
+ function mark(status){
+  ratings[order[index]]=status;persist();
+  if(index<order.length-1){index++;revealed=false;}
+  show();
+ }
+ function switchDeck(onlyReview){
+  const indices=cards.map((_,i)=>i).filter(i=>!onlyReview||ratings[i]==='review');
+  if(!indices.length)return;
+  order=indices;index=0;revealed=false;reviewOnly=onlyReview;show();
+ }
  function show(){
-  const item=cards[order[index]];
+  const item=cards[order[index]],known=ratings.filter(r=>r==='known').length,
+   review=ratings.filter(r=>r==='review').length,unrated=cards.length-known-review;
   host.replaceChildren();
   append(host,button('← К теме',onBack,'gi-back'),
     el('div','kicker','АКТИВНОЕ ВОСПРОИЗВЕДЕНИЕ'),
     el('h1','',title+' · карточки'),
-    paragraph('Сначала сформулируй ответ самостоятельно, затем открой объяснение из конспекта.','gi-lead'),
-    el('p','gi-provenance','Карточка '+(index+1)+' из '+order.length+'. Формулировки взяты из существующего материала темы.'));
+    paragraph('Сначала попробуй вспомнить ответ, потом открой его и отметь: «Знаю» или «Повторить».','gi-lead'));
+  const statistics=el('section','gi-recall-statistics');
+  const count=el('p','gi-recall-count','Знаю: '+known+' · Повторить: '+review+' · Не проверено: '+unrated);
+  count.setAttribute('aria-live','polite');
+  const meter=el('div','gi-recall-meter'),fill=el('div','gi-recall-meter-fill');
+  meter.setAttribute('role','progressbar');meter.setAttribute('aria-label','Карточки, оценённые самостоятельно');
+  meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax',String(cards.length));
+  meter.setAttribute('aria-valuenow',String(known+review));fill.style.width=(100*(known+review)/cards.length)+'%';
+  meter.append(fill);statistics.append(count,meter);
+  host.append(statistics,el('p','gi-provenance',
+    (reviewOnly?'Повторение трудных · ':'')+'Карточка '+(index+1)+' из '+order.length+
+    '. Содержание из существующего конспекта; отметки остаются только в этом браузере.'));
   const card=el('article','card gi-recall-card');
-  append(card,el('div','kicker',revealed?'ПРОВЕРЬ СЕБЯ':'ВСПОМНИ БЕЗ ПОДСКАЗКИ'),el('h2','',item.prompt));
+  append(card,el('div','kicker',revealed?'ПРОВЕРЬ СЕБЯ':'ВСПОМНИ БЕЗ ПОДСКАЗКИ'),
+    el('h2','',item.prompt));
   if(revealed)card.append(paragraph(item.answer));
   else card.append(paragraph('Попробуй ответить своими словами, только затем открой объяснение.'));
-  const controls=el('div','gi-end-actions');
-  append(controls,button(revealed?'Скрыть ответ':'Показать ответ',()=>{revealed=!revealed;show();},'gi-button'),
-   button('← Назад',()=>{index=(index-1+order.length)%order.length;revealed=false;show();},'gi-button gi-light'),
-   button('Следующая →',()=>{index=(index+1)%order.length;revealed=false;show();},'gi-button gi-light'),
-   button('Перемешать',()=>{order=randomize(order);index=0;revealed=false;show();},'gi-button gi-light'));
-  host.append(card,controls);
+  const status=ratings[order[index]];
+  if(status)card.append(el('p','gi-recall-rating',status==='known'?
+    'Твоя отметка: «Знаю»':'Твоя отметка: «Повторить»'));
+  const controls=el('div','gi-end-actions gi-recall-actions');
+  append(controls,button(revealed?'Скрыть ответ':'Показать ответ',
+      ()=>{revealed=!revealed;show();},'gi-button'),
+    button('← Назад',()=>{index=(index-1+order.length)%order.length;revealed=false;show();},'gi-button gi-light'),
+    button('Следующая →',()=>{index=(index+1)%order.length;revealed=false;show();},'gi-button gi-light'),
+    button('Перемешать',()=>{order=randomize(order);index=0;revealed=false;show();},'gi-button gi-light'));
+  if(revealed) {
+   const judge=el('div','gi-recall-judgement');
+   append(judge,button('Знаю ✓',()=>mark('known'),'gi-button gi-recall-known'),
+     button('Повторить ↺',()=>mark('review'),'gi-button gi-recall-review'));
+   card.append(judge);
+  }
+  const practice=el('div','gi-recall-filter');
+  if(review&&!reviewOnly)practice.append(button('Повторить трудные · '+review,
+   ()=>switchDeck(true),'gi-button gi-light'));
+  if(reviewOnly)practice.append(button('Показать все карточки',()=>switchDeck(false),'gi-button gi-light'));
+  host.append(card,controls,practice);
  }
- if(!cards.length){host.replaceChildren(paragraph('Карточки этой темы ещё не подготовлены.'));return;}
  show();
 }
 
