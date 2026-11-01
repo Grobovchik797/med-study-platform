@@ -91,7 +91,7 @@ function briefExtract(text){
 
 function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,depth='brief'}) {
  const focusMount=el('div','gi-topic-focus');
- if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focusMount,{topicTitle:chapter.title});
+ if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focusMount,{topicTitle:chapter.title,topicKey:chapter.id});
  let current=chapterDepths[chapter.id]||depth;
  function show(){
   host.replaceChildren();
