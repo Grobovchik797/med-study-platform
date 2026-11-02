@@ -696,3 +696,9 @@ html.reading-calm .gi-reading-toolbar,html.reading-calm .gi-milestones{backgroun
 html.reading-calm .gi-parenthetical{background:#e9f2ed;color:#245e57;}
 html.reading-calm .gi-nb{background:#f4efe3;border-left-color:#977852;}
 @media(max-width:600px){.gi-reading-toolbar{align-items:stretch;}.gi-reading-toolbar>strong{width:100%;}.gi-reading-select{max-width:190px;}.gi-milestones{padding:15px;}}
+
+/* The same optional type scale also applies to the older VNS teaching material. */
+.lesson-section .lesson-lead,.lesson-section .lesson-fact p,.lesson-intro p{
+ font-size:calc(14px * var(--reading-scale));line-height:1.85;
+}
+html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#fffdf5;border-color:#e3ddce;}
