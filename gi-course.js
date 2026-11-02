@@ -8,6 +8,92 @@ const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
 const titles={brief:'Краткий',deep:'Расширенный'};
 const randomize=a=>{const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
 const chapterDepths=Object.create(null);
+
+/* User-controlled learning milestones. Views and clicks alone do not imply mastery. */
+const TOPIC_PROGRESS_KEY='med-study-topic-milestones-v1';
+const READING_KEY='med-study-reading-prefs-v1';
+const milestones=['notes','tests','cards','atlas'];
+const safeId=id=>typeof id==='string'&&/^[a-z0-9-]{1,65}$/.test(id);
+function readMilestones(id){
+ if(!safeId(id))return {};
+ try{
+  const all=JSON.parse(localStorage.getItem(TOPIC_PROGRESS_KEY)||'{}');
+  const record=all&&typeof all==='object'&&!Array.isArray(all)?all[id]:null;
+  if(!record||typeof record!=='object'||Array.isArray(record))return {};
+  return Object.fromEntries(milestones.map(k=>[k,record[k]===true]));
+ }catch{return {};}
+}
+function markMilestone(id,stage){
+ if(!safeId(id)||!milestones.includes(stage))return;
+ try{
+  const all=JSON.parse(localStorage.getItem(TOPIC_PROGRESS_KEY)||'{}');
+  const safe=all&&typeof all==='object'&&!Array.isArray(all)?all:{};
+  const prev=readMilestones(id);
+  safe[id]={...prev,[stage]:true};
+  localStorage.setItem(TOPIC_PROGRESS_KEY,JSON.stringify(safe));
+ }catch{}
+}
+function renderMilestones(host,{topicId,hasAtlas=false}){
+ const stages=[
+  ['notes','Конспект'],
+  ['tests','Тест'],
+  ['cards','Карточки'],
+  ...(hasAtlas?[['atlas','Атлас']]:[])
+ ];
+ const record=readMilestones(topicId),completed=stages.filter(([id])=>record[id]).length;
+ const root=el('section','gi-milestones card');
+ append(root,el('div','kicker','МОЙ ПЛАН ПОДГОТОВКИ'),
+   el('h2','','Пройдено шагов: '+completed+' из '+stages.length),
+   paragraph('Считаются только подтверждённое изучение конспекта, завершённый тест, самостоятельно оценённые карточки и отмеченный разбор препарата.'));
+ const line=el('div','gi-milestone-items');
+ for(const [id,title] of stages){
+  const item=el('span','gi-milestone'+(record[id]?' is-done':''),(record[id]?'✓ ':'○ ')+title);
+  item.setAttribute('aria-label',title+': '+(record[id]?'выполнено':'ещё не отмечено'));
+  line.append(item);
+ }
+ root.append(line);host.replaceChildren(root);
+}
+function readReadingPrefs(){
+ try{
+  const value=JSON.parse(localStorage.getItem(READING_KEY)||'null');
+  return {size:[100,115,130].includes(value?.size)?value.size:100,calm:value?.calm===true};
+ }catch{return {size:100,calm:false};}
+}
+function applyReadingPrefs(prefs){
+ document.documentElement.dataset.readingSize=String(prefs.size);
+ document.documentElement.classList.toggle('reading-calm',prefs.calm);
+}
+function writeReadingPrefs(prefs){
+ const valid={size:[100,115,130].includes(prefs.size)?prefs.size:100,calm:prefs.calm===true};
+ try{localStorage.setItem(READING_KEY,JSON.stringify(valid));}catch{}
+ applyReadingPrefs(valid);
+}
+function renderReadingControls(host){
+ const prefs=readReadingPrefs();
+ const box=el('section','gi-reading-toolbar');
+ const title=el('strong','','Комфортное чтение');
+ const label=el('label','gi-reading-size','Размер текста');
+ const select=el('select','gi-reading-select');
+ select.setAttribute('aria-label','Размер текста конспекта');
+ for(const [value,name] of [[100,'Обычный'],[115,'Крупнее'],[130,'Самый крупный']]){
+  const opt=el('option','',name);opt.value=String(value);select.append(opt);
+ }
+ select.value=String(prefs.size);
+ select.addEventListener('change',()=>writeReadingPrefs({...readReadingPrefs(),size:Number(select.value)}));
+ label.append(select);
+ const calm=button(prefs.calm?'Спокойный фон: включён':'Спокойный фон: выключен',()=>{
+  const next={...readReadingPrefs(),calm:!readReadingPrefs().calm};
+  writeReadingPrefs(next);
+  calm.textContent=next.calm?'Спокойный фон: включён':'Спокойный фон: выключен';
+  calm.setAttribute('aria-pressed',String(next.calm));
+ },'gi-button gi-light gi-reading-toggle');
+ calm.setAttribute('aria-pressed',String(prefs.calm));
+ append(box,title,label,calm);
+ host.replaceChildren(box);
+}
+window.MedStudyLearning={readMilestones,markMilestone,renderMilestones,renderReadingControls,readReadingPrefs};
+applyReadingPrefs(readReadingPrefs());
+
 function paragraph(text,cls='gi-paragraph') {
  const p=el('p',cls);
  const pieces=String(text).split(/(\([^()]{3,170}\)|NB\.)/);
