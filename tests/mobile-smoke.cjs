@@ -424,6 +424,8 @@ async function main() {
     await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
     await waitHeading(desktop,'Изучение и самопроверка');
     assert.equal(await desktop.locator('.si-select option').count(),19);
+    assert.equal(await desktop.locator('.si-select option').nth(10).textContent(),'Переход пищевода в желудок',
+      'Reference gallery should show the normalized title without an uppercase duplicate');
     await desktop.locator('.si-select').first().selectOption('10');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Gastro-esophageal junction should have 3 spatial markers on photo');
     await desktop.getByRole('button',{name:'＋ Увеличить'}).click();
@@ -439,7 +441,7 @@ async function main() {
     assert.equal(await desktop.locator('.si-pin').count(),3,'Developing tooth enamel-organ should have 3 spatial markers');
     await desktop.locator('.si-select').first().selectOption('18');
     assert.equal(await desktop.locator('.si-microscope img').count(),1);
-    assert.ok(await desktop.getByRole('heading',{name:'РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ'}).isVisible());
+    assert.ok(await desktop.getByRole('heading',{name:'Развитие зуба, образование дентина и эмали'}).isVisible());
     assert.equal(await desktop.locator('.si-legend li').count(),3,'Expected three numbered visible learning cues');
     assert.equal(await desktop.locator('.si-pin').count(),3,'Developing enamel and dentin need 3 real image labels');
     await desktop.getByRole('button',{name:'Найди структуру'}).click();
@@ -460,21 +462,22 @@ async function main() {
     await waitHeading(desktop,'Кафедральные микропрепараты');
     await desktop.waitForFunction(()=>document.querySelectorAll('.dept-file-card').length===14);
     assert.equal(await desktop.locator('.dept-file-card').count(),14);
-    assert.equal(await desktop.locator('.dept-file-card strong').first().textContent(),'12 ПЕРСТНАЯ КИШКА');
+    assert.equal(await desktop.locator('.dept-file-card strong').first().textContent(),'Двенадцатиперстная кишка');
     const natural=await desktop.locator('.dept-image').first().evaluate(img=>new Promise(resolve=>{
       if(img.complete)return resolve(img.naturalWidth);
       img.addEventListener('load',()=>resolve(img.naturalWidth),{once:true});
       img.addEventListener('error',()=>resolve(0),{once:true});
     }));
     assert.ok(natural>400,'Public real departmental JPEG must be present');
-    const videoCard=desktop.locator('.dept-file-card').filter({hasText:'ЛИСТОВИДНЫЕ СОСОЧКИ'});
+    const videoCard=desktop.locator('.dept-file-card').filter({hasText:'Листовидные сосочки'});
     await videoCard.click();
     assert.equal(await desktop.locator('.dept-public-figure').count(),2,'Video must supply two real fields of view');
     await desktop.getByRole('button',{name:'Самопроверка'}).click();
     assert.ok((await desktop.locator('.dept-panel h2').textContent()).includes('Определи препарат'));
+    assert.equal(await desktop.locator('.dept-answer option[value="ЛИСТОВИДНЫЕ СОСОЧКИ"]').textContent(),'Листовидные сосочки');
     await desktop.locator('.dept-answer').selectOption('ЛИСТОВИДНЫЕ СОСОЧКИ');
     await desktop.getByRole('button',{name:'Проверить ответ'}).click();
-    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Верно:'));
+    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Верно: Листовидные сосочки'));
     assert.equal(await desktop.locator('.dept-modes button').count(),2,'Department must have only study and self-check');
     assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
     await desktop.getByRole('button',{name:'Изучение'}).click();
