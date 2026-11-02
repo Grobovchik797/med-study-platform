@@ -697,6 +697,11 @@ function showLesson() {
     return;
   }
   main.append(titleArea('УЧЕБНЫЙ КОНСПЕКТ · ВВОДНАЯ ВЕРСИЯ', lessonData.topic, lessonData.subtitle));
+  if(window.MedStudyLearning){
+    const reading=element('div','gi-topic-reading');
+    window.MedStudyLearning.renderReadingControls(reading);
+    main.append(reading);
+  }
   main.append(element('p','note','Это первый учебный материал по ВНС, а не законченный краткий или расширенный конспект. Позже добавим две полноценно выверенные версии по контрольным вопросам: краткую с обязательной базой и расширенную до клеточных и молекулярных механизмов.'));
   const toolbar = element('div','lesson-toolbar');
   append(toolbar, element('span','lesson-label','5 разделов · теория + примеры'),
