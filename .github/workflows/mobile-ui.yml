@@ -29,7 +29,6 @@ jobs:
         with:
           path: photos/*.jpg
           key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
-          save-always: true
       - name: Generate icons and start local web server
         run: |
           python3 scripts/generate_icons.py
