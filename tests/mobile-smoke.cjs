@@ -117,6 +117,13 @@ async function navigateDigestiveCourse(page) {
   await page.locator('.library-card').filter({hasText:'Желудок: оболочки, ямки'}).locator('.library-go').tap();
   await waitHeading(page,'Желудок: оболочки');
   assert.equal(await page.locator('.gi-topic-features .library-feature').count(),4);
+  assert.ok((await page.locator('.gi-milestones h2').textContent()).includes('0 из 4'),
+    'Opening a chapter must not count as studying');
+  await page.locator('.gi-reading-select').selectOption('115');
+  assert.equal(await page.locator('html').getAttribute('data-reading-size'),'115');
+  await page.getByRole('button',{name:'Спокойный фон: выключен'}).tap();
+  assert.ok(await page.locator('html').evaluate(node=>node.classList.contains('reading-calm')));
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('med-study-reading-prefs-v1')).size),115);
   assert.equal(await page.locator('.si-focus').count(),1,'Each GI chapter needs a focus timer');
   assert.ok((await page.locator('.si-focus').textContent()).includes('Желудок'));
   await page.getByRole('button',{name:'Начать',exact:true}).tap();
@@ -155,12 +162,20 @@ async function navigateDigestiveCourse(page) {
   assert.equal(await page.getByRole('button',{name:'Пауза',exact:true}).count(),1,'Timer must continue across topic cards');
   await page.getByRole('button',{name:'Пауза',exact:true}).tap();
   await page.getByRole('button',{name:'Сбросить',exact:true}).tap();
+  assert.ok((await page.locator('.gi-milestones h2').textContent()).includes('1 из 4'),
+    'All rated cards must mark the card stage, not mere browsing');
+  await page.getByRole('button',{name:'Я разобрал этот конспект'}).tap();
+  assert.ok((await page.locator('.gi-milestones h2').textContent()).includes('2 из 4'));
   assert.equal(await page.locator('.gi-mini-card').count(),3);
   assert.equal(await page.locator('.gi-brief-block').count(),5);
   await page.locator('.gi-mini-card').first().locator('.gi-mini-choice').first().tap();
   assert.ok((await page.locator('.gi-mini-feedback').first().textContent()).length>30,'Inline question must reveal explanation regardless of randomized answer order');
   assert.equal(await page.locator('.gi-chapter-figure img').count(),1);
   await page.getByRole('button',{name:'Расширенный'}).tap();
+  assert.equal(await page.locator('.gi-reading-select').inputValue(),'115');
+  assert.equal(await page.getByRole('button',{name:'Спокойный фон: включён'}).count(),1);
+  await page.locator('.gi-reading-select').selectOption('100');
+  await page.getByRole('button',{name:'Спокойный фон: включён'}).tap();
   assert.equal(await page.locator('.gi-deep-block').count(),5);
   assert.equal(await page.locator('.gi-checkpoint').count(),5);
   assert.ok((await page.locator('.gi-content').textContent()).includes('Подробный разбор'));
@@ -195,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.8.1'),
-      'Top navigation must show the release version, not stale 1.6.0');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.0'),
+      'Top navigation must show the current 1.9.0 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -277,9 +292,42 @@ async function main() {
       await page.getByRole('button',{name:i+1===totalQuestions?'Завершить':'Следующий вопрос'}).tap();
     }
     await waitHeading(page,'Верно:');
+    assert.equal(await page.evaluate(()=>window.MedStudyLearning.readMilestones('oral').tests),true,
+      'Completed topic tests must be shown in topic learning progress');
     const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('med-study-gi-topic-v1')||'[]'));
     assert.equal(saved.at(-1).chapter,'oral','Topic result must be stored with chapter ID');
     await page.getByRole('button',{name:'К конспекту'}).tap();
+    await waitHeading(page,'Слизистая ротовой полости');
+    assert.ok((await page.locator('.gi-milestones h2').textContent()).includes('1 из 3'),
+      'A chapter with no microscopy has 3 eligible study stages');
+    // Fixture: put one known valid question ID into existing GI mistake storage.
+    await page.evaluate(()=>{
+      const key='med-study-gi-mistakes-v1',raw=JSON.parse(localStorage.getItem(key)||'{}');
+      raw.oral=['gi-mini-oral-0'];localStorage.setItem(key,JSON.stringify(raw));
+    });
+    await page.getByRole('button',{name:'Тесты по этой теме'}).tap();
+    await page.getByRole('button',{name:'Повторить ошибки · 1'}).tap();
+    assert.ok((await page.locator('.gi-question-heading').textContent()).length>15);
+    assert.ok((await page.locator('.kicker').first().textContent()).includes('Повторение ошибок'));
+    await page.locator('.gi-mini-choice').first().tap();
+    await page.getByRole('button',{name:'Завершить'}).tap();
+    await waitHeading(page,'Верно:');
+    await page.getByRole('button',{name:'К конспекту'}).tap();
+    await waitHeading(page,'Слизистая ротовой полости');
+    // The Errors library launches exactly the missed GI question, not the general test chooser.
+    await page.evaluate(()=>{
+      const key='med-study-gi-mistakes-v1',raw=JSON.parse(localStorage.getItem(key)||'{}');
+      raw.oral=['gi-mini-oral-0'];localStorage.setItem(key,JSON.stringify(raw));
+    });
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
+    await waitHeading(page,'Работа над ошибками');
+    await page.locator('.topic-stats').filter({hasText:'Слизистая ротовой полости'}).
+      getByRole('button',{name:'Повторить ошибки в тесте'}).tap();
+    assert.equal(await page.locator('.gi-question-heading').count(),1);
+    assert.ok((await page.locator('.kicker').first().textContent()).includes('Повторение ошибок'));
+    await page.getByRole('button',{name:'Выйти из теста'}).tap();
+    await page.getByRole('button',{name:'← К конспекту'}).tap();
     await waitHeading(page,'Слизистая ротовой полости');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="stats"]').tap();

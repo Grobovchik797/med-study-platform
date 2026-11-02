@@ -8,6 +8,112 @@ const append=(host,...nodes)=>{nodes.forEach(x=>host.append(x));return host;};
 const titles={brief:'Краткий',deep:'Расширенный'};
 const randomize=a=>{const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
 const chapterDepths=Object.create(null);
+
+/* User-controlled learning milestones. Views and clicks alone do not imply mastery. */
+const TOPIC_PROGRESS_KEY='med-study-topic-milestones-v1';
+const READING_KEY='med-study-reading-prefs-v1';
+const milestones=['notes','tests','cards','atlas'];
+const safeId=id=>typeof id==='string'&&/^[a-z0-9-]{1,65}$/.test(id);
+function readMilestones(id){
+ if(!safeId(id))return {};
+ try{
+  const all=JSON.parse(localStorage.getItem(TOPIC_PROGRESS_KEY)||'{}');
+  const record=all&&typeof all==='object'&&!Array.isArray(all)?all[id]:null;
+  const progress=record&&typeof record==='object'&&!Array.isArray(record)?
+   Object.fromEntries(milestones.map(k=>[k,record[k]===true])):{};
+  // A completed old quiz or all-rated old deck is evidence of an actual past action.
+  // There is no equivalent proof for merely opening notes or atlas photos.
+  if(!progress.tests)try{
+   if(id==='histology-small-intestine'){
+    const si=JSON.parse(localStorage.getItem('medstudy-small-intestine-v1')||'{}');
+    if(Number.isInteger(si.sessions)&&si.sessions>0)progress.tests=true;
+   }else{
+    const history=JSON.parse(localStorage.getItem('med-study-gi-topic-v1')||'[]');
+    if(Array.isArray(history)&&history.some(item=>item&&item.chapter===id&&
+       Number.isInteger(item.total)&&item.total>0&&Number.isInteger(item.score)&&
+       item.score>=0&&item.score<=item.total))progress.tests=true;
+   }
+  }catch{}
+  if(!progress.cards)try{
+   const cardId=id==='histology-small-intestine'?'small-intestine':id;
+   const deck=JSON.parse(localStorage.getItem('med-study-card-recall-'+cardId+'-v1')||'{}');
+   if(Array.isArray(deck.ratings)&&deck.ratings.length>0&&
+      deck.ratings.every(x=>x==='known'||x==='review'))progress.cards=true;
+  }catch{}
+  return progress;
+ }catch{return {};}
+}
+function markMilestone(id,stage){
+ if(!safeId(id)||!milestones.includes(stage))return;
+ try{
+  const all=JSON.parse(localStorage.getItem(TOPIC_PROGRESS_KEY)||'{}');
+  const safe=all&&typeof all==='object'&&!Array.isArray(all)?all:{};
+  const prev=readMilestones(id);
+  safe[id]={...prev,[stage]:true};
+  localStorage.setItem(TOPIC_PROGRESS_KEY,JSON.stringify(safe));
+ }catch{}
+}
+function renderMilestones(host,{topicId,hasAtlas=false}){
+ const stages=[
+  ['notes','Конспект'],
+  ['tests','Тест'],
+  ['cards','Карточки'],
+  ...(hasAtlas?[['atlas','Атлас']]:[])
+ ];
+ const record=readMilestones(topicId),completed=stages.filter(([id])=>record[id]).length;
+ const root=el('section','gi-milestones card');
+ append(root,el('div','kicker','МОЙ ПЛАН ПОДГОТОВКИ'),
+   el('h2','','Пройдено шагов: '+completed+' из '+stages.length),
+   paragraph('Считаются только подтверждённое изучение конспекта, завершённый тест, самостоятельно оценённые карточки и отмеченный разбор препарата.'));
+ const line=el('div','gi-milestone-items');
+ for(const [id,title] of stages){
+  const item=el('span','gi-milestone'+(record[id]?' is-done':''),(record[id]?'✓ ':'○ ')+title);
+  item.setAttribute('aria-label',title+': '+(record[id]?'выполнено':'ещё не отмечено'));
+  line.append(item);
+ }
+ root.append(line);host.replaceChildren(root);
+}
+function readReadingPrefs(){
+ try{
+  const value=JSON.parse(localStorage.getItem(READING_KEY)||'null');
+  return {size:[100,115,130].includes(value?.size)?value.size:100,calm:value?.calm===true};
+ }catch{return {size:100,calm:false};}
+}
+function applyReadingPrefs(prefs){
+ document.documentElement.dataset.readingSize=String(prefs.size);
+ document.documentElement.classList.toggle('reading-calm',prefs.calm);
+}
+function writeReadingPrefs(prefs){
+ const valid={size:[100,115,130].includes(prefs.size)?prefs.size:100,calm:prefs.calm===true};
+ try{localStorage.setItem(READING_KEY,JSON.stringify(valid));}catch{}
+ applyReadingPrefs(valid);
+}
+function renderReadingControls(host){
+ const prefs=readReadingPrefs();
+ const box=el('section','gi-reading-toolbar');
+ const title=el('strong','','Комфортное чтение');
+ const label=el('label','gi-reading-size','Размер текста');
+ const select=el('select','gi-reading-select');
+ select.setAttribute('aria-label','Размер текста конспекта');
+ for(const [value,name] of [[100,'Обычный'],[115,'Крупнее'],[130,'Самый крупный']]){
+  const opt=el('option','',name);opt.value=String(value);select.append(opt);
+ }
+ select.value=String(prefs.size);
+ select.addEventListener('change',()=>writeReadingPrefs({...readReadingPrefs(),size:Number(select.value)}));
+ label.append(select);
+ const calm=button(prefs.calm?'Спокойный фон: включён':'Спокойный фон: выключен',()=>{
+  const next={...readReadingPrefs(),calm:!readReadingPrefs().calm};
+  writeReadingPrefs(next);
+  calm.textContent=next.calm?'Спокойный фон: включён':'Спокойный фон: выключен';
+  calm.setAttribute('aria-pressed',String(next.calm));
+ },'gi-button gi-light gi-reading-toggle');
+ calm.setAttribute('aria-pressed',String(prefs.calm));
+ append(box,title,label,calm);
+ host.replaceChildren(box);
+}
+window.MedStudyLearning={readMilestones,markMilestone,renderMilestones,renderReadingControls,readReadingPrefs};
+applyReadingPrefs(readReadingPrefs());
+
 function paragraph(text,cls='gi-paragraph') {
  const p=el('p',cls);
  const pieces=String(text).split(/(\([^()]{3,170}\)|NB\.)/);
@@ -90,6 +196,8 @@ function briefExtract(text){
 }
 
 function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,depth='brief'}) {
+ const progressMount=el('div','gi-topic-progress');
+ const readingMount=el('div','gi-topic-reading');
  const focusMount=el('div','gi-topic-focus');
  if(window.MedStudySI?.renderFocus)window.MedStudySI.renderFocus(focusMount,{topicTitle:chapter.title,topicKey:chapter.id});
  let current=chapterDepths[chapter.id]||depth;
@@ -126,7 +234,9 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     'Закрепи тестом и препаратом, если он есть'
   ])path.append(el('li','',step));
   append(guide,el('strong','','Три шага, чтобы запомнить материал'),path);
-  host.append(resources,guide,focusMount);
+  renderMilestones(progressMount,{topicId:chapter.id,hasAtlas:Boolean(chapter.slideId)});
+  renderReadingControls(readingMount);
+  host.append(resources,guide,progressMount,readingMount,focusMount);
   const depths=el('div','gi-depths');
   for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
@@ -172,6 +282,13 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     }
   }
   append(content,append(el('div','gi-nb'),el('strong','','NB · Обрати внимание'),paragraph(chapter.nb)));
+  const completion=el('div','gi-study-completion');
+  completion.append(button(readMilestones(chapter.id).notes?'✓ Конспект отмечен как изученный':'Я разобрал этот конспект',()=>{
+   markMilestone(chapter.id,'notes');
+   renderMilestones(progressMount,{topicId:chapter.id,hasAtlas:Boolean(chapter.slideId)});
+   completion.replaceChildren(el('strong','gi-completed-note','✓ Изучение конспекта отмечено'));
+  },'gi-button gi-light'));
+  content.append(completion);
   host.append(content);
   const slideFocus={
     duodenum:'Определи тонкую кишку по общей структуре слизистой; железы Бруннера не считай подтверждёнными, пока они не видны отчётливо.',
@@ -246,7 +363,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[]}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[],startInReview=false}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
  const topicMode=Boolean(chapterId);
@@ -263,6 +380,20 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
   }))
  ]:[];
  let quizQuestions=[];
+ function missedQuestions(){
+  if(!topicMode)return [];
+  try{
+   const raw=JSON.parse(localStorage.getItem('med-study-gi-mistakes-v1')||'{}');
+   const ids=raw&&typeof raw==='object'&&!Array.isArray(raw)&&Array.isArray(raw[chapterId])?
+    raw[chapterId].filter(x=>typeof x==='string'):[];
+   return topicQuestions.filter(q=>ids.includes(q.id));
+  }catch{return [];}
+ }
+ function startReview(){
+  const items=missedQuestions();
+  if(!items.length){selectLevel();return;}
+  level='review';quizQuestions=randomize(items);idx=0;correct=0;done=[];question();
+ }
  function trackMistake(question,isCorrect){
   if(!topicMode)return;
   try{
@@ -289,6 +420,8 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
     level='topic';quizQuestions=randomize(topicQuestions);idx=0;correct=0;done=[];question();
    },'gi-button'));
    else controls.append(paragraph('Проверенные вопросы по этой теме пока не добавлены.','gi-lead'));
+   const missed=missedQuestions();
+   if(missed.length)controls.append(button('Повторить ошибки · '+missed.length,startReview,'gi-button gi-light'));
   }else{
    for(const key of Object.keys(levels)){
     const available=bank.questions.filter(q=>q.difficulty===key);
@@ -303,7 +436,7 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
   const set=quizQuestions;
   if(idx>=set.length){finish();return;}
   const q=set[idx];chosen=-1;host.replaceChildren();
-  append(host,el('div','kicker',(topicMode?'Тематический тест':levels[level])+' · '+(idx+1)+'/'+set.length),
+  append(host,el('div','kicker',(topicMode?(level==='review'?'Повторение ошибок':'Тематический тест'):levels[level])+' · '+(idx+1)+'/'+set.length),
     el('h2','gi-question-heading',q.prompt));
   const choices=el('div','gi-mini-answers'),result=el('div','gi-mini-feedback'),actions=el('div','gi-end-actions');
   const randomized=randomize(q.options.map((value,i)=>({value,good:i===q.answer})));
@@ -329,12 +462,16 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
    if(topicMode)record.chapter=chapterId;
    if(Array.isArray(old))localStorage.setItem(key,JSON.stringify([...old.slice(-99),record]));
   }catch{}
+  if(topicMode)markMilestone(chapterId,'tests');
   host.replaceChildren();
   append(host,el('div','kicker','РЕЗУЛЬТАТ'),el('h1','','Верно: '+correct+' из '+total),
    paragraph('Результат: '+percentage+'%. Неотвеченных вопросов нет. Прогресс хранится только на устройстве.','gi-lead'),
-   button(topicMode?'Ещё раз':'Другой уровень',selectLevel,'gi-button'),button(topicMode?'К конспекту':'К темам',onBack,'gi-button gi-light'));
+   button(topicMode?'Ещё раз':'Другой уровень',selectLevel,'gi-button'));
+  if(topicMode&&missedQuestions().length)
+   host.append(button('Повторить ошибки · '+missedQuestions().length,startReview,'gi-button gi-review-action'));
+  host.append(button(topicMode?'К конспекту':'К темам',onBack,'gi-button gi-light'));
  }
- selectLevel();
+ if(topicMode&&startInReview)startReview();else selectLevel();
 }
 // Flashcards use ONLY existing authored teaching material; no synthetic facts
 // or externally generated questions are added to the medical syllabus.
@@ -356,6 +493,7 @@ function renderCards(host,{title,cards,onBack,topicKey=null}){
  let finished=false;
  function mark(status){
   ratings[order[index]]=status;persist();
+  if(savedKey&&ratings.every(x=>x==='known'||x==='review'))markMilestone(topicKey,'cards');
   if(index<order.length-1){index++;revealed=false;}
   else finished=true;
   show();

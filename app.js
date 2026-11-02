@@ -244,6 +244,14 @@ function showSection(subjectId,sectionId) {
     append(card,element('div','course-kind','УЧЕБНАЯ ТЕМА'),
       element('h3','',topic.title),element('p','',topic.hint),
       button('Открыть тему →',()=>showTopic(topic.id),'library-go'));
+    if((topic.route==='gi-chapter'||topic.route==='intestine')&&window.MedStudyLearning){
+      const topicId=topic.route==='intestine'?'histology-small-intestine':topic.chapterId;
+      const progress=window.MedStudyLearning.readMilestones(topicId);
+      const parts=topic.atlas?['notes','tests','cards','atlas']:['notes','tests','cards'];
+      const done=parts.filter(stage=>progress[stage]).length;
+      const label=element('div','library-status','Учебные шаги: '+done+' из '+parts.length);
+      card.insertBefore(label,card.querySelector('.library-go'));
+    }
     grid.append(card);
   }
   main.append(grid);
@@ -294,13 +302,13 @@ function showGIWorkbook() {
     onBack:()=>showSection('histology-cytology','digestive'),onChapter:showGIChapter});
   window.scrollTo(0,0);
 }
-function showGIExam(chapterId=null) {
+function showGIExam(chapterId=null,reviewOnly=false) {
   view='gi-exam';updateNav();main.replaceChildren();
   const chapter=chapterId?giCurriculum?.chapters.find(x=>x.id===chapterId):null;
   window.MedStudyGI.renderExam(main,{bank:giFinalBank,
     chapterId:chapter?.id||null,chapterTitle:chapter?.title||'',
     mini:chapter?giInlineBank.chapterQuestions[chapter.id]||[]:[],
-    deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],
+    deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],startInReview:reviewOnly,
     onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
 }
@@ -348,7 +356,10 @@ function showSmallIntestineSlides(initialIndex=0,originChapterId=null,allReferen
     else showTopic('histology-small-intestine');
     requestAnimationFrame(()=>window.scrollTo(0,scrollY));
   };
-  window.MedStudySI.renderSlides(main,slides,back,initialIndex);
+  const milestoneId=originChapterId||((from==='topic'||from==='intestine')?'histology-small-intestine':null);
+  window.MedStudySI.renderSlides(main,slides,back,initialIndex,milestoneId?
+    ()=>window.MedStudyLearning?.markMilestone(milestoneId,'atlas'):null,
+    originChapterId?initialIndex:null);
   window.scrollTo(0,0);
 }
 
@@ -406,6 +417,11 @@ function showTopic(topicId) {
     topic.route==='intestine'?showIntestineFlashcards:()=>navigate('flashcards'),'library-action'));
   box.append(cards);
   main.append(box);
+  if(topic.route==='intestine'&&window.MedStudyLearning){
+    const host=element('div','gi-topic-progress');
+    window.MedStudyLearning.renderMilestones(host,{topicId:'histology-small-intestine',hasAtlas:true});
+    main.append(host);
+  }
   if(topic.route==='lesson'&&window.MedStudySI?.renderFocus){
     const timer=element('div','gi-topic-focus');window.MedStudySI.renderFocus(timer,{topicTitle:topic.title,topicKey:topic.id});
     main.append(timer);
@@ -558,6 +574,12 @@ function showIntestine() {
   }
   main.append(titleArea('ГИСТОЛОГИЯ · ЦИТОЛОГИЯ', intestineData.title,
     'Два формата: полноценная обязательная база и расширенная гистология с механизмами и связями.'));
+  const milestoneHost=element('div','gi-topic-progress');
+  window.MedStudyLearning?.renderMilestones(milestoneHost,{topicId:'histology-small-intestine',hasAtlas:true});
+  main.append(milestoneHost);
+  const readingHost=element('div','gi-topic-reading');
+  window.MedStudyLearning?.renderReadingControls(readingHost);
+  main.append(readingHost);
   const warning=element('div','note');
   warning.textContent=intestineData.review_note;
   main.append(warning);
@@ -644,6 +666,14 @@ function showIntestine() {
   for(const value of intestineData.checklist) ul.append(element('li','',value));
   checklist.append(ul);
   main.append(checklist);
+  const readCompletion=element('div','si-note-actions');
+  readCompletion.append(button(window.MedStudyLearning?.readMilestones('histology-small-intestine')?.notes?
+   '✓ Конспект уже отмечен':'Я разобрал этот конспект',()=>{
+    window.MedStudyLearning?.markMilestone('histology-small-intestine','notes');
+    window.MedStudyLearning?.renderMilestones(milestoneHost,{topicId:'histology-small-intestine',hasAtlas:true});
+    readCompletion.replaceChildren(element('strong','gi-completed-note','✓ Изучение конспекта отмечено'));
+   },'alt-button'));
+  main.append(readCompletion);
   const endActions=element('div','si-note-actions');
   endActions.append(button('Перейти к 30 большим тестам →',showSmallIntestineQuiz,'library-action'));
   main.append(endActions);
@@ -675,6 +705,11 @@ function showLesson() {
     return;
   }
   main.append(titleArea('УЧЕБНЫЙ КОНСПЕКТ · ВВОДНАЯ ВЕРСИЯ', lessonData.topic, lessonData.subtitle));
+  if(window.MedStudyLearning){
+    const reading=element('div','gi-topic-reading');
+    window.MedStudyLearning.renderReadingControls(reading);
+    main.append(reading);
+  }
   main.append(element('p','note','Это первый учебный материал по ВНС, а не законченный краткий или расширенный конспект. Позже добавим две полноценно выверенные версии по контрольным вопросам: краткую с обязательной базой и расширенную до клеточных и молекулярных механизмов.'));
   const toolbar = element('div','lesson-toolbar');
   append(toolbar, element('span','lesson-label','5 разделов · теория + примеры'),
@@ -913,6 +948,11 @@ function showStats() {
     if(topic.id==='histology-small-intestine'){
       if(si){
         append(box,element('p','muted','Завершено тренировок по тонкой кишке: '+si.sessions+' · вопросов на повторение: '+si.missed.length));
+        if(window.MedStudyLearning){
+          const steps=element('div','gi-topic-progress');
+          window.MedStudyLearning.renderMilestones(steps,{topicId:'histology-small-intestine',hasAtlas:true});
+          box.append(steps);
+        }
         for(const [level,name] of [['easy','Лёгкий'],['medium','Средний'],['hard','Сложный']]){
           const x=si.byDifficulty[level],label=element('div','topic-stat-line');
           append(label,element('strong','',name),element('span','muted',x?'Тренировок: '+x.sessions+' · лучший результат '+x.best+'%':'Тренировок пока нет'));
@@ -922,6 +962,12 @@ function showStats() {
       main.append(box);continue;
     }
     if(topic.route==='gi-chapter'){
+      if(window.MedStudyLearning){
+        const steps=element('div','gi-topic-progress');
+        window.MedStudyLearning.renderMilestones(steps,{topicId:topic.chapterId,
+          hasAtlas:Boolean(giCurriculum?.chapters.find(x=>x.id===topic.chapterId)?.slideId)});
+        box.append(steps);
+      }
       const sessions=giTopics.filter(x=>x.chapter===topic.chapterId);
       const missed=giMissed[topic.chapterId]?.length||0;
       if(sessions.length){
@@ -1013,8 +1059,8 @@ function showMistakes() {
     if(topic.route==='gi-chapter'){
       const missed=readGIMistakes()[topic.chapterId]||[];
       append(module,element('p','muted',missed.length?'Ошибок на повторение: '+missed.length:'Ошибок на повторение пока нет.'),
-        button(missed.length?'Открыть конспект и повторить →':'Открыть тему →',
-          ()=>showGIChapter(topic.chapterId),'library-action'));
+        button(missed.length?'Повторить ошибки в тесте →':'Открыть тему →',
+          missed.length?()=>showGIExam(topic.chapterId,true):()=>showGIChapter(topic.chapterId),'library-action'));
       main.append(module);continue;
     }
     const questions=topic.id==='ans'?

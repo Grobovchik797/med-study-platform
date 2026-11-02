@@ -80,14 +80,17 @@ function renderQuiz(host,bank,exit){
     if(wrong.includes(q.id)){if(!p.missed.includes(q.id))p.missed.push(q.id);}
     else p.missed=p.missed.filter(id=>id!==q.id);
   }store(p);
+  window.MedStudyLearning?.markMilestone('histology-small-intestine','tests');
   add(root,e('div','kicker',name),e('h1','','Результат: '+correct+' из '+questions.length),
       e('p','','Верных ответов: '+pct+'%. Ошибок на повторение: '+wrong.length+'.'),
       e('p','si-source-note','Результат сохраняется только на этом устройстве (отдельно от старого банка ВНС).'));
+  const remaining=bank.questions.filter(q=>p.missed.includes(q.id));
+  if(remaining.length)root.append(btn('Повторить ошибки · '+remaining.length,()=>start('review',remaining),'si-button'));
   root.append(btn('Новая тренировка',chooser),btn('К теме',exit,'si-button secondary'));
  }
  chooser();
 }
-function renderSlides(host,data,exit,initialIndex=0){
+function renderSlides(host,data,exit,initialIndex=0,onReviewed=null,reviewIndex=null){
  const root=e('section','si-workspace');host.append(root);
  let slideIndex=initialIndex,visibleSlideIndex=initialIndex,mode='study',zoom=1,dx=0,dy=0,point=null;
  const results=read();
@@ -269,8 +272,15 @@ function renderSlides(host,data,exit,initialIndex=0){
   for(const [label,url] of [['Источник снимка',slide.source],['Условия лицензии',slide.licenseUrl]]){
     const a=e('a','',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener noreferrer';by.append(a);
   }
-  root.append(by,notes('Фотографии включены в сборку сайта и Android APK. После первой установки сайт может показывать ранее сохранённые изображения офлайн; ссылки на первоисточники требуют интернет.'),
-    btn('← Вернуться к теме',exit,'si-button secondary'));
+  root.append(by,notes('Фотографии включены в сборку сайта и Android APK. После первой установки сайт может показывать ранее сохранённые изображения офлайн; ссылки на первоисточники требуют интернет.'));
+  if(typeof onReviewed==='function'&&(reviewIndex===null||reviewIndex===slideIndex)){
+   const review=btn('Я разобрал этот микропрепарат',()=>{
+    onReviewed();
+    review.replaceWith(e('strong','si-good','✓ Разбор препарата отмечен в плане темы'));
+   },'si-button secondary');
+   root.append(review);
+  }
+  root.append(btn('← Вернуться к теме',exit,'si-button secondary'));
  }
  show();
 }
