@@ -19,8 +19,28 @@ function readMilestones(id){
  try{
   const all=JSON.parse(localStorage.getItem(TOPIC_PROGRESS_KEY)||'{}');
   const record=all&&typeof all==='object'&&!Array.isArray(all)?all[id]:null;
-  if(!record||typeof record!=='object'||Array.isArray(record))return {};
-  return Object.fromEntries(milestones.map(k=>[k,record[k]===true]));
+  const progress=record&&typeof record==='object'&&!Array.isArray(record)?
+   Object.fromEntries(milestones.map(k=>[k,record[k]===true])):{};
+  // A completed old quiz or all-rated old deck is evidence of an actual past action.
+  // There is no equivalent proof for merely opening notes or atlas photos.
+  if(!progress.tests)try{
+   if(id==='histology-small-intestine'){
+    const si=JSON.parse(localStorage.getItem('medstudy-small-intestine-v1')||'{}');
+    if(Number.isInteger(si.sessions)&&si.sessions>0)progress.tests=true;
+   }else{
+    const history=JSON.parse(localStorage.getItem('med-study-gi-topic-v1')||'[]');
+    if(Array.isArray(history)&&history.some(item=>item&&item.chapter===id&&
+       Number.isInteger(item.total)&&item.total>0&&Number.isInteger(item.score)&&
+       item.score>=0&&item.score<=item.total))progress.tests=true;
+   }
+  }catch{}
+  if(!progress.cards)try{
+   const cardId=id==='histology-small-intestine'?'small-intestine':id;
+   const deck=JSON.parse(localStorage.getItem('med-study-card-recall-'+cardId+'-v1')||'{}');
+   if(Array.isArray(deck.ratings)&&deck.ratings.length>0&&
+      deck.ratings.every(x=>x==='known'||x==='review'))progress.cards=true;
+  }catch{}
+  return progress;
  }catch{return {};}
 }
 function markMilestone(id,stage){
