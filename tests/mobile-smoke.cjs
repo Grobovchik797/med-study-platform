@@ -482,6 +482,39 @@ async function main() {
     assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
     await desktop.getByRole('button',{name:'Изучение'}).click();
     assert.equal(await desktop.locator('.dept-modes button').count(),2);
+
+    // Colloquium drill: all 14 real specimens exactly once; identity shown only after a checked answer.
+    await desktop.getByRole('button',{name:'Тренировка: случайные препараты'}).click();
+    assert.equal(await desktop.locator('.dept-file-card').count(),0,'Answer-bearing cards must be hidden during randomized drill');
+    assert.equal(await desktop.locator('.dept-drill .dept-image').first().getAttribute('alt'),'Микропрепарат: название скрыто');
+    const drillItems=await desktop.evaluate(async()=>(
+      (await (await fetch('./data/department-public.json')).json()).specimens
+        .map(x=>({title:x.title,src:'./'+x.frames[0].src}))
+    ));
+    assert.equal(drillItems.length,14);
+    const seenDrillPhotos=new Set();
+    for(let i=0;i<drillItems.length;i++){
+      assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат '+(i+1)+' из 14'));
+      const src=await desktop.locator('.dept-drill .dept-image').first().getAttribute('src');
+      assert.ok(!seenDrillPhotos.has(src),'Random drill repeated a specimen before exhaustion: '+src);
+      seenDrillPhotos.add(src);
+      const current=drillItems.find(x=>x.src===src);
+      assert.ok(current,'Drill served a frame outside the 14 authentic records');
+      assert.equal(await desktop.locator('.dept-drill-review').count(),0,'Cues must stay hidden until the answer');
+      const guess=i===0?drillItems.find(x=>x.title!==current.title).title:current.title;
+      await desktop.locator('.dept-drill .dept-answer').selectOption(guess);
+      await desktop.getByRole('button',{name:'Проверить препарат'}).click();
+      assert.ok((await desktop.locator('.dept-feedback').textContent()).includes(i===0?'Неверно.':'Верно.'));
+      assert.ok(await desktop.locator('.dept-drill-review').isVisible(),'Review should appear after answer');
+      assert.ok(await desktop.locator('.dept-drill .dept-answer').isDisabled(),'Cannot revise a checked attempt');
+      await desktop.getByRole('button',{name:i===drillItems.length-1?'Посмотреть результат':'Следующий препарат'}).click();
+    }
+    assert.equal(seenDrillPhotos.size,14,'Every departmental specimen should appear in one complete drill');
+    assert.ok((await desktop.locator('.dept-drill-summary h2').textContent()).includes('Распознано 13 из 14'));
+    await desktop.getByRole('button',{name:'Пройти ещё раз'}).click();
+    assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат 1 из 14'));
+    await desktop.getByRole('button',{name:'Вернуться к атласу'}).click();
+    assert.equal(await desktop.locator('.dept-file-card').count(),14,'Original atlas must be available after drill');
     await desktop.locator('.brand').click();
     await waitHeading(desktop,'Med Study — библиотека знаний');
     assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
