@@ -22,6 +22,14 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      # Reuse only images compiled for these exact licensed source manifests.
+      # The preparation script still decodes every cached JPEG before accepting it.
+      - name: Restore verified microscopy image cache
+        uses: actions/cache@v4
+        with:
+          path: photos/*.jpg
+          key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
+          save-always: true
       - name: Generate icons and start local web server
         run: |
           python3 scripts/generate_icons.py
