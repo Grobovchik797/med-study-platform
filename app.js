@@ -244,6 +244,14 @@ function showSection(subjectId,sectionId) {
     append(card,element('div','course-kind','УЧЕБНАЯ ТЕМА'),
       element('h3','',topic.title),element('p','',topic.hint),
       button('Открыть тему →',()=>showTopic(topic.id),'library-go'));
+    if((topic.route==='gi-chapter'||topic.route==='intestine')&&window.MedStudyLearning){
+      const topicId=topic.route==='intestine'?'histology-small-intestine':topic.chapterId;
+      const progress=window.MedStudyLearning.readMilestones(topicId);
+      const parts=topic.atlas?['notes','tests','cards','atlas']:['notes','tests','cards'];
+      const done=parts.filter(stage=>progress[stage]).length;
+      const label=element('div','library-status','Учебные шаги: '+done+' из '+parts.length);
+      card.insertBefore(label,card.querySelector('.library-go'));
+    }
     grid.append(card);
   }
   main.append(grid);
