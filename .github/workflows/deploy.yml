@@ -38,7 +38,6 @@ jobs:
         with:
           path: photos/*.jpg
           key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
-          save-always: true
       - name: Download and verify original licensed microscopy photographs
         run: |
           python3 -m pip install --quiet Pillow
@@ -68,6 +67,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      # Reuse the validated image cache from the previous job on this commit.
+      - name: Restore verified microscopy image cache
+        uses: actions/cache@v4
+        with:
+          path: photos/*.jpg
+          key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
       - name: Prepare website files
         run: |
           python3 scripts/generate_icons.py
