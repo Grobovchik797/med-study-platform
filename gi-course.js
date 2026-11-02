@@ -353,17 +353,32 @@ function renderCards(host,{title,cards,onBack,topicKey=null}){
   try{localStorage.setItem(savedKey,JSON.stringify({version:1,ratings}));}catch{}
  }
  let order=cards.map((_,i)=>i),index=0,revealed=false,reviewOnly=false;
+ let finished=false;
  function mark(status){
   ratings[order[index]]=status;persist();
   if(index<order.length-1){index++;revealed=false;}
+  else finished=true;
   show();
  }
  function switchDeck(onlyReview){
   const indices=cards.map((_,i)=>i).filter(i=>!onlyReview||ratings[i]==='review');
   if(!indices.length)return;
-  order=indices;index=0;revealed=false;reviewOnly=onlyReview;show();
+  order=indices;index=0;revealed=false;reviewOnly=onlyReview;finished=false;show();
  }
  function show(){
+  if(finished){
+   const known=ratings.filter(r=>r==='known').length,review=ratings.filter(r=>r==='review').length;
+   host.replaceChildren();
+   const summary=el('section','card gi-recall-complete');
+   append(summary,el('div','kicker','ЦИКЛ КАРТОЧЕК ЗАВЕРШЁН'),
+     el('h1','','Отлично, цикл повторения пройден'),
+     paragraph('Карточек в этом подходе: '+order.length+'. Отмечено «Знаю»: '+known+', «Повторить»: '+review+'. Это самооценка, а не экзаменационный балл.'));
+   const actions=el('div','gi-end-actions');
+   if(review)actions.append(button('Повторить трудные · '+review,()=>switchDeck(true),'gi-button'));
+   actions.append(button('Ещё раз все карточки',()=>switchDeck(false),'gi-button gi-light'),
+     button('← К теме',onBack,'gi-button gi-light'));
+   host.append(summary,actions);return;
+  }
   const item=cards[order[index]],known=ratings.filter(r=>r==='known').length,
    review=ratings.filter(r=>r==='review').length,unrated=cards.length-known-review;
   host.replaceChildren();

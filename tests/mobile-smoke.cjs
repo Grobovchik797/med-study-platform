@@ -127,6 +127,21 @@ async function navigateDigestiveCourse(page) {
   await page.locator('.gi-topic-features .library-feature').nth(3).locator('button').tap();
   await waitHeading(page,'Желудок: оболочки, ямки');
   assert.equal(await page.locator('.gi-recall-card').count(),1);
+  await page.getByRole('button',{name:'Показать ответ'}).tap();
+  for(let card=0;card<8;card++){
+    const label=card%3===0?'Повторить ↺':'Знаю ✓';
+    await page.getByRole('button',{name:label}).tap();
+    if(card<7)await page.getByRole('button',{name:'Показать ответ'}).tap();
+  }
+  assert.equal(await page.locator('.gi-recall-complete').count(),1,'Completed recall deck should have an end screen');
+  assert.ok((await page.locator('.gi-recall-complete').textContent()).includes('самооценка'));
+  await page.getByRole('button',{name:/Повторить трудные/}).tap();
+  assert.equal(await page.locator('.gi-recall-card').count(),1);
+  await page.getByRole('button',{name:'← К теме'}).tap();
+  await waitHeading(page,'Желудок: оболочки');
+  await page.locator('.gi-topic-features .library-feature').nth(3).locator('button').tap();
+  await waitHeading(page,'Желудок: оболочки, ямки');
+  assert.equal(await page.locator('.gi-recall-card').count(),1);
   await page.getByRole('button',{name:'Следующая'}).tap();
   await page.getByRole('button',{name:'Показать ответ'}).tap();
   assert.ok((await page.locator('.gi-recall-card').textContent()).length>90);

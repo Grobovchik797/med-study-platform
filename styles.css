@@ -655,3 +655,12 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
   html {scroll-behavior:auto;}
   .library-features .library-feature,.gi-recall-meter-fill {transition:none;}
 }
+
+/* 1.8.2: a calm completion state and accessible study controls. */
+.gi-recall-complete{max-width:850px;margin:18px 0;padding:28px;border-top:4px solid #177866;background:linear-gradient(160deg,#edfaf6,#fff 65%);}
+.gi-recall-complete h1{font-size:clamp(23px,3vw,32px);}
+.gi-recall-complete .gi-paragraph{font-size:15px;line-height:1.85;color:#334b4c;max-width:70ch;}
+.gi-recall-complete + .gi-end-actions{max-width:850px;}
+.gi-recall-complete + .gi-end-actions .gi-button{min-height:45px;}
+.gi-mini-choice:focus-visible,.gi-button:focus-visible,.si-button:focus-visible{outline:3px solid #2c6487;outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){.si-focus-fill,.session-progress > div{transition:none;}}
