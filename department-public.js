@@ -17,7 +17,7 @@ const catalog=[...legacy.catalog,...videoCatalog];
 let dataPromise=null;
 function load(){
  if(!dataPromise)dataPromise=fetch('./data/department-public.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{
-  if(d.version!==1||d.specimens?.length!==14||d.specimens.some(x=>!x.title||!x.frames?.length))throw Error('Некорректный список кафедральных препаратов');
+  if(d.version!==1||d.specimens?.length!==14||d.specimens.some(x=>!x.title||!x.displayTitle||!x.frames?.length))throw Error('Некорректный список кафедральных препаратов');
   return d;
  });
  return dataPromise;
@@ -37,18 +37,18 @@ async function render(host,{onBack,chapterId=null}={}){
   root.replaceChildren();
   if(onBack)root.append(btn('← Назад',onBack,'gi-back'));
   root.append(el('div','kicker','КАФЕДРАЛЬНЫЙ АТЛАС'),el('h1','','Кафедральные микропрепараты'));
-  root.append(el('p','gi-lead','Названия сохранены по предоставленным кафедральным файлам. Семь исходных фотографий и семь препаратов из видео (по два реальных поля зрения). В разделе «Справочные» остаются открытые микрофотографии из Commons.'));
+  root.append(el('p','gi-lead','Исходные имена кафедральных файлов сохранены без изменений; подписи оформлены единообразно. Семь исходных фотографий и семь препаратов из видео (по два реальных поля зрения). В разделе «Справочные» остаются открытые микрофотографии из Commons.'));
   const files=el('div','dept-file-grid');
   list.forEach((x,i)=>{
    const b=el('button','dept-file-card'+(x===active?' active':''));b.type='button';
-   b.append(el('strong','',mode==='check'?'Препарат '+(i+1):x.title),el('small','',x.kind==='photo'?'Кафедральная фотография':'Кадры из кафедрального видео'));
+   b.append(el('strong','',mode==='check'?'Препарат '+(i+1):x.displayTitle),el('small','',x.kind==='photo'?'Кафедральная фотография':'Кадры из кафедрального видео'));
    b.onclick=()=>{active=x;mode='study';zoom=100;redraw();};
    files.append(b);
   });
   root.append(files);
   const panel=el('section','dept-panel');
   panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА':'КАФЕДРАЛЬНЫЙ ПРЕПАРАТ'),
-    el('h2','',mode==='check'?'Определи препарат по изображению':active.title));
+    el('h2','',mode==='check'?'Определи препарат по изображению':active.displayTitle));
   const modes=el('div','dept-modes');
   for(const [id,label] of [['study','Изучение'],['check','Самопроверка']]){
    modes.append(btn(label,()=>{mode=id;redraw();},'gi-button'+(id===mode?' gi-active':' gi-light')));
@@ -59,7 +59,7 @@ async function render(host,{onBack,chapterId=null}={}){
    const fig=el('figure','dept-public-figure');
    const wrap=el('div','dept-image-wrap');
    const img=el('img','dept-image');
-   img.src='./'+frame.src;img.alt='Микропрепарат: '+(mode==='check'?'название скрыто':active.title);
+   img.src='./'+frame.src;img.alt='Микропрепарат: '+(mode==='check'?'название скрыто':active.displayTitle);
    img.loading='lazy';img.style.width=zoom+'%';
    img.onerror=()=>{wrap.replaceChildren(el('p','dept-image-missing','Исходное изображение ещё не загружено в опубликованный набор.'));};
    wrap.append(img);fig.append(wrap,el('figcaption','dept-caption',frame.label));
@@ -78,10 +78,10 @@ async function render(host,{onBack,chapterId=null}={}){
   } else if(mode==='check'){
    panel.append(el('h3','','Как называется препарат на кафедре?'));
    const select=el('select','dept-answer'),blank=el('option','','Выбери название');blank.value='';select.append(blank);
-   data.specimens.forEach(x=>{const opt=el('option','',x.title);opt.value=x.title;select.append(opt);});
+   data.specimens.forEach(x=>{const opt=el('option','',x.displayTitle);opt.value=x.title;select.append(opt);});
    const feedback=el('p','dept-feedback','');
    panel.append(select,btn('Проверить ответ',()=>{
-    feedback.textContent=(select.value===active.title?'Верно: ':'Правильный ответ: ')+active.title;
+    feedback.textContent=(select.value===active.title?'Верно: ':'Правильный ответ: ')+active.displayTitle;
    }),feedback);
   }
   panel.append(el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Кафедральный источник: '+active.source_filename+'. '+active.review+'. Видео представлены отдельными кадрами, без дорисовки и синтетической панорамы.'));
