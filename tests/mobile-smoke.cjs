@@ -314,6 +314,21 @@ async function main() {
     await waitHeading(page,'Верно:');
     await page.getByRole('button',{name:'К конспекту'}).tap();
     await waitHeading(page,'Слизистая ротовой полости');
+    // The Errors library launches exactly the missed GI question, not the general test chooser.
+    await page.evaluate(()=>{
+      const key='med-study-gi-mistakes-v1',raw=JSON.parse(localStorage.getItem(key)||'{}');
+      raw.oral=['gi-mini-oral-0'];localStorage.setItem(key,JSON.stringify(raw));
+    });
+    await page.locator('#mobile-more-toggle').tap();
+    await page.locator('#mobile-more-panel [data-nav="mistakes"]').tap();
+    await waitHeading(page,'Работа над ошибками');
+    await page.locator('.topic-stats').filter({hasText:'Слизистая ротовой полости'}).
+      getByRole('button',{name:'Повторить ошибки в тесте'}).tap();
+    assert.equal(await page.locator('.gi-question-heading').count(),1);
+    assert.ok((await page.locator('.kicker').first().textContent()).includes('Повторение ошибок'));
+    await page.getByRole('button',{name:'Выйти из теста'}).tap();
+    await page.getByRole('button',{name:'← К конспекту'}).tap();
+    await waitHeading(page,'Слизистая ротовой полости');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="stats"]').tap();
     await waitHeading(page,'Мой прогресс');
