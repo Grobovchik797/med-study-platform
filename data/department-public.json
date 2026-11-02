@@ -9,6 +9,7 @@
     {
       "source_filename": "12 ПЕРСТНАЯ КИШКА.jpg",
       "title": "12 ПЕРСТНАЯ КИШКА",
+      "displayTitle": "Двенадцатиперстная кишка",
       "kind": "photo",
       "chapters": [
         "duodenum"
@@ -30,6 +31,7 @@
     {
       "source_filename": "ТОНКАЯ КИШКА.jpg",
       "title": "ТОНКАЯ КИШКА",
+      "displayTitle": "Тонкая кишка",
       "kind": "photo",
       "chapters": [
         "duodenum",
@@ -53,6 +55,7 @@
     {
       "source_filename": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА.jpg",
       "title": "ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА",
+      "displayTitle": "Пилорическая часть желудка",
       "kind": "photo",
       "chapters": [
         "stomach"
@@ -74,6 +77,7 @@
     {
       "source_filename": "ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА.jpg",
       "title": "ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА",
+      "displayTitle": "Поперечный размер пищевода",
       "kind": "photo",
       "chapters": [
         "esophagus"
@@ -95,6 +99,7 @@
     {
       "source_filename": "ДНО ЖЕЛУДКА.jpg",
       "title": "ДНО ЖЕЛУДКА",
+      "displayTitle": "Дно желудка",
       "kind": "photo",
       "chapters": [
         "stomach",
@@ -117,6 +122,7 @@
     {
       "source_filename": "ТОЛСТАЯ КИШКА.jpg",
       "title": "ТОЛСТАЯ КИШКА",
+      "displayTitle": "Толстая кишка",
       "kind": "photo",
       "chapters": [
         "colon"
@@ -138,6 +144,7 @@
     {
       "source_filename": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК.jpg",
       "title": "ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК",
+      "displayTitle": "Переход пищевода в желудок",
       "kind": "photo",
       "chapters": [
         "esophagus",
@@ -160,6 +167,7 @@
     {
       "source_filename": "ЛИСТОВИДНЫЕ СОСОЧКИ.MOV",
       "title": "ЛИСТОВИДНЫЕ СОСОЧКИ",
+      "displayTitle": "Листовидные сосочки",
       "kind": "video-frames",
       "chapters": [
         "tongue",
@@ -187,6 +195,7 @@
     {
       "source_filename": "НЕБНАЯ МИНДАЛИНА.MOV",
       "title": "НЕБНАЯ МИНДАЛИНА",
+      "displayTitle": "Небная миндалина",
       "kind": "video-frames",
       "chapters": [
         "tonsils"
@@ -213,6 +222,7 @@
     {
       "source_filename": "НИТЕВИДНЫЕ СОСОЧКИ.MOV",
       "title": "НИТЕВИДНЫЕ СОСОЧКИ",
+      "displayTitle": "Нитевидные сосочки",
       "kind": "video-frames",
       "chapters": [
         "tongue"
@@ -239,6 +249,7 @@
     {
       "source_filename": "ОКОЛОУШНАЯ ЖЕЛЕЗА.MOV",
       "title": "ОКОЛОУШНАЯ ЖЕЛЕЗА",
+      "displayTitle": "Околоушная железа",
       "kind": "video-frames",
       "chapters": [
         "salivary"
@@ -265,6 +276,7 @@
     {
       "source_filename": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ.MOV",
       "title": "РАЗВИТИЕ ЗУБА, ОБРАЗОВАНИЕ ДЕНТИНА И ЭМАЛИ",
+      "displayTitle": "Развитие зуба, образование дентина и эмали",
       "kind": "video-frames",
       "chapters": [
         "teeth"
@@ -291,6 +303,7 @@
     {
       "source_filename": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН.MOV",
       "title": "РАЗВИТИЕ ЗУБА, ЭМАЛЕВЫЙ ОРГАН",
+      "displayTitle": "Развитие зуба, эмалевый орган",
       "kind": "video-frames",
       "chapters": [
         "teeth"
@@ -317,6 +330,7 @@
     {
       "source_filename": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА.MOV",
       "title": "СМЕШАННАЯ СЛЮННАЯ ЖЕЛЕЗА",
+      "displayTitle": "Смешанная слюнная железа",
       "kind": "video-frames",
       "chapters": [
         "salivary"
