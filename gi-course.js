@@ -343,7 +343,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[]}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[],startInReview=false}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
  const topicMode=Boolean(chapterId);
@@ -451,7 +451,7 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
    host.append(button('Повторить ошибки · '+missedQuestions().length,startReview,'gi-button gi-review-action'));
   host.append(button(topicMode?'К конспекту':'К темам',onBack,'gi-button gi-light'));
  }
- selectLevel();
+ if(topicMode&&startInReview)startReview();else selectLevel();
 }
 // Flashcards use ONLY existing authored teaching material; no synthetic facts
 // or externally generated questions are added to the medical syllabus.
