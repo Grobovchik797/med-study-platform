@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.8.1'),
-      'Top navigation must show the release version, not stale 1.6.0');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.0'),
+      'Top navigation must show the current 1.9.0 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
