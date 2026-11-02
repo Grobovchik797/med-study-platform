@@ -664,3 +664,35 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .gi-recall-complete + .gi-end-actions .gi-button{min-height:45px;}
 .gi-mini-choice:focus-visible,.gi-button:focus-visible,.si-button:focus-visible{outline:3px solid #2c6487;outline-offset:3px;}
 @media(prefers-reduced-motion:reduce){.si-focus-fill,.session-progress > div{transition:none;}}
+
+
+/* 1.9: True topic milestones + calm, opt-in reading. */
+.gi-milestones{max-width:980px;margin:15px 0;padding:18px 20px;border-left:4px solid #277c70;}
+.gi-milestones h2{font-size:18px;margin:7px 0;}
+.gi-milestones .gi-paragraph{font-size:13px;line-height:1.65;margin:7px 0 10px;color:#586578;}
+.gi-milestone-items{display:flex;flex-wrap:wrap;gap:8px 12px;}
+.gi-milestone{display:inline-flex;align-items:center;border:1px solid #dadfea;padding:6px 11px;border-radius:99px;background:#f8fafc;color:#4d596b;font-size:12px;font-weight:750;}
+.gi-milestone.is-done{border-color:#addacd;background:#eaf7f1;color:#15634f;}
+.gi-study-completion,.si-note-actions{margin:18px 0;}
+.gi-completed-note{display:inline-block;padding:10px;border-radius:10px;background:#e6f7ef;color:#135d45;}
+.gi-reading-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;max-width:980px;padding:13px 17px;background:#f7f9fc;border:1px solid #dae1ec;border-radius:14px;margin:15px 0;}
+.gi-reading-toolbar>strong{font-size:14px;color:#27496b;}
+.gi-reading-size{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:700;color:#324e67;}
+.gi-reading-select{min-height:44px;min-width:125px;border-radius:9px;padding:8px 9px;border:1px solid #b5c6db;background:#fff;color:#202d43;font:inherit;}
+.gi-reading-select:focus-visible{outline:3px solid #2a6887;outline-offset:2px;}
+.gi-reading-toggle{min-height:44px;}
+.gi-review-action{margin:14px 12px 0 0;background:#176b62;border-color:#176b62;color:#fff;}
+html{--reading-scale:1;}
+html[data-reading-size="115"]{--reading-scale:1.15;}
+html[data-reading-size="130"]{--reading-scale:1.3;}
+.gi-content .gi-paragraph,.gi-recall-card .gi-paragraph,.hist-study-section .hist-paragraph,
+.hist-study-section p,.gi-recall-complete .gi-paragraph{
+  font-size:calc(14px * var(--reading-scale));line-height:1.9;
+}
+html.reading-calm body{--page:#f4f5f1;--ink:#29332f;background:#f4f5f1;color:#29332f;}
+html.reading-calm .gi-content,html.reading-calm .hist-study-section,
+html.reading-calm .gi-recall-card{background:#fffdf5;border-color:#e3ddce;}
+html.reading-calm .gi-reading-toolbar,html.reading-calm .gi-milestones{background:#f8f8ef;}
+html.reading-calm .gi-parenthetical{background:#e9f2ed;color:#245e57;}
+html.reading-calm .gi-nb{background:#f4efe3;border-left-color:#977852;}
+@media(max-width:600px){.gi-reading-toolbar{align-items:stretch;}.gi-reading-toolbar>strong{width:100%;}.gi-reading-select{max-width:190px;}.gi-milestones{padding:15px;}}
