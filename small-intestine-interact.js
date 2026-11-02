@@ -90,7 +90,7 @@ function renderQuiz(host,bank,exit){
  }
  chooser();
 }
-function renderSlides(host,data,exit,initialIndex=0,onReviewed=null){
+function renderSlides(host,data,exit,initialIndex=0,onReviewed=null,reviewIndex=null){
  const root=e('section','si-workspace');host.append(root);
  let slideIndex=initialIndex,visibleSlideIndex=initialIndex,mode='study',zoom=1,dx=0,dy=0,point=null;
  const results=read();
@@ -273,7 +273,7 @@ function renderSlides(host,data,exit,initialIndex=0,onReviewed=null){
     const a=e('a','',label+' ↗');a.href=url;a.target='_blank';a.rel='noopener noreferrer';by.append(a);
   }
   root.append(by,notes('Фотографии включены в сборку сайта и Android APK. После первой установки сайт может показывать ранее сохранённые изображения офлайн; ссылки на первоисточники требуют интернет.'));
-  if(typeof onReviewed==='function'){
+  if(typeof onReviewed==='function'&&(reviewIndex===null||reviewIndex===slideIndex)){
    const review=btn('Я разобрал этот микропрепарат',()=>{
     onReviewed();
     review.replaceWith(e('strong','si-good','✓ Разбор препарата отмечен в плане темы'));
