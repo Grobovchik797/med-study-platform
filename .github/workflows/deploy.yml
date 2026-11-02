@@ -31,6 +31,14 @@ jobs:
         run: |
           python3 scripts/validate_pwa.py
           python3 scripts/validate_illustrations.py
+      # Reuse only images compiled for these exact licensed source manifests.
+      # The preparation script still decodes every cached JPEG before accepting it.
+      - name: Restore verified microscopy image cache
+        uses: actions/cache@v4
+        with:
+          path: photos/*.jpg
+          key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
+          save-always: true
       - name: Download and verify original licensed microscopy photographs
         run: |
           python3 -m pip install --quiet Pillow
