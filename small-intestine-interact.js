@@ -7,6 +7,11 @@ const KEY='medstudy-small-intestine-v1';
 const e=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=String(text);return node;};
 const add=(host,...nodes)=>{nodes.forEach(node=>host.append(node));return host;};
 const btn=(text,cb,cls='si-button')=>{const b=e('button',cls,text);b.type='button';b.addEventListener('click',cb);return b;};
+// Legacy departmentTitle remains the exact source identifier, not a display label.
+function displayDepartmentTitle(name){
+ if(!name)return '';
+ return name==='12 ПЕРСТНАЯ КИШКА'?'Двенадцатиперстная кишка':name.charAt(0).toLocaleUpperCase('ru-RU')+name.slice(1).toLocaleLowerCase('ru-RU');
+}
 function read(){
   try{
     const d=JSON.parse(localStorage.getItem(KEY)||'{}');
@@ -105,7 +110,12 @@ function renderSlides(host,data,exit,initialIndex=0,onReviewed=null,reviewIndex=
    e('p','si-instruction','Увеличивай и перемещай реальную микрофотографию. Точечные метки есть только у проверенных областей. На остальных препаратах доступны тренировки распознавания органа и самостоятельный поиск признаков.'));
   const selectors=e('div','si-choice-row');
   const slidesSelect=e('select','si-select');slidesSelect.setAttribute('aria-label','Выбрать препарат');
-  data.images.forEach((s,i)=>{const label=s.departmentTitle&&s.departmentTitle!==s.title?s.departmentTitle+' · '+s.title:s.title;const opt=e('option','',mode==='study'?label:'Препарат '+(i+1));opt.value=String(i);slidesSelect.append(opt);});
+  data.images.forEach((s,i)=>{
+    const department=displayDepartmentTitle(s.departmentTitle);
+    const label=department&&department!==s.title?department+' · '+s.title:s.title;
+    const opt=e('option','',mode==='study'?label:'Препарат '+(i+1));
+    opt.value=String(i);slidesSelect.append(opt);
+   });
   slidesSelect.value=String(slideIndex);
   slidesSelect.addEventListener('change',()=>{slideIndex=Number(slidesSelect.value);show();});
   const study=btn('Изучение',()=>{mode='study';show();},'si-button'+(mode==='study'?' current':' secondary'));
