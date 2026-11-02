@@ -350,7 +350,8 @@ function showSmallIntestineSlides(initialIndex=0,originChapterId=null,allReferen
   };
   const milestoneId=originChapterId||((from==='topic'||from==='intestine')?'histology-small-intestine':null);
   window.MedStudySI.renderSlides(main,slides,back,initialIndex,milestoneId?
-    ()=>window.MedStudyLearning?.markMilestone(milestoneId,'atlas'):null);
+    ()=>window.MedStudyLearning?.markMilestone(milestoneId,'atlas'):null,
+    originChapterId?initialIndex:null);
   window.scrollTo(0,0);
 }
 
