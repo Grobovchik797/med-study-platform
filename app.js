@@ -294,13 +294,13 @@ function showGIWorkbook() {
     onBack:()=>showSection('histology-cytology','digestive'),onChapter:showGIChapter});
   window.scrollTo(0,0);
 }
-function showGIExam(chapterId=null) {
+function showGIExam(chapterId=null,reviewOnly=false) {
   view='gi-exam';updateNav();main.replaceChildren();
   const chapter=chapterId?giCurriculum?.chapters.find(x=>x.id===chapterId):null;
   window.MedStudyGI.renderExam(main,{bank:giFinalBank,
     chapterId:chapter?.id||null,chapterTitle:chapter?.title||'',
     mini:chapter?giInlineBank.chapterQuestions[chapter.id]||[]:[],
-    deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],
+    deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],startInReview:reviewOnly,
     onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
 }
@@ -1052,7 +1052,7 @@ function showMistakes() {
       const missed=readGIMistakes()[topic.chapterId]||[];
       append(module,element('p','muted',missed.length?'Ошибок на повторение: '+missed.length:'Ошибок на повторение пока нет.'),
         button(missed.length?'Повторить ошибки в тесте →':'Открыть тему →',
-          missed.length?()=>showGIExam(topic.chapterId):()=>showGIChapter(topic.chapterId),'library-action'));
+          missed.length?()=>showGIExam(topic.chapterId,true):()=>showGIChapter(topic.chapterId),'library-action'));
       main.append(module);continue;
     }
     const questions=topic.id==='ans'?
