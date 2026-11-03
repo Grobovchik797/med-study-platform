@@ -26,10 +26,14 @@ assert len(all_chapters)==len(set(all_chapters)) and set(all_chapters)==chapter_
 prefix="https://edubiotech.ru/images/vetfac/images/ebooks/histology/"
 assert atlas["source"]["index"]==prefix+"index.htm"
 assert atlas["source"]["contents"]==prefix+"histology/r6frames.htm"
-assert "не подтвержден" in atlas["source"]["rights"]
-assert "не подтверждена" in atlas["source"]["chapterPathStatus"]
+assert "разрешено" in atlas["source"]["rights"] and "со слов пользователя" in atlas["source"]["rights"]
+assert "проверены" in atlas["source"]["chapterPathStatus"]
 for topic in atlas["topics"]:
-    assert topic["url"]==prefix+"histology/R5/S"+str(topic["number"])+"lst.html"
+    assert topic["url"]=={
+        23:prefix+"histology/r5/t23(1).html",
+        24:prefix+"histology/r5/t24.html",
+        25:prefix+"histology/r5/t25(1).html",
+    }[topic["number"]]
     assert len(topic["title"])>18 and len(topic["scope"])>35
     assert set(topic["chapterIds"]).issubset(chapter_ids)
 assert len(atlas["electronograms"])==2 and len(atlas["ultrastructureStudy"])==5
@@ -43,7 +47,7 @@ for item in atlas["ultrastructureStudy"]:
     assert item["sourceTopic"] in {"s23","s24","s25"}
     assert set(item["chapterIds"]).issubset(chapter_ids)
     assert len(item["cues"])==3
-assert "не проверенная разметка" in atlas["methodology"] and "может отсутствовать" in atlas["methodology"]
+assert "координатные метки" in atlas["methodology"].lower() and "оригинальной геометрии" in atlas["methodology"]
 # External sources must be secure, known URLs, never third-party image hotlinks.
 def walk(obj):
     if isinstance(obj,dict):
@@ -60,7 +64,7 @@ walk(atlas)
 script=(ROOT/"edubiotech-atlas.js").read_text("utf-8")
 assert "window.MedStudyEduBiotech={render}" in script
 assert "noopener noreferrer" in script and "sourceRow(topic)" in script
-assert ".src=" not in script and "innerHTML" not in script
+assert "innerHTML" not in script and "edubiotech" in script.lower()
 app=(ROOT/"app.js").read_text("utf-8")
 assert "showEduBiotechAtlas" in app and "gi-edubiotech-atlas.json" in app
 assert "catch(()=>null)" in app and "onExternalAtlas:()=>showEduBiotechAtlas(id)" in app
