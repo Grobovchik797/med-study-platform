@@ -2,6 +2,7 @@
 """Validate the published answer-rationale coverage and change journal, no external libraries."""
 from pathlib import Path
 import json
+import re
 ROOT=Path(__file__).resolve().parents[1]
 def read(path):
     return json.loads((ROOT/"data"/path).read_text("utf-8"))
@@ -23,5 +24,10 @@ for e in journal["entries"]:
     assert e["category"] in ("feature","science") and e["date"] and e["changes"]
     assert e["source"].startswith("https://github.com/Grobovchik797/")
 assert "study-tools.js" in (ROOT/"index.html").read_text("utf-8")
-assert "med-study-shell-v1.9.3" in (ROOT/"sw.js").read_text("utf-8")
+index=(ROOT/"index.html").read_text("utf-8")
+match=re.search(r"Med Study · (\\d+\\.\\d+\\.\\d+)",index)
+assert match, "Missing release number in index.html"
+version=match.group(1)
+assert f"med-study-shell-v{version}-" in (ROOT/"sw.js").read_text("utf-8"), "PWA cache does not match current release"
+assert journal["entries"][0]["version"]==version, "Latest journal entry must match published release"
 print("PASS: 24 complete editorial distractor explanations and versioned change journal")
