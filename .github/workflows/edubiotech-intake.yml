@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - scripts/probe_edubiotech.py
+      - scripts/inspect_edubiotech_figures.py
       - .github/workflows/edubiotech-intake.yml
   workflow_dispatch:
 permissions:
@@ -15,3 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Probe source pages and original JPG links
         run: python3 -u scripts/probe_edubiotech.py
+      - name: Inspect and validate original photographs and captions
+        run: |
+          python3 -m pip install --quiet beautifulsoup4
+          python3 -u scripts/inspect_edubiotech_figures.py
