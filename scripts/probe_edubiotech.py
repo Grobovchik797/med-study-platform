@@ -60,6 +60,22 @@ if __name__=="__main__":
     raw=r.read(10000).decode("windows-1251",errors="replace")
    print("HTML",relative,repr(raw[:6500]))
   except Exception as e: print("RAW FAIL",relative,str(e))
+ print("=== DIGESTIVE ULTRASTRUCTURE SOURCE HITS ===")
+ for number in (23,24,25):
+  for suffix in ("",".1"):
+   name="t"+str(number)+("(1)" if suffix else "")+".html"
+   url=archive+"r5/"+name
+   try:
+    raw=fetch_page=Request(url,headers={"User-Agent":"Mozilla/5.0"})
+    with urlopen(raw,timeout=15) as resp:
+     text_html=resp.read(450000).decode("windows-1251",errors="replace")
+    matches=list(re.finditer(r"электрон|ультраструкт|микрофотограф",text_html,re.I))
+    print("ULTRASTRUCTURE",name,len(matches))
+    for m in matches[:13]:
+     part=text_html[max(0,m.start()-300):m.end()+500]
+     stripped=re.sub(r"<[^>]+>"," ",part)
+     print(" SNIPPET",re.sub(r"\\s+"," ",stripped)[:550])
+   except Exception as e:print("ULTRA_FAIL",name,str(e)[:100])
  print("=== GEOTAR FRAMES ===")
  root="https://edubiotech.ru/downloads/library/ugebnik/gistologi/"
  for rel in ["pages/frameset_book.htm","pages/frameset_exam.htm","pages/book.htm","pages/contents.htm"]:
