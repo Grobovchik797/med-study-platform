@@ -8,7 +8,7 @@ web = root / "android" / "app" / "src" / "main" / "assets" / "www"
 web.mkdir(parents=True, exist_ok=True)
 files = [
     "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "study-tools.js", "department-atlas.js", "department-public.js", "edubiotech-atlas.js", "sw.js", "manifest.webmanifest",
-    "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-answer-reasons.json", "data/update-journal.json", "data/gi-colloquium-guide.json", "data/gi-edubiotech-atlas.json", "data/gi-workbook.json", "data/gi-atlas.json", "data/department-public.json", "data/gi-department-reference-map.json",
+    "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-answer-reasons.json", "data/update-journal.json", "data/gi-colloquium-guide.json", "data/gi-edubiotech-atlas.json", "data/gi-edubiotech-images.json", "data/gi-workbook.json", "data/gi-atlas.json", "data/department-public.json", "data/gi-department-reference-map.json",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
     "icons/icon-192.png", "icons/icon-512.png",
     "photos/duodenum.jpg", "photos/jejunum.jpg", "photos/ileum.jpg",
@@ -23,6 +23,9 @@ files = [
     "illustrations/organs.svg", "illustrations/small-intestine-schematic.svg",
 ]
 from json import loads
+edubiotech = loads((root / "data" / "gi-edubiotech-images.json").read_text("utf-8"))
+for image in edubiotech["items"]:
+    files.append(image["src"].removeprefix("./"))
 manifest = loads((root / "data" / "department-public.json").read_text("utf-8"))
 for specimen in manifest["specimens"]:
     for frame in specimen["frames"]:
