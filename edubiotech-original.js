@@ -84,8 +84,8 @@ function render(host,{data,course,onBack,onChapter,onLegacy,selectedChapter=null
   if(showMarkers){
    current.marks.forEach((m,index)=>{
     const pin=make("span","edu-original-pin",String(index+1));
-    pin.style.left=(m.x/current.appletWidth*100).toFixed(3)+"%";
-    pin.style.top=(m.y/current.appletHeight*100).toFixed(3)+"%";
+    pin.style.left=(m.x/current.width*100).toFixed(3)+"%";
+    pin.style.top=(m.y/current.height*100).toFixed(3)+"%";
     pin.title=m.label;markers.append(pin);
    });
   }
@@ -115,10 +115,10 @@ function render(host,{data,course,onBack,onChapter,onLegacy,selectedChapter=null
     image.addEventListener("click",ev=>{
      const rect=image.getBoundingClientRect();
      if(!rect.width||!rect.height)return;
-     const sx=(ev.clientX-rect.left)/rect.width*current.appletWidth;
-     const sy=(ev.clientY-rect.top)/rect.height*current.appletHeight;
+     const sx=(ev.clientX-rect.left)/rect.width*current.width;
+     const sy=(ev.clientY-rect.top)/rect.height*current.height;
      const dist=Math.hypot(sx-needle.x,sy-needle.y);
-     const tolerance=Math.max(40,Math.min(current.appletWidth,current.appletHeight)*.09);
+     const tolerance=Math.max(40,Math.min(current.width,current.height)*.09);
      result=dist<=tolerance?"Верно, структура найдена!":"Не совпало с исходной отметкой — попробуй ещё.";
      if(dist<=tolerance){shown=true;}
      draw();
