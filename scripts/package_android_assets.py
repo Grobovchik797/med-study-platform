@@ -8,7 +8,7 @@ web = root / "android" / "app" / "src" / "main" / "assets" / "www"
 web.mkdir(parents=True, exist_ok=True)
 files = [
     "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "study-tools.js", "department-atlas.js", "department-public.js", "edubiotech-atlas.js", "edubiotech-original.js", "sw.js", "manifest.webmanifest",
-    "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-answer-reasons.json", "data/update-journal.json", "data/gi-colloquium-guide.json", "data/gi-edubiotech-atlas.json", "data/gi-edubiotech-original.json", "data/gi-workbook.json", "data/gi-atlas.json", "data/department-public.json", "data/gi-department-reference-map.json",
+    "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-answer-reasons.json", "data/update-journal.json", "data/gi-colloquium-guide.json", "data/gi-edubiotech-atlas.json", "data/gi-edubiotech-original.json", "data/gi-edubiotech-tem.json", "data/gi-workbook.json", "data/gi-atlas.json", "data/department-public.json", "data/gi-department-reference-map.json",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
     "icons/icon-192.png", "icons/icon-512.png",
     "photos/duodenum.jpg", "photos/jejunum.jpg", "photos/ileum.jpg",
@@ -26,7 +26,11 @@ from json import loads
 manifest = loads((root / "data" / "department-public.json").read_text("utf-8"))
 edu = loads((root / "data" / "gi-edubiotech-original.json").read_text("utf-8"))
 assert edu["version"]==1 and len(edu["images"])==36
+edt = loads((root / "data" / "gi-edubiotech-tem.json").read_text("utf-8"))
+assert edt["version"]==1 and len(edt["images"])==3
 for photo in edu["images"]:
+    files.append(photo["image"].removeprefix("./"))
+for photo in edt["images"]:
     files.append(photo["image"].removeprefix("./"))
 for specimen in manifest["specimens"]:
     for frame in specimen["frames"]:
