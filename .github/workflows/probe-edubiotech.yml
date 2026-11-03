@@ -1,0 +1,17 @@
+name: Explore permitted EduBiotech archive
+on:
+  pull_request:
+    paths:
+      - scripts/probe_edubiotech.py
+      - .github/workflows/probe-edubiotech.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect university atlas paths
+        run: python3 -u scripts/probe_edubiotech.py
