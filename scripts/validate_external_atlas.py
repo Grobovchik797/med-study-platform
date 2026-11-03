@@ -43,7 +43,7 @@ for item in atlas["ultrastructureStudy"]:
     assert item["sourceTopic"] in {"s23","s24","s25"}
     assert set(item["chapterIds"]).issubset(chapter_ids)
     assert len(item["cues"])==3
-assert "не проверено" in atlas["methodology"]
+assert "не проверенная разметка" in atlas["methodology"] and "может отсутствовать" in atlas["methodology"]
 # External sources must be secure, known URLs, never third-party image hotlinks.
 def walk(obj):
     if isinstance(obj,dict):
