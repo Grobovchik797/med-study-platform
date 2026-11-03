@@ -31,5 +31,7 @@ jobs:
             echo "No source changes"
           else
             git commit -m "assets(gi): import source-attributed EduBiotech microscopy and exact marker coordinates"
+            git fetch origin feat/edubiotech-original-images-1-9-8
+            git rebase origin/feat/edubiotech-original-images-1-9-8
             git push origin HEAD:feat/edubiotech-original-images-1-9-8
           fi
