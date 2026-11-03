@@ -24,6 +24,7 @@ jobs:
           python3 scripts/validate_small_intestine_pilot.py
           python3 scripts/validate_gi_curriculum.py
           python3 scripts/validate_study_tools.py
+          python3 scripts/validate_lecture_crosswalk.py
           python3 scripts/validate_department_public.py
           python3 -m py_compile scripts/verify_public_site.py
       - name: Generate installable app icons
