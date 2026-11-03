@@ -1,8 +1,8 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v1.9.7-edubiotech-source-guide";
+const CACHE = "med-study-shell-v1.9.8-edubiotech-original-markers";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js",
-  "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
+  "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-edubiotech-plates.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
   "./photos/duodenum.jpg", "./photos/jejunum.jpg", "./photos/ileum.jpg",
   "./photos/salivary-submandibular.jpg", "./photos/esophagus.jpg", "./photos/stomach-fundus.jpg",
   "./photos/colon.jpg", "./photos/liver.jpg", "./photos/pancreas.jpg", "./photos/liver-central-vein.jpg", "./photos/liver-portal-triad.jpg", "./photos/gastric-parietal-tem.jpg", "./photos/gastric-chief-tem.jpg",
@@ -17,7 +17,14 @@ const CORE = [
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE)
-      .then(cache => cache.addAll(CORE))
+      .then(async cache => {
+        await cache.addAll(CORE);
+        const catalog = await (await cache.match("./data/gi-edubiotech-plates.json")).json();
+        if(catalog.origin!=="edubiotech.ru" || catalog.plates.length<19)throw Error("EduBiotech asset manifest is incomplete");
+        const photos=catalog.plates.map(item=>item.src).filter(src=>/^\.\/photos\/edubiotech\/[a-z0-9-]+\.jpg$/.test(src));
+        if(photos.length!==catalog.plates.length)throw Error("Invalid original image path");
+        await cache.addAll(photos);
+      })
       .then(() => self.skipWaiting())
   );
 });
