@@ -104,27 +104,21 @@ async function render(host,{onBack,chapterId=null}={}){
   if(mode==='drill'){drawDrill();return;}
   root.append(btn('Тренировка: случайные препараты',startDrill,'gi-button dept-drill-launch'));
   const files=el('div','dept-file-grid');
-  list.forEach((x,i)=>{
+  list.forEach(x=>{
    const b=el('button','dept-file-card'+(x===active?' active':''));b.type='button';
-   b.append(el('strong','',mode==='check'?'Препарат '+(i+1):x.displayTitle),el('small','',x.kind==='photo'?'Кафедральная фотография':'Кадры из кафедрального видео'));
+   b.append(el('strong','',x.displayTitle),el('small','',x.kind==='photo'?'Кафедральная фотография':'Кадры из кафедрального видео'));
    b.onclick=()=>{active=x;mode='study';zoom=100;redraw();};
    files.append(b);
   });
   root.append(files);
   const panel=el('section','dept-panel');
-  panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА':'КАФЕДРАЛЬНЫЙ ПРЕПАРАТ'),
-    el('h2','',mode==='check'?'Определи препарат по изображению':active.displayTitle));
-  const modes=el('div','dept-modes');
-  for(const [id,label] of [['study','Изучение'],['check','Самопроверка']]){
-   modes.append(btn(label,()=>{mode=id;redraw();},'gi-button'+(id===mode?' gi-active':' gi-light')));
-  }
-  panel.append(modes);
+  panel.append(el('div','kicker','КАФЕДРАЛЬНЫЙ ПРЕПАРАТ'),el('h2','',active.displayTitle));
   const grid=el('div','dept-public-frames');
   active.frames.forEach(frame=>{
    const fig=el('figure','dept-public-figure');
    const wrap=el('div','dept-image-wrap');
    const img=el('img','dept-image');
-   img.src='./'+frame.src;img.alt='Микропрепарат: '+(mode==='check'?'название скрыто':active.displayTitle);
+   img.src='./'+frame.src;img.alt='Микропрепарат: '+active.displayTitle;
    img.loading='lazy';img.style.width=zoom+'%';
    img.onerror=()=>{wrap.replaceChildren(el('p','dept-image-missing','Исходное изображение ещё не загружено в опубликованный набор.'));};
    wrap.append(img);fig.append(wrap,el('figcaption','dept-caption',frame.label));
@@ -136,20 +130,10 @@ async function render(host,{onBack,chapterId=null}={}){
   magnification.setAttribute('aria-label','Увеличение кафедральной микрофотографии');
   magnification.oninput=()=>{zoom=Number(magnification.value);grid.querySelectorAll('img').forEach(img=>img.style.width=zoom+'%');};
   panel.append(el('label','dept-zoom-label','Увеличение 100–300%'),magnification);
-  if(mode==='study'){
-   panel.append(el('h3','','Учебные ориентиры — проверь видимость на этом поле'));
-   const ol=el('ol','dept-cues');active.cues.forEach(x=>ol.append(el('li','',x)));panel.append(ol);
-   panel.append(el('p','dept-caution','Это диагностические ориентиры из курса, а не координаты подтверждённых клеток или тканей на данных кадрах.'));
-  } else if(mode==='check'){
-   panel.append(el('h3','','Как называется препарат на кафедре?'));
-   const select=el('select','dept-answer'),blank=el('option','','Выбери название');blank.value='';select.append(blank);
-   data.specimens.forEach(x=>{const opt=el('option','',x.displayTitle);opt.value=x.title;select.append(opt);});
-   const feedback=el('p','dept-feedback','');
-   panel.append(select,btn('Проверить ответ',()=>{
-    feedback.textContent=(select.value===active.title?'Верно: ':'Правильный ответ: ')+active.displayTitle;
-   }),feedback);
-  }
-  panel.append(el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Кафедральный источник: '+active.source_filename+'. '+active.review+'. Видео представлены отдельными кадрами, без дорисовки и синтетической панорамы.'));
+  panel.append(el('h3','','Учебные ориентиры — проверь видимость на этом поле'));
+  const ol=el('ol','dept-cues');active.cues.forEach(x=>ol.append(el('li','',x)));panel.append(ol);
+  panel.append(el('p','dept-caution','Это диагностические ориентиры из курса, а не координаты подтверждённых клеток или тканей на данных кадрах.'));
+  panel.append(el('p','dept-license','Кафедральный источник: '+active.source_filename+'. '+active.review+'. Видео представлены отдельными кадрами, без дорисовки и синтетической панорамы.'));
   root.append(panel);
  }
  redraw();
