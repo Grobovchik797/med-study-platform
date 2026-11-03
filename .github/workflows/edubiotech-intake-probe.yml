@@ -18,5 +18,5 @@ jobs:
       - name: Validate exact source filenames, JPEG pixels and applet labels
         env:
           EDU_THEME: ${{ matrix.theme }}
-          EDU_EXPORT: "0"
+          EDU_EXPORT: "1"
         run: python3 scripts/import_edubiotech_samples.py
