@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "courseId": "gi-histology",
+  "source": {
+    "name": "Руководство-атлас по гистологии, цитологии и эмбриологии",
+    "authors": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+    "site": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/index.htm",
+    "credit": "Источник: edubiotech.ru. Используется с разрешения владельца для учебных целей."
+  },
+  "rightsNote": "Авторские изображения размещены с заявленного владельцем разрешения при обязательном указании сайта edubiotech.ru.",
+  "images": [
+    {
+      "id": "enterocyte-tem",
+      "chapterId": "jejunum",
+      "topic": 24,
+      "page": "r5/t24.html",
+      "imagePath": "r7/n33-1.jpg",
+      "title": "Электронная микрофотография — тонкая кишка",
+      "labels": [
+        {
+          "number": "1",
+          "label": "Щёточная каёмка (микроворсинки)"
+        },
+        {
+          "number": "2",
+          "label": "Межклеточные контакты в апикальной области"
+        },
+        {
+          "number": "3",
+          "label": "Кровеносный капилляр"
+        }
+      ],
+      "annotationStatus": "Текстовая легенда по исходному параграфу; координатная разметка не доступна.",
+      "image": "./photos/edubiotech-tem/enterocyte-tem.jpg",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r7/n33-1.jpg",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "width": 306,
+      "height": 440,
+      "sha256": "c13aed56c4ccd6e170daf20e7df42e22ec5e29e7e02933a0f2a9987c24b6a00c",
+      "attribution": "Источник: edubiotech.ru. Используется с разрешения владельца для учебных целей."
+    },
+    {
+      "id": "bile-canaliculus-tem",
+      "chapterId": "liver",
+      "topic": 25,
+      "page": "r5/t25(1).html",
+      "imagePath": "r7/n35-1.jpg",
+      "title": "Электронная микрофотография — желчный капилляр",
+      "labels": [
+        {
+          "number": "1",
+          "label": "Просвет желчного капилляра"
+        },
+        {
+          "number": "2",
+          "label": "Микроворсинки"
+        },
+        {
+          "number": "3",
+          "label": "Плотные (запирающие) межклеточные контакты"
+        },
+        {
+          "number": "5",
+          "label": "Гранулы гликогена"
+        }
+      ],
+      "annotationStatus": "Оригинальная текстовая легенда к изображению, без новых пространственных стрелок.",
+      "image": "./photos/edubiotech-tem/bile-canaliculus-tem.jpg",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r7/n35-1.jpg",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "width": 352,
+      "height": 413,
+      "sha256": "35d7f2972a4e1240b1babdc3a247e14d3b37720b6459fa92c52bb1082e1284f1",
+      "attribution": "Источник: edubiotech.ru. Используется с разрешения владельца для учебных целей."
+    },
+    {
+      "id": "pancreas-acinar-tem",
+      "chapterId": "pancreas",
+      "topic": 25,
+      "page": "r5/t25(1).html",
+      "imagePath": "r7/n36.jpg",
+      "title": "Электронная микрофотография — ацинус экзокринной поджелудочной железы",
+      "labels": [
+        {
+          "number": "1",
+          "label": "Секреторные гранулы"
+        },
+        {
+          "number": "2",
+          "label": "Просвет секреторного отдела"
+        },
+        {
+          "number": "3",
+          "label": "Центроацинарные клетки вставочного протока"
+        },
+        {
+          "number": "4",
+          "label": "Гранулярная эндоплазматическая сеть"
+        }
+      ],
+      "annotationStatus": "Текстовая легенда оригинального учебника, точные новые координаты не задавались.",
+      "image": "./photos/edubiotech-tem/pancreas-acinar-tem.jpg",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r7/n36.jpg",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "width": 403,
+      "height": 550,
+      "sha256": "59388a7c0e5bf5fad63504d3b3e884bef448e65845e3bca448cf77f93d112b7c",
+      "attribution": "Источник: edubiotech.ru. Используется с разрешения владельца для учебных целей."
+    }
+  ]
+}
