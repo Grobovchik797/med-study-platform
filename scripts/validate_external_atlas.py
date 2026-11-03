@@ -26,10 +26,10 @@ assert len(all_chapters)==len(set(all_chapters)) and set(all_chapters)==chapter_
 prefix="https://edubiotech.ru/images/vetfac/images/ebooks/histology/"
 assert atlas["source"]["index"]==prefix+"index.htm"
 assert atlas["source"]["contents"]==prefix+"histology/r6frames.htm"
-assert "не подтвержден" in atlas["source"]["rights"]
-assert "не подтверждена" in atlas["source"]["chapterPathStatus"]
+assert "разрешение" in atlas["source"]["rights"] and "edubiotech.ru" in atlas["source"]["rights"]
+assert "повторно открыты" in atlas["source"]["chapterPathStatus"]
 for topic in atlas["topics"]:
-    assert topic["url"]==prefix+"histology/R5/S"+str(topic["number"])+"lst.html"
+    assert topic["url"]==prefix+"histology/r5/s"+str(topic["number"])+"lst.html"
     assert len(topic["title"])>18 and len(topic["scope"])>35
     assert set(topic["chapterIds"]).issubset(chapter_ids)
 assert len(atlas["electronograms"])==2 and len(atlas["ultrastructureStudy"])==5
@@ -43,7 +43,7 @@ for item in atlas["ultrastructureStudy"]:
     assert item["sourceTopic"] in {"s23","s24","s25"}
     assert set(item["chapterIds"]).issubset(chapter_ids)
     assert len(item["cues"])==3
-assert "не проверенная разметка" in atlas["methodology"] and "может отсутствовать" in atlas["methodology"]
+assert "исходные координаты" in atlas["methodology"] and "дополнительная карта" in atlas["methodology"]
 # External sources must be secure, known URLs, never third-party image hotlinks.
 def walk(obj):
     if isinstance(obj,dict):

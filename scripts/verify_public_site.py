@@ -55,10 +55,14 @@ def main():
                 ("app.js", "'gi-cards':'cards'"),
                 ("gi-course.js", "med-study-topic-milestones-v1"),
                 ("study-tools.js", "window.MedStudyTools"),
-                ("data/update-journal.json", '"med-1-9-7"'),
-                ("data/gi-edubiotech-atlas.json", 'S23lst.html'),
-                ("data/gi-edubiotech-atlas.json", 'S25lst.html'),
+                ("data/update-journal.json", '"med-1-9-8"'),
+                ("data/gi-edubiotech-atlas.json", 's23lst.html'),
+                ("data/gi-edubiotech-atlas.json", 's25lst.html'),
                 ("edubiotech-atlas.js", "window.MedStudyEduBiotech"),
+                ("edubiotech-original.js", "window.MedStudyEduBiotechOriginal"),
+                ("data/gi-edubiotech-original.json", '"t25-03"'),
+                ("data/gi-edubiotech-original.json", '"t25-06"'),
+                ("data/gi-edubiotech-tem.json", '"pancreas-acinar-tem"'),
                 ("app.js", "showEduBiotechAtlas"),
                 ("data/gi-atlas.json", '"liver-central-vein"'),
                 ("data/gi-atlas.json", '"liver-portal-triad"'),
@@ -76,7 +80,9 @@ def main():
                     raise AssertionError(f"Published asset is old or broken: {path}")
             for asset in ("photos/department/ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА (PDF стр. 5).jpg",
                           "photos/liver-central-vein.jpg","photos/liver-portal-triad.jpg",
-                          "photos/gastric-parietal-tem.jpg","photos/gastric-chief-tem.jpg"):
+                          "photos/gastric-parietal-tem.jpg","photos/gastric-chief-tem.jpg",
+                          "photos/edubiotech/t25-03.jpg","photos/edubiotech/t25-06.jpg",
+                          "photos/edubiotech-tem/enterocyte-tem.jpg","photos/edubiotech-tem/bile-canaliculus-tem.jpg","photos/edubiotech-tem/pancreas-acinar-tem.jpg"):
                 url=BASE+quote(asset,safe="/")+"?audit="+SHA+"-"+str(attempt)
                 with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"MedStudy-public-release-check/"+VERSION}),timeout=20) as response:
                     image_bytes=response.read(1500001)
@@ -84,7 +90,7 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, EduBiotech source-linked atlas and original pancreas PDF JPEG")
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)

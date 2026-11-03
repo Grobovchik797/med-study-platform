@@ -42,11 +42,14 @@ jobs:
           python3 scripts/validate_study_tools.py
           python3 scripts/validate_colloquium_guide.py
           python3 scripts/validate_external_atlas.py
+          python3 scripts/validate_edubiotech_original.py
+          python3 scripts/validate_edubiotech_tem.py
           python3 scripts/validate_lecture_crosswalk.py
           node --check app.js
           node --check gi-course.js
           node --check study-tools.js
           node --check edubiotech-atlas.js
+          node --check edubiotech-original.js
           node --check small-intestine-interact.js
       # Reuse only images compiled for these exact licensed source manifests.
       # The preparation script still decodes every cached JPEG before accepting it.
