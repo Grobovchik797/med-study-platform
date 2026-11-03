@@ -363,7 +363,7 @@ function renderWorkbook(host,{maps,department,onBack,onChapter}){
  }
  host.append(source,button('← К разделу',onBack,'gi-button gi-light'));
 }
-function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[],startInReview=false}){
+function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],deepBlocks=[],startInReview=false,wrongReasons={}}){
  let level=null,idx=0,correct=0,done=[],chosen=-1;
  const levels={easy:'Лёгкий',medium:'Средний',hard:'Сложный'};
  const topicMode=Boolean(chapterId);
@@ -447,6 +447,24 @@ function renderExam(host,{bank,onBack,chapterId=null,chapterTitle='',mini=[],dee
       trackMistake(q,option.good);
       for(const b of choices.querySelectorAll('button'))b.disabled=true;
       append(result,el('strong','',option.good?'Верно!':'Правильный ответ: '+q.options[q.answer]),paragraph(q.explanation));
+       // Preserve the original answer key. These notes are separate editorial
+       // explanations, indexed by the stable ID and original option number.
+       const wrong=wrongReasons[q.id]?.wrong;
+       if(wrong&&typeof wrong==='object'){
+        const details=el('details','gi-distractor-review');
+        details.append(el('summary','','Почему другие варианты не подходят'),
+          paragraph('Редакционные пояснения: научная сверка с действующими материалами кафедры ещё предстоит.','gi-provenance'));
+        const items=el('ol','gi-distractor-list');
+        q.options.forEach((answer,index)=>{
+         if(index===q.answer)return;
+         const explanation=wrong[String(index)];
+         if(!explanation)return;
+         const li=el('li');
+         append(li,el('strong','',answer),paragraph(explanation));
+         items.append(li);
+        });
+        details.append(items);result.append(details);
+       }
       actions.append(button(idx+1===set.length?'Завершить':'Следующий вопрос →',()=>{idx++;question();},'gi-button'));
     },'gi-mini-choice'));
   }

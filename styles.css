@@ -711,3 +711,30 @@ html.reading-calm .gi-nb{background:#f4efe3;border-left-color:#977852;}
  font-size:calc(14px * var(--reading-scale));line-height:1.85;
 }
 html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#fffdf5;border-color:#e3ddce;}
+
+
+/* 1.9.3 — accessible, local-only textbook search and change journal. */
+.study-quick-actions{display:flex;gap:12px;flex-wrap:wrap;margin:17px 0 25px;}
+.study-quick-actions .alt-button,.study-search-launch{min-height:46px;white-space:normal;}
+.study-search-label{display:flex;flex-direction:column;gap:10px;font-weight:750;margin:22px 0 10px;}
+.study-search-input{width:100%;font:inherit;font-size:1.05rem;border:2px solid #bfa9e4;color:#302541;background:white;border-radius:12px;padding:14px 17px;}
+.study-search-input:focus-visible{outline:3px solid #4b76b9;outline-offset:3px;}
+.study-search-status{color:var(--muted);font-size:.95rem;margin:10px 0 18px;}
+.study-search-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,315px),1fr));gap:15px;}
+.study-search-result{display:flex;flex-direction:column;gap:9px;}
+.study-search-result h2{font-size:1.08rem;margin:0;}
+.study-search-result p{font-size:.93rem;line-height:1.55;overflow-wrap:anywhere;flex-grow:1;}
+.study-search-result button{margin-top:auto;white-space:normal;text-align:left;}
+.study-journal-filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px;}
+.study-journal-entries{display:grid;gap:15px;}
+.study-journal-item h2{font-size:1.22rem;margin:7px 0;}
+.study-journal-item ul{padding-left:21px;line-height:1.65;}
+.study-journal-date,.study-journal-review{color:var(--muted);font-size:.88rem;}
+.study-journal-source{color:var(--purple);font-weight:700;text-decoration:underline;}
+.gi-distractor-review{margin-top:16px;padding:13px;border:1px solid #ded0f0;border-radius:12px;background:white;}
+.gi-distractor-review summary{cursor:pointer;color:var(--purple-dark);font-weight:750;}
+.gi-distractor-list{padding-left:21px;margin-top:9px;}
+.gi-distractor-list li{margin:13px 0;line-height:1.5;}
+.gi-distractor-list strong{display:block;}
+.gi-distractor-list p{margin:4px 0 0;}
+@media(max-width:560px){.study-quick-actions{display:grid;}.study-journal-filters .gi-button{flex:1 1 auto;white-space:normal;}}

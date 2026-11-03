@@ -51,6 +51,9 @@ def main():
                 ("index.html", "Med Study · " + VERSION),
                 ("app.js", "'gi-cards':'cards'"),
                 ("gi-course.js", "med-study-topic-milestones-v1"),
+                ("study-tools.js", "window.MedStudyTools"),
+                ("data/update-journal.json", '"scientificChanges"'),
+                ("data/gi-answer-reasons.json", '"questions"'),
                 ("styles.css", "gi-milestone-items"),
                 ("data/gi-curriculum.json", '"chapters"'),
             ]:

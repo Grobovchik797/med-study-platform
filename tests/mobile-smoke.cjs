@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.2'),
-      'Top navigation must show the current 1.9.2 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.3'),
+      'Top navigation must show the current 1.9.3 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -394,6 +394,12 @@ async function main() {
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
     assert.equal(await app.locator('.library-card').count(),20);
+    await app.getByRole('button',{name:'Найти термин или препарат'}).tap();
+    await waitHeading(app,'Найти термин или препарат');
+    await app.locator('.study-search-input').fill('дуоденум');
+    assert.ok(await app.locator('.study-search-result').count()>=1,'Android asset origin must load real GI search data');
+    await app.getByRole('button',{name:'← К библиотеке'}).tap();
+    await waitHeading(app,'Библиотека конспектов');
     assert.equal(errors.length,0,errors.join('\n'));
     await appctx.close();await ctx.close();
 
@@ -517,6 +523,35 @@ async function main() {
     await waitHeading(desktop,'Med Study — библиотека знаний');
     assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
       'page','Clicking the logo should really navigate to the home view');
+
+    // 1.9.3: local search must find authored academic text (including the duodenum alias).
+    await desktop.getByRole('button',{name:'Поиск по учебнику и атласам'}).click();
+    await waitHeading(desktop,'Найти термин или препарат');
+    await desktop.locator('.study-search-input').fill('дуоденум');
+    assert.ok(await desktop.locator('.study-search-result').count()>=1);
+    await desktop.locator('.study-search-result[data-search-kind="chapter"]').first().getByRole('button',{name:'Открыть главу'}).click();
+    await waitHeading(desktop,'Двенадцатиперстная кишка');
+    await desktop.locator('.brand').click();
+    await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
+    await waitHeading(desktop,'Что нового в Med Study');
+    assert.equal(await desktop.locator('.study-journal-item').count(),4);
+    await desktop.getByRole('button',{name:'Научные дополнения'}).click();
+    assert.equal(await desktop.locator('.study-journal-item').count(),0,'Do not invent medical changes before lectures arrive');
+    assert.ok((await desktop.locator('.study-journal-entries').textContent()).includes('Проверенных научных дополнений пока нет'));
+    await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
+    assert.equal(await desktop.locator('.study-journal-item').count(),4);
+    await desktop.getByRole('button',{name:'← На главную'}).click();
+
+    // The 24 final questions have distinct rationales for each wrong option.
+    await desktop.locator('.side-nav [data-nav="subjects"]').click();
+    await desktop.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Пищеварительная система'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Итоговый тест пищеварительной системы'}).locator('.library-go').click();
+    await desktop.getByRole('button',{name:'Лёгкий · 8'}).click();
+    await desktop.locator('.gi-mini-answers button').filter({hasText:'Подслизистая → слизистая'}).click();
+    await desktop.locator('.gi-distractor-review summary').click();
+    assert.equal(await desktop.locator('.gi-distractor-review li').count(),3);
+    assert.ok((await desktop.locator('.gi-distractor-review').textContent()).includes('Редакционные пояснения'));
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
     console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');

@@ -39,6 +39,7 @@ let intestineQuizBank = null;
 let intestineSlides = null;
 let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
+let giAnswerReasons = null, updateJournal = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -108,7 +109,7 @@ function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
     'gi-workbook':'notes','gi-exam':'subjects',atlas:'atlases','si-slides':'atlases',
     'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
-    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects'})[view] || view;
+    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
     const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
@@ -130,7 +131,9 @@ function navigate(to) {
   session = null;
   updateNav();
   if (!questionBank) return;
-  if (to === 'subjects') showSubjects();
+  if (to === 'search') showStudySearch();
+  else if (to === 'updates') showUpdateJournal();
+  else if (to === 'subjects') showSubjects();
   else if (to === 'notes') showResourceLibrary('notes');
   else if (to === 'atlases') showResourceLibrary('atlas');
   else if (to === 'cards') showResourceLibrary('flashcards');
@@ -309,6 +312,7 @@ function showGIExam(chapterId=null,reviewOnly=false) {
     chapterId:chapter?.id||null,chapterTitle:chapter?.title||'',
     mini:chapter?giInlineBank.chapterQuestions[chapter.id]||[]:[],
     deepBlocks:chapter?giDeepBlocks[chapter.id]||[]:[],startInReview:reviewOnly,
+    wrongReasons:giAnswerReasons?.questions||{},
     onBack:chapter?()=>showGIChapter(chapter.id):()=>showSection('histology-cytology','digestive')});
   window.scrollTo(0,0);
 }
@@ -438,6 +442,7 @@ function showResourceLibrary(kind) {
   view=kind==='notes'?'notes':kind==='atlas'?'atlases':'cards';
   updateNav();main.replaceChildren();
   main.append(titleArea(...settings));
+  if(kind==='notes'||kind==='atlas')main.append(button('🔎 Найти термин или препарат',showStudySearch,'alt-button study-search-launch'));
   if(kind==='atlas'){
     const department=element('section','card dept-banner');
     append(department,element('div','kicker','КОЛЛОКВИУМ · КАФЕДРАЛЬНЫЕ ПРЕПАРАТЫ'),
@@ -485,6 +490,25 @@ function showResourceLibrary(kind) {
   window.scrollTo(0,0);
 }
 
+function showStudySearch(){
+ view='search';updateNav();main.replaceChildren();
+ if(!window.MedStudyTools||!giCurriculum){main.append(element('p','note','Поиск пока не загружен.'));return;}
+ window.MedStudyTools.renderSearch(main,{
+  course:giCurriculum,blocks:giDeepBlocks,atlas:giAtlasSlides,
+  departmentCatalog:window.MedStudyDepartment?.catalog||[],
+  onBack:()=>navigate('notes'),
+  onChapter:id=>showGIChapter(id),
+  onAtlas:id=>{const index=giSlideIndex(id);if(index>=0)showSmallIntestineSlides(index,null,true);else navigate('atlases');},
+  onDepartment:id=>showDepartmentAtlas(id)
+ });
+ window.scrollTo(0,0);
+}
+function showUpdateJournal(){
+ view='updates';updateNav();main.replaceChildren();
+ if(!window.MedStudyTools||!updateJournal){main.append(element('p','note','Журнал обновлений пока не загружен.'));return;}
+ window.MedStudyTools.renderJournal(main,{journal:updateJournal,onBack:()=>navigate('home')});
+ window.scrollTo(0,0);
+}
 function showHome() {
   view='home';updateNav();main.replaceChildren();
   main.append(titleArea('ТВОЁ ОБУЧЕНИЕ','Med Study — библиотека знаний',
@@ -502,6 +526,9 @@ function showHome() {
     stat('◈',libraryEntries().length,'Тем с материалами'),
     stat('↺',progress.mistakes.length,'Вопросов на повторение'));
   main.append(stats);
+  main.append(append(element('div','study-quick-actions'),
+    button('🔎 Поиск по учебнику и атласам',showStudySearch,'alt-button'),
+    button('Что нового · журнал изменений',showUpdateJournal,'alt-button')));
   const heading=element('div','section-head');
   append(heading,append(element('div'),
     element('h2','','Продолжить обучение'),
@@ -1265,9 +1292,11 @@ Promise.all([
   fetch('./data/gi-workbook.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI workbook '+r.status);return r.json();}),
   fetch('./data/gi-department-questions.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI method questions '+r.status);return r.json();}),
   fetch('./data/gi-deep-a.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep A '+r.status);return r.json();}),
-  fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();})
+  fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();}),
+  fetch('./data/gi-answer-reasons.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI answer reasons '+r.status);return r.json();}),
+  fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1295,6 +1324,9 @@ Promise.all([
     giDeepBlocks=Object.assign(Object.create(null),giDeepA?.blocks,giDeepB?.blocks);
     if(giCourse.chapters.some(ch=>giDeepBlocks[ch.id]?.length!==5))
       throw Error('Не хватает подробных гистологических блоков');
+    if(!window.MedStudyTools||reasons?.version!==1||Object.keys(reasons.questions||{}).length!==24||journal?.version!==1||!Array.isArray(journal.entries))
+      throw Error('Поиск, объяснения или журнал обновлений повреждены');
+    giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
     intestineQuizBank=histQuiz;intestineSlides=slides;
