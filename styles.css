@@ -745,3 +745,32 @@ html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#ff
 .study-journal-references{display:flex;flex-direction:column;gap:7px;margin:12px 0;padding:11px 14px;border-left:3px solid #b498d9;background:#faf7ff;border-radius:0 8px 8px 0;}
 .study-journal-references strong{font-size:.87rem;}
 .study-journal-references a{display:block;width:fit-content;max-width:100%;overflow-wrap:anywhere;line-height:1.5;}
+
+
+/* Med Study 1.9.5: source-provenance disclosures and 17-topic colloquium navigation */
+.gi-chapter-colloquium{margin:16px 0 24px;padding:20px;display:grid;gap:11px}
+.gi-chapter-colloquium h2{font-size:1.15rem;margin:0}
+.gi-colloquium-topic-list{padding-left:22px;line-height:1.7;margin:7px 0}
+.gi-cue-ladder,.gi-colloquium-detail,.gi-claim-evidence{border:1px solid #decff0;border-radius:11px;padding:12px 14px;background:#fbf8ff}
+.gi-cue-ladder summary,.gi-colloquium-detail summary,.gi-claim-evidence summary,.gi-compare-pair summary{font-weight:750;cursor:pointer;line-height:1.45}
+.gi-claim-with-evidence{margin-bottom:14px}
+.gi-claim-evidence{margin:8px 0 17px;border-left:4px solid #ab8adf}
+.gi-claim-evidence .gi-provenance{font-size:.88rem;line-height:1.55}
+.gi-claim-source-list{padding-left:20px;margin:9px 0 0}
+.gi-claim-source-list li{margin:6px 0}
+.gi-claim-source-list a{color:var(--purple);text-decoration:underline;overflow-wrap:anywhere}
+.gi-colloquium-pending{border-left:4px solid #bf9d40;margin:15px 0}
+.gi-colloquium-total{margin:20px 0}
+.gi-colloquium-comparisons{display:grid;gap:10px;margin:27px 0}
+.gi-colloquium-comparisons h2,.gi-colloquium-chapters h2{margin-bottom:5px}
+.gi-compare-pair{padding:13px 17px}
+.gi-compare-pair summary{font-size:1.02rem}
+.gi-compare-pair p,.gi-colloquium-detail p{line-height:1.6}
+.gi-colloquium-chapters{display:grid;gap:15px}
+.gi-colloquium-chapter{display:grid;gap:10px}
+.gi-colloquium-chapter h3{font-size:1.13rem;margin:0}
+.gi-colloquium-chapter h4{font-size:.98rem;margin:13px 0 4px}
+.gi-colloquium-steps,.gi-colloquium-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.gi-colloquium-actions .gi-button{min-height:44px}
+.gi-colloquium-step-count{margin:0;color:var(--muted)}
+@media(max-width:620px){.gi-colloquium-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.gi-colloquium-actions .gi-button{white-space:normal;padding:10px 5px}}

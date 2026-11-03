@@ -39,7 +39,7 @@ let intestineQuizBank = null;
 let intestineSlides = null;
 let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
-let giAnswerReasons = null, updateJournal = null;
+let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -109,7 +109,7 @@ function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
     'gi-workbook':'notes','gi-exam':'subjects',atlas:'atlases','si-slides':'atlases',
     'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
-    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home'})[view] || view;
+    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
     const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
@@ -131,7 +131,8 @@ function navigate(to) {
   session = null;
   updateNav();
   if (!questionBank) return;
-  if (to === 'search') showStudySearch();
+  if (to === 'colloquium') showGIColloquium();
+  else if (to === 'search') showStudySearch();
   else if (to === 'updates') showUpdateJournal();
   else if (to === 'subjects') showSubjects();
   else if (to === 'notes') showResourceLibrary('notes');
@@ -268,6 +269,19 @@ function showSmallIntestineQuiz() {
   window.MedStudySI.renderQuiz(main,intestineQuizBank,()=>showTopic('histology-small-intestine'));
   window.scrollTo(0,0);
 }
+function showGIColloquium(){
+ view='colloquium';updateNav();main.replaceChildren();
+ if(!giCurriculum||!giColloquiumGuide||!window.MedStudyGI?.renderColloquium){
+  main.append(element('p','note','Маршрут коллоквиума временно недоступен.'));return;
+ }
+ window.MedStudyGI.renderColloquium(main,{
+  course:giCurriculum,deepBlocks:giDeepBlocks,guide:giColloquiumGuide,
+  onBack:()=>showSection('histology-cytology','digestive'),
+  onChapter:showGIChapter,onExam:id=>showGIExam(id),onCards:showGIFlashcards,
+  onSlide:id=>showGIAtlasChapter(id)
+ });
+ window.scrollTo(0,0);
+}
 function showGIChapter(id) {
   if(!window.MedStudyGI || !giCurriculum)return showSubjects();
   const chapter=giCurriculum.chapters.find(x=>x.id===id);
@@ -281,7 +295,9 @@ function showGIChapter(id) {
     onBack:()=>showSection('histology-cytology','digestive'),
     onSlide:slide=>{const index=giSlideIndex(slide);if(index>=0)showSmallIntestineSlides(index,id);else main.append(element('p','note','Препарат пока недоступен для этой темы.'));},
     onExam:()=>showGIExam(id),onFlashcards:()=>showGIFlashcards(id),onWorkbook:showGIWorkbook,
-    onDepartment:()=>showDepartmentAtlas(id)
+    onDepartment:()=>showDepartmentAtlas(id),
+    colloquiumGuide:giColloquiumGuide,scientificChanges:updateJournal?.scientificChanges||[],
+    onColloquium:showGIColloquium
   });
   window.scrollTo(0,0);
 }
@@ -528,7 +544,8 @@ function showHome() {
   main.append(stats);
   main.append(append(element('div','study-quick-actions'),
     button('🔎 Поиск по учебнику и атласам',showStudySearch,'alt-button'),
-    button('Что нового · журнал изменений',showUpdateJournal,'alt-button')));
+    button('Что нового · журнал изменений',showUpdateJournal,'alt-button'),
+    button('Маршрут к коллоквиуму · 17 глав',showGIColloquium,'alt-button')));
   const heading=element('div','section-head');
   append(heading,append(element('div'),
     element('h2','','Продолжить обучение'),
@@ -1294,9 +1311,10 @@ Promise.all([
   fetch('./data/gi-deep-a.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep A '+r.status);return r.json();}),
   fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();}),
   fetch('./data/gi-answer-reasons.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI answer reasons '+r.status);return r.json();}),
-  fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();})
+  fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();}),
+  fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1326,6 +1344,10 @@ Promise.all([
       throw Error('Не хватает подробных гистологических блоков');
     if(!window.MedStudyTools||reasons?.version!==1||Object.keys(reasons.questions||{}).length!==24||journal?.version!==1||!Array.isArray(journal.entries))
       throw Error('Поиск, объяснения или журнал обновлений повреждены');
+    if(colloquiumGuide?.version!==1||colloquiumGuide.courseId!=='gi-histology'||
+       Object.keys(colloquiumGuide.cues||{}).length!==17||colloquiumGuide.comparisons?.length!==6)
+      throw Error('Маршрут коллоквиума: повреждены данные');
+    giColloquiumGuide=colloquiumGuide;
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;

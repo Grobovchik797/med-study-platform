@@ -195,7 +195,7 @@ function briefExtract(text){
   return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
 }
 
-function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,onColloquium=null,colloquiumGuide=null,scientificChanges=[],depth='brief'}) {
  const progressMount=el('div','gi-topic-progress');
  const readingMount=el('div','gi-topic-reading');
  const focusMount=el('div','gi-topic-focus');
@@ -237,6 +237,22 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
   renderMilestones(progressMount,{topicId:chapter.id,hasAtlas:Boolean(chapter.slideId)});
   renderReadingControls(readingMount);
   host.append(resources,guide,progressMount,readingMount,focusMount);
+  const cue=colloquiumGuide?.cues?.[chapter.id];
+  if(cue){
+   const oral=el('section','card gi-chapter-colloquium');
+   oral.append(el('div','kicker','ПОДГОТОВКА К КОЛЛОКВИУМУ'),el('h2','','Что обязательно уметь объяснить'));
+   const topics=el('ol','gi-colloquium-topic-list');
+   deepBlocks.forEach(block=>topics.append(el('li','',block.title)));
+   oral.append(paragraph('Пять опорных тем из существующего расширенного конспекта. Это план ответа, а не автоматически оценённая устная тренировка.'),topics);
+   const details=el('details','gi-cue-ladder');
+   details.append(el('summary','','Три уровня признаков для узнавания'),
+     paragraph('Ключевой признак: '+cue.primary),
+     paragraph('Подтверждающие признаки: '+cue.supporting),
+     paragraph('Что само по себе не доказывает орган: '+cue.notProof));
+   oral.append(details);
+   if(onColloquium)oral.append(button('Открыть весь маршрут коллоквиума →',onColloquium,'gi-button gi-light'));
+   host.append(oral);
+  }
   const depths=el('div','gi-depths');
   for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
@@ -271,7 +287,27 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     }
   }else{
     content.append(sectionTitle('Подробный разбор по слоям, клеткам и механизмам'));
-    for(const x of chapter.deep)content.append(paragraph(x));
+    const checkedChange=scientificChanges.find(item=>item.chapterId===chapter.id&&item.category==='science');
+    for(const [index,x] of chapter.deep.entries()){
+     const evidence=el('section','gi-claim-with-evidence');
+     evidence.append(paragraph(x));
+     // Claim-level citations only for the five audited 1.9.4 additions.
+     if(checkedChange?.claimIndices?.includes(index)&&checkedChange?.references?.length){
+      const details=el('details','gi-claim-evidence');
+      details.append(el('summary','','Источник и проверка утверждения'),
+        paragraph('Сопоставлено с лекционным конспектом: '+checkedChange.lecture,'gi-provenance'),
+        paragraph(checkedChange.verification,'gi-provenance'));
+      const links=el('ul','gi-claim-source-list');
+      checkedChange.references.forEach((url,i)=>{
+       if(typeof url!=='string'||!/^https:\/\//.test(url))return;
+       const link=el('a','','Независимый источник '+(i+1));
+       link.href=url;link.target='_blank';link.rel='noopener noreferrer';
+       links.append(append(el('li'),link));
+      });
+      details.append(links);evidence.append(details);
+     }
+     content.append(evidence);
+    }
     for(const [number,block] of deepBlocks.entries()){
       const part=el('section','gi-deep-block');
       part.id='gi-block-'+chapter.id+'-'+(number+1);
@@ -582,5 +618,72 @@ function renderCards(host,{title,cards,onBack,topicKey=null}){
  show();
 }
 
-window.MedStudyGI={renderChapter,renderWorkbook,renderExam,renderCards};
+function renderColloquium(host,{course,deepBlocks,guide,onBack,onChapter,onExam,onCards,onSlide}){
+ host.replaceChildren();
+ host.append(button('← К пищеварительной системе',onBack,'gi-back'),
+   el('div','kicker','ГОТОВИМСЯ К КОЛЛОКВИУМУ'),
+   el('h1','','Маршрут: 17 глав и узнавание препаратов'),
+   paragraph('Порядок подготовки: конспект → карточки → тест → атлас, если есть справочная фотография. Каждый человек видит только локальные отметки собственного браузера. Простое открытие темы не означает её изучения.','gi-lead'),
+   paragraph('Здесь нет распознавания устной речи и автоматической оценки знаний. Ориентиры относятся к учебной гистологии, а не к пространственной разметке конкретных снимков.','gi-provenance'));
+ const pending=el('section','card gi-colloquium-pending');
+ pending.append(el('h2','','Ожидаются два кафедральных препарата'),
+   paragraph('Кафедральные изображения печени и поджелудочной железы ещё не получены. Лицензированные справочные микрофотографии этих органов уже есть в обычном атласе, но они не являются кафедральными оригиналами.'));
+ host.append(pending);
+ const chapters=course.chapters;
+ let completed=0,possible=0;
+ for(const ch of chapters){
+  const record=window.MedStudyLearning?.readMilestones(ch.id)||{};
+  const keys=['notes','tests','cards',...(ch.slideId?['atlas']:[])];
+  completed+=keys.filter(k=>record[k]).length;possible+=keys.length;
+ }
+ const total=el('section','card gi-colloquium-total');
+ total.append(el('h2','','Мои отмеченные шаги: '+completed+' из '+possible),
+   paragraph('Это сумма существующих локальных отметок по 17 главам, а не оценка готовности к коллоквиуму.'));
+ host.append(total);
+ const compare=el('section','gi-colloquium-comparisons');
+ compare.append(el('h2','','Похожие препараты: что различать'),
+   paragraph('Шесть учебных сравнений. Частота путаницы среди студентов не измерялась; диагноз по одному признаку не ставится.'));
+ for(const pair of guide.comparisons){
+  const details=el('details','card gi-compare-pair');
+  details.dataset.compareId=pair.id;
+  details.append(el('summary','',pair.title),
+    paragraph(pair.left),paragraph(pair.right),paragraph('Ограничение: '+pair.caution,'gi-provenance'));
+  compare.append(details);
+ }
+ host.append(compare);
+ const list=el('section','gi-colloquium-chapters');
+ list.append(el('h2','','План по всем главам'));
+ for(const [i,ch] of chapters.entries()){
+  const cue=guide.cues[ch.id],blocks=deepBlocks[ch.id]||[];
+  const progress=window.MedStudyLearning?.readMilestones(ch.id)||{};
+  const stages=[['notes','Конспект'],['cards','Карточки'],['tests','Тест'],...(ch.slideId?[['atlas','Атлас']]:[])];
+  const checked=stages.filter(([key])=>progress[key]).length;
+  const card=el('article','card gi-colloquium-chapter');
+  card.dataset.chapterId=ch.id;
+  card.append(el('div','kicker','ГЛАВА '+(i+1)+' / 17'),el('h3','',ch.title),
+   paragraph('Отмечено учебных шагов: '+checked+' из '+stages.length,'gi-colloquium-step-count'));
+  const markers=el('div','gi-colloquium-steps');
+  stages.forEach(([key,label])=>markers.append(el('span','gi-milestone'+(progress[key]?' is-done':''),(progress[key]?'✓ ':'○ ')+label)));
+  card.append(markers);
+  const details=el('details','gi-colloquium-detail');
+  details.append(el('summary','','План ответа и признаки распознавания'));
+  const points=el('ol','gi-colloquium-topic-list');
+  blocks.forEach(block=>points.append(el('li','',block.title)));
+  details.append(el('h4','','Что уметь объяснить по конспекту'),points,
+    el('h4','','Ключевой признак'),paragraph(cue.primary),
+    el('h4','','Подтверждающие признаки'),paragraph(cue.supporting),
+    el('h4','','Что не является доказательством'),paragraph(cue.notProof));
+  if(guide.pendingDepartmentChapters.includes(ch.id))details.append(paragraph('Кафедральное фото ожидается. Справочный атлас не подменяет кафедральный.','gi-provenance'));
+  card.append(details);
+  const actions=el('div','gi-colloquium-actions');
+  actions.append(button('Конспект',()=>onChapter(ch.id),'gi-button gi-light'),
+    button('Карточки',()=>onCards(ch.id),'gi-button gi-light'),
+    button('Тест',()=>onExam(ch.id),'gi-button gi-light'));
+  if(ch.slideId)actions.append(button('Атлас',()=>onSlide(ch.id),'gi-button gi-light'));
+  card.append(actions);list.append(card);
+ }
+ host.append(list);
+}
+
+window.MedStudyGI={renderChapter,renderWorkbook,renderExam,renderCards,renderColloquium};
 })();
