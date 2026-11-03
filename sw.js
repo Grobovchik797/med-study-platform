@@ -2,7 +2,7 @@
 const CACHE = "med-study-shell-v1.9.8-edubiotech-original-marks";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js", "./edubiotech-original.js",
-  "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-edubiotech-original.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
+  "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-edubiotech-original.json", "./data/gi-edubiotech-tem.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
   "./photos/duodenum.jpg", "./photos/jejunum.jpg", "./photos/ileum.jpg",
   "./photos/salivary-submandibular.jpg", "./photos/esophagus.jpg", "./photos/stomach-fundus.jpg",
   "./photos/colon.jpg", "./photos/liver.jpg", "./photos/pancreas.jpg", "./photos/liver-central-vein.jpg", "./photos/liver-portal-triad.jpg", "./photos/gastric-parietal-tem.jpg", "./photos/gastric-chief-tem.jpg",
@@ -47,6 +47,7 @@ const CORE = [
   "./photos/edubiotech/t25-05.jpg",
   "./photos/edubiotech/t25-06.jpg",
   "./photos/edubiotech/t25-06-v1.jpg",
+  "./photos/edubiotech-tem/enterocyte-tem.jpg", "./photos/edubiotech-tem/bile-canaliculus-tem.jpg", "./photos/edubiotech-tem/pancreas-acinar-tem.jpg",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./illustrations/gi-tongue.svg", "./illustrations/gi-stomach.svg", "./illustrations/gi-liver.svg", "./illustrations/gi-pancreas.svg",
   "./illustrations/pathways.svg", "./illustrations/receptors.svg", "./illustrations/organs.svg"
