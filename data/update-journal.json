@@ -3,6 +3,20 @@
   "description": "Chronological, source-aware Med Study release journal. Features and educational content are tracked separately.",
   "entries": [
     {
+      "id": "med-1-9-4",
+      "date": "2026-11-03",
+      "version": "1.9.4",
+      "category": "feature",
+      "title": "Сопоставление двух лекций с 17 главами ЖКТ",
+      "changes": [
+        "Проведена карта соответствия 19 страниц двух лекционных PDF всем 17 главам курса; существующие более полные материалы сохранены.",
+        "Добавлены пять новых авторских разъяснений в четыре главы: зуб, толстая кишка, печень и поджелудочная железа.",
+        "Научные правки и обоснования теперь отображаются отдельно от технических обновлений, с внешними источниками и оговорками."
+      ],
+      "source": "https://github.com/Grobovchik797/med-study-platform/pull/57",
+      "verification": "Все научные уточнения дополнительно сверены с независимыми публикациями; кафедральная рецензия и проверка микрофото не проводились."
+    },
+    {
       "id": "med-1-9-3",
       "date": "2026-11-03",
       "version": "1.9.3",
@@ -58,6 +72,81 @@
       "verification": "Известная предыдущая версия main перед PR #53."
     }
   ],
-  "scientificChanges": [],
-  "scientificNote": "После анализа лекций и независимой сверки научные изменения будут внесены сюда отдельными датированными записями с указанием темы, источника, основания и статуса проверки. Пока новых научных поправок для релизов 1.9.1–1.9.3 нет."
+  "scientificChanges": [
+    {
+      "id": "sci-2026-11-03-teeth",
+      "date": "2026-11-03",
+      "version": "1.9.4",
+      "category": "science",
+      "chapterId": "teeth",
+      "title": "Развитие корня зуба и два разных понятия «пульпы»",
+      "changes": [
+        "Добавлено эпителиальное корневое влагалище Гертвига и его роль при формировании корня.",
+        "Объяснено различие звёздчатого ретикулума эмалевого органа и пульпы зуба, происходящей из зубного сосочка."
+      ],
+      "lecture": "«Пищеварительная система», 07.10.2026, с. 4–5",
+      "references": [
+        "https://www.ncbi.nlm.nih.gov/books/NBK27071/",
+        "https://www.ncbi.nlm.nih.gov/books/NBK560515/"
+      ],
+      "source": "https://github.com/Grobovchik797/med-study-platform/pull/57",
+      "verification": "Сверено с двумя независимыми научно-образовательными источниками; не проверено действующим преподавателем."
+    },
+    {
+      "id": "sci-2026-11-03-liver",
+      "date": "2026-11-03",
+      "version": "1.9.4",
+      "category": "science",
+      "chapterId": "liver",
+      "title": "Три модели строения печёночной паренхимы",
+      "changes": [
+        "Разведены классическая долька (центральная вена), портальная долька (отток желчи) и ацинус (градиент кровоснабжения)."
+      ],
+      "lecture": "«Гистология пищеварения», 20.10.2026, с. 7",
+      "references": [
+        "https://journals.physiology.org/doi/10.1152/ajpgi.00133.2026",
+        "https://www.ncbi.nlm.nih.gov/books/NBK500014/"
+      ],
+      "source": "https://github.com/Grobovchik797/med-study-platform/pull/57",
+      "verification": "Сверено с обзором структурной организации печени и NCBI; модели являются условными, не отдельными органами."
+    },
+    {
+      "id": "sci-2026-11-03-pancreas",
+      "date": "2026-11-03",
+      "version": "1.9.4",
+      "category": "science",
+      "chapterId": "pancreas",
+      "title": "Ферменты панкреатического сока и щёточной каёмки",
+      "changes": [
+        "Различены панкреатическая α-амилаза и кишечные дисахаридазы, связанные с мембраной энтероцита."
+      ],
+      "lecture": "«Гистология пищеварения», 20.10.2026, с. 8",
+      "references": [
+        "https://www.ncbi.nlm.nih.gov/books/NBK532263/",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-7-chemical-digestion-and-absorption-a-closer-look"
+      ],
+      "source": "https://github.com/Grobovchik797/med-study-platform/pull/57",
+      "verification": "Сверено по учебным источникам NCBI и OpenStax; ключи и ответы вопросов не менялись."
+    },
+    {
+      "id": "sci-2026-11-03-colon",
+      "date": "2026-11-03",
+      "version": "1.9.4",
+      "category": "science",
+      "chapterId": "colon",
+      "title": "Микробные витамины и всасывание B₁₂",
+      "changes": [
+        "Уточнено, что синтез витаминов микробиотой не равнозначен достаточному обеспечению организма, а основной путь усвоения B₁₂ связан с терминальным илеумом."
+      ],
+      "lecture": "«Гистология пищеварения», 20.10.2026, с. 6",
+      "references": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12702654/",
+        "https://www.cambridge.org/core/journals/nutrition-research-reviews/article/biological-properties-of-vitamin-b12/58C586B5D6B9960C421D92A41D7D0691",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-7-chemical-digestion-and-absorption-a-closer-look"
+      ],
+      "source": "https://github.com/Grobovchik797/med-study-platform/pull/57",
+      "verification": "Указан именно основной путь B₁₂; малое экспериментально наблюдаемое колоническое всасывание не отрицается."
+    }
+  ],
+  "scientificNote": "С 1.9.4 журнал фиксирует обоснованные дополнения к четырём главам после сверки двух переданных PDF-конспектов и независимых источников. Это редакционная научная сверка; экспертизы действующей кафедрой ещё не было. Полная карта: docs/gi-lectures-crosswalk-2026-11-03.md."
 }

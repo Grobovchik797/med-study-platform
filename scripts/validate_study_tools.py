@@ -23,5 +23,9 @@ for e in journal["entries"]:
     assert e["category"] in ("feature","science") and e["date"] and e["changes"]
     assert e["source"].startswith("https://github.com/Grobovchik797/")
 assert "study-tools.js" in (ROOT/"index.html").read_text("utf-8")
-assert "med-study-shell-v1.9.3" in (ROOT/"sw.js").read_text("utf-8")
+index=(ROOT/"index.html").read_text("utf-8")
+version=journal["entries"][0]["version"]
+assert len(version.split("."))==3 and all(x.isdigit() for x in version.split(".")), "Invalid release version"
+assert f"Med Study · {version}" in index, "Index version must match latest journal entry"
+assert f"med-study-shell-v{version}-" in (ROOT/"sw.js").read_text("utf-8"), "PWA cache version mismatch"
 print("PASS: 24 complete editorial distractor explanations and versioned change journal")
