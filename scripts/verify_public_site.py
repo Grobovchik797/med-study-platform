@@ -11,6 +11,9 @@ from pathlib import Path
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import quote
+from io import BytesIO
+from PIL import Image
 
 BASE = "https://grobovchik797.github.io/med-study-platform/"
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,6 +58,9 @@ def main():
                 ("data/update-journal.json", '"med-1-9-6"'),
                 ("data/gi-atlas.json", '"liver-central-vein"'),
                 ("data/gi-atlas.json", '"liver-portal-triad"'),
+                ("data/gi-atlas.json", '"gastric-parietal-tem"'),
+                ("data/gi-atlas.json", '"gastric-chief-tem"'),
+                ("data/department-public.json", '"ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА"'),
                 ("data/gi-colloquium-guide.json", '"parotid-pancreas"'),
                 ("gi-course.js", "renderColloquium"),
                 ("data/gi-curriculum.json", "влагалище Гертвига"),
@@ -64,7 +70,17 @@ def main():
             ]:
                 if marker not in get(path, attempt):
                     raise AssertionError(f"Published asset is old or broken: {path}")
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), HTML, scripts, CSS and 17-chapter curriculum")
+            for asset in ("photos/department/ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА (PDF стр. 5).jpg",
+                          "photos/liver-central-vein.jpg","photos/liver-portal-triad.jpg",
+                          "photos/gastric-parietal-tem.jpg","photos/gastric-chief-tem.jpg"):
+                url=BASE+quote(asset,safe="/")+"?audit="+SHA+"-"+str(attempt)
+                with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"MedStudy-public-release-check/"+VERSION}),timeout=20) as response:
+                    image_bytes=response.read(1500001)
+                if not 12000<len(image_bytes)<1500001:
+                    raise ValueError("Published image missing or outside size limits: "+asset)
+                with Image.open(BytesIO(image_bytes)) as image:
+                    image.verify()
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references including 2 licensed TEM, and original pancreas PDF JPEG")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)
