@@ -4,19 +4,41 @@ on:
     paths:
       - scripts/probe_edubiotech.py
       - scripts/inspect_edubiotech_figures.py
+      - scripts/import_edubiotech_plates.py
       - .github/workflows/edubiotech-intake.yml
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Probe source pages and original JPG links
         run: python3 -u scripts/probe_edubiotech.py
       - name: Inspect and validate original photographs and captions
         run: |
           python3 -m pip install --quiet beautifulsoup4
           python3 -u scripts/inspect_edubiotech_figures.py
+
+      - name: Import permitted source JPGs, labels and Java-annotation coordinates
+        run: |
+          python3 -m pip install --quiet beautifulsoup4 Pillow
+          python3 -u scripts/import_edubiotech_plates.py
+      - name: Commit verified copies into current feature branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          SOURCE_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gi-edubiotech-plates.json photos/edubiotech/
+          if git diff --cached --quiet; then
+            echo "No new original files to commit"
+          else
+            git commit -m "assets(gi): source-attributed original EduBiotech photos and indexed overlays"
+            git push origin "HEAD:refs/heads/$SOURCE_BRANCH"
+          fi
