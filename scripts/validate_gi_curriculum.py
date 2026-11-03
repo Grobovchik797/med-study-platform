@@ -87,16 +87,18 @@ for m in maps['maps']:
  assert not any(pending),('Unclosed row span',m['id'])
 topics=next(s for s in library['subjects']['histology-cytology']['sections'] if s['id']=='digestive')['topics']
 extra=load('gi-atlas.json')
-assert extra['version']==1 and len(extra['images'])==18
+assert extra['version']==1 and len(extra['images'])==20
 base=load('small-intestine-slides.json')['images']
 slide_ids={s['id'] for s in base+extra['images']}
-assert len(slide_ids)==21
+assert len(slide_ids)==23
 assert sum(bool(c.get('slideId')) for c in course['chapters'])==13
 for chapter in course['chapters']:
  if chapter.get('slideId'):
   assert chapter['slideId'] in slide_ids,chapter['id']
-assert {x['id'] for x in extra['images'][16:]}=={'liver-central-vein','liver-portal-triad'}
-assert all(x['license'] in {'Public domain','CC BY-SA 3.0'} for x in extra['images'][16:])
+assert {x['id'] for x in extra['images'][16:18]}=={'liver-central-vein','liver-portal-triad'}
+assert {x['id'] for x in extra['images'][18:]}=={'gastric-parietal-tem','gastric-chief-tem'}
+assert all(x['license'] in {'Public domain','CC BY-SA 3.0'} for x in extra['images'][16:18])
+assert all(x['license']=='CC BY 4.0' and 'электрон' in x['stain'].lower() and 'бобра' in x['description'].lower() for x in extra['images'][18:])
 assert all(x['answer']==x['id'] and x['annotations']==[] for x in extra['images'][16:])
 for image in extra['images']:
  assert image['title']==image['title'].capitalize(),image['id']
@@ -115,7 +117,7 @@ for image in extra['images']:
  assert len(image['landmarks'])>=1 and all(x['label'] and x['note'] for x in image['landmarks'])
 map_data=load('gi-department-reference-map.json')
 department=load('department-public.json')
-assert map_data['version']==1 and len(map_data['items'])==14
+assert map_data['version']==1 and len(map_data['items'])==15
 department_titles={item['title'] for item in department['specimens']}
 assert {item['departmentTitle'] for item in map_data['items']}==department_titles
 for item in map_data['items']:
