@@ -28,6 +28,13 @@ for page in pages:
   images.append((url,text))
  print("jpgs",len(images),flush=True)
  for url,text in images[:28]:print("FIG",url.split("/")[-1],repr(text),flush=True)
+for page in ["r5/images/exams278.html","r5/images/exams18.html","r5/images/exams128.html","r5/images/n36.html","r5/images/n35-1.html"]:
+ try:
+  content=get(urljoin(BASE,page))
+  soup=BeautifulSoup(content,"html.parser")
+  print("FULL_PAGE",page,"images",[urljoin(urljoin(BASE,page),im.get("src")) for im in soup.select("img[src]")][:12],flush=True)
+  print("FULL_TEXT",page," ".join(soup.stripped_strings)[:200],flush=True)
+ except Exception as e:print("FULL_PAGE_ERROR",page,type(e).__name__,str(e)[:90],flush=True)
 for key in ["r5/exams128s.jpg","r5/exams128.jpg","r5/exams216s.jpg","r5/exams216.jpg","r5/exams278s.jpg","r5/exams278.jpg","r7/exams278s.jpg"]:
  try:
   content=get(urljoin(BASE,key))
