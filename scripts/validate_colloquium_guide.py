@@ -29,9 +29,10 @@ for chapter_id,item in guide["cues"].items():
 for item in guide["comparisons"]:
     assert set(item["chapters"]).issubset(ids) and item["chapters"]
     assert all(isinstance(item[key],str) and len(item[key])>35 for key in ("left","right","caution")),item["id"]
-assert set(guide["pendingDepartmentChapters"])=={"liver","pancreas"}
-assert len(dept["specimens"])==14
-assert not any({"liver","pancreas"}&set(spec["chapters"]) for spec in dept["specimens"])
+assert set(guide["pendingDepartmentChapters"])=={"liver"}
+assert len(dept["specimens"])==15
+assert not any("liver" in spec["chapters"] for spec in dept["specimens"])
+assert sum("pancreas" in spec["chapters"] for spec in dept["specimens"])==1
 assert {"liver","pancreas"}.issubset({x["id"] for x in atlas["images"]})
 assert any(entry["version"]=="1.9.5" for entry in journal["entries"]), "Do not erase 1.9.5 route release"
 science=journal["scientificChanges"]
@@ -51,4 +52,4 @@ assert "checkedChange?.claimIndices?.includes(index)" in source
 assert "readMilestones(ch.id)" in source
 app=(ROOT/"app.js").read_text("utf-8")
 assert "showGIColloquium" in app and "gi-colloquium-guide.json" in app
-print("PASS: 17 chapters, six comparisons, two pending faculty originals, five cited scientific claims, unchanged local progress schema")
+print("PASS: 17 chapters, six comparisons, one missing faculty liver original, approved pancreatic photo, five cited scientific claims and local progress")
