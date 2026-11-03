@@ -426,10 +426,10 @@ async function main() {
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
 
-    // v1.7: ordinary gallery has 21 distinct real Commons specimens, all 14 departmental types.
+    // v1.9.6: ordinary gallery has 23 real Commons images (including 2 true TEM), and 15 faculty specimens.
     await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
     await waitHeading(desktop,'Изучение и самопроверка');
-    assert.equal(await desktop.locator('.si-select option').count(),21);
+    assert.equal(await desktop.locator('.si-select option').count(),23);
     assert.equal(await desktop.locator('.si-select option').nth(10).textContent(),'Переход пищевода в желудок',
       'Reference gallery should show the normalized title without an uppercase duplicate');
     await desktop.locator('.si-select').first().selectOption('10');
@@ -473,13 +473,21 @@ async function main() {
     assert.ok(await desktop.getByRole('heading',{name:'Печень человека — портальная триада'}).isVisible());
     assert.equal(await desktop.locator('.si-pin').count(),0,'Existing source labels are not automatically graded as new pixel annotations');
     assert.ok(await desktop.locator('.si-microscope img').evaluate(img=>img.complete&&img.naturalWidth>=420));
+    // Two openly licensed real TEM images, not the drawings in the Binar PDF.
+    await desktop.locator('.si-select').first().selectOption('21');
+    assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('gastric-parietal-tem.jpg'));
+    assert.ok((await desktop.locator('.si-legend').textContent()).includes('Париетальная'));
+    await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>=420);
+    await desktop.locator('.si-select').first().selectOption('22');
+    assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('gastric-chief-tem.jpg'));
+    await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>=420);
     await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
     await waitHeading(desktop,'Библиотека атласов');
     // Regression 1.6: public departmental atlas has all real source JPGs and video frames.
     await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
     await waitHeading(desktop,'Кафедральные микропрепараты');
-    await desktop.waitForFunction(()=>document.querySelectorAll('.dept-file-card').length===14);
-    assert.equal(await desktop.locator('.dept-file-card').count(),14);
+    await desktop.waitForFunction(()=>document.querySelectorAll('.dept-file-card').length===15);
+    assert.equal(await desktop.locator('.dept-file-card').count(),15);
     assert.equal(await desktop.locator('.dept-file-card strong').first().textContent(),'Двенадцатиперстная кишка');
     const natural=await desktop.locator('.dept-image').first().evaluate(img=>new Promise(resolve=>{
       if(img.complete)return resolve(img.naturalWidth);
@@ -499,7 +507,13 @@ async function main() {
     assert.equal(await desktop.getByRole('button',{name:'Тренировка: случайные препараты'}).count(),1,
       'Randomized recognition remains the only department quiz action');
 
-    // Colloquium drill: all 14 real specimens exactly once; identity shown only after a checked answer.
+    // The newly approved original pancreas field must load from the supplied PDF.
+    await desktop.locator('.dept-file-card').filter({hasText:'Поджелудочная железа'}).click();
+    assert.equal(await desktop.locator('.dept-panel h2').textContent(),'Поджелудочная железа');
+    assert.ok((await desktop.locator('.dept-image').first().getAttribute('src')).includes('ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА'));
+    await desktop.waitForFunction(()=>document.querySelector('.dept-panel .dept-image')?.naturalWidth===468);
+    assert.ok((await desktop.locator('.dept-cues').textContent()).includes('не подтверждены'));
+    // Colloquium drill: all 15 real specimens exactly once; identity shown only after a checked answer.
     await desktop.getByRole('button',{name:'Тренировка: случайные препараты'}).click();
     assert.equal(await desktop.locator('.dept-file-card').count(),0,'Answer-bearing cards must be hidden during randomized drill');
     assert.equal(await desktop.locator('.dept-drill .dept-image').first().getAttribute('alt'),'Микропрепарат: название скрыто');
@@ -507,15 +521,15 @@ async function main() {
       (await (await fetch('./data/department-public.json')).json()).specimens
         .map(x=>({title:x.title,src:'./'+x.frames[0].src}))
     ));
-    assert.equal(drillItems.length,14);
+    assert.equal(drillItems.length,15);
     const seenDrillPhotos=new Set();
     for(let i=0;i<drillItems.length;i++){
-      assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат '+(i+1)+' из 14'));
+      assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат '+(i+1)+' из 15'));
       const src=await desktop.locator('.dept-drill .dept-image').first().getAttribute('src');
       assert.ok(!seenDrillPhotos.has(src),'Random drill repeated a specimen before exhaustion: '+src);
       seenDrillPhotos.add(src);
       const current=drillItems.find(x=>x.src===src);
-      assert.ok(current,'Drill served a frame outside the 14 authentic records');
+      assert.ok(current,'Drill served a frame outside the 15 authentic records');
       assert.equal(await desktop.locator('.dept-drill-review').count(),0,'Cues must stay hidden until the answer');
       const guess=i===0?drillItems.find(x=>x.title!==current.title).title:current.title;
       await desktop.locator('.dept-drill .dept-answer').selectOption(guess);
@@ -525,12 +539,12 @@ async function main() {
       assert.ok(await desktop.locator('.dept-drill .dept-answer').isDisabled(),'Cannot revise a checked attempt');
       await desktop.getByRole('button',{name:i===drillItems.length-1?'Посмотреть результат':'Следующий препарат'}).click();
     }
-    assert.equal(seenDrillPhotos.size,14,'Every departmental specimen should appear in one complete drill');
-    assert.ok((await desktop.locator('.dept-drill-summary h2').textContent()).includes('Распознано 13 из 14'));
+    assert.equal(seenDrillPhotos.size,15,'Every departmental specimen should appear in one complete drill');
+    assert.ok((await desktop.locator('.dept-drill-summary h2').textContent()).includes('Распознано 14 из 15'));
     await desktop.getByRole('button',{name:'Пройти ещё раз'}).click();
-    assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат 1 из 14'));
+    assert.ok((await desktop.locator('.dept-drill-progress').textContent()).includes('Препарат 1 из 15'));
     await desktop.getByRole('button',{name:'Вернуться к атласу'}).click();
-    assert.equal(await desktop.locator('.dept-file-card').count(),14,'Original atlas must be available after drill');
+    assert.equal(await desktop.locator('.dept-file-card').count(),15,'All original atlas records must be available after drill');
     await desktop.locator('.brand').click();
     await waitHeading(desktop,'Med Study — библиотека знаний');
     assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
@@ -542,7 +556,8 @@ async function main() {
     await waitHeading(desktop,'Маршрут: 17 глав и узнавание препаратов');
     assert.equal(await desktop.locator('.gi-colloquium-chapter').count(),17);
     assert.equal(await desktop.locator('.gi-compare-pair').count(),6);
-    assert.ok((await desktop.locator('.gi-colloquium-pending').textContent()).includes('поджелудочной'));
+    assert.ok((await desktop.locator('.gi-colloquium-pending').textContent()).includes('печени'));
+    assert.ok(!(await desktop.locator('.gi-colloquium-pending').textContent()).includes('ещё не получены'));
     assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),progressBefore,
       'Opening the route must never mark a chapter completed');
     await desktop.locator('[data-compare-id="duodenum-jejunum"] summary').click();
