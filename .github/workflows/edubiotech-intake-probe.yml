@@ -11,8 +11,8 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
-      - name: Discover actual EduBiotech chapter links
-        run: python3 scripts/probe_edubiotech_pages.py
+      - name: Inspect original specimen images and captions
+        run: python3 scripts/probe_edubiotech_details.py
       - name: Probe archive HTTPS from GitHub runner
         shell: bash
         run: |
