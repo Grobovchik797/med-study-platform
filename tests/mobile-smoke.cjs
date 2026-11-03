@@ -511,6 +511,15 @@ async function main() {
     assert.ok((await desktop.locator('.edu-original-target').textContent()).includes('Найди на снимке'));
     await desktop.locator('.edu-original-chapter-filter').selectOption('all');
     assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),eduProgress);
+    await desktop.getByRole('button',{name:'Электронограммы EduBiotech · 3'}).click();
+    assert.equal(await desktop.locator('.edu-original-tem-card').count(),3);
+    assert.equal(await desktop.locator('.edu-original-tem-card img').count(),3);
+    assert.ok((await desktop.locator('[data-edu-tem="pancreas-acinar-tem"]').textContent()).includes('Центроацинарные клетки'));
+    assert.ok((await desktop.locator('[data-edu-tem="bile-canaliculus-tem"]').textContent()).includes('Гранулы гликогена'));
+    await desktop.waitForFunction(()=>document.querySelector('[data-edu-tem="pancreas-acinar-tem"] img')?.naturalWidth===403);
+    assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),eduProgress);
+    await desktop.getByRole('button',{name:'Микропрепараты · 36'}).click();
+    assert.equal(await desktop.locator('.edu-original-tile').count(),36);
     await desktop.getByRole('button',{name:'К обзору и электронограммам'}).click();
     await waitHeading(desktop,'Атлас EduBiotech — пищеварительная система');
     assert.equal(await desktop.locator('.edu-topic-card').count(),3);
