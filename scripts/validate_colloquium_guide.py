@@ -40,12 +40,14 @@ assert sum(len(ch["deep"])-2 for ch in chapters)==5
 for item in science:
     chapter=next(ch for ch in chapters if ch["id"]==item["chapterId"])
     assert len(chapter["deep"])>2 and item["lecture"] and item["verification"]
+    assert item["claimIndices"]==([2,3] if item["chapterId"]=="teeth" else [2])
+    assert all(2<=idx<len(chapter["deep"]) for idx in item["claimIndices"])
     assert len(item["references"])>=2
     assert all(url.startswith("https://") and len(url)>35 for url in item["references"])
     assert item["version"]=="1.9.4"
 source=(ROOT/"gi-course.js").read_text("utf-8")
 assert "renderColloquium" in source and "gi-claim-evidence" in source
-assert "index>=2&&checkedChange?.references?.length" in source
+assert "checkedChange?.claimIndices?.includes(index)" in source
 assert "readMilestones(ch.id)" in source
 app=(ROOT/"app.js").read_text("utf-8")
 assert "showGIColloquium" in app and "gi-colloquium-guide.json" in app
