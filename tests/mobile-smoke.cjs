@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.7'),
-      'Top navigation must show the current 1.9.7 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.8'),
+      'Top navigation must show the current 1.9.8 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -483,27 +483,47 @@ async function main() {
     await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>=420);
     await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
     await waitHeading(desktop,'Библиотека атласов');
-    // 1.9.7: external EduBiotech is a separate, provenance-labeled atlas,
-    // with 17 chapters and no unlicensed third-party images embedded.
+    // 1.9.8: genuine EduBiotech preparations with the original 143 labels.
     const eduProgress=await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
     await desktop.getByRole('button',{name:'Препараты EduBiotech →'}).click();
-    await waitHeading(desktop,'Атлас EduBiotech — пищеварительная система');
+    await waitHeading(desktop,'Препараты EduBiotech — пищеварительная система');
+    assert.equal(await desktop.locator('.edu-photo-card').count(),21,'21 imported micrographs must be displayed');
+    assert.equal(await desktop.locator('.edu-marker').count(),5,'Five original labels on first tongue specimen');
+    assert.equal(await desktop.locator('.edu-legend-list li').count(),5);
+    assert.ok((await desktop.locator('.edu-photo-viewer h2').textContent()).includes('язык'));
+    await desktop.waitForFunction(()=>document.querySelector('.edu-original-image')?.naturalWidth===768);
+    assert.ok((await desktop.locator('.edu-image-credit').textContent()).includes('edubiotech.ru'));
+    const originalLink=await desktop.locator('.edu-image-credit .edu-external-link').first().getAttribute('href');
+    assert.ok(originalLink.startsWith('https://edubiotech.ru/')&&originalLink.endsWith('.html'));
+    await desktop.getByRole('button',{name:'Скрыть обозначения'}).click();
+    assert.equal(await desktop.locator('.edu-marker').count(),0,'Self-check hides coordinates');
+    await desktop.getByRole('button',{name:'Показать обозначения'}).click();
+    assert.equal(await desktop.locator('.edu-marker').count(),5);
+    await desktop.locator('.edu-marker').nth(1).click();
+    assert.ok((await desktop.locator('.edu-active-label').textContent()).includes('грибовидный'));
+    await desktop.locator('.edu-chapter-filter').selectOption('liver');
+    assert.equal(await desktop.locator('.edu-photo-card').count(),3,'Three original liver variants');
+    assert.ok((await desktop.locator('.edu-photo-viewer h2').textContent()).includes('печень'));
+    assert.equal(await desktop.locator('.edu-marker').count(),3,'Original liver applet marks intact');
+    assert.ok((await desktop.locator('.edu-original-legend').textContent()).includes('центральная вена'));
+    await desktop.waitForFunction(()=>document.querySelector('.edu-original-image')?.naturalWidth===768);
+    await desktop.locator('.edu-chapter-filter').selectOption('pancreas');
+    assert.equal(await desktop.locator('.edu-photo-card').count(),1);
+    assert.equal(await desktop.locator('.edu-marker').count(),10,'All pancreas original labels available');
+    assert.ok((await desktop.locator('.edu-original-legend').textContent()).includes('эндокринный островок'));
+    await desktop.locator('.edu-chapter-filter').selectOption('all');
+    await desktop.getByRole('button',{name:'Темы и источники'}).click();
     assert.equal(await desktop.locator('.edu-topic-card').count(),3);
     assert.equal(await desktop.locator('.edu-chapter-item').count(),17);
-    assert.equal(await desktop.locator('.edu-topic-card img').count(),0,'Do not mirror proprietary images from source');
     const links=await desktop.locator('.edu-topic-card .edu-external-link').evaluateAll(nodes=>nodes.map(n=>({href:n.href,target:n.target,rel:n.rel})));
     assert.equal(links.length,6);
     assert.ok(links.every(x=>x.href.startsWith('https://edubiotech.ru/')&&x.target==='_blank'&&x.rel.includes('noopener')));
-    await desktop.locator('.edu-chapter-filter').selectOption('liver');
-    assert.equal(await desktop.locator('.edu-topic-card').count(),1);
-    assert.equal(await desktop.locator('.edu-chapter-item').count(),1);
-    assert.ok((await desktop.locator('.edu-topic-card').textContent()).includes('Печень'));
-    await desktop.locator('.edu-chapter-filter').selectOption('all');
-    await desktop.getByRole('button',{name:'Электронограммы и ультраструктура'}).click();
-    assert.equal(await desktop.locator('.edu-electron-card').count(),2,'Two existing licensed TEM images only');
-    assert.equal(await desktop.locator('.edu-ultra-card').count(),5,'Five authored ultrastructure study prompts');
+    assert.ok(links.some(x=>x.href.endsWith('/r5/s25lst.html')),'Original source URLs must use correct lowercase');
+    await desktop.getByRole('button',{name:'Электронограммы'}).click();
+    assert.equal(await desktop.locator('.edu-electron-card').count(),2,'Existing independent licensed TEMs remain distinct');
+    assert.equal(await desktop.locator('.edu-ultra-card').count(),5);
     assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),eduProgress,
-      'Browsing the source links must not alter learning progress');
+      'Opening atlas and selecting anatomy must not write learning progress');
     await desktop.locator('[data-electron-id="parietal"] button').click();
     await waitHeading(desktop,'Изучение и самопроверка');
     assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('gastric-parietal-tem.jpg'));
