@@ -7,6 +7,8 @@ receive the intended release assets from the public Pages address.
 from __future__ import annotations
 import os
 import re
+import json
+import hashlib
 from pathlib import Path
 import time
 import urllib.error
@@ -55,9 +57,11 @@ def main():
                 ("app.js", "'gi-cards':'cards'"),
                 ("gi-course.js", "med-study-topic-milestones-v1"),
                 ("study-tools.js", "window.MedStudyTools"),
-                ("data/update-journal.json", '"med-1-9-7"'),
-                ("data/gi-edubiotech-atlas.json", 'S23lst.html'),
-                ("data/gi-edubiotech-atlas.json", 'S25lst.html'),
+                ("data/update-journal.json", '"med-1-9-8"'),
+                ("data/gi-edubiotech-atlas.json", 's23lst.html'),
+                ("data/gi-edubiotech-images.json", '"edu-t25-03"'),
+                ("edubiotech-atlas.js", "edu-marker-layer"),
+                ("data/gi-edubiotech-atlas.json", 's25lst.html'),
                 ("edubiotech-atlas.js", "window.MedStudyEduBiotech"),
                 ("app.js", "showEduBiotechAtlas"),
                 ("data/gi-atlas.json", '"liver-central-vein"'),
@@ -84,7 +88,21 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, EduBiotech source-linked atlas and original pancreas PDF JPEG")
+            origin=json.loads(get("data/gi-edubiotech-images.json",attempt))
+            if origin.get("count")!=21 or origin.get("labelCount")!=143:
+                raise ValueError("Published EduBiotech image manifest is incomplete")
+            for rec in origin["items"]:
+                name=rec["src"].removeprefix("./")
+                url=BASE+quote(name,safe="/")+"?audit="+SHA+"-"+str(attempt)
+                with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"MedStudy-public-release-check/"+VERSION}),timeout=20) as response:
+                    data=response.read(700001)
+                if len(data)>700000 or hashlib.sha256(data).hexdigest()!=rec["sha256"]:
+                    raise ValueError("Published original image checksum mismatch: "+name)
+                with Image.open(BytesIO(data)) as image:
+                    image.verify()
+                    if image.size!=(rec["width"],rec["height"]):
+                        raise ValueError("Published original image dimensions mismatch: "+name)
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 21 authorized original EduBiotech JPEGs with 143 labels, 15 departmental and 23 existing reference slides")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)
