@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.3'),
-      'Top navigation must show the current 1.9.3 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.4'),
+      'Top navigation must show the current 1.9.4 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -534,12 +534,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),4);
+    assert.equal(await desktop.locator('.study-journal-item').count(),9,'Five features plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),0,'Do not invent medical changes before lectures arrive');
-    assert.ok((await desktop.locator('.study-journal-entries').textContent()).includes('Проверенных научных дополнений пока нет'));
-    await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
+    assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
+    assert.equal(await desktop.locator('.study-journal-references a').count(),9);
+    assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
+    await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
+    assert.equal(await desktop.locator('.study-journal-item').count(),5);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     // The 24 final questions have distinct rationales for each wrong option.
