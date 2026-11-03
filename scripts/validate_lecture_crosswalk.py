@@ -32,7 +32,8 @@ for item in science:
     assert item["lecture"] and "с." in item["lecture"]
     assert len(item["references"])>=2 and all(url.startswith("https://") for url in item["references"])
     assert item["source"]=="https://github.com/Grobovchik797/med-study-platform/pull/57"
-    assert "кафедр" in item["verification"].lower() or "сверено" in item["verification"].lower()
+    assert len(item["verification"])>=50, (item["id"], "Need explicit qualification of scientific verification")
+assert "кафедр" in journal["scientificNote"].lower(), "Do not imply a department has medically reviewed the additions"
 notes=(ROOT/"docs/gi-lectures-crosswalk-2026-11-03.md").read_text("utf-8")
 for chapter_id in by_id:
     assert re.search(r"\x60"+re.escape(chapter_id)+r"\x60",notes),chapter_id
