@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.4'),
-      'Top navigation must show the current 1.9.4 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.5'),
+      'Top navigation must show the current 1.9.5 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -524,6 +524,37 @@ async function main() {
     assert.equal(await desktop.locator('.side-nav [data-nav="home"]').getAttribute('aria-current'),
       'page','Clicking the logo should really navigate to the home view');
 
+    // 1.9.5: all 17 colloquium chapters, six comparisons and honest faculty gaps.
+    const progressBefore=await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
+    await desktop.getByRole('button',{name:'Маршрут к коллоквиуму · 17 глав'}).click();
+    await waitHeading(desktop,'Маршрут: 17 глав и узнавание препаратов');
+    assert.equal(await desktop.locator('.gi-colloquium-chapter').count(),17);
+    assert.equal(await desktop.locator('.gi-compare-pair').count(),6);
+    assert.ok((await desktop.locator('.gi-colloquium-pending').textContent()).includes('поджелудочной'));
+    assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),progressBefore,
+      'Opening the route must never mark a chapter completed');
+    await desktop.locator('[data-compare-id="duodenum-jejunum"] summary').click();
+    assert.ok((await desktop.locator('[data-compare-id="duodenum-jejunum"]').textContent()).includes('Бруннера'));
+    const toothRoute=desktop.locator('.gi-colloquium-chapter[data-chapter-id="teeth"]');
+    await toothRoute.locator('details summary').click();
+    assert.equal(await toothRoute.locator('.gi-colloquium-topic-list li').count(),5);
+    assert.ok((await toothRoute.textContent()).includes('Что не является доказательством'));
+    await toothRoute.getByRole('button',{name:'Конспект'}).click();
+    await waitHeading(desktop,'Зуб: эмаль, дентин, цемент и пульпа');
+    assert.ok(await desktop.locator('.gi-chapter-colloquium').isVisible());
+    await desktop.getByRole('button',{name:'Расширенный',exact:true}).click();
+    assert.equal(await desktop.locator('.gi-claim-evidence').count(),2,
+      'The two independently crosschecked tooth claims need inline source disclosures');
+    await desktop.locator('.gi-claim-evidence summary').first().click();
+    assert.equal(await desktop.locator('.gi-claim-evidence').first().locator('a[href^="https://"]').count(),2);
+    assert.ok((await desktop.locator('.gi-claim-evidence').first().textContent()).includes('Сопоставлено с лекционным конспектом'));
+    await desktop.getByRole('button',{name:'Открыть весь маршрут коллоквиума'}).click();
+    await waitHeading(desktop,'Маршрут: 17 глав');
+    assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),progressBefore,
+      'Citation and navigation must never alter saved learning progress');
+    await desktop.getByRole('button',{name:'← К пищеварительной системе'}).click();
+    await waitHeading(desktop,'Пищеварительная система');
+    await desktop.locator('.brand').click();
     // 1.9.3: local search must find authored academic text (including the duodenum alias).
     await desktop.getByRole('button',{name:'Поиск по учебнику и атласам'}).click();
     await waitHeading(desktop,'Найти термин или препарат');
