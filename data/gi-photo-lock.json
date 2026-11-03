@@ -1,0 +1,26 @@
+{
+  "description": "SHA-256 of 19 licensed reference JPEGs recovered from successful PR #53 Android build. Accept previous public Pages assets only when identical and source manifests match; do not substitute imagery with placeholders.",
+  "atlas_sha256": "f4191ca6fb57dd0c7138712fa155b6d90b901867db4d4d3b154419cc26ab044c",
+  "small_sha256": "dba568d53866f230fa024c3918f3ccb5389fe5765ba98e50d349616dc9493165",
+  "photos": {
+    "colon.jpg": "27882b0605f937f7716623cb106e8115c6661f47f40049f3c393f9dbfa69457f",
+    "duodenum.jpg": "5dd7cf019c7a3d23dbe22221a11ba5b537b70dee62335525d90b3dea9ffaf671",
+    "esophagus-cross-section.jpg": "6912d2b3afbbd231cb6b838526fcfc67e92e2f962a4989161372d11d8f54148f",
+    "esophagus.jpg": "475fb6cb04e64b9d112cd3c7cf7269426d59d15c6dd4511965bdb9daeb5adbbf",
+    "gastro-esophageal-junction.jpg": "c4718dcd9ec6bcd3ff22afa30eabaae11c467e2b345999baa618ae2782bc51d5",
+    "ileum.jpg": "2321044e3766469e6c9b667ab0f1f259c81f9cc140f92beeff8ee0eaac85905e",
+    "jejunum.jpg": "71304e1f39f81f2ba88d5842089feff15c420a8209bdb48f72670d0fa700f8bc",
+    "liver.jpg": "9d4c4ddd7a06074cbf98c5b73cd8355099aa817af733143cb8d358a159462c65",
+    "mixed-salivary-gland.jpg": "4acb63e948125a19f81bd308d4ef685d0653980eca33a6898b596cb213cf6890",
+    "palatine-tonsil.jpg": "1061baa355780b2268d71de986e6714763009598c71642e563be449b997adc45",
+    "pancreas.jpg": "f1ccea38dbfd646838e17782eefb72d40da2801d92448d7abc2e899f3ee277af",
+    "parotid-gland.jpg": "cb21da597455b12848c76b2eac8e80e30f25d33c7491354a9ac48dce8f3f5d91",
+    "pyloric-stomach.jpg": "31e3ae0f190e4f11195877a94e3917d100c77ba454396343a763c92d0c73f09f",
+    "salivary-submandibular.jpg": "cf1b33532da78828198659797bd63e7b4e4fa2a32b57d972827bf6c50bd8c8f6",
+    "stomach-fundus.jpg": "9ddd613e50b603b73f3970ea88af8e586ffa00e30761eb38bbf96b226d07113a",
+    "tongue-filiform.jpg": "144efd4e520d3220ebcbb511a6756041a7955e9660e8fff10aed8724292a85a4",
+    "tongue-foliate.jpg": "e1beeda1ed131ec60b1553b47f48336a0e5f83d5b4563f1315d5e671755ec1a1",
+    "tooth-dentin-enamel.jpg": "5456c3e4d2200fb2e62078935ccdbf3e95894c4b6fab920e41a5e8553a43e637",
+    "tooth-enamel-organ.jpg": "7be2e5a56d77a3a501fb5ad82a03fc002143c7dc3d9971185e9677e35aa8701a"
+  }
+}
