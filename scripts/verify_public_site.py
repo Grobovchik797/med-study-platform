@@ -80,7 +80,7 @@ def main():
             for asset in ("photos/edubiotech/liver-lobules.jpg",
                           "photos/edubiotech/pancreas-overview.jpg",
                           "photos/edubiotech/bile-canaliculus-ultrastructure.jpg",
-            for asset in ("photos/department/ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА (PDF стр. 5).jpg",
+                          "photos/department/ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА (PDF стр. 5).jpg",
                           "photos/liver-central-vein.jpg","photos/liver-portal-triad.jpg",
                           "photos/gastric-parietal-tem.jpg","photos/gastric-chief-tem.jpg"):
                 url=BASE+quote(asset,safe="/")+"?audit="+SHA+"-"+str(attempt)
