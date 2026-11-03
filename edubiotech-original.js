@@ -113,7 +113,7 @@ function render(host,{data,temData=null,course,onBack,onChapter,onLegacy,selecte
   const showMarkers=(mode==="study"||shown);
   if(showMarkers){
    current.marks.forEach((m,index)=>{
-    const pin=make("span","edu-original-pin",String(index+1));
+    const pin=make("span","edu-original-pin",m.number);
     pin.style.left=(m.x/current.width*100).toFixed(3)+"%";
     pin.style.top=(m.y/current.height*100).toFixed(3)+"%";
     pin.title=m.label;markers.append(pin);
@@ -123,10 +123,10 @@ function render(host,{data,temData=null,course,onBack,onChapter,onLegacy,selecte
   const labels=make("div","edu-original-labels");
   const sectionTitle=make("h3","","Обозначения на препарате");
   labels.append(sectionTitle);
-  const list=make("ol","edu-original-structure-list");
+  const list=make("ul","edu-original-structure-list");
   const hasVisible=mode==="study"||shown;
   for(const m of current.marks){
-   list.append(make("li","",hasVisible?m.label:"Структура скрыта — попробуй назвать самостоятельно"));
+   list.append(make("li","",hasVisible?m.number+" — "+m.label:"Структура скрыта — попробуй назвать самостоятельно"));
   }
   if(current.marks.length===0)labels.append(make("p","edu-muted","В оригинальном Java-апплете обозначения для этого поля не указаны; выдумывать координаты нельзя."));
   else labels.append(list);
