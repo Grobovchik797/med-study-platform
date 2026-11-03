@@ -544,6 +544,14 @@ async function main() {
     assert.equal(await desktop.locator('.study-journal-item').count(),5);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
+    const courseAfterAudit=await desktop.evaluate(async()=>
+      (await (await fetch('./data/gi-curriculum.json')).json()).chapters);
+    const chapters=Object.fromEntries(courseAfterAudit.map(ch=>[ch.id,ch.deep]));
+    assert.ok(chapters.teeth.some(x=>x.includes('Гертвига')));
+    assert.ok(chapters.liver.some(x=>x.includes('Портальная долька')));
+    assert.ok(chapters.pancreas.some(x=>x.includes('мальтаза-глюкоамилаза')));
+    assert.ok(chapters.colon.some(x=>x.includes('терминальном илеуме')));
+    assert.equal(Object.values(chapters).filter(deep=>deep.length>2).length,4,'Only four independently checked chapter expansions');
     // The 24 final questions have distinct rationales for each wrong option.
     await desktop.locator('.side-nav [data-nav="subjects"]').click();
     await desktop.locator('.library-card').filter({hasText:'Гистология, цитология'}).locator('.library-go').click();
