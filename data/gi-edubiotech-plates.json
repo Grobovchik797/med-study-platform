@@ -1,0 +1,2300 @@
+{
+  "version": 1,
+  "course": "gi-histology",
+  "origin": "edubiotech.ru",
+  "title": "Учебные микропрепараты и электронограммы EduBiotech",
+  "source": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/",
+  "sourceAuthors": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+  "sourceTitle": "Руководство-атлас по гистологии, цитологии и эмбриологии",
+  "permission": "Разрешение на учебное использование с обязательной атрибуцией сообщено пользователем 04.11.2026; не распространяется автоматически на другие материалы.",
+  "notes": "Каждая маркировка, если она есть, извлечена из исходных параметров Java-апплета автора; это не новая разметка Med Study. Фото с непроверенной геометрией отображаются без наложения меток, но с исходным перечнем.",
+  "plates": [
+    {
+      "id": "salivary-serous-mixed",
+      "title": "3,а. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "chapterId": "salivary",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/salivary-serous-mixed.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "4c2e9527fa9438a2b30f407b7b80f18a6fb6a328afe46b6b2f342ad718fcb052",
+      "caption": "а) (Малое увеличение) Полный размер б) (Среднее увеличение) Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "серозный концевой отдел",
+          "start": {
+            "x": 261,
+            "y": 239
+          },
+          "end": {
+            "x": 200,
+            "y": 221
+          }
+        },
+        {
+          "mark": "2",
+          "label": "смешанный концевой отдел",
+          "start": {
+            "x": 322,
+            "y": 174
+          },
+          "end": {
+            "x": 322,
+            "y": 174
+          }
+        },
+        {
+          "mark": "3",
+          "label": "вставочный проток",
+          "start": {
+            "x": 456,
+            "y": 310
+          },
+          "end": {
+            "x": 471,
+            "y": 297
+          }
+        },
+        {
+          "mark": "4",
+          "label": "исчерченный проток",
+          "start": {
+            "x": 453,
+            "y": 147
+          },
+          "end": {
+            "x": 477,
+            "y": 136
+          }
+        },
+        {
+          "mark": "5",
+          "label": "междольковая соединительнотканная перегородка",
+          "start": {
+            "x": 509,
+            "y": 472
+          },
+          "end": {
+            "x": 509,
+            "y": 472
+          }
+        },
+        {
+          "mark": "6",
+          "label": "междольковый проток",
+          "start": {
+            "x": 463,
+            "y": 525
+          },
+          "end": {
+            "x": 463,
+            "y": 525
+          }
+        },
+        {
+          "mark": "7А",
+          "label": "артерия",
+          "start": {
+            "x": 547,
+            "y": 545
+          },
+          "end": {
+            "x": 552,
+            "y": 511
+          }
+        },
+        {
+          "mark": "7Б",
+          "label": "вены",
+          "start": {
+            "x": 601,
+            "y": 398
+          },
+          "end": {
+            "x": 601,
+            "y": 398
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams128.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams128.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "tonsil-small",
+      "title": "4,а. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "chapterId": "tonsils",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/tonsil-small.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "409b925ffaef72094ecc8b78ede337cf3bdee155c2c7dfa0c6258a6d7ced01d6",
+      "caption": "а) (Малое увеличение) Полный размер б) (Большое увеличение) Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "крипта слизистой оболочки",
+          "start": {
+            "x": 593,
+            "y": 383
+          },
+          "end": {
+            "x": 593,
+            "y": 383
+          }
+        },
+        {
+          "mark": "2",
+          "label": "многослойный плоский неороговевающий эпителий",
+          "start": {
+            "x": 614,
+            "y": 323
+          },
+          "end": {
+            "x": 635,
+            "y": 339
+          }
+        },
+        {
+          "mark": "3",
+          "label": "лимфоциты в эпителии",
+          "start": {
+            "x": 160,
+            "y": 544
+          },
+          "end": {
+            "x": 192,
+            "y": 510
+          }
+        },
+        {
+          "mark": "4",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 316,
+            "y": 196
+          },
+          "end": {
+            "x": 316,
+            "y": 196
+          }
+        },
+        {
+          "mark": "5",
+          "label": "лимфатический фолликул",
+          "start": {
+            "x": 467,
+            "y": 168
+          },
+          "end": {
+            "x": 467,
+            "y": 168
+          }
+        },
+        {
+          "mark": "6",
+          "label": "внефоллекулярная лимфоидная ткань",
+          "start": {
+            "x": 663,
+            "y": 83
+          },
+          "end": {
+            "x": 663,
+            "y": 83
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams181.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams181.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "tonsil-detail",
+      "title": "4,б. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "chapterId": "tonsils",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/tonsil-detail.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "17a683017c4fe409cca6e579452c358fd47e74e542c8e7401ba769ab869bb738",
+      "caption": "а) (Малое увеличение) Полный размер б) (Большое увеличение) Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "просвет крипты",
+          "start": {
+            "x": 155,
+            "y": 464
+          },
+          "end": {
+            "x": 155,
+            "y": 464
+          }
+        },
+        {
+          "mark": "2",
+          "label": "многослойный плоский неороговевающий эпителий",
+          "start": {
+            "x": 224,
+            "y": 408
+          },
+          "end": {
+            "x": 213,
+            "y": 446
+          }
+        },
+        {
+          "mark": "3",
+          "label": "лимфоциты в эпителии",
+          "start": {
+            "x": 722,
+            "y": 508
+          },
+          "end": {
+            "x": 733,
+            "y": 535
+          }
+        },
+        {
+          "mark": "4",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 61,
+            "y": 244
+          },
+          "end": {
+            "x": 61,
+            "y": 244
+          }
+        },
+        {
+          "mark": "5",
+          "label": "лимфоидный фолликул",
+          "start": {
+            "x": 487,
+            "y": 181
+          },
+          "end": {
+            "x": 488,
+            "y": 181
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams183.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams183.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "teeth-forming",
+      "title": "7,б. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "chapterId": "teeth",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/teeth-forming.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "dc9dd4d232dbebc487ba495935ec4a85c671e381ede45b65d6796f39de8649a6",
+      "caption": "а) (Малое увеличение) Полный размер б) (Большое увеличение) Полный размер",
+      "annotations": [
+        {
+          "mark": "4",
+          "label": "наружный эмалевый эпителий",
+          "start": {
+            "x": 652,
+            "y": 177
+          },
+          "end": {
+            "x": 652,
+            "y": 177
+          }
+        },
+        {
+          "mark": "5",
+          "label": "пульпа эмалевого органа",
+          "start": {
+            "x": 524,
+            "y": 256
+          },
+          "end": {
+            "x": 692,
+            "y": 350
+          }
+        },
+        {
+          "mark": "6",
+          "label": "внутренний  эмалевый эпителий",
+          "start": {
+            "x": 434,
+            "y": 347
+          },
+          "end": {
+            "x": 434,
+            "y": 347
+          }
+        },
+        {
+          "mark": "7",
+          "label": "зубной сосочек",
+          "start": {
+            "x": 273,
+            "y": 316
+          },
+          "end": {
+            "x": 273,
+            "y": 316
+          }
+        },
+        {
+          "mark": "8",
+          "label": "зубной мешочек",
+          "start": {
+            "x": 180,
+            "y": 40
+          },
+          "end": {
+            "x": 180,
+            "y": 40
+          }
+        },
+        {
+          "mark": "8",
+          "label": "зубной мешочек",
+          "start": {
+            "x": 582,
+            "y": 485
+          },
+          "end": {
+            "x": 582,
+            "y": 485
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams93.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams93.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "esophagus-low",
+      "title": "9,а. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "chapterId": "esophagus",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/esophagus-low.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "cd908db1db35ddb5e1d6e0cf6cf63769d26a5c3caf6e7984dbd72b1b6288d8d4",
+      "caption": "В соответствии с упомянутым планом, в стенке пищевода - следующие части: слизистая оболочка (I), подслизистая основа (II), мышечная оболочка (III), адвентициальная оболочка (IV), которая в брюшном отделе заменяется на серозную оболочку . 9,а. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином. Полный размер",
+      "annotations": [
+        {
+          "mark": "i",
+          "label": "слизистая оболочка",
+          "start": {
+            "x": 631,
+            "y": 411
+          },
+          "end": {
+            "x": 631,
+            "y": 411
+          }
+        },
+        {
+          "mark": "ii",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 473,
+            "y": 363
+          },
+          "end": {
+            "x": 473,
+            "y": 363
+          }
+        },
+        {
+          "mark": "iii",
+          "label": "мышечная оболочка",
+          "start": {
+            "x": 253,
+            "y": 238
+          },
+          "end": {
+            "x": 253,
+            "y": 238
+          }
+        },
+        {
+          "mark": "iv",
+          "label": "адвентициальная  оболочка",
+          "start": {
+            "x": 20,
+            "y": 59
+          },
+          "end": {
+            "x": 63,
+            "y": 75
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams84p.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams84.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "esophagus-muscular",
+      "title": "9,д. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "chapterId": "esophagus",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/esophagus-muscular.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "adacc459f9c99675d32efff1414617c417f6b3f6c8bc49560b307173cee7e5a9",
+      "caption": "9,д. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином. 1. На данном снимке - поперечнополосатая мышечная ткань мышечной оболочки (III) пищевода. 2 . В толщине этой ткани - интрамуральный ганглий (8) . Полный размер",
+      "annotations": [
+        {
+          "mark": "iii",
+          "label": "мышечная оболочка",
+          "start": {
+            "x": 644,
+            "y": 299
+          },
+          "end": {
+            "x": 644,
+            "y": 299
+          }
+        },
+        {
+          "mark": "8",
+          "label": "интрамуральный ганглий",
+          "start": {
+            "x": 372,
+            "y": 336
+          },
+          "end": {
+            "x": 373,
+            "y": 336
+          }
+        },
+        {
+          "mark": "iii",
+          "label": "мышечная оболочка",
+          "start": {
+            "x": 224,
+            "y": 117
+          },
+          "end": {
+            "x": 224,
+            "y": 117
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t23(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams90.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams90.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "stomach-fundus",
+      "title": "1,а. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "chapterId": "stomach",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/stomach-fundus.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "8772db852bbfc4a99efde0ec25e5ac4f4e1ec0c7a65f0ef1e676ca835b8afd32",
+      "caption": "1,а. Поверхность слизистой оболочки Первая особенность только что упоминалась - это наличие в слизистой оболочке желудочных ямок (1 .А ). 1,а. Препарат - дно желудка. Окраска конго-рот и гематоксилином. Полный размер",
+      "annotations": [
+        {
+          "mark": "1.А",
+          "label": "желудочная ямка",
+          "start": {
+            "x": 90,
+            "y": 177
+          },
+          "end": {
+            "x": 58,
+            "y": 162
+          }
+        },
+        {
+          "mark": "1.Б",
+          "label": "однослойный призматический железистый эпителий",
+          "start": {
+            "x": 67,
+            "y": 226
+          },
+          "end": {
+            "x": 54,
+            "y": 218
+          }
+        },
+        {
+          "mark": "2.А",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 99,
+            "y": 343
+          },
+          "end": {
+            "x": 52,
+            "y": 309
+          }
+        },
+        {
+          "mark": "2.Б",
+          "label": "железы желудка",
+          "start": {
+            "x": 275,
+            "y": 191
+          },
+          "end": {
+            "x": 260,
+            "y": 221
+          }
+        },
+        {
+          "mark": "3",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 457,
+            "y": 365
+          },
+          "end": {
+            "x": 408,
+            "y": 358
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams81.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams81.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "stomach-glands",
+      "title": "1,б. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "chapterId": "gastric-glands",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/stomach-glands.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "b5aae4cca790f1cf4137022002de7a8305c2f77c75675050258301d5b99a251e",
+      "caption": "Здесь вновь видны многие из вышеперечисленных структур: желудочные ямки (1 .А ), выстилающий их однослойный призмати ческий железистый эпителий ( 1.Б ), собственная пластинка ( 2.А ) слизистой оболочки, располагающиеся в ней железы желудка ( 2.Б) , мышечная пластинка ( 5 ) слизистой оболочки. б) Среднее увеличение Полный размер",
+      "annotations": [
+        {
+          "mark": "1.А",
+          "label": "желудочная ямка",
+          "start": {
+            "x": 104,
+            "y": 207
+          },
+          "end": {
+            "x": 60,
+            "y": 195
+          }
+        },
+        {
+          "mark": "1.Б",
+          "label": "однослойный призматический железистый эпителий",
+          "start": {
+            "x": 56,
+            "y": 257
+          },
+          "end": {
+            "x": 45,
+            "y": 247
+          }
+        },
+        {
+          "mark": "2.А",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 265,
+            "y": 150
+          },
+          "end": {
+            "x": 259,
+            "y": 168
+          }
+        },
+        {
+          "mark": "2.Б",
+          "label": "железы желудка",
+          "start": {
+            "x": 277,
+            "y": 229
+          },
+          "end": {
+            "x": 270,
+            "y": 261
+          }
+        },
+        {
+          "mark": "3",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 655,
+            "y": 269
+          },
+          "end": {
+            "x": 595,
+            "y": 269
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams82.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams82.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "stomach-surface",
+      "title": "1,в. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "chapterId": "stomach",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/stomach-surface.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "28fd66aadfb820bf271b1e1e9c2997bafb1800115c3b7f4e904c5a27ac6d7999",
+      "caption": "1. А на данном снимке обратим внимание на железистый эпителий желудочных ямок (1 .Б ). а) Хорошо видны границы между эпителиальными клетками ( 4 ). б) Ядра ( 5 ) клеток сосредоточены в их базальной части. в) В апикальной же части ( 6 ) н аходится мукоидный (слизеобразный) секрет. в) Большое увеличение Полный размер",
+      "annotations": [
+        {
+          "mark": "1.Б",
+          "label": "железистый эпителий желудочных ямок ",
+          "start": {
+            "x": 219,
+            "y": 173
+          },
+          "end": {
+            "x": 209,
+            "y": 53
+          }
+        },
+        {
+          "mark": "2.Б",
+          "label": "железа желудка ",
+          "start": {
+            "x": 510,
+            "y": 491
+          },
+          "end": {
+            "x": 489,
+            "y": 466
+          }
+        },
+        {
+          "mark": "4",
+          "label": "граница между эпителиальными клетками ",
+          "start": {
+            "x": 502,
+            "y": 173
+          },
+          "end": {
+            "x": 488,
+            "y": 166
+          }
+        },
+        {
+          "mark": "5",
+          "label": "ядро эпителиальной клетки",
+          "start": {
+            "x": 457,
+            "y": 289
+          },
+          "end": {
+            "x": 478,
+            "y": 271
+          }
+        },
+        {
+          "mark": "6",
+          "label": "апикальная часть эпителиальной клетки",
+          "start": {
+            "x": 275,
+            "y": 174
+          },
+          "end": {
+            "x": 262,
+            "y": 161
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams316.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams316.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "stomach-chief-parietal",
+      "title": "1,г. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "chapterId": "gastric-glands",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/stomach-chief-parietal.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "f98934c7b3ea5f63ccbe4615320a725543d089ecf592d4d1788b247de1e1ed89",
+      "caption": "1,г. Препарат - дно желудка. Окраска конго-рот и гематоксилином. 1. Мы видим под большим увеличением тела собственных (или фундальных) желёз желудка. 2. Дифференцировать эндо криноциты при световой микроскопии обычно не удаётся. 3. Но нетрудно различить 3 вида экзо криноцитов. – Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "париетальная клетка",
+          "start": {
+            "x": 126,
+            "y": 204
+          },
+          "end": {
+            "x": 137,
+            "y": 181
+          }
+        },
+        {
+          "mark": "2",
+          "label": "главная клетка",
+          "start": {
+            "x": 557,
+            "y": 369
+          },
+          "end": {
+            "x": 520,
+            "y": 390
+          }
+        },
+        {
+          "mark": "3",
+          "label": "слизистая клетка",
+          "start": {
+            "x": 530,
+            "y": 312
+          },
+          "end": {
+            "x": 516,
+            "y": 315
+          }
+        },
+        {
+          "mark": "1",
+          "label": "париетальная клетка",
+          "start": {
+            "x": 325,
+            "y": 444
+          },
+          "end": {
+            "x": 349,
+            "y": 422
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams317.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams317.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "esophagogastric-junction",
+      "title": "2,а. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином.",
+      "chapterId": "esophagus",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/esophagogastric-junction.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "76e7851fc336bdee352a183f2ee1454c8e8a9c4e8a83f9ca6a32bcca42987208",
+      "caption": "2,а. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином. 1. Пищевод (А) на снимке сле ва, кардиальная область желудка (Б) - с пра ва. 2. Уже известные нам различия в строении их стенок, позволяющие отличить одно от другого, сведены в таблицу. - Полный размер",
+      "annotations": [
+        {
+          "mark": "А",
+          "label": "пищевод",
+          "start": {
+            "x": 111,
+            "y": 54
+          },
+          "end": {
+            "x": 111,
+            "y": 54
+          }
+        },
+        {
+          "mark": "Б",
+          "label": "кардиальная область желудка",
+          "start": {
+            "x": 652,
+            "y": 36
+          },
+          "end": {
+            "x": 652,
+            "y": 36
+          }
+        },
+        {
+          "mark": "1Б",
+          "label": "желудочные ямки",
+          "start": {
+            "x": 582,
+            "y": 84
+          },
+          "end": {
+            "x": 577,
+            "y": 43
+          }
+        },
+        {
+          "mark": "2А",
+          "label": "многослойный плоский эпителий пищевода",
+          "start": {
+            "x": 263,
+            "y": 114
+          },
+          "end": {
+            "x": 257,
+            "y": 87
+          }
+        },
+        {
+          "mark": "2Б",
+          "label": "однослойный цилиндрический железистый эпителий",
+          "start": {
+            "x": 526,
+            "y": 84
+          },
+          "end": {
+            "x": 511,
+            "y": 59
+          }
+        },
+        {
+          "mark": "3",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 596,
+            "y": 180
+          },
+          "end": {
+            "x": 596,
+            "y": 180
+          }
+        },
+        {
+          "mark": "3",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 316,
+            "y": 158
+          },
+          "end": {
+            "x": 316,
+            "y": 158
+          }
+        },
+        {
+          "mark": "3Б",
+          "label": "кардиальная железа желудка",
+          "start": {
+            "x": 683,
+            "y": 163
+          },
+          "end": {
+            "x": 673,
+            "y": 145
+          }
+        },
+        {
+          "mark": "4",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 636,
+            "y": 242
+          },
+          "end": {
+            "x": 645,
+            "y": 228
+          }
+        },
+        {
+          "mark": "4",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 82,
+            "y": 161
+          },
+          "end": {
+            "x": 84,
+            "y": 150
+          }
+        },
+        {
+          "mark": "5",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 43,
+            "y": 243
+          },
+          "end": {
+            "x": 43,
+            "y": 243
+          }
+        },
+        {
+          "mark": "5",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 722,
+            "y": 366
+          },
+          "end": {
+            "x": 722,
+            "y": 366
+          }
+        },
+        {
+          "mark": "5А",
+          "label": "собственные железы пищевода",
+          "start": {
+            "x": 349,
+            "y": 319
+          },
+          "end": {
+            "x": 349,
+            "y": 357
+          }
+        },
+        {
+          "mark": "5",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 111,
+            "y": 365
+          },
+          "end": {
+            "x": 111,
+            "y": 365
+          }
+        },
+        {
+          "mark": "5А",
+          "label": "собственные железы пищевода",
+          "start": {
+            "x": 118,
+            "y": 228
+          },
+          "end": {
+            "x": 118,
+            "y": 228
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams24.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams24.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "stomach-pylorus",
+      "title": "3,а. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "chapterId": "gastric-glands",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/stomach-pylorus.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "7b498015796501cd0097cf0cd101097b40b8b8aecd550a206bdf813c100e1b5e",
+      "caption": "3,а. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином. В соответствии с п. 24.1.4.1 , на снимке мы видим две основных особенности пилорического отдела. – 1. Желудочные ямки (1) глубже , чем в остальных областях желудка: доходят до половины толщины слизистой оболочки. Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "желудочные ямки",
+          "start": {
+            "x": 519,
+            "y": 203
+          },
+          "end": {
+            "x": 519,
+            "y": 203
+          }
+        },
+        {
+          "mark": "1",
+          "label": "желудочные ямки",
+          "start": {
+            "x": 317,
+            "y": 284
+          },
+          "end": {
+            "x": 317,
+            "y": 284
+          }
+        },
+        {
+          "mark": "2",
+          "label": "железы",
+          "start": {
+            "x": 130,
+            "y": 382
+          },
+          "end": {
+            "x": 130,
+            "y": 382
+          }
+        },
+        {
+          "mark": "3",
+          "label": "соединительнотканные перегородки",
+          "start": {
+            "x": 495,
+            "y": 353
+          },
+          "end": {
+            "x": 508,
+            "y": 422
+          }
+        },
+        {
+          "mark": "2",
+          "label": "железы",
+          "start": {
+            "x": 451,
+            "y": 367
+          },
+          "end": {
+            "x": 451,
+            "y": 367
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams232.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams232.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "intestinal-villi",
+      "title": "4,а. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "chapterId": "jejunum",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/intestinal-villi.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "937f0e73c442ff0886fad4ec9538e041f606494cf1c71026797019a3cfdc620f",
+      "caption": "1. Кишечные ворсинки (1.А) - это выпячивания слизистой оболочки; причём, в их образовании участвуют все слои данной оболочки. 2. а) Так, под однослойным каёмчатым эпителием (1 .В ) находится строма - рыхлая волокнистая ткань собственной пластинки (2), а в ней - отдельные гладкие миоциты - \"представители\" мышечной пластинки. 4,а. Препарат - тонкая кишка. Окраска гематоксилин-эозином. Полный размер",
+      "annotations": [
+        {
+          "mark": "1.А",
+          "label": "кишечная ворсинка",
+          "start": {
+            "x": 169,
+            "y": 243
+          },
+          "end": {
+            "x": 118,
+            "y": 162
+          }
+        },
+        {
+          "mark": "1.Б",
+          "label": "крипта кишечника",
+          "start": {
+            "x": 303,
+            "y": 488
+          },
+          "end": {
+            "x": 260,
+            "y": 449
+          }
+        },
+        {
+          "mark": "1.В",
+          "label": "однослойный цилиндрический каемчатый эпителий",
+          "start": {
+            "x": 265,
+            "y": 124
+          },
+          "end": {
+            "x": 238,
+            "y": 114
+          }
+        },
+        {
+          "mark": "2",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 233,
+            "y": 299
+          },
+          "end": {
+            "x": 233,
+            "y": 299
+          }
+        },
+        {
+          "mark": "3",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 507,
+            "y": 466
+          },
+          "end": {
+            "x": 550,
+            "y": 458
+          }
+        },
+        {
+          "mark": "ii",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 540,
+            "y": 523
+          },
+          "end": {
+            "x": 540,
+            "y": 523
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams239.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams239.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "intestinal-epithelium",
+      "title": "4,б. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "chapterId": "jejunum",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/intestinal-epithelium.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "7672f1b2f3a9e4f74a470ab996b1bef1970d8e4089f27761731aa5a568da23ca",
+      "caption": "На этом снимке - ворсинки при большом увеличении. Хорошо видны : однослойный цилиндрический эпителий (1 .В ), покрывающий ворсинки, оксифильная каёмка (1. Г ) на его апикальной поверхности, собственная пластинка (2) слизистой оболочки, образующая строму ворсинок , гладкие миоциты (3.А) в составе ворсинок. 4,б. Препарат - тонкая кишка. Окраска гематоксилин-эозином. Полный размер",
+      "annotations": [
+        {
+          "mark": "1.В",
+          "label": "однослойный цилиндрический каемчатый эпителий",
+          "start": {
+            "x": 426,
+            "y": 401
+          },
+          "end": {
+            "x": 379,
+            "y": 410
+          }
+        },
+        {
+          "mark": "1.Г",
+          "label": "оксифильная каемка",
+          "start": {
+            "x": 193,
+            "y": 218
+          },
+          "end": {
+            "x": 187,
+            "y": 245
+          }
+        },
+        {
+          "mark": "2",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 256,
+            "y": 403
+          },
+          "end": {
+            "x": 256,
+            "y": 403
+          }
+        },
+        {
+          "mark": "3.А",
+          "label": "гладкие миоциты в составе ворсинок",
+          "start": {
+            "x": 496,
+            "y": 279
+          },
+          "end": {
+            "x": 516,
+            "y": 279
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams240.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams240.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "intestinal-mucosa",
+      "title": "4,в. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "chapterId": "duodenum",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/intestinal-mucosa.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "46e3a50a85adfd923804a1ad5861d94706bfea31a1a371eccf02d348f465d352",
+      "caption": "Слизистая оболочка 1. В верхней части поля зрения - нижние участки кишечных крипт (1 .А ). 2. Под ними - мышечная пластинка слизистой оболочки, в которой можно различить внутренний циркулярный слой ( 3 .А) , срезанный продольно, и наружный продольный слой ( 3 .Б), срезанный поперечно. в ) Полный размер",
+      "annotations": [
+        {
+          "mark": "1.Б",
+          "label": "кишечная крипта",
+          "start": {
+            "x": 334,
+            "y": 228
+          },
+          "end": {
+            "x": 364,
+            "y": 204
+          }
+        },
+        {
+          "mark": "3.А",
+          "label": "внутренний циркулярный слой мышечной пластинки",
+          "start": {
+            "x": 275,
+            "y": 421
+          },
+          "end": {
+            "x": 275,
+            "y": 421
+          }
+        },
+        {
+          "mark": "3.Б",
+          "label": "наружный продольный слой мышечной пластинки",
+          "start": {
+            "x": 228,
+            "y": 498
+          },
+          "end": {
+            "x": 228,
+            "y": 498
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams242.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams242.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "intestinal-submucosa",
+      "title": "4,г. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "chapterId": "ileum",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/intestinal-submucosa.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "cc6486f3ecbc184e713087f79f5e65b6c6555ec723c5be769f4a5c00ada4a93d",
+      "caption": "Под- слизистая основа а) В верхней части снимка - крипты (1.Б) и мышечная пластинка (3) слизистой оболочки. б) В центре поля зрения теперь - подслизистая основа ( II ) . В ней мы видим: г ) Полный размер",
+      "annotations": [
+        {
+          "mark": "1.Б",
+          "label": "кишечная крипта",
+          "start": {
+            "x": 182,
+            "y": 102
+          },
+          "end": {
+            "x": 263,
+            "y": 110
+          }
+        },
+        {
+          "mark": "3",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 156,
+            "y": 273
+          },
+          "end": {
+            "x": 156,
+            "y": 273
+          }
+        },
+        {
+          "mark": "ii",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 240,
+            "y": 409
+          },
+          "end": {
+            "x": 240,
+            "y": 409
+          }
+        },
+        {
+          "mark": "4",
+          "label": "нервный ганглий",
+          "start": {
+            "x": 415,
+            "y": 355
+          },
+          "end": {
+            "x": 415,
+            "y": 355
+          }
+        },
+        {
+          "mark": "5",
+          "label": "кровеносный сосуд",
+          "start": {
+            "x": 489,
+            "y": 249
+          },
+          "end": {
+            "x": 503,
+            "y": 239
+          }
+        },
+        {
+          "mark": "iii",
+          "label": "мышечная оболочка",
+          "start": {
+            "x": 577,
+            "y": 544
+          },
+          "end": {
+            "x": 577,
+            "y": 544
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t24.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams256.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams256.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "colon-low",
+      "title": "1,а. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "chapterId": "colon",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/colon-low.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "7c2dae53537dc6d8468c483aed3e2991b3487dc8907253a0f8dbcbe5625c5b7a",
+      "caption": "1. На снимк ах - стенка ободочной кишки и в ней: слизистая оболочка (I) , подслизистая основа (II) с сосудами (5) , мышечная оболочка - внутренний циркулярный слой (III.В) (гладкие миоциты срезаны поперёк), наружный продольный слой (III.Г) (очевидно, срез прошёл в области продольной ленты); серозная оболочка (IV). 2. а) В составе слизистой оболочки на снимке 1,а видны следующие структур ы: к рипты (1 .А ); имеют форму простых трубчатых желёз ; а) Полный размер б) Полный размер",
+      "annotations": [
+        {
+          "mark": "i",
+          "label": "слизистая оболочка",
+          "start": {
+            "x": 101,
+            "y": 227
+          },
+          "end": {
+            "x": 102,
+            "y": 227
+          }
+        },
+        {
+          "mark": "ii",
+          "label": "подслизистая основа",
+          "start": {
+            "x": 113,
+            "y": 366
+          },
+          "end": {
+            "x": 113,
+            "y": 366
+          }
+        },
+        {
+          "mark": "iii",
+          "label": "мышечная оболочка",
+          "start": {
+            "x": 121,
+            "y": 494
+          },
+          "end": {
+            "x": 121,
+            "y": 494
+          }
+        },
+        {
+          "mark": "1.А",
+          "label": "крипты кишки",
+          "start": {
+            "x": 475,
+            "y": 222
+          },
+          "end": {
+            "x": 537,
+            "y": 215
+          }
+        },
+        {
+          "mark": "2",
+          "label": "собственная пластинка слизистой оболочки",
+          "start": {
+            "x": 454,
+            "y": 191
+          },
+          "end": {
+            "x": 432,
+            "y": 172
+          }
+        },
+        {
+          "mark": "3",
+          "label": "мышечная пластинка слизистой оболочки",
+          "start": {
+            "x": 329,
+            "y": 271
+          },
+          "end": {
+            "x": 329,
+            "y": 271
+          }
+        },
+        {
+          "mark": "5",
+          "label": "кровеносные сосуды",
+          "start": {
+            "x": 302,
+            "y": 369
+          },
+          "end": {
+            "x": 302,
+            "y": 369
+          }
+        },
+        {
+          "mark": "5",
+          "label": "кровеносные сосуды",
+          "start": {
+            "x": 401,
+            "y": 402
+          },
+          "end": {
+            "x": 401,
+            "y": 402
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25.html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams216.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams216.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "liver-lobules",
+      "title": "3,а. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "chapterId": "liver",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/liver-lobules.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "58f5ce953c6e43f0bd8fb0cb5d051643885f0d07ca086cdaa11ad30bf3afc1f2",
+      "caption": "1. Здесь уже перед нами - не рисунок, а снимок с препарата. 2. Видно несколько печеночных долек: на их границе располагаются триады (I), а в центре - центральные вены (1). 3. В нижней половине снимка - более крупные поддольковые вены (2) - продолжения центральных вен вне долек. (См. большое увеличение) Полный размер",
+      "annotations": [
+        {
+          "mark": "i",
+          "label": "триада",
+          "start": {
+            "x": 240,
+            "y": 85
+          },
+          "end": {
+            "x": 216,
+            "y": 73
+          }
+        },
+        {
+          "mark": "1",
+          "label": "центральная вена",
+          "start": {
+            "x": 610,
+            "y": 72
+          },
+          "end": {
+            "x": 564,
+            "y": 89
+          }
+        },
+        {
+          "mark": "2",
+          "label": "поддольковая вена",
+          "start": {
+            "x": 203,
+            "y": 356
+          },
+          "end": {
+            "x": 203,
+            "y": 356
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams278.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams278.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "liver-central-vein",
+      "title": "3,б. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "chapterId": "liver",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/liver-central-vein.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "9b826a36832fe8f5ad7c727c0caf28e81eeb24f785f1054dbbe914332a3a617e",
+      "caption": "1. а) На этом снимке - т а часть печёночной дольки, которая примыкает к центральной вене (1). б) В частности, различимы печёночные балки ( 2) и синусоидные капилляры (3) , имеющие примерно радиальную ориентацию. 2. Печёночные балки включают чаще всего 2 ряда клеток. Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "центральная вена",
+          "start": {
+            "x": 378,
+            "y": 296
+          },
+          "end": {
+            "x": 378,
+            "y": 296
+          }
+        },
+        {
+          "mark": "1.А",
+          "label": "эндотелиальный слой",
+          "start": {
+            "x": 328,
+            "y": 316
+          },
+          "end": {
+            "x": 287,
+            "y": 326
+          }
+        },
+        {
+          "mark": "1.Б",
+          "label": "слой соединительной ткани",
+          "start": {
+            "x": 385,
+            "y": 222
+          },
+          "end": {
+            "x": 404,
+            "y": 185
+          }
+        },
+        {
+          "mark": "2",
+          "label": "печеночная балка",
+          "start": {
+            "x": 538,
+            "y": 207
+          },
+          "end": {
+            "x": 599,
+            "y": 207
+          }
+        },
+        {
+          "mark": "3",
+          "label": "синусоидный капилляр",
+          "start": {
+            "x": 508,
+            "y": 213
+          },
+          "end": {
+            "x": 515,
+            "y": 241
+          }
+        },
+        {
+          "mark": "3.А",
+          "label": "уплощенное ядро эндотелиоцита",
+          "start": {
+            "x": 556,
+            "y": 131
+          },
+          "end": {
+            "x": 577,
+            "y": 128
+          }
+        },
+        {
+          "mark": "3.А",
+          "label": "уплощенное ядро эндотелиоцита",
+          "start": {
+            "x": 280,
+            "y": 253
+          },
+          "end": {
+            "x": 276,
+            "y": 233
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams274.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams274.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "liver-hepatocytes",
+      "title": "3,в. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "chapterId": "liver",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/liver-hepatocytes.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "a9a8aadc78265b2f68caf0eab6f5987f081d353c94988daef8d4866b27869bc1",
+      "caption": "а) Здесь мы вновь видим, но при большом увеличении, печёночные балки (2) и лежащие между ними синусоидные капилляры (3) . б) Используя данный снимок , остановимся на гепатоцитах (4) - клетках, образующих печёночные балки. Полный размер",
+      "annotations": [
+        {
+          "mark": "2",
+          "label": "печеночная балка",
+          "start": {
+            "x": 412,
+            "y": 116
+          },
+          "end": {
+            "x": 413,
+            "y": 116
+          }
+        },
+        {
+          "mark": "3",
+          "label": "синусоидный капилляр",
+          "start": {
+            "x": 578,
+            "y": 222
+          },
+          "end": {
+            "x": 578,
+            "y": 222
+          }
+        },
+        {
+          "mark": "4",
+          "label": "гепатоцит",
+          "start": {
+            "x": 425,
+            "y": 170
+          },
+          "end": {
+            "x": 378,
+            "y": 170
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams279.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams279.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "liver-ducts",
+      "title": "3,г. Препарат - печень человека; окраска гематоксилин-эозином.",
+      "chapterId": "liver",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/liver-ducts.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "3954932141ecd56317b5c9c0c397c1899e4ef3f57d467ae7ba73fb92ee71c837",
+      "caption": "а) На снимке 3,г мы видим междольковый желчный проток (1), а в его стенке - однослойный кубический эпителий (1.А) и соединительнотканную оболочку (1.Б). б) А. Около протока - междольков ая вен а (2) и артерия (3) . Б. Примечательно, что вена по диаметру в 3-4 раза больше, чем артерия. г) Среднее увеличение Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "междольковый желчный проток",
+          "start": {
+            "x": 264,
+            "y": 227
+          },
+          "end": {
+            "x": 303,
+            "y": 203
+          }
+        },
+        {
+          "mark": "1.А",
+          "label": "однослойный кубический эпителий",
+          "start": {
+            "x": 241,
+            "y": 237
+          },
+          "end": {
+            "x": 223,
+            "y": 237
+          }
+        },
+        {
+          "mark": "1.Б",
+          "label": "соединительнотканная оболочка",
+          "start": {
+            "x": 241,
+            "y": 189
+          },
+          "end": {
+            "x": 217,
+            "y": 158
+          }
+        },
+        {
+          "mark": "2",
+          "label": "междольковая вена",
+          "start": {
+            "x": 435,
+            "y": 263
+          },
+          "end": {
+            "x": 436,
+            "y": 263
+          }
+        },
+        {
+          "mark": "3",
+          "label": "артерия",
+          "start": {
+            "x": 442,
+            "y": 394
+          },
+          "end": {
+            "x": 442,
+            "y": 394
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams275.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams275.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "liver-triad",
+      "title": "3,д. Препарат - печень человека; окраска гематоксилин-эозином.",
+      "chapterId": "liver",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/liver-triad.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "8c03f3e856b594eb9f1c0b1b7ae2e65bbf832f6a8989ae93a05df756b050bca3",
+      "caption": "Здесь (на снимке 3,д) - та же триада и в ней: междольковы й желчный проток (1), выстланный однослойным кубическим эпителием (1.А), меж дольковые вена (2) и артерия (3). д) Большое увеличение Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "желчный проток",
+          "start": {
+            "x": 574,
+            "y": 499
+          },
+          "end": {
+            "x": 574,
+            "y": 499
+          }
+        },
+        {
+          "mark": "1.А",
+          "label": "однослойный кубический эпителий",
+          "start": {
+            "x": 566,
+            "y": 451
+          },
+          "end": {
+            "x": 566,
+            "y": 428
+          }
+        },
+        {
+          "mark": "2",
+          "label": "междольковая вена",
+          "start": {
+            "x": 478,
+            "y": 272
+          },
+          "end": {
+            "x": 478,
+            "y": 272
+          }
+        },
+        {
+          "mark": "3",
+          "label": "междольковая артерия",
+          "start": {
+            "x": 314,
+            "y": 412
+          },
+          "end": {
+            "x": 299,
+            "y": 359
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams276.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams276.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "pancreas-overview",
+      "title": "6,а. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "chapterId": "pancreas",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/pancreas-overview.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "be10f4d4acb6041f7669a6a124e9d484226aab461cc30188317d9ca157a49441",
+      "caption": "1. Многие из компонентов поджелудочной железы видны на данном снимке: междольковые и внутридольковые соединительнотканные перегородки (1); экзокринные ацинусы (2), междольковый выводной проток (3), эндокринный островок (4). Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "соединительнотканные перегородки",
+          "start": {
+            "x": 377,
+            "y": 290
+          },
+          "end": {
+            "x": 376,
+            "y": 316
+          }
+        },
+        {
+          "mark": "2",
+          "label": "экзокринные ацинусы",
+          "start": {
+            "x": 265,
+            "y": 214
+          },
+          "end": {
+            "x": 288,
+            "y": 193
+          }
+        },
+        {
+          "mark": "3",
+          "label": "междольковый выводной проток",
+          "start": {
+            "x": 634,
+            "y": 257
+          },
+          "end": {
+            "x": 573,
+            "y": 336
+          }
+        },
+        {
+          "mark": "4",
+          "label": "эндокринный островок",
+          "start": {
+            "x": 727,
+            "y": 105
+          },
+          "end": {
+            "x": 727,
+            "y": 105
+          }
+        },
+        {
+          "mark": "1",
+          "label": "соединительнотканные перегородки",
+          "start": {
+            "x": 209,
+            "y": 193
+          },
+          "end": {
+            "x": 245,
+            "y": 183
+          }
+        },
+        {
+          "mark": "2",
+          "label": "экзокринные ацинусы",
+          "start": {
+            "x": 440,
+            "y": 421
+          },
+          "end": {
+            "x": 445,
+            "y": 396
+          }
+        },
+        {
+          "mark": "5",
+          "label": "сосуды",
+          "start": {
+            "x": 145,
+            "y": 337
+          },
+          "end": {
+            "x": 145,
+            "y": 337
+          }
+        },
+        {
+          "mark": "6",
+          "label": "пластинчатое тельце",
+          "start": {
+            "x": 221,
+            "y": 438
+          },
+          "end": {
+            "x": 299,
+            "y": 512
+          }
+        },
+        {
+          "mark": "5",
+          "label": "сосуды",
+          "start": {
+            "x": 313,
+            "y": 409
+          },
+          "end": {
+            "x": 371,
+            "y": 393
+          }
+        },
+        {
+          "mark": "4",
+          "label": "эндокринный островок",
+          "start": {
+            "x": 124,
+            "y": 123
+          },
+          "end": {
+            "x": 88,
+            "y": 108
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams18.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams18.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "pancreas-islet",
+      "title": "6,б. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "chapterId": "pancreas",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/pancreas-islet.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "3d6f846a58bbcb9a5c1e7fb08f8d02388d0f76c7af0d6ddef446ba580d2b7952",
+      "caption": "6,б. Препарат - поджелудочная железа. Окраска гематоксилин-эозином. а) На этом снимке - многочисленные ацинусы (1), несколько кровеносных сосудов (2 ) и в центре - эндокринный островок (3). б) Остановимся на морфологических свойствах ацинарных клеток. Полный размер",
+      "annotations": [
+        {
+          "mark": "1",
+          "label": "ацинус",
+          "start": {
+            "x": 501,
+            "y": 173
+          },
+          "end": {
+            "x": 501,
+            "y": 173
+          }
+        },
+        {
+          "mark": "2",
+          "label": "кровеносный сосуд",
+          "start": {
+            "x": 541,
+            "y": 457
+          },
+          "end": {
+            "x": 541,
+            "y": 457
+          }
+        },
+        {
+          "mark": "3",
+          "label": "эндокринный островок",
+          "start": {
+            "x": 230,
+            "y": 205
+          },
+          "end": {
+            "x": 230,
+            "y": 205
+          }
+        },
+        {
+          "mark": "1",
+          "label": "ацинус",
+          "start": {
+            "x": 352,
+            "y": 483
+          },
+          "end": {
+            "x": 352,
+            "y": 483
+          }
+        },
+        {
+          "mark": "2",
+          "label": "кровеносный сосуд",
+          "start": {
+            "x": 418,
+            "y": 449
+          },
+          "end": {
+            "x": 418,
+            "y": 449
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams23.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams23.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "pancreas-centroacinar",
+      "title": "6,в. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "chapterId": "pancreas",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/pancreas-centroacinar.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "e3cdb2e6324bd7c689f033ab9366d65a530e3d5af4bdc0f153a3ff1b53b437c4",
+      "caption": "6,в. Препарат - поджелудочная железа. Окраска гематоксилин-эозином. Здесь мы видим участок дольки железы при большом увеличении. 1. В поле зрения - ацинусы (2); в центре одного из ацинусов - центроацинозная клетка (2.А). Полный размер",
+      "annotations": [
+        {
+          "mark": "2",
+          "label": "ацинус",
+          "start": {
+            "x": 511,
+            "y": 316
+          },
+          "end": {
+            "x": 511,
+            "y": 316
+          }
+        },
+        {
+          "mark": "2.А",
+          "label": "центроацинозная клетка",
+          "start": {
+            "x": 431,
+            "y": 286
+          },
+          "end": {
+            "x": 440,
+            "y": 261
+          }
+        },
+        {
+          "mark": "4",
+          "label": "ацинарная клетка",
+          "start": {
+            "x": 386,
+            "y": 348
+          },
+          "end": {
+            "x": 386,
+            "y": 348
+          }
+        },
+        {
+          "mark": "4.А",
+          "label": "ядро ацинарной клетки",
+          "start": {
+            "x": 394,
+            "y": 394
+          },
+          "end": {
+            "x": 374,
+            "y": 412
+          }
+        },
+        {
+          "mark": "4.Б",
+          "label": "базофильная гомогенная базальная зона",
+          "start": {
+            "x": 294,
+            "y": 358
+          },
+          "end": {
+            "x": 236,
+            "y": 357
+          }
+        },
+        {
+          "mark": "4.В",
+          "label": "оксифильная зимогенная апикальная зона",
+          "start": {
+            "x": 163,
+            "y": 289
+          },
+          "end": {
+            "x": 163,
+            "y": 289
+          }
+        },
+        {
+          "mark": "2",
+          "label": "ацинус",
+          "start": {
+            "x": 257,
+            "y": 107
+          },
+          "end": {
+            "x": 257,
+            "y": 107
+          }
+        },
+        {
+          "mark": "4.Б",
+          "label": "базофильная гомогенная базальная зона",
+          "start": {
+            "x": 325,
+            "y": 180
+          },
+          "end": {
+            "x": 284,
+            "y": 188
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams21.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams21.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "pancreas-endocrine",
+      "title": "6,е. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "chapterId": "pancreas",
+      "kind": "микропрепарат",
+      "src": "./photos/edubiotech/pancreas-endocrine.jpg",
+      "width": 768,
+      "height": 576,
+      "sha256": "8438f48932e6f2fed25b1c9432c38e17e13539fc5d33f4baced234e1cf2298a1",
+      "caption": "6,е. Препарат - поджелудочная железа. Окраска гематоксилин-эозином. Теперь обратим внимание на эндокринный островок (3) ( insula). Отличительные черты панкреатических островков таковы. – Полный размер",
+      "annotations": [
+        {
+          "mark": "3",
+          "label": "эндокринный островок",
+          "start": {
+            "x": 381,
+            "y": 366
+          },
+          "end": {
+            "x": 381,
+            "y": 366
+          }
+        }
+      ],
+      "overlayNativeCoordinates": true,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams19.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams19.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "bile-canaliculus-ultrastructure",
+      "title": "bile canaliculus ultrastructure",
+      "chapterId": "liver",
+      "kind": "электронная микрофотография",
+      "src": "./photos/edubiotech/bile-canaliculus-ultrastructure.jpg",
+      "width": 352,
+      "height": 413,
+      "sha256": "0bf2ceb4c80fe00c2c9415aeb50f8752fe1b49f796261a3d4d33af946ffa3348",
+      "caption": "1. Вот как то же самое - желчный капилляр - выглядит на электронной микрофотографии. 2. Вновь видно, что его просвет (1) складывается из небольших углублений в двух соседних гепатоцитах. 3. Вне этих углублений гепатоциты соединены плотными (запирающими) контактами (3). 4. Зато в области желчного капилляра клетки имеют (как мы уже знаем) микроворсинки (2) . 5. Наконец, заметим, что в цитоплазме гепатоцитов видны многочисленные гранулы гликогена (5) .",
+      "annotations": [],
+      "overlayNativeCoordinates": false,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r7/n35-1.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    },
+    {
+      "id": "pancreatic-acinar-ultrastructure",
+      "title": "pancreatic acinar ultrastructure",
+      "chapterId": "pancreas",
+      "kind": "электронная микрофотография",
+      "src": "./photos/edubiotech/pancreatic-acinar-ultrastructure.jpg",
+      "width": 403,
+      "height": 550,
+      "sha256": "21b1fe7972b2cec03b3ff8f90af9f8e53154b908b8d5f1d44d6752b1f8912cfe",
+      "caption": "1. Завершая рассмотрение ацинуса, обратимся к данной микрофотографии. Она иллюстрирует уже известные нам вещи. 2. Так, ацинарные экзокриноциты в базальной своей части содержат гранулярную ЭПС (4), а в апикальной части - секреторные гранулы (1) . 3. а) В просвете (2) секреторного отдела видны центроацинозные клетки (3) вставочного протока . б) Т.е. это тот случай, когда проток внедрён вглубь секреторного отдела, образуя второй (внутренний) слой клеток.",
+      "annotations": [],
+      "overlayNativeCoordinates": false,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceViewer": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/t25(1).html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r7/n36.jpg",
+      "credit": "Источник: edubiotech.ru; «Руководство-атлас по гистологии, цитологии и эмбриологии», С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+      "rights": "Право учебного использования с атрибуцией подтверждено владельцем Med Study 04.11.2026.",
+      "referenceOnly": true
+    }
+  ],
+  "skipped": []
+}
