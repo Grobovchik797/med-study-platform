@@ -39,7 +39,7 @@ let intestineQuizBank = null;
 let intestineSlides = null;
 let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
-let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null, giEduOriginal = null;
+let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null, giEduOriginal = null, giEduTEM = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -288,7 +288,7 @@ function showEduBiotechAtlas(chapterId=null,guideOnly=false) {
  const back=chapterId?()=>showGIChapter(chapterId):()=>showResourceLibrary('atlas');
  if(!guideOnly&&giEduOriginal?.version===1&&window.MedStudyEduBiotechOriginal){
   window.MedStudyEduBiotechOriginal.render(main,{
-   data:giEduOriginal,course:giCurriculum,selectedChapter:chapterId,
+   data:giEduOriginal,temData:giEduTEM,course:giCurriculum,selectedChapter:chapterId,
    onBack:back,onChapter:showGIChapter,
    onLegacy:()=>showEduBiotechAtlas(chapterId,true)
   });window.scrollTo(0,0);return;
@@ -1353,9 +1353,10 @@ Promise.all([
   fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();}),
   fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();}),
   fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null),
-  fetch('./data/gi-edubiotech-original.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original study photos '+r.status);return r.json();}).catch(()=>null)
+  fetch('./data/gi-edubiotech-original.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original study photos '+r.status);return r.json();}).catch(()=>null),
+  fetch('./data/gi-edubiotech-tem.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original TEM '+r.status);return r.json();}).catch(()=>null)
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1390,7 +1391,8 @@ Promise.all([
       throw Error('Маршрут коллоквиума: повреждены данные');
     giColloquiumGuide=colloquiumGuide;
     giEduBiotechAtlas=eduGuide?.version===1&&eduGuide.topics?.length===3?eduGuide:null;
-    giEduOriginal=eduOriginal?.version===1&&eduOriginal.images?.length>=21?eduOriginal:null;
+    giEduOriginal=eduOriginal?.version===1&&eduOriginal.images?.length===36?eduOriginal:null;
+    giEduTEM=eduTEM?.version===1&&eduTEM.images?.length===3?eduTEM:null;
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
