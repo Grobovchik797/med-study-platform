@@ -467,12 +467,12 @@ async function main() {
     assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('liver-central-vein.jpg'));
     assert.ok(await desktop.getByRole('heading',{name:'Печень человека — центральная вена'}).isVisible());
     assert.equal(await desktop.locator('.si-pin').count(),0,'No invented labels on human central vein photo');
-    assert.ok(await desktop.locator('.si-microscope img').evaluate(img=>img.complete&&img.naturalWidth>=420));
+    await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.complete&&document.querySelector('.si-microscope img')?.naturalWidth>=420,{timeout:15000});
     await desktop.locator('.si-select').first().selectOption('20');
     assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('liver-portal-triad.jpg'));
     assert.ok(await desktop.getByRole('heading',{name:'Печень человека — портальная триада'}).isVisible());
     assert.equal(await desktop.locator('.si-pin').count(),0,'Existing source labels are not automatically graded as new pixel annotations');
-    assert.ok(await desktop.locator('.si-microscope img').evaluate(img=>img.complete&&img.naturalWidth>=420));
+    await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.complete&&document.querySelector('.si-microscope img')?.naturalWidth>=420,{timeout:15000});
     // Two openly licensed real TEM images, not the drawings in the Binar PDF.
     await desktop.locator('.si-select').first().selectOption('21');
     assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('gastric-parietal-tem.jpg'));
