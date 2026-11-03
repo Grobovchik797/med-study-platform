@@ -116,6 +116,14 @@
       ],
       "coverage": "source-selected",
       "spatialAnnotationsStatus": "requires-image-review"
+    },
+    {
+      "departmentTitle": "ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА",
+      "referenceIds": [
+        "pancreas"
+      ],
+      "coverage": "source-selected",
+      "spatialAnnotationsStatus": "requires-image-review"
     }
   ]
 }

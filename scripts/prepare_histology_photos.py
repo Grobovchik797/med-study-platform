@@ -19,19 +19,27 @@ SLIDES=json.loads((ROOT/"data/small-intestine-slides.json").read_text("utf-8"))
 EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
-assert len(SLIDES["images"])==3 and len(EXTRA["images"])==16
+assert len(SLIDES["images"])==3 and len(EXTRA["images"])==20
+assert [x["id"] for x in EXTRA["images"][16:]]==["liver-central-vein","liver-portal-triad","gastric-parietal-tem","gastric-chief-tem"]
 
 # Our previous published build and successful PR #53 debug APK contain the same
 # 19 licensed JPEGs. Never accept a CDN response without its pinned SHA-256, and
 # never use an old image if any source manifest changed.
 LOCK=json.loads((ROOT/"data/gi-photo-lock.json").read_text("utf-8"))
 EXPECTED_PHOTO_NAMES={Path(slide["src"]).name for slide in SLIDES["images"]+EXTRA["images"]}
-if len(EXPECTED_PHOTO_NAMES)!=19 or set(LOCK["photos"])!=EXPECTED_PHOTO_NAMES:
-    raise SystemExit("Photo checksum lock does not exactly cover the 19 reference atlas images")
-LOCK_VALID=(hashlib.sha256((ROOT/"data/gi-atlas.json").read_bytes()).hexdigest()==LOCK["atlas_sha256"]
+EXISTING_NAMES=set(LOCK["photos"])
+NEW_NAMES=EXPECTED_PHOTO_NAMES-EXISTING_NAMES
+if len(EXPECTED_PHOTO_NAMES)!=23 or len(EXISTING_NAMES)!=19 or not EXISTING_NAMES.issubset(EXPECTED_PHOTO_NAMES) or NEW_NAMES!={"liver-central-vein.jpg","liver-portal-triad.jpg","gastric-parietal-tem.jpg","gastric-chief-tem.jpg"}:
+    raise SystemExit("Photo checksum lock must preserve all 19 known-good reference files and add only two licensed liver plus two gastric TEM images")
+# Reconstruct the original sixteen-entry JSON exactly. The two appended records
+# must not invalidate SHA-256-proven recovery of previously published microscopy.
+LEGACY_EXTRA=dict(EXTRA)
+LEGACY_EXTRA["images"]=EXTRA["images"][:16]
+legacy_raw=(json.dumps(LEGACY_EXTRA,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
+LOCK_VALID=(hashlib.sha256(legacy_raw).hexdigest()==LOCK["atlas_sha256"]
     and hashlib.sha256((ROOT/"data/small-intestine-slides.json").read_bytes()).hexdigest()==LOCK["small_sha256"])
 if not LOCK_VALID:
-    print("Published-image fallback disabled: source manifest changed; update audited photo lock before reuse.")
+    raise SystemExit("Original 19 licensed images/metadata differ from the verified previous release; refuse unverified reuse")
 
 def reuse_verified_published(path):
     if not LOCK_VALID or path.name not in LOCK["photos"]:
@@ -111,4 +119,4 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
-print("PASS: nineteen Commons histology assets are local, decoded and ready; fine-grained landmarks remain unverified")
+print("PASS: 23 Commons histology assets (19 SHA-256-locked old + 2 human liver + 2 licensed real gastric TEM) are local and decoded; fine-grained landmarks unverified")

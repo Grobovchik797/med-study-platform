@@ -9,14 +9,14 @@ ROOT=Path(__file__).resolve().parents[1]
 data=json.loads((ROOT/'data/department-public.json').read_text('utf-8'))
 assert data['version']==1 and data['release']=='1.6.0'
 records=data['specimens']
-assert len(records)==14 and len({r['source_filename'] for r in records})==14
-assert sum(r['kind']=='photo' for r in records)==7
+assert len(records)==15 and len({r['source_filename'] for r in records})==15
+assert sum(r['kind']=='photo' for r in records)==8
 assert sum(r['kind']=='video-frames' for r in records)==7
-assert sum(len(r['frames']) for r in records)==21
+assert sum(len(r['frames']) for r in records)==22
 required_photos={
 '12 ПЕРСТНАЯ КИШКА.jpg','ТОНКАЯ КИШКА.jpg','ПИЛОРИЧЕСКАЯ ЧАСТЬ ЖЕЛУДКА.jpg',
 'ПОПЕРЕЧНЫЙ РАЗМЕР ПИЩЕВОДА.jpg','ДНО ЖЕЛУДКА.jpg','ТОЛСТАЯ КИШКА.jpg',
-'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК.jpg'
+'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК.jpg','ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА.jpg'
 }
 required_videos={
 'ЛИСТОВИДНЫЕ СОСОЧКИ.MOV','НЕБНАЯ МИНДАЛИНА.MOV','НИТЕВИДНЫЕ СОСОЧКИ.MOV',
@@ -40,4 +40,4 @@ for item in records:
   content=path.read_bytes()
   assert len(content)>10000,f'Damaged/tiny file: {relative}'
   assert content[:2]==b'\xff\xd8' and content[-2:]==b'\xff\xd9', f'Not valid JPEG envelope: {relative}'
-print('PASS: 14 exact departmental specimens and all 21 authentic JPG frames present on disk')
+print('PASS: 15 authentic departmental study specimens and all 22 JPG frames present on disk, including the faculty-approved pancreas PDF photo')

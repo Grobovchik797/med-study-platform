@@ -17,7 +17,7 @@ const catalog=[...legacy.catalog,...videoCatalog];
 let dataPromise=null;
 function load(){
  if(!dataPromise)dataPromise=fetch('./data/department-public.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{
-  if(d.version!==1||d.specimens?.length!==14||d.specimens.some(x=>!x.title||!x.displayTitle||!x.frames?.length))throw Error('Некорректный список кафедральных препаратов');
+  if(d.version!==1||d.specimens?.length!==15||d.specimens.some(x=>!x.title||!x.displayTitle||!x.frames?.length))throw Error('Некорректный список кафедральных препаратов');
   return d;
  });
  return dataPromise;
@@ -100,7 +100,7 @@ async function render(host,{onBack,chapterId=null}={}){
   root.replaceChildren();
   if(onBack)root.append(btn('← Назад',onBack,'gi-back'));
   root.append(el('div','kicker','КАФЕДРАЛЬНЫЙ АТЛАС'),el('h1','','Кафедральные микропрепараты'));
-  root.append(el('p','gi-lead','Исходные имена кафедральных файлов сохранены без изменений; подписи оформлены единообразно. Семь исходных фотографий и семь препаратов из видео (по два реальных поля зрения). В разделе «Справочные» остаются открытые микрофотографии из Commons.'));
+  root.append(el('p','gi-lead','Исходные имена кафедральных файлов сохранены без изменений; подписи оформлены единообразно. Восемь фотографий (семь исходных JPG и один кадр из учебного PDF) и семь препаратов из видео (по два реальных поля зрения). В разделе «Справочные» остаются открытые микрофотографии из Commons.'));
   if(mode==='drill'){drawDrill();return;}
   root.append(btn('Тренировка: случайные препараты',startDrill,'gi-button dept-drill-launch'));
   const files=el('div','dept-file-grid');

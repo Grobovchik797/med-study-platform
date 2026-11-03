@@ -1333,7 +1333,7 @@ Promise.all([
       throw Error('Структура библиотеки повреждена');
     }
     if (!histQuiz || histQuiz.questions?.length !== 30 ||
-        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==16 || !window.MedStudySI)
+        !slides || slides.images?.length !== 3 || extraAtlas?.version!==1 || extraAtlas.images?.length!==20 || !window.MedStudySI)
       throw Error('Новый учебный модуль по гистологии не загружен');
     if(!window.MedStudyGI||giCourse?.chapters?.length!==17||giExam?.questions?.length!==24||giMaps?.version!==2||giMaps?.maps?.length!==8 ||
       Object.values(giMini?.chapterQuestions||{}).some(x=>x.length!==3)||

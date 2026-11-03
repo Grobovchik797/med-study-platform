@@ -853,6 +853,157 @@
       "isResizedCopy": true,
       "assetDescription": "Local optimized copy of licensed original; no anatomical retouching",
       "reviewStatus": "source-and-license-checked; broad spatial markers reviewed on optimized photo; no cell-level claims"
+    },
+    {
+      "id": "liver-central-vein",
+      "title": "Печень человека — центральная вена",
+      "credit": "Jpogi (Wikimedia Commons)",
+      "license": "Public domain",
+      "file": "Central vein.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Central_vein.JPG",
+      "aspect": "1.33",
+      "stain": "Световая микрофотография печени человека; достоверный протокол окраски источником не указан",
+      "description": "Дополнительная справочная микрофотография печени человека с центральной веной. Источник описывает снимок как вид центральной вены через микроскоп. Это не кафедральный оригинал и не подтверждение всех структур для каждого поля.",
+      "landmarks": [
+        {
+          "label": "Центральная вена",
+          "note": "Ориентир для поиска центра классической дольки; проверь границы по самому снимку, прежде чем делать более узкий вывод."
+        },
+        {
+          "label": "Печёночные балки",
+          "note": "В окружающей паренхиме оцени тяжи гепатоцитов; отдельные клетки не имеют подтверждённых координат."
+        },
+        {
+          "label": "Синусоидные пространства",
+          "note": "Ищи капилляроподобные пространства между балками, но не размечай их автоматически."
+        }
+      ],
+      "answer": "liver-central-vein",
+      "src": "./photos/liver-central-vein.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Central_vein.JPG",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Central_vein.JPG/960px-Central_vein.JPG",
+        "https://upload.wikimedia.org/wikipedia/commons/5/5a/Central_vein.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Уменьшенная копия открытого оригинала из Wikimedia Commons; пространственные метки не добавлены.",
+      "reviewStatus": "source-and-license-checked; spatial-markers-unverified"
+    },
+    {
+      "id": "liver-portal-triad",
+      "title": "Печень человека — портальная триада",
+      "credit": "Department of Histology, Jagiellonian University Medical College; Reytan / T-310",
+      "license": "CC BY-SA 3.0",
+      "file": "Portal triad.JPG",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Portal_triad.JPG",
+      "aspect": "1.22",
+      "stain": "Гистологическая микрофотография печени человека; точная окраска источником не указана",
+      "description": "Дополнительная учебная микрофотография человеческой печени. В оригинале уже есть надписи artery, bile duct и vein для трёх компонентов портального тракта. Эти подписи принадлежат исходному изображению; новых цифровых меток в Med Study нет.",
+      "landmarks": [
+        {
+          "label": "Ветвь воротной вены",
+          "note": "Найдите сосудистый просвет, который оригинальная фотография обозначает словом vein."
+        },
+        {
+          "label": "Ветвь печёночной артерии",
+          "note": "Оригинальная подпись artery. Не спутать с небольшим желчным протоком: оценивайте стенку."
+        },
+        {
+          "label": "Междольковый желчный проток",
+          "note": "Оригинальная подпись bile duct. Проверьте эпителиальную выстилку, не делая выводов за пределами увеличения."
+        }
+      ],
+      "answer": "liver-portal-triad",
+      "src": "./photos/liver-portal-triad.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Portal_triad.JPG",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/6/62/Portal_triad.JPG"
+      ],
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная копия исходного фото с оригинальными надписями (без добавленных нами координат/меток), подготовленная с указанием авторства и CC BY-SA 3.0.",
+      "reviewStatus": "source-and-license-checked; original-image-labels-present; digital-spatial-markers-unverified"
+    },
+    {
+      "id": "gastric-parietal-tem",
+      "title": "Электронограмма — париетальная клетка желудка (бобр)",
+      "file": "Celula Parietal.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Celula_Parietal.png",
+      "aspect": "1.12",
+      "stain": "Просвечивающая электронная микроскопия (TEM); желудок европейского бобра",
+      "description": "Настоящая электронная микрофотография участка желудочной железы европейского бобра; в исходной публикации париетальная клетка отмечена P. Это не рисунок из присланного файла Binar, не препарат человека и не кафедральный кадр.",
+      "landmarks": [
+        {
+          "label": "Париетальная клетка (P)",
+          "note": "На оригинальном изображении есть авторская маркировка P; Med Study не добавляет свою."
+        },
+        {
+          "label": "Канальцевая мембранная система",
+          "note": "Сопоставить ультраструктуру с кислотной секрецией, лишь если детали различимы на реальном снимке."
+        },
+        {
+          "label": "Митохондрии",
+          "note": "Отдельные органеллы определять только при достаточном разрешении электронограммы."
+        }
+      ],
+      "answer": "gastric-parietal-tem",
+      "src": "./photos/gastric-parietal-tem.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Celula_Parietal.png",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Celula_Parietal.png/960px-Celula_Parietal.png",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/Celula_Parietal.png"
+      ],
+      "credit": "Natalia Ziółkowska, Bogdan Lewczuk, Wojciech Petryński, Katarzyna Palkowska, Magdalena Prusik, Krystyna Targońska, Zygmunt Giżejewski, Barbara Przybylska-Gornowicz (PLoS ONE, 2014)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная уменьшенная JPG-копия открытой электронной микрофотографии; без новых геометрических меток.",
+      "reviewStatus": "source-and-license-checked; electron micrograph (European beaver stomach); spatial-markers-unverified"
+    },
+    {
+      "id": "gastric-chief-tem",
+      "title": "Электронограмма — главная клетка желудка (бобр)",
+      "file": "Glandula gastrica Celula Chief.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Glandula_gastrica_Celula_Chief.png",
+      "aspect": "1.30",
+      "stain": "Просвечивающая электронная микроскопия (TEM); желудок европейского бобра",
+      "description": "Электронная микрофотография главных клеток железы желудка европейского бобра (PLoS ONE, 2014); секреторные гранулы, гранулярная ЭПС и аппарат Гольджи рассматриваются с учётом авторской маркировки. Не является электронной микрофотографией человека.",
+      "landmarks": [
+        {
+          "label": "Секреторные гранулы",
+          "note": "Авторская работа описывает гранулы в надъядерной части; отдельную гранулу не отмечаем без проверенных координат."
+        },
+        {
+          "label": "Гранулярная ЭПС",
+          "note": "Характерна для белоксинтезирующих секреторных клеток; оценивай видимость слоистых цистерн."
+        },
+        {
+          "label": "Аппарат Гольджи",
+          "note": "В оригинальной работе обозначен AG; не автоматически оценивать его координаты на сайте."
+        }
+      ],
+      "answer": "gastric-chief-tem",
+      "src": "./photos/gastric-chief-tem.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Glandula_gastrica_Celula_Chief.png",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Glandula_gastrica_Celula_Chief.png/960px-Glandula_gastrica_Celula_Chief.png",
+        "https://upload.wikimedia.org/wikipedia/commons/1/1d/Glandula_gastrica_Celula_Chief.png"
+      ],
+      "credit": "Natalia Ziółkowska, Bogdan Lewczuk, Wojciech Petryński, Katarzyna Palkowska, Magdalena Prusik, Krystyna Targońska, Zygmunt Giżejewski, Barbara Przybylska-Gornowicz (PLoS ONE, 2014)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная уменьшенная JPG-копия открытой электронной микрофотографии; без новых геометрических меток.",
+      "reviewStatus": "source-and-license-checked; electron micrograph (European beaver stomach); spatial-markers-unverified"
     }
   ]
 }
