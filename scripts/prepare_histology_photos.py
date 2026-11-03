@@ -35,7 +35,7 @@ if len(EXPECTED_PHOTO_NAMES)!=21 or len(EXISTING_NAMES)!=19 or not EXISTING_NAME
 # must not invalidate SHA-256-proven recovery of previously published microscopy.
 LEGACY_EXTRA=dict(EXTRA)
 LEGACY_EXTRA["images"]=EXTRA["images"][:16]
-legacy_raw=(json.dumps(LEGACY_EXTRA,ensure_ascii=False,indent=2)+"\\n").encode("utf-8")
+legacy_raw=(json.dumps(LEGACY_EXTRA,ensure_ascii=False,indent=2)+"\n").encode("utf-8")
 LOCK_VALID=(hashlib.sha256(legacy_raw).hexdigest()==LOCK["atlas_sha256"]
     and hashlib.sha256((ROOT/"data/small-intestine-slides.json").read_bytes()).hexdigest()==LOCK["small_sha256"])
 if not LOCK_VALID:
