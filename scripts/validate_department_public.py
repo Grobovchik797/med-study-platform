@@ -27,6 +27,9 @@ assert {r['source_filename'] for r in records if r['kind']=='photo'}==required_p
 assert {r['source_filename'] for r in records if r['kind']=='video-frames'}==required_videos
 for item in records:
  assert item['title']==item['source_filename'].rsplit('.',1)[0]
+ # Display captions may differ in case; source names remain immutable identifiers.
+ expected='Двенадцатиперстная кишка' if item['title']=='12 ПЕРСТНАЯ КИШКА' else item['title'].capitalize()
+ assert item['displayTitle']==expected, item['source_filename']
  assert item['chapters'] and len(item['cues'])>=3
  if item['kind']=='video-frames': assert len(item['frames'])==2
  for frame in item['frames']:

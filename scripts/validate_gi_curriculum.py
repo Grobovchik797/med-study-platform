@@ -96,6 +96,7 @@ for chapter in course['chapters']:
  if chapter.get('slideId'):
   assert chapter['slideId'] in slide_ids,chapter['id']
 for image in extra['images']:
+ assert image['title']==image['title'].capitalize(),image['id']
  assert image['license'] in {'CC BY-SA 3.0','CC BY-SA 4.0','CC BY 4.0','CC BY 3.0','Public domain'}
  assert image['localAsset'] and image['src']=='./photos/'+image['id']+'.jpg'
  assert image['source'].startswith('https://commons.wikimedia.org/wiki/File:')

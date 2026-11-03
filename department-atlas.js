@@ -17,6 +17,11 @@ const specimens=[
  {file:'ПЕРЕХОД ПИЩЕВОДА В ЖЕЛУДОК.jpg',chapters:['esophagus','stomach'],focus:['Многослойный эпителий пищевода','Однослойный железистый эпителий желудка','Зона смены типа эпителия'],notice:'Переход может не помещаться целиком в одно поле зрения. Не ставим метку границы, пока она не различима достоверно.'}
 ];
 const byName=new Map(specimens.map(x=>[x.file,x]));
+// Keep exact source filenames as storage keys; only the user-facing caption is normalized.
+function displayFilename(name){
+ const stem=name.replace(/\.jpe?g$/i,'');
+ return stem==='12 ПЕРСТНАЯ КИШКА'?'Двенадцатиперстная кишка':stem.charAt(0).toLocaleUpperCase('ru-RU')+stem.slice(1).toLocaleLowerCase('ru-RU');
+}
 const el=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;};
 const btn=(txt,cb,cls='gi-button')=>{const b=el('button',cls,txt);b.type='button';b.addEventListener('click',cb);return b;};
 let dbPromise;
@@ -105,7 +110,7 @@ function render(host,{onBack,chapterId=null}={}){
   const grid=el('div','dept-file-grid');
   for(const [i,spec] of scope.entries()){
    const card=el('button','dept-file-card'+(selected===spec.file?' active':''));card.type='button';
-   card.append(el('strong','',mode==='check'?'Препарат '+(i+1):spec.file),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
+   card.append(el('strong','',mode==='check'?'Препарат '+(i+1):displayFilename(spec.file)),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
    card.addEventListener('click',()=>{selected=spec.file;mode='study';paint();});
    grid.append(card);
   }
@@ -113,7 +118,7 @@ function render(host,{onBack,chapterId=null}={}){
   const spec=byName.get(selected);
   if(!scope.includes(spec))return;
   const panel=el('section','dept-panel');
-  panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА ПО КАФЕДРАЛЬНОМУ ПРЕПАРАТУ':'КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',mode==='check'?'Определи препарат по фотографии':spec.file));
+  panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА ПО КАФЕДРАЛЬНОМУ ПРЕПАРАТУ':'КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',mode==='check'?'Определи препарат по фотографии':displayFilename(spec.file)));
   const controls=el('div','dept-modes');
   for(const [key,title] of [['study','Изучение'],['check','Самопроверка']]){
    controls.append(btn(title,()=>{mode=key;paint();},'gi-button'+(mode===key?' gi-active':' gi-light')));
@@ -122,7 +127,7 @@ function render(host,{onBack,chapterId=null}={}){
   if(records.has(selected)){
    const box=el('div','dept-image-wrap'),img=el('img','dept-image');
    objectUrl=URL.createObjectURL(records.get(selected));
-   img.src=objectUrl;img.alt=mode==='check'?'Кафедральный препарат: название скрыто':'Кафедральный препарат: '+selected;img.loading='eager';
+   img.src=objectUrl;img.alt=mode==='check'?'Кафедральный препарат: название скрыто':'Кафедральный препарат: '+displayFilename(selected);img.loading='eager';
    box.append(img);panel.append(box);
    const zoom=el('input','dept-zoom');zoom.type='range';zoom.min='100';zoom.max='300';zoom.step='25';zoom.value='100';
    zoom.setAttribute('aria-label','Масштаб фотографии');
@@ -140,10 +145,10 @@ function render(host,{onBack,chapterId=null}={}){
    const question=el('p','dept-question','Как называется этот кафедральный препарат?');
    const select=el('select','dept-answer');select.setAttribute('aria-label','Выбери название препарата');
    const empty=el('option','','Выбери название');empty.value='';select.append(empty);
-   specimens.forEach(x=>{const opt=el('option','',x.file);opt.value=x.file;select.append(opt);});
+   specimens.forEach(x=>{const opt=el('option','',displayFilename(x.file));opt.value=x.file;select.append(opt);});
    const answer=el('p','dept-feedback','');
    panel.append(question,select,btn('Проверить название',()=>{
-    answer.textContent=select.value===selected?'Верно: '+selected:'Кафедральное название этого препарата: '+selected+'.';
+    answer.textContent=select.value===selected?'Верно: '+displayFilename(selected):'Кафедральное название этого препарата: '+displayFilename(selected)+'.';
    }),answer);
   }
   const note=el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Происхождение: кафедральный препарат по сообщению владельца. Публичное размещение исходного фото не выполняется. Формальное подтверждение права публикации и окончательная научная разметка — отдельные этапы.');

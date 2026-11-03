@@ -593,6 +593,15 @@ html[data-runtime="android-app"] .nav-item[data-nav="install"] {display:none !im
 .dept-public-figure .dept-image{display:block;width:100%;height:auto;max-width:none}
 .dept-caption{font-size:.85rem;padding:11px 13px}
 .dept-image-missing{padding:25px;color:#fff7c5}
+/* Colloquium training: explicit start, hidden answers, and answer review. */
+.dept-drill-launch{min-height:46px;margin-top:12px;}
+.dept-drill-progress{font-size:.9rem;color:#584d73;font-weight:700;margin:8px 0 13px;}
+.dept-drill-question{display:flex;flex-direction:column;gap:9px;font-size:.95rem;font-weight:700;margin:16px 0;}
+.dept-drill-question .dept-answer{width:min(540px,100%);min-height:45px;border:1px solid #b5a2d0;background:#fff;color:#252037;}
+.dept-drill-review{margin-top:14px;padding-top:14px;border-top:1px solid #e4d9ef;}
+.dept-drill-review .gi-button,.dept-drill-summary .gi-button{min-height:46px;margin-top:8px;}
+.dept-drill .dept-feedback{min-height:22px;}
+.dept-drill .dept-answer:focus-visible,.dept-drill-launch:focus-visible{outline:3px solid #2c6487;outline-offset:3px;}
 @media(max-width:670px){.dept-public-frames{grid-template-columns:1fr}}
 
 

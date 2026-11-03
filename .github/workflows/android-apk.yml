@@ -42,6 +42,13 @@ jobs:
           node --check app.js
           node --check gi-course.js
           node --check small-intestine-interact.js
+      # Reuse only images compiled for these exact licensed source manifests.
+      # The preparation script still decodes every cached JPEG before accepting it.
+      - name: Restore verified microscopy image cache
+        uses: actions/cache@v4
+        with:
+          path: photos/*.jpg
+          key: ${{ runner.os }}-medstudy-histology-v1-${{ hashFiles('data/small-intestine-slides.json', 'data/gi-atlas.json', 'scripts/prepare_histology_photos.py') }}
       - name: Prepare embedded offline website
         run: |
           python3 scripts/generate_icons.py
