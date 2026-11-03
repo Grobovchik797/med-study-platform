@@ -195,7 +195,7 @@ function briefExtract(text){
   return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
 }
 
-function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,onColloquium=null,colloquiumGuide=null,scientificChanges=[],depth='brief'}) {
  const progressMount=el('div','gi-topic-progress');
  const readingMount=el('div','gi-topic-reading');
  const focusMount=el('div','gi-topic-focus');
@@ -237,6 +237,22 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
   renderMilestones(progressMount,{topicId:chapter.id,hasAtlas:Boolean(chapter.slideId)});
   renderReadingControls(readingMount);
   host.append(resources,guide,progressMount,readingMount,focusMount);
+  const cue=colloquiumGuide?.cues?.[chapter.id];
+  if(cue){
+   const oral=el('section','card gi-chapter-colloquium');
+   oral.append(el('div','kicker','ПОДГОТОВКА К КОЛЛОКВИУМУ'),el('h2','','Что обязательно уметь объяснить'));
+   const topics=el('ol','gi-colloquium-topic-list');
+   deepBlocks.forEach(block=>topics.append(el('li','',block.title)));
+   oral.append(paragraph('Пять опорных тем из существующего расширенного конспекта. Это план ответа, а не автоматически оценённая устная тренировка.'),topics);
+   const details=el('details','gi-cue-ladder');
+   details.append(el('summary','','Три уровня признаков для узнавания'),
+     paragraph('Ключевой признак: '+cue.primary),
+     paragraph('Подтверждающие признаки: '+cue.supporting),
+     paragraph('Что само по себе не доказывает орган: '+cue.notProof));
+   oral.append(details);
+   if(onColloquium)oral.append(button('Открыть весь маршрут коллоквиума →',onColloquium,'gi-button gi-light'));
+   host.append(oral);
+  }
   const depths=el('div','gi-depths');
   for(const key of ['brief','deep']){
     const b=button(titles[key],()=>{current=key;chapterDepths[chapter.id]=key;show();},'gi-button'+(current===key?' gi-active':''));
@@ -271,7 +287,27 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     }
   }else{
     content.append(sectionTitle('Подробный разбор по слоям, клеткам и механизмам'));
-    for(const x of chapter.deep)content.append(paragraph(x));
+    const checkedChange=scientificChanges.find(item=>item.chapterId===chapter.id&&item.category==='science');
+    for(const [index,x] of chapter.deep.entries()){
+     const evidence=el('section','gi-claim-with-evidence');
+     evidence.append(paragraph(x));
+     // Claim-level citations only for the five audited 1.9.4 additions.
+     if(index>=2&&checkedChange?.references?.length){
+      const details=el('details','gi-claim-evidence');
+      details.append(el('summary','','Источник и проверка утверждения'),
+        paragraph('Сопоставлено с лекционным конспектом: '+checkedChange.lecture,'gi-provenance'),
+        paragraph(checkedChange.verification,'gi-provenance'));
+      const links=el('ul','gi-claim-source-list');
+      checkedChange.references.forEach((url,i)=>{
+       if(typeof url!=='string'||!/^https:\/\//.test(url))return;
+       const link=el('a','','Независимый источник '+(i+1));
+       link.href=url;link.target='_blank';link.rel='noopener noreferrer';
+       links.append(append(el('li'),link));
+      });
+      details.append(links);evidence.append(details);
+     }
+     content.append(evidence);
+    }
     for(const [number,block] of deepBlocks.entries()){
       const part=el('section','gi-deep-block');
       part.id='gi-block-'+chapter.id+'-'+(number+1);
