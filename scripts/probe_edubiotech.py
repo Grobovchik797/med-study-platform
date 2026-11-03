@@ -44,6 +44,14 @@ if __name__=="__main__":
  archive="https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/"
  for relative in ["r0/contents.htm","r0/menu1.htm","r5/contents.htm","r5/s25lst.htm","r5/S25lst.html","R5/S25lst.html","r5/S25lst.htm","r5/s25lst.html"]:
   fetch(archive+relative)
+ print("=== ACTUAL GI SECTIONS AND PHOTO CAPTIONS ===")
+ for number in (23,24,25):
+  url=archive+"r5/s"+str(number)+"lst.html"
+  h,page=fetch(url)
+  if h:
+   for link in h.links:
+    if "/images/" in link or link.endswith(".html"):
+     fetch(urljoin(page,link))
  print("=== GEOTAR FRAMES ===")
  root="https://edubiotech.ru/downloads/library/ugebnik/gistologi/"
  for rel in ["pages/frameset_book.htm","pages/frameset_exam.htm","pages/book.htm","pages/contents.htm"]:
