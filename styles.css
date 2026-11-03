@@ -807,3 +807,41 @@ html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#ff
 .edu-electron-card p{line-height:1.6}
 .edu-ultra-cues{padding-left:23px;margin:0;line-height:1.7}
 @media(max-width:600px){.edu-modes{display:grid;grid-template-columns:1fr}.edu-modes button{white-space:normal}.edu-chapters{grid-template-columns:1fr}.edu-source-notice,.edu-topic-card{padding:15px}.edu-links{display:grid;gap:10px}}
+
+
+/* 1.9.8: real EduBiotech light microscopy and source-authored marker coordinates */
+.edu-viewer-mount{margin:18px 0 26px;scroll-margin-top:20px}
+.edu-photo-viewer{padding:20px;display:grid;gap:13px}
+.edu-photo-viewer h2{font-size:1.2rem;line-height:1.45;margin:0}
+.edu-viewer-actions{display:flex;flex-wrap:wrap;gap:10px}
+.edu-viewer-actions button{min-height:44px}
+.edu-photo-split{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(220px,1fr);gap:20px;align-items:start}
+.edu-photo-stage{position:relative;max-width:100%;background:#111;isolation:isolate;border-radius:10px;overflow:hidden}
+.edu-original-image{display:block;width:100%;height:100%;max-width:100%;object-fit:fill}
+.edu-marker-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.edu-marker-lines line{stroke:#fee0a4;stroke-width:2.3;filter:drop-shadow(0 1px 2px #000)}
+.edu-marker-lines line.is-selected{stroke:#ff746c;stroke-width:3.6}
+.edu-marker-layer{position:absolute;inset:0;pointer-events:none}
+.edu-marker{position:absolute;pointer-events:auto;transform:translate(-50%,-50%);min-width:24px;min-height:24px;padding:3px 5px;border-radius:999px;border:2px solid #fff;color:#fff;background:#523b95;box-shadow:0 1px 4px #000b;font-size:11px;font-weight:800;line-height:1;cursor:pointer;z-index:3}
+.edu-marker.is-selected{background:#d0313c;box-shadow:0 0 0 3px #f3d7a1,0 1px 5px #0009;z-index:4}
+.edu-marker:focus-visible{outline:3px solid #ffe6ad;outline-offset:3px}
+.edu-original-legend{min-width:0;display:grid;gap:9px}
+.edu-original-legend h3{margin:0;font-size:1.06rem}
+.edu-legend-list{padding:0;margin:0;list-style:none;display:grid;gap:6px;max-height:490px;overflow:auto}
+.edu-legend-item{margin:0}
+.edu-legend-select{padding:8px 11px;min-height:39px;width:100%;font:inherit;line-height:1.4;text-align:left;color:inherit;background:var(--surface,#fff);border:1px solid #d8c8eb;border-radius:9px;cursor:pointer;overflow-wrap:anywhere}
+.edu-legend-select.is-selected{border-color:#a17cd3;background:#f4ebff;font-weight:700}
+.edu-legend-select:focus-visible{outline:3px solid #a17cd3;outline-offset:2px}
+.edu-active-label{color:#49377c;font-size:.93rem;font-weight:700}
+.edu-image-credit{display:grid;gap:9px;padding-top:12px;border-top:1px solid #e1d5ed;font-size:.87rem;line-height:1.55;overflow-wrap:anywhere}
+.edu-image-credit p{margin:0}
+.edu-photo-error{position:absolute;inset:8px 14px auto;background:#fff;padding:10px;border-radius:8px;color:#922}
+.edu-photo-gallery{display:grid;gap:14px;margin:12px 0 28px}
+.edu-photo-gallery h2{font-size:1.23rem;margin:0}
+.edu-photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.edu-photo-card{padding:12px;display:grid;gap:9px;align-content:start}
+.edu-photo-card img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:#111;border-radius:8px}
+.edu-photo-card h3{font-size:.94rem;line-height:1.45;margin:0;min-height:42px}
+.edu-photo-card button{white-space:normal;min-height:44px}
+@media(max-width:810px){.edu-photo-split{grid-template-columns:1fr}.edu-legend-list{max-height:330px}.edu-photo-viewer{padding:13px}.edu-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.edu-photo-grid{grid-template-columns:1fr}.edu-marker{min-width:21px;min-height:21px;font-size:10px;padding:2px 3px}.edu-viewer-actions{display:grid;grid-template-columns:1fr}.edu-photo-viewer h2{font-size:1.08rem}}
