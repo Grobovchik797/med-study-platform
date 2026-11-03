@@ -14,7 +14,7 @@ files = [
     "photos/duodenum.jpg", "photos/jejunum.jpg", "photos/ileum.jpg",
     "photos/salivary-submandibular.jpg", "photos/esophagus.jpg", "photos/stomach-fundus.jpg",
     "photos/colon.jpg", "photos/liver.jpg", "photos/pancreas.jpg",
-    "photos/liver-central-vein.jpg", "photos/liver-portal-triad.jpg",
+    "photos/liver-central-vein.jpg", "photos/liver-portal-triad.jpg", "photos/gastric-parietal-tem.jpg", "photos/gastric-chief-tem.jpg",
     "photos/tooth-enamel-organ.jpg", "photos/gastro-esophageal-junction.jpg",
     "photos/pyloric-stomach.jpg", "photos/esophagus-cross-section.jpg", "photos/tongue-foliate.jpg", "photos/tongue-filiform.jpg",
     "photos/palatine-tonsil.jpg", "photos/parotid-gland.jpg", "photos/mixed-salivary-gland.jpg", "photos/tooth-dentin-enamel.jpg",
