@@ -33,7 +33,7 @@ assert set(guide["pendingDepartmentChapters"])=={"liver","pancreas"}
 assert len(dept["specimens"])==14
 assert not any({"liver","pancreas"}&set(spec["chapters"]) for spec in dept["specimens"])
 assert {"liver","pancreas"}.issubset({x["id"] for x in atlas["images"]})
-assert journal["entries"][0]["version"]=="1.9.5"
+assert any(entry["version"]=="1.9.5" for entry in journal["entries"]), "Do not erase 1.9.5 route release"
 science=journal["scientificChanges"]
 assert len(science)==4 and {item["chapterId"] for item in science}=={"teeth","liver","pancreas","colon"}
 assert sum(len(ch["deep"])-2 for ch in chapters)==5
