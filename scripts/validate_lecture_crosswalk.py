@@ -22,7 +22,7 @@ for chapter in chapters:
     added=" ".join(chapter["deep"][2:])
     for term in terms:
         assert term.lower() in added.lower(),(chapter["id"],term)
-assert journal["entries"][0]["version"]=="1.9.4"
+assert any(entry["version"]=="1.9.4" for entry in journal["entries"]), "Preserve archived scientific lecture release"
 science=journal["scientificChanges"]
 assert len(science)==4
 assert {item["chapterId"] for item in science}==set(new)
