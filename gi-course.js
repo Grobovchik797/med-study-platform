@@ -195,7 +195,7 @@ function briefExtract(text){
   return String(text).split(/(?<=\.)\s+/u).slice(0,2).join(' ');
 }
 
-function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,onColloquium=null,colloquiumGuide=null,scientificChanges=[],depth='brief'}) {
+function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuestions=[],onBack,onSlide,onExam,onWorkbook,onDepartment,onFlashcards,onColloquium=null,onExternalAtlas=null,colloquiumGuide=null,scientificChanges=[],depth='brief'}) {
  const progressMount=el('div','gi-topic-progress');
  const readingMount=el('div','gi-topic-reading');
  const focusMount=el('div','gi-topic-focus');
@@ -222,6 +222,7 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
     'Реальный справочный микропрепарат: изучение, самопроверка и поиск структур.':
     'Отдельной подтверждённой микрофотографии для этой главы пока нет.'));
   if(chapter.slideId&&onSlide)atlasTile.append(button('Открыть микропрепарат →',()=>onSlide(chapter.slideId),'gi-button'));
+  if(onExternalAtlas)atlasTile.append(button('Препараты EduBiotech →',onExternalAtlas,'gi-button gi-light'));
   const cardsTile=el('section','card library-feature');
   append(cardsTile,el('h2','','Карточки'),paragraph('Вспомни признаки и механизмы по восьми карточкам этой темы.'),
     button('Учить карточки →',onFlashcards,'gi-button'));
