@@ -1,0 +1,2671 @@
+{
+  "version": 1,
+  "courseId": "gi-histology",
+  "source": {
+    "name": "EduBiotech — Руководство-атлас по гистологии, цитологии и эмбриологии",
+    "authors": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+    "credit": "Использовано с разрешения для учебных целей; источник: edubiotech.ru",
+    "homepage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/index.htm"
+  },
+  "rightsNote": "Владелец подтвердил разрешение на учебное размещение изображений и обозначений при обязательном указании edubiotech.ru (04.11.2026).",
+  "labelType": "original-author-marksdata",
+  "sourceTopics": [
+    23,
+    24,
+    25
+  ],
+  "images": [
+    {
+      "id": "t23-01",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "tongue",
+      "listPosition": 1,
+      "variant": "base",
+      "title": "1. Препарат - язык. Сагиттальный срез кончика языка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "1,а. Препарат - язык. Сагиттальный срез кончика языка.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams188.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams188.jpg",
+      "image": "./photos/edubiotech/t23-01.jpg",
+      "imageSha256": "7fd1434abebac088c0f3d93c7a3817b55c56ccae9430589b63615b74653c0c03",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1",
+          "x": 222,
+          "y": 238,
+          "toX": 222,
+          "toY": 238,
+          "label": "нитевидный сосочек языка"
+        },
+        {
+          "number": "2",
+          "x": 420,
+          "y": 217,
+          "toX": 420,
+          "toY": 217,
+          "label": "грибовидный сосочек языка"
+        },
+        {
+          "number": "3",
+          "x": 310,
+          "y": 413,
+          "toX": 310,
+          "toY": 413,
+          "label": "частично ороговевающий эпителий"
+        },
+        {
+          "number": "4",
+          "x": 314,
+          "y": 493,
+          "toX": 314,
+          "toY": 493,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 614,
+          "y": 463,
+          "toX": 614,
+          "toY": 463,
+          "label": "мышцы языка"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-01-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "tongue",
+      "listPosition": 1,
+      "variant": "magnified",
+      "title": "1. Препарат - язык. Сагиттальный срез кончика языка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "1,б. Препарат - язык. Нижняя поверхность. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams187.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams187.jpg",
+      "image": "./photos/edubiotech/t23-01-v1.jpg",
+      "imageSha256": "1b44061dcf115928ad71f24da3fc9be537d39af774331ff4d96bcf964b38d075",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "1",
+          "x": 509,
+          "y": 510,
+          "toX": 563,
+          "toY": 473,
+          "label": "многослойный плоский неороговевающий эпителий"
+        },
+        {
+          "number": "2",
+          "x": 348,
+          "y": 498,
+          "toX": 348,
+          "toY": 498,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 228,
+          "y": 440,
+          "toX": 228,
+          "toY": 440,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "4",
+          "x": 547,
+          "y": 234,
+          "toX": 547,
+          "toY": 234,
+          "label": "поперечнополосатая мышечная ткань"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-02",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "salivary",
+      "listPosition": 2,
+      "variant": "base",
+      "title": "2. Препарат - околоушная слюнная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,а. Препарат - околоушная слюнная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams130.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams130.jpg",
+      "image": "./photos/edubiotech/t23-02.jpg",
+      "imageSha256": "ef3a58377f790ba0d2c29dbec7d11b317ff55ffa998c535bb694cfdfb582bd61",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 12,
+      "marks": [
+        {
+          "number": "1",
+          "x": 451,
+          "y": 139,
+          "toX": 451,
+          "toY": 139,
+          "label": "железистый эпителий"
+        },
+        {
+          "number": "1",
+          "x": 573,
+          "y": 271,
+          "toX": 573,
+          "toY": 271,
+          "label": "железистый эпителий"
+        },
+        {
+          "number": "2",
+          "x": 411,
+          "y": 239,
+          "toX": 475,
+          "toY": 232,
+          "label": "вставочные протоки"
+        },
+        {
+          "number": "2",
+          "x": 516,
+          "y": 431,
+          "toX": 559,
+          "toY": 411,
+          "label": "вставочные протоки"
+        },
+        {
+          "number": "3",
+          "x": 314,
+          "y": 253,
+          "toX": 383,
+          "toY": 223,
+          "label": "исчерченные протоки"
+        },
+        {
+          "number": "3",
+          "x": 524,
+          "y": 262,
+          "toX": 555,
+          "toY": 209,
+          "label": "исчерченные протоки"
+        },
+        {
+          "number": "4",
+          "x": 142,
+          "y": 409,
+          "toX": 142,
+          "toY": 409,
+          "label": "соединительнотканная прослойка"
+        },
+        {
+          "number": "4",
+          "x": 451,
+          "y": 393,
+          "toX": 451,
+          "toY": 393,
+          "label": "соединительнотканная прослойка"
+        },
+        {
+          "number": "5",
+          "x": 91,
+          "y": 331,
+          "toX": 91,
+          "toY": 331,
+          "label": "междольковые выводные протоки"
+        },
+        {
+          "number": "5",
+          "x": 179,
+          "y": 204,
+          "toX": 179,
+          "toY": 204,
+          "label": "междольковые выводные протоки"
+        },
+        {
+          "number": "6",
+          "x": 193,
+          "y": 55,
+          "toX": 264,
+          "toY": 60,
+          "label": "артерия"
+        },
+        {
+          "number": "7",
+          "x": 196,
+          "y": 318,
+          "toX": 196,
+          "toY": 317,
+          "label": "вена"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-02-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "salivary",
+      "listPosition": 2,
+      "variant": "magnified",
+      "title": "2. Препарат - околоушная слюнная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,б. Препарат - околоушная слюнная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams111.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams111.jpg",
+      "image": "./photos/edubiotech/t23-02-v1.jpg",
+      "imageSha256": "4b3ea711808cd2ec27333b516b972deed9c0c10ba218ef08e6c65a14bb4e7d09",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 3,
+      "marks": [
+        {
+          "number": "4",
+          "x": 510,
+          "y": 240,
+          "toX": 510,
+          "toY": 240,
+          "label": "междольковая соединительная ткань"
+        },
+        {
+          "number": "5",
+          "x": 535,
+          "y": 475,
+          "toX": 535,
+          "toY": 475,
+          "label": "междольковый проток"
+        },
+        {
+          "number": "6",
+          "x": 300,
+          "y": 146,
+          "toX": 300,
+          "toY": 146,
+          "label": "артерия"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-03",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "salivary",
+      "listPosition": 3,
+      "variant": "base",
+      "title": "3. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,а. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams128.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams128.jpg",
+      "image": "./photos/edubiotech/t23-03.jpg",
+      "imageSha256": "641900f31391f7cc4210f7a8d0cc1b7481373327df41f526c91a7e3fc56bd0ba",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 8,
+      "marks": [
+        {
+          "number": "1",
+          "x": 261,
+          "y": 239,
+          "toX": 200,
+          "toY": 221,
+          "label": "серозный концевой отдел"
+        },
+        {
+          "number": "2",
+          "x": 322,
+          "y": 174,
+          "toX": 322,
+          "toY": 174,
+          "label": "смешанный концевой отдел"
+        },
+        {
+          "number": "3",
+          "x": 456,
+          "y": 310,
+          "toX": 471,
+          "toY": 297,
+          "label": "вставочный проток"
+        },
+        {
+          "number": "4",
+          "x": 453,
+          "y": 147,
+          "toX": 477,
+          "toY": 136,
+          "label": "исчерченный проток"
+        },
+        {
+          "number": "5",
+          "x": 509,
+          "y": 472,
+          "toX": 509,
+          "toY": 472,
+          "label": "междольковая соединительнотканная перегородка"
+        },
+        {
+          "number": "6",
+          "x": 463,
+          "y": 525,
+          "toX": 463,
+          "toY": 525,
+          "label": "междольковый проток"
+        },
+        {
+          "number": "7А",
+          "x": 547,
+          "y": 545,
+          "toX": 552,
+          "toY": 511,
+          "label": "артерия"
+        },
+        {
+          "number": "7Б",
+          "x": 601,
+          "y": 398,
+          "toX": 601,
+          "toY": 398,
+          "label": "вены"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-03-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "salivary",
+      "listPosition": 3,
+      "variant": "magnified",
+      "title": "3. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,б. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams105.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams105.jpg",
+      "image": "./photos/edubiotech/t23-03-v1.jpg",
+      "imageSha256": "ab572717a9af0f97ce55db37e00693ebbf3235449223b2de0beb51c1fd149601",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 7,
+      "marks": [
+        {
+          "number": "1",
+          "x": 615,
+          "y": 259,
+          "toX": 560,
+          "toY": 262,
+          "label": "серозный концевой отдел"
+        },
+        {
+          "number": "2",
+          "x": 450,
+          "y": 352,
+          "toX": 450,
+          "toY": 352,
+          "label": "смешанный концевой отдел"
+        },
+        {
+          "number": "4",
+          "x": 674,
+          "y": 376,
+          "toX": 688,
+          "toY": 390,
+          "label": "исчерченный проток"
+        },
+        {
+          "number": "5",
+          "x": 380,
+          "y": 296,
+          "toX": 378,
+          "toY": 281,
+          "label": "междольковая соединительнотканная перегородка"
+        },
+        {
+          "number": "6",
+          "x": 454,
+          "y": 481,
+          "toX": 454,
+          "toY": 481,
+          "label": "междольковый проток"
+        },
+        {
+          "number": "7А",
+          "x": 163,
+          "y": 234,
+          "toX": 98,
+          "toY": 224,
+          "label": "артерия"
+        },
+        {
+          "number": "7Б",
+          "x": 91,
+          "y": 116,
+          "toX": 91,
+          "toY": 116,
+          "label": "вена"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-04",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "tonsils",
+      "listPosition": 4,
+      "variant": "base",
+      "title": "4. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "viewerTitle": "4,а. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams181.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams181.jpg",
+      "image": "./photos/edubiotech/t23-04.jpg",
+      "imageSha256": "6347d4bf88e8be814bccfa4f233918f67cc948679099d333056be39e64e192d6",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 6,
+      "marks": [
+        {
+          "number": "1",
+          "x": 593,
+          "y": 383,
+          "toX": 593,
+          "toY": 383,
+          "label": "крипта слизистой оболочки"
+        },
+        {
+          "number": "2",
+          "x": 614,
+          "y": 323,
+          "toX": 635,
+          "toY": 339,
+          "label": "многослойный плоский неороговевающий эпителий"
+        },
+        {
+          "number": "3",
+          "x": 160,
+          "y": 544,
+          "toX": 192,
+          "toY": 510,
+          "label": "лимфоциты в эпителии"
+        },
+        {
+          "number": "4",
+          "x": 316,
+          "y": 196,
+          "toX": 316,
+          "toY": 196,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 467,
+          "y": 168,
+          "toX": 467,
+          "toY": 168,
+          "label": "лимфатический фолликул"
+        },
+        {
+          "number": "6",
+          "x": 663,
+          "y": 83,
+          "toX": 663,
+          "toY": 83,
+          "label": "внефоллекулярная лимфоидная ткань"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-04-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "tonsils",
+      "listPosition": 4,
+      "variant": "magnified",
+      "title": "4. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "viewerTitle": "4,б. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams183.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams183.jpg",
+      "image": "./photos/edubiotech/t23-04-v1.jpg",
+      "imageSha256": "435922f4fcba39138aa9735507dc1c115219a4a2a3cbd54c98e8b8f3695e0a38",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1",
+          "x": 155,
+          "y": 464,
+          "toX": 155,
+          "toY": 464,
+          "label": "просвет крипты"
+        },
+        {
+          "number": "2",
+          "x": 224,
+          "y": 408,
+          "toX": 213,
+          "toY": 446,
+          "label": "многослойный плоский неороговевающий эпителий"
+        },
+        {
+          "number": "3",
+          "x": 722,
+          "y": 508,
+          "toX": 733,
+          "toY": 535,
+          "label": "лимфоциты в эпителии"
+        },
+        {
+          "number": "4",
+          "x": 61,
+          "y": 244,
+          "toX": 61,
+          "toY": 244,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 487,
+          "y": 181,
+          "toX": 488,
+          "toY": 181,
+          "label": "лимфоидный фолликул"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-05",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 5,
+      "variant": "base",
+      "title": "5. Препарат - декальцинированный однокорневой зуб в альвеоле челюстной кости; продольный срез. Окраска гематокислин-эозином.",
+      "viewerTitle": "5. Препарат - декальцинированный однокорневой зуб в альвеоле челюстной кости; продольный срез.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pic72v.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pic72v.jpg",
+      "image": "./photos/edubiotech/t23-05.jpg",
+      "imageSha256": "86de5d7be9cce356da7b03f1a8bf7976afbe76c88980346197f9f6aac7edf1bb",
+      "width": 546,
+      "height": 600,
+      "appletWidth": 544,
+      "appletHeight": 724,
+      "declaredMarks": 6,
+      "marks": [
+        {
+          "number": "1",
+          "x": 167,
+          "y": 293,
+          "toX": 96,
+          "toY": 243,
+          "label": "лунка челюстной кости"
+        },
+        {
+          "number": "2",
+          "x": 219,
+          "y": 290,
+          "toX": 117,
+          "toY": 207,
+          "label": "корень зуба"
+        },
+        {
+          "number": "3",
+          "x": 263,
+          "y": 229,
+          "toX": 406,
+          "toY": 220,
+          "label": "шейка зуба"
+        },
+        {
+          "number": "4",
+          "x": 229,
+          "y": 309,
+          "toX": 365,
+          "toY": 307,
+          "label": "зубная связка"
+        },
+        {
+          "number": "5",
+          "x": 249,
+          "y": 193,
+          "toX": 144,
+          "toY": 147,
+          "label": "пульпа"
+        },
+        {
+          "number": "6",
+          "x": 224,
+          "y": 76,
+          "toX": 224,
+          "toY": 76,
+          "label": "дентин"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-06",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 6,
+      "variant": "base",
+      "title": "6. Препарат - шлиф однокоренного зуба (препарат не окрашен).",
+      "viewerTitle": "6. Препарат - шлиф однокоренного зуба (препарат не окрашен);",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pic71.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pic71.jpg",
+      "image": "./photos/edubiotech/t23-06.jpg",
+      "imageSha256": "341426aca233927c26d7774f35dbbed7c4ae499b2a7bc8a2bc22732e8b2ebe74",
+      "width": 174,
+      "height": 588,
+      "appletWidth": 176,
+      "appletHeight": 715,
+      "declaredMarks": 3,
+      "marks": [
+        {
+          "number": "1",
+          "x": 61,
+          "y": 48,
+          "toX": 43,
+          "toY": 38,
+          "label": "эмаль"
+        },
+        {
+          "number": "2",
+          "x": 128,
+          "y": 202,
+          "toX": 145,
+          "toY": 113,
+          "label": "дентин"
+        },
+        {
+          "number": "3",
+          "x": 128,
+          "y": 440,
+          "toX": 148,
+          "toY": 436,
+          "label": "цемент"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-07",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 7,
+      "variant": "base",
+      "title": "7. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "viewerTitle": "7,а. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b151p.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b151.jpg",
+      "image": "./photos/edubiotech/t23-07.jpg",
+      "imageSha256": "1484d6f0fcdf0023977e1820eb641b0433626b5ac2819e2188ad1d5d535b47e5",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 9,
+      "marks": [
+        {
+          "number": "1",
+          "x": 85,
+          "y": 119,
+          "toX": 85,
+          "toY": 119,
+          "label": "эпителий ротовой полости зародыша"
+        },
+        {
+          "number": "2",
+          "x": 172,
+          "y": 48,
+          "toX": 170,
+          "toY": 96,
+          "label": "эмалевый тяж"
+        },
+        {
+          "number": "3",
+          "x": 386,
+          "y": 224,
+          "toX": 469,
+          "toY": 147,
+          "label": "эмалевый орган"
+        },
+        {
+          "number": "4",
+          "x": 378,
+          "y": 128,
+          "toX": 400,
+          "toY": 107,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "number": "5",
+          "x": 362,
+          "y": 290,
+          "toX": 362,
+          "toY": 290,
+          "label": "пульпа эмалевого органа"
+        },
+        {
+          "number": "6",
+          "x": 422,
+          "y": 342,
+          "toX": 341,
+          "toY": 356,
+          "label": "внутренний эмалевый эпителий"
+        },
+        {
+          "number": "7",
+          "x": 447,
+          "y": 411,
+          "toX": 348,
+          "toY": 419,
+          "label": "зубной сосочек"
+        },
+        {
+          "number": "8",
+          "x": 592,
+          "y": 335,
+          "toX": 646,
+          "toY": 339,
+          "label": "зубной мешочек"
+        },
+        {
+          "number": "9",
+          "x": 614,
+          "y": 69,
+          "toX": 614,
+          "toY": 69,
+          "label": "костные трабекулы"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-07-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 7,
+      "variant": "magnified",
+      "title": "7. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "viewerTitle": "7,б. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams93.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams93.jpg",
+      "image": "./photos/edubiotech/t23-07-v1.jpg",
+      "imageSha256": "4d9954666d293d9ec64620d186648b0a39d277fbf95c0a6a344a4bc79040b76b",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 6,
+      "marks": [
+        {
+          "number": "4",
+          "x": 652,
+          "y": 177,
+          "toX": 652,
+          "toY": 177,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "number": "5",
+          "x": 524,
+          "y": 256,
+          "toX": 692,
+          "toY": 350,
+          "label": "пульпа эмалевого органа"
+        },
+        {
+          "number": "6",
+          "x": 434,
+          "y": 347,
+          "toX": 434,
+          "toY": 347,
+          "label": "внутренний  эмалевый эпителий"
+        },
+        {
+          "number": "7",
+          "x": 273,
+          "y": 316,
+          "toX": 273,
+          "toY": 316,
+          "label": "зубной сосочек"
+        },
+        {
+          "number": "8",
+          "x": 180,
+          "y": 40,
+          "toX": 180,
+          "toY": 40,
+          "label": "зубной мешочек"
+        },
+        {
+          "number": "8",
+          "x": 582,
+          "y": 485,
+          "toX": 582,
+          "toY": 485,
+          "label": "зубной мешочек"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-08",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 8,
+      "variant": "base",
+      "title": "8. Препарат - развитие зуба: стадия гистогенеза зуба. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "viewerTitle": "8,а. Препарат - развитие зуба: стадия гистогенеза зуба. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b152p.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b152.jpg",
+      "image": "./photos/edubiotech/t23-08.jpg",
+      "imageSha256": "d071df5ad0ff2b81efdd7ac2feb6525179ecbe590e043d0e24f739ebfada75d9",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 12,
+      "marks": [
+        {
+          "number": "1",
+          "x": 508,
+          "y": 37,
+          "toX": 508,
+          "toY": 37,
+          "label": "эпителий ротовой полости"
+        },
+        {
+          "number": "2",
+          "x": 58,
+          "y": 128,
+          "toX": 82,
+          "toY": 134,
+          "label": "костные трабекулы"
+        },
+        {
+          "number": "3",
+          "x": 177,
+          "y": 307,
+          "toX": 177,
+          "toY": 307,
+          "label": "мезенхима"
+        },
+        {
+          "number": "4",
+          "x": 137,
+          "y": 397,
+          "toX": 186,
+          "toY": 447,
+          "label": "эмалевый тяж (зубная пластинка)"
+        },
+        {
+          "number": "5",
+          "x": 382,
+          "y": 324,
+          "toX": 350,
+          "toY": 310,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "number": "6",
+          "x": 263,
+          "y": 437,
+          "toX": 263,
+          "toY": 437,
+          "label": "эмалевая пульпа"
+        },
+        {
+          "number": "7",
+          "x": 483,
+          "y": 275,
+          "toX": 425,
+          "toY": 262,
+          "label": "адамантобласты"
+        },
+        {
+          "number": "8",
+          "x": 618,
+          "y": 232,
+          "toX": 582,
+          "toY": 364,
+          "label": "эмаль"
+        },
+        {
+          "number": "5",
+          "x": 504,
+          "y": 242,
+          "toX": 478,
+          "toY": 225,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "number": "9",
+          "x": 470,
+          "y": 388,
+          "toX": 475,
+          "toY": 415,
+          "label": "одонтобласты"
+        },
+        {
+          "number": "10",
+          "x": 635,
+          "y": 469,
+          "toX": 561,
+          "toY": 439,
+          "label": "дентин"
+        },
+        {
+          "number": "11",
+          "x": 518,
+          "y": 492,
+          "toX": 518,
+          "toY": 492,
+          "label": "пульпа зуба"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-08-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "teeth",
+      "listPosition": 8,
+      "variant": "magnified",
+      "title": "8. Препарат - развитие зуба: стадия гистогенеза зуба. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "viewerTitle": "8,б. Препарат - развитие зуба: стадия гистогенеза зуба. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b152a.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b152a.jpg",
+      "image": "./photos/edubiotech/t23-08-v1.jpg",
+      "imageSha256": "05e8480da93032dd704a50d8690edcdda7bee43d9518c8e3412f572a9d2f0754",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 7,
+      "marks": [
+        {
+          "number": "1",
+          "x": 207,
+          "y": 76,
+          "toX": 196,
+          "toY": 43,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "number": "2",
+          "x": 171,
+          "y": 137,
+          "toX": 146,
+          "toY": 68,
+          "label": "внутренний эмалевый эпителий (адамантобласты)"
+        },
+        {
+          "number": "3",
+          "x": 378,
+          "y": 149,
+          "toX": 330,
+          "toY": 40,
+          "label": "эмаль"
+        },
+        {
+          "number": "4",
+          "x": 285,
+          "y": 237,
+          "toX": 285,
+          "toY": 237,
+          "label": "дентин"
+        },
+        {
+          "number": "5",
+          "x": 357,
+          "y": 314,
+          "toX": 384,
+          "toY": 252,
+          "label": "одонтобласты"
+        },
+        {
+          "number": "6",
+          "x": 126,
+          "y": 473,
+          "toX": 126,
+          "toY": 473,
+          "label": "пульпа зуба"
+        },
+        {
+          "number": "7",
+          "x": 671,
+          "y": 529,
+          "toX": 671,
+          "toY": 529,
+          "label": "мезенхима"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-09",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "esophagus",
+      "listPosition": 9,
+      "variant": "base",
+      "title": "9. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "viewerTitle": "9,а. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams84p.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams84.jpg",
+      "image": "./photos/edubiotech/t23-09.jpg",
+      "imageSha256": "56bfce0f019046066172738ea604ef4ae415f1123902f47e3e80b22ea748794f",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "i",
+          "x": 631,
+          "y": 411,
+          "toX": 631,
+          "toY": 411,
+          "label": "слизистая оболочка"
+        },
+        {
+          "number": "ii",
+          "x": 473,
+          "y": 363,
+          "toX": 473,
+          "toY": 363,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "iii",
+          "x": 253,
+          "y": 238,
+          "toX": 253,
+          "toY": 238,
+          "label": "мышечная оболочка"
+        },
+        {
+          "number": "iv",
+          "x": 20,
+          "y": 59,
+          "toX": 63,
+          "toY": 75,
+          "label": "адвентициальная  оболочка"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t23-09-v1",
+      "kind": "specimen",
+      "topic": 23,
+      "chapterId": "esophagus",
+      "listPosition": 9,
+      "variant": "magnified",
+      "title": "9. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "viewerTitle": "9,б. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams86.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams86.jpg",
+      "image": "./photos/edubiotech/t23-09-v1.jpg",
+      "imageSha256": "4058d123841585416161c03ba959d45af3dda1ede4a968be07ca237848342c6e",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 8,
+      "marks": [
+        {
+          "number": "1",
+          "x": 145,
+          "y": 272,
+          "toX": 145,
+          "toY": 272,
+          "label": "многослойный плоский неороговевающий эпителий"
+        },
+        {
+          "number": "2",
+          "x": 107,
+          "y": 293,
+          "toX": 107,
+          "toY": 293,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 279,
+          "y": 289,
+          "toX": 279,
+          "toY": 289,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "4",
+          "x": 344,
+          "y": 375,
+          "toX": 344,
+          "toY": 375,
+          "label": "концевые отделы собственных желез пищевода"
+        },
+        {
+          "number": "5",
+          "x": 250,
+          "y": 328,
+          "toX": 344,
+          "toY": 305,
+          "label": "выводные протоки собственных желез пищевода"
+        },
+        {
+          "number": "i",
+          "x": 171,
+          "y": 112,
+          "toX": 171,
+          "toY": 112,
+          "label": "слизистая оболочка"
+        },
+        {
+          "number": "ii",
+          "x": 294,
+          "y": 58,
+          "toX": 294,
+          "toY": 58,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "5",
+          "x": 65,
+          "y": 461,
+          "toX": 58,
+          "toY": 473,
+          "label": "выводные протоки собственных желез пищевода"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-01",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "stomach",
+      "listPosition": 1,
+      "variant": "base",
+      "title": "1. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "viewerTitle": "1,а. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams81.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams81.jpg",
+      "image": "./photos/edubiotech/t24-01.jpg",
+      "imageSha256": "1b209de87e8507eb20d82087a9b106d131f8a5cbe07fe36db4cffaf83915ea0b",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1.А",
+          "x": 90,
+          "y": 177,
+          "toX": 58,
+          "toY": 162,
+          "label": "желудочная ямка"
+        },
+        {
+          "number": "1.Б",
+          "x": 67,
+          "y": 226,
+          "toX": 54,
+          "toY": 218,
+          "label": "однослойный призматический железистый эпителий"
+        },
+        {
+          "number": "2.А",
+          "x": 99,
+          "y": 343,
+          "toX": 52,
+          "toY": 309,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "2.Б",
+          "x": 275,
+          "y": 191,
+          "toX": 260,
+          "toY": 221,
+          "label": "железы желудка"
+        },
+        {
+          "number": "3",
+          "x": 457,
+          "y": 365,
+          "toX": 408,
+          "toY": 358,
+          "label": "мышечная пластинка слизистой оболочки"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-01-v1",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "stomach",
+      "listPosition": 1,
+      "variant": "magnified",
+      "title": "1. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "viewerTitle": "1,б. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams82.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams82.jpg",
+      "image": "./photos/edubiotech/t24-01-v1.jpg",
+      "imageSha256": "4d6e44590cb6635c44b2b99564a9c77e88f3924340260767902353f9b96389c4",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1.А",
+          "x": 104,
+          "y": 207,
+          "toX": 60,
+          "toY": 195,
+          "label": "желудочная ямка"
+        },
+        {
+          "number": "1.Б",
+          "x": 56,
+          "y": 257,
+          "toX": 45,
+          "toY": 247,
+          "label": "однослойный призматический железистый эпителий"
+        },
+        {
+          "number": "2.А",
+          "x": 265,
+          "y": 150,
+          "toX": 259,
+          "toY": 168,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "2.Б",
+          "x": 277,
+          "y": 229,
+          "toX": 270,
+          "toY": 261,
+          "label": "железы желудка"
+        },
+        {
+          "number": "3",
+          "x": 655,
+          "y": 269,
+          "toX": 595,
+          "toY": 269,
+          "label": "мышечная пластинка слизистой оболочки"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-02",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "esophagus",
+      "listPosition": 2,
+      "variant": "base",
+      "title": "2. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,а. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams24.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams24.jpg",
+      "image": "./photos/edubiotech/t24-02.jpg",
+      "imageSha256": "0d6959faca5af8d0f844b7224c3bb5b2489659dcb37dd30741c5211542540efd",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 15,
+      "marks": [
+        {
+          "number": "А",
+          "x": 111,
+          "y": 54,
+          "toX": 111,
+          "toY": 54,
+          "label": "пищевод"
+        },
+        {
+          "number": "Б",
+          "x": 652,
+          "y": 36,
+          "toX": 652,
+          "toY": 36,
+          "label": "кардиальная область желудка"
+        },
+        {
+          "number": "1Б",
+          "x": 582,
+          "y": 84,
+          "toX": 577,
+          "toY": 43,
+          "label": "желудочные ямки"
+        },
+        {
+          "number": "2А",
+          "x": 263,
+          "y": 114,
+          "toX": 257,
+          "toY": 87,
+          "label": "многослойный плоский эпителий пищевода"
+        },
+        {
+          "number": "2Б",
+          "x": 526,
+          "y": 84,
+          "toX": 511,
+          "toY": 59,
+          "label": "однослойный цилиндрический железистый эпителий"
+        },
+        {
+          "number": "3",
+          "x": 596,
+          "y": 180,
+          "toX": 596,
+          "toY": 180,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 316,
+          "y": 158,
+          "toX": 316,
+          "toY": 158,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3Б",
+          "x": 683,
+          "y": 163,
+          "toX": 673,
+          "toY": 145,
+          "label": "кардиальная железа желудка"
+        },
+        {
+          "number": "4",
+          "x": 636,
+          "y": 242,
+          "toX": 645,
+          "toY": 228,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "4",
+          "x": 82,
+          "y": 161,
+          "toX": 84,
+          "toY": 150,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 43,
+          "y": 243,
+          "toX": 43,
+          "toY": 243,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "5",
+          "x": 722,
+          "y": 366,
+          "toX": 722,
+          "toY": 366,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "5А",
+          "x": 349,
+          "y": 319,
+          "toX": 349,
+          "toY": 357,
+          "label": "собственные железы пищевода"
+        },
+        {
+          "number": "5",
+          "x": 111,
+          "y": 365,
+          "toX": 111,
+          "toY": 365,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "5А",
+          "x": 118,
+          "y": 228,
+          "toX": 118,
+          "toY": 228,
+          "label": "собственные железы пищевода"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-02-v1",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "esophagus",
+      "listPosition": 2,
+      "variant": "magnified",
+      "title": "2. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,б. Препарат - переход пищевода в желудок. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams26_28.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams26_28.jpg",
+      "image": "./photos/edubiotech/t24-02-v1.jpg",
+      "imageSha256": "641ef7f3d9ea36f9cbe9123aafcc599301e0fb29c84050ad3ad358e6a97c51b5",
+      "width": 770,
+      "height": 494,
+      "appletWidth": 770,
+      "appletHeight": 630,
+      "declaredMarks": 13,
+      "marks": [
+        {
+          "number": "1.Б",
+          "x": 512,
+          "y": 97,
+          "toX": 523,
+          "toY": 40,
+          "label": "ямка желудка"
+        },
+        {
+          "number": "2.А",
+          "x": 89,
+          "y": 45,
+          "toX": 89,
+          "toY": 45,
+          "label": "многослойный плоский эпителий пищевода"
+        },
+        {
+          "number": "2.Б",
+          "x": 602,
+          "y": 48,
+          "toX": 616,
+          "toY": 27,
+          "label": "однослойный цилиндрический эпителий желудка"
+        },
+        {
+          "number": "3",
+          "x": 117,
+          "y": 117,
+          "toX": 117,
+          "toY": 117,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 617,
+          "y": 153,
+          "toX": 617,
+          "toY": 153,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3.Б",
+          "x": 522,
+          "y": 227,
+          "toX": 521,
+          "toY": 244,
+          "label": "кардиальные железы желудка"
+        },
+        {
+          "number": "3",
+          "x": 702,
+          "y": 291,
+          "toX": 702,
+          "toY": 291,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3.В",
+          "x": 610,
+          "y": 356,
+          "toX": 610,
+          "toY": 356,
+          "label": "лимфатический фолликул в слизистой желудка"
+        },
+        {
+          "number": "4",
+          "x": 204,
+          "y": 192,
+          "toX": 211,
+          "toY": 173,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "4",
+          "x": 557,
+          "y": 450,
+          "toX": 507,
+          "toY": 459,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 309,
+          "y": 397,
+          "toX": 309,
+          "toY": 397,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "5.А",
+          "x": 168,
+          "y": 393,
+          "toX": 168,
+          "toY": 393,
+          "label": "собственные железы пищевода"
+        },
+        {
+          "number": "5.Б",
+          "x": 72,
+          "y": 114,
+          "toX": 65,
+          "toY": 133,
+          "label": "выводные протоки собственной пищевода"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-03",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "gastric-glands",
+      "listPosition": 3,
+      "variant": "base",
+      "title": "3. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,а. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams232.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams232.jpg",
+      "image": "./photos/edubiotech/t24-03.jpg",
+      "imageSha256": "453841294203b9cbfa1477be138f70ca7f0bd60b44287afa4cdaab5474020275",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1",
+          "x": 519,
+          "y": 203,
+          "toX": 519,
+          "toY": 203,
+          "label": "желудочные ямки"
+        },
+        {
+          "number": "1",
+          "x": 317,
+          "y": 284,
+          "toX": 317,
+          "toY": 284,
+          "label": "желудочные ямки"
+        },
+        {
+          "number": "2",
+          "x": 130,
+          "y": 382,
+          "toX": 130,
+          "toY": 382,
+          "label": "железы"
+        },
+        {
+          "number": "3",
+          "x": 495,
+          "y": 353,
+          "toX": 508,
+          "toY": 422,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "number": "2",
+          "x": 451,
+          "y": 367,
+          "toX": 451,
+          "toY": 367,
+          "label": "железы"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-03-v1",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "gastric-glands",
+      "listPosition": 3,
+      "variant": "magnified",
+      "title": "3. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,б. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams227.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams227.jpg",
+      "image": "./photos/edubiotech/t24-03-v1.jpg",
+      "imageSha256": "75adf23bae6cd20076d1fddee654f3487eed4d1157f67a30bdc968911ef3f195",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "1",
+          "x": 170,
+          "y": 277,
+          "toX": 170,
+          "toY": 277,
+          "label": "желудочные ямки"
+        },
+        {
+          "number": "1.А",
+          "x": 387,
+          "y": 242,
+          "toX": 417,
+          "toY": 226,
+          "label": "однослойный призматический железистый эпителий"
+        },
+        {
+          "number": "3",
+          "x": 543,
+          "y": 415,
+          "toX": 469,
+          "toY": 462,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "1",
+          "x": 381,
+          "y": 89,
+          "toX": 381,
+          "toY": 89,
+          "label": "желудочные ямки"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-04",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "jejunum",
+      "listPosition": 4,
+      "variant": "base",
+      "title": "4. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "4,а. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams239.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams239.jpg",
+      "image": "./photos/edubiotech/t24-04.jpg",
+      "imageSha256": "a3b8887e51ed1fdddd39f415c16a427d6e30326c500a167097b3b5181860ffcf",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 6,
+      "marks": [
+        {
+          "number": "1.А",
+          "x": 169,
+          "y": 243,
+          "toX": 118,
+          "toY": 162,
+          "label": "кишечная ворсинка"
+        },
+        {
+          "number": "1.Б",
+          "x": 303,
+          "y": 488,
+          "toX": 260,
+          "toY": 449,
+          "label": "крипта кишечника"
+        },
+        {
+          "number": "1.В",
+          "x": 265,
+          "y": 124,
+          "toX": 238,
+          "toY": 114,
+          "label": "однослойный цилиндрический каемчатый эпителий"
+        },
+        {
+          "number": "2",
+          "x": 233,
+          "y": 299,
+          "toX": 233,
+          "toY": 299,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 507,
+          "y": 466,
+          "toX": 550,
+          "toY": 458,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "ii",
+          "x": 540,
+          "y": 523,
+          "toX": 540,
+          "toY": 523,
+          "label": "подслизистая основа"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-04-v1",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "jejunum",
+      "listPosition": 4,
+      "variant": "magnified",
+      "title": "4. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "4,б. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams240.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams240.jpg",
+      "image": "./photos/edubiotech/t24-04-v1.jpg",
+      "imageSha256": "9ef165f404320d08a0bb2a9287d64c7e08e193dedd4fbb3325189685d6c00566",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "1.В",
+          "x": 426,
+          "y": 401,
+          "toX": 379,
+          "toY": 410,
+          "label": "однослойный цилиндрический каемчатый эпителий"
+        },
+        {
+          "number": "1.Г",
+          "x": 193,
+          "y": 218,
+          "toX": 187,
+          "toY": 245,
+          "label": "оксифильная каемка"
+        },
+        {
+          "number": "2",
+          "x": 256,
+          "y": 403,
+          "toX": 256,
+          "toY": 403,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3.А",
+          "x": 496,
+          "y": 279,
+          "toX": 516,
+          "toY": 279,
+          "label": "гладкие миоциты в составе ворсинок"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-05",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "jejunum",
+      "listPosition": 5,
+      "variant": "base",
+      "title": "5. Препарат - тонкая кишка; окраска - ШИК-реакция и гематоксилин.",
+      "viewerTitle": "5. Препарат - тонкая кишка; окраска - ШИК-реакция и гематоксилин.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/11.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/11.jpg",
+      "image": "./photos/edubiotech/t24-05.jpg",
+      "imageSha256": "fb2971c0100b319e1ce9fac4ec22ed1c7efe87656b8a9b3ba45cc0a29b56bb3c",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "1",
+          "x": 146,
+          "y": 134,
+          "toX": 126,
+          "toY": 112,
+          "label": "бокаловидные клетки"
+        },
+        {
+          "number": "2",
+          "x": 432,
+          "y": 423,
+          "toX": 439,
+          "toY": 439,
+          "label": "столбчатые (каемчатые) эпителиоциты"
+        },
+        {
+          "number": "3",
+          "x": 258,
+          "y": 321,
+          "toX": 258,
+          "toY": 321,
+          "label": "клетки соединительной ткани"
+        },
+        {
+          "number": "4",
+          "x": 305,
+          "y": 291,
+          "toX": 308,
+          "toY": 270,
+          "label": "гладкие миоциты"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t24-06",
+      "kind": "specimen",
+      "topic": 24,
+      "chapterId": "duodenum",
+      "listPosition": 6,
+      "variant": "base",
+      "title": "6. Препарат - переход пилорической части желудка в двенадцатиперстную кишку; продольный срез. Окраска гематоксилин-эозином.",
+      "viewerTitle": "6. Препарат - переход пилорической части желудка в двенадцатиперстную кишку; продольный срез. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pr4.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pr4.jpg",
+      "image": "./photos/edubiotech/t24-06.jpg",
+      "imageSha256": "04d835728a5fbeab565ef6340d63211a8b386856c175cf8db4212150aae101d0",
+      "width": 770,
+      "height": 378,
+      "appletWidth": 770,
+      "appletHeight": 503,
+      "declaredMarks": 12,
+      "marks": [
+        {
+          "number": "А",
+          "x": 78,
+          "y": 40,
+          "toX": 78,
+          "toY": 40,
+          "label": "пилорический отдел желудка"
+        },
+        {
+          "number": "Б",
+          "x": 531,
+          "y": 43,
+          "toX": 531,
+          "toY": 43,
+          "label": "двенадцатиперстная кишка"
+        },
+        {
+          "number": "i.А",
+          "x": 240,
+          "y": 137,
+          "toX": 247,
+          "toY": 104,
+          "label": "слизистая оболочка желудка"
+        },
+        {
+          "number": "i.Б",
+          "x": 494,
+          "y": 200,
+          "toX": 499,
+          "toY": 125,
+          "label": "слизистая оболочка двенадцатиперстной кишки"
+        },
+        {
+          "number": "1.А",
+          "x": 115,
+          "y": 84,
+          "toX": 126,
+          "toY": 67,
+          "label": "циркулярная складка слизистой желудка"
+        },
+        {
+          "number": "2.Б",
+          "x": 395,
+          "y": 178,
+          "toX": 388,
+          "toY": 140,
+          "label": "ворсинки кишечника"
+        },
+        {
+          "number": "ii.А",
+          "x": 113,
+          "y": 148,
+          "toX": 158,
+          "toY": 107,
+          "label": "подслизистая основа желудка"
+        },
+        {
+          "number": "ii.Б",
+          "x": 393,
+          "y": 254,
+          "toX": 390,
+          "toY": 307,
+          "label": "подслизистая основа кишки с дуоденальными железами"
+        },
+        {
+          "number": "iii.А",
+          "x": 157,
+          "y": 278,
+          "toX": 157,
+          "toY": 278,
+          "label": "мышечная оболочка желудка"
+        },
+        {
+          "number": "iii.Б",
+          "x": 490,
+          "y": 288,
+          "toX": 500,
+          "toY": 321,
+          "label": "мышечная оболочка двенадцатиперстной кишки"
+        },
+        {
+          "number": "iv.А",
+          "x": 110,
+          "y": 305,
+          "toX": 103,
+          "toY": 313,
+          "label": "серозная оболочка желудка"
+        },
+        {
+          "number": "iv.Б",
+          "x": 623,
+          "y": 297,
+          "toX": 630,
+          "toY": 308,
+          "label": "серозная оболочка двенадцатиперстной кишки"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-01",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "colon",
+      "listPosition": 1,
+      "variant": "base",
+      "title": "1. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "1,а. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams216.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams216.jpg",
+      "image": "./photos/edubiotech/t25-01.jpg",
+      "imageSha256": "a3c2b4babc95a195803c959751da1ab13915ba059d72075445c84e4075c2b7df",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 8,
+      "marks": [
+        {
+          "number": "i",
+          "x": 101,
+          "y": 227,
+          "toX": 102,
+          "toY": 227,
+          "label": "слизистая оболочка"
+        },
+        {
+          "number": "ii",
+          "x": 113,
+          "y": 366,
+          "toX": 113,
+          "toY": 366,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "iii",
+          "x": 121,
+          "y": 494,
+          "toX": 121,
+          "toY": 494,
+          "label": "мышечная оболочка"
+        },
+        {
+          "number": "1.А",
+          "x": 475,
+          "y": 222,
+          "toX": 537,
+          "toY": 215,
+          "label": "крипты кишки"
+        },
+        {
+          "number": "2",
+          "x": 454,
+          "y": 191,
+          "toX": 432,
+          "toY": 172,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "number": "3",
+          "x": 329,
+          "y": 271,
+          "toX": 329,
+          "toY": 271,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "number": "5",
+          "x": 302,
+          "y": 369,
+          "toX": 302,
+          "toY": 369,
+          "label": "кровеносные сосуды"
+        },
+        {
+          "number": "5",
+          "x": 401,
+          "y": 402,
+          "toX": 401,
+          "toY": 402,
+          "label": "кровеносные сосуды"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-01-v1",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "colon",
+      "listPosition": 1,
+      "variant": "magnified",
+      "title": "1. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "viewerTitle": "1,б. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams217.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams217.jpg",
+      "image": "./photos/edubiotech/t25-01-v1.jpg",
+      "imageSha256": "a944409f0e24963913a0cb47f7c927ecdc8bd5268697359f29c8d1d2aa29f642",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 4,
+      "marks": [
+        {
+          "number": "i",
+          "x": 94,
+          "y": 48,
+          "toX": 94,
+          "toY": 48,
+          "label": "слизистая оболочка"
+        },
+        {
+          "number": "ii",
+          "x": 149,
+          "y": 182,
+          "toX": 149,
+          "toY": 182,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "iii",
+          "x": 160,
+          "y": 401,
+          "toX": 160,
+          "toY": 401,
+          "label": "мышечная оболочка"
+        },
+        {
+          "number": "iv",
+          "x": 165,
+          "y": 531,
+          "toX": 146,
+          "toY": 534,
+          "label": "серозная оболочка"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-02",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "colon",
+      "listPosition": 2,
+      "variant": "base",
+      "title": "2. Препарат - червеобразный отросток; поперечный срез. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,а. Препарат - червеобразный отросток; поперечный срез. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b208ak.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b208a.jpg",
+      "image": "./photos/edubiotech/t25-02.jpg",
+      "imageSha256": "864ca7cc9fb442b4d251ae5897a7c4909bab52b31a2122cef66250788e94aeef",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 6,
+      "marks": [
+        {
+          "number": "1",
+          "x": 143,
+          "y": 169,
+          "toX": 125,
+          "toY": 139,
+          "label": "крипта"
+        },
+        {
+          "number": "2",
+          "x": 310,
+          "y": 191,
+          "toX": 285,
+          "toY": 167,
+          "label": "однослойный цилиндрический эпителий"
+        },
+        {
+          "number": "3",
+          "x": 123,
+          "y": 488,
+          "toX": 238,
+          "toY": 465,
+          "label": "подслизистая основа"
+        },
+        {
+          "number": "4",
+          "x": 344,
+          "y": 320,
+          "toX": 344,
+          "toY": 320,
+          "label": "лимфоидный фолликул"
+        },
+        {
+          "number": "5",
+          "x": 446,
+          "y": 410,
+          "toX": 446,
+          "toY": 410,
+          "label": "реактивный центр"
+        },
+        {
+          "number": "6",
+          "x": 171,
+          "y": 359,
+          "toX": 171,
+          "toY": 359,
+          "label": "внефолликулярные лимфоциты"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-02-v1",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "colon",
+      "listPosition": 2,
+      "variant": "magnified",
+      "title": "2. Препарат - червеобразный отросток; поперечный срез. Окраска гематоксилин-эозином.",
+      "viewerTitle": "2,б. Препарат - червеобразный отросток; поперечный срез. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b208bk.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b208b.jpg",
+      "image": "./photos/edubiotech/t25-02-v1.jpg",
+      "imageSha256": "890fd121c7e4a36e356d413a8519fdfd92a72d09bff1c6b7a312036610d2b1ad",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 3,
+      "marks": [
+        {
+          "number": "1",
+          "x": 192,
+          "y": 381,
+          "toX": 192,
+          "toY": 381,
+          "label": "крипта"
+        },
+        {
+          "number": "2",
+          "x": 542,
+          "y": 211,
+          "toX": 542,
+          "toY": 211,
+          "label": "корона"
+        },
+        {
+          "number": "3",
+          "x": 556,
+          "y": 452,
+          "toX": 556,
+          "toY": 452,
+          "label": "реактивный центр"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-03",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "liver",
+      "listPosition": 3,
+      "variant": "base",
+      "title": "3. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,а. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams278.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams278.jpg",
+      "image": "./photos/edubiotech/t25-03.jpg",
+      "imageSha256": "ce87623dd16fbbe90a8c24f324fcf3afce8fecffd34f3c3b1ccd145bcfb25be2",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 3,
+      "marks": [
+        {
+          "number": "i",
+          "x": 240,
+          "y": 85,
+          "toX": 216,
+          "toY": 73,
+          "label": "триада"
+        },
+        {
+          "number": "1",
+          "x": 610,
+          "y": 72,
+          "toX": 564,
+          "toY": 89,
+          "label": "центральная вена"
+        },
+        {
+          "number": "2",
+          "x": 203,
+          "y": 356,
+          "toX": 203,
+          "toY": 356,
+          "label": "поддольковая вена"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-03-v1",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "liver",
+      "listPosition": 3,
+      "variant": "magnified",
+      "title": "3. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "viewerTitle": "3,б. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams274.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams274.jpg",
+      "image": "./photos/edubiotech/t25-03-v1.jpg",
+      "imageSha256": "88f5cbfad55919877566cf73265983a40e80e3be1968f7811c41648db302ac16",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 7,
+      "marks": [
+        {
+          "number": "1",
+          "x": 378,
+          "y": 296,
+          "toX": 378,
+          "toY": 296,
+          "label": "центральная вена"
+        },
+        {
+          "number": "1.А",
+          "x": 328,
+          "y": 316,
+          "toX": 287,
+          "toY": 326,
+          "label": "эндотелиальный слой"
+        },
+        {
+          "number": "1.Б",
+          "x": 385,
+          "y": 222,
+          "toX": 404,
+          "toY": 185,
+          "label": "слой соединительной ткани"
+        },
+        {
+          "number": "2",
+          "x": 538,
+          "y": 207,
+          "toX": 599,
+          "toY": 207,
+          "label": "печеночная балка"
+        },
+        {
+          "number": "3",
+          "x": 508,
+          "y": 213,
+          "toX": 515,
+          "toY": 241,
+          "label": "синусоидный капилляр"
+        },
+        {
+          "number": "3.А",
+          "x": 556,
+          "y": 131,
+          "toX": 577,
+          "toY": 128,
+          "label": "уплощенное ядро эндотелиоцита"
+        },
+        {
+          "number": "3.А",
+          "x": 280,
+          "y": 253,
+          "toX": 276,
+          "toY": 233,
+          "label": "уплощенное ядро эндотелиоцита"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-04",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "liver",
+      "listPosition": 4,
+      "variant": "base",
+      "title": "4. Препарат - включения гликогена в клетках печени. Окраска по Бесту.",
+      "viewerTitle": "4. Препарат - включения гликогена в клетках печени. Окраска по Бесту.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b165dk.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b165d.jpg",
+      "image": "./photos/edubiotech/t25-04.jpg",
+      "imageSha256": "8dcab11a5f87d9d355a28699e7ea1a50524e0498e5964314f518067a8a5c5fd1",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 2,
+      "marks": [
+        {
+          "number": "1",
+          "x": 501,
+          "y": 220,
+          "toX": 458,
+          "toY": 230,
+          "label": "глыбки гликогена"
+        },
+        {
+          "number": "2",
+          "x": 504,
+          "y": 131,
+          "toX": 424,
+          "toY": 112,
+          "label": "ядро"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-05",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "liver",
+      "listPosition": 5,
+      "variant": "base",
+      "title": "5. Препарат - жировые включения в клетках печени аксолотля. Фиксация осмиевой кислотой, окраска кармином.",
+      "viewerTitle": "5. Препарат - жировые включения в клетках печени аксолотля. Фиксация осмиевой кислотой, окраска кармином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/n010k.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/n010.jpg",
+      "image": "./photos/edubiotech/t25-05.jpg",
+      "imageSha256": "9155be83afaed304afb82553c28318d0b7b34004b6dfca29529dce2a407f0737",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 2,
+      "marks": [
+        {
+          "number": "1",
+          "x": 338,
+          "y": 272,
+          "toX": 348,
+          "toY": 237,
+          "label": "жировые капли в гепатоцитах"
+        },
+        {
+          "number": "1",
+          "x": 511,
+          "y": 191,
+          "toX": 539,
+          "toY": 180,
+          "label": "жировые капли в гепатоцитах"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-06",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "pancreas",
+      "listPosition": 6,
+      "variant": "base",
+      "title": "6. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "6,а. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams18.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams18.jpg",
+      "image": "./photos/edubiotech/t25-06.jpg",
+      "imageSha256": "0ce3dd24d055b83a0d4dddc18ffd419543861fcdb0072e3c20ee2128ce464657",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 10,
+      "marks": [
+        {
+          "number": "1",
+          "x": 377,
+          "y": 290,
+          "toX": 376,
+          "toY": 316,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "number": "2",
+          "x": 265,
+          "y": 214,
+          "toX": 288,
+          "toY": 193,
+          "label": "экзокринные ацинусы"
+        },
+        {
+          "number": "3",
+          "x": 634,
+          "y": 257,
+          "toX": 573,
+          "toY": 336,
+          "label": "междольковый выводной проток"
+        },
+        {
+          "number": "4",
+          "x": 727,
+          "y": 105,
+          "toX": 727,
+          "toY": 105,
+          "label": "эндокринный островок"
+        },
+        {
+          "number": "1",
+          "x": 209,
+          "y": 193,
+          "toX": 245,
+          "toY": 183,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "number": "2",
+          "x": 440,
+          "y": 421,
+          "toX": 445,
+          "toY": 396,
+          "label": "экзокринные ацинусы"
+        },
+        {
+          "number": "5",
+          "x": 145,
+          "y": 337,
+          "toX": 145,
+          "toY": 337,
+          "label": "сосуды"
+        },
+        {
+          "number": "6",
+          "x": 221,
+          "y": 438,
+          "toX": 299,
+          "toY": 512,
+          "label": "пластинчатое тельце"
+        },
+        {
+          "number": "5",
+          "x": 313,
+          "y": 409,
+          "toX": 371,
+          "toY": 393,
+          "label": "сосуды"
+        },
+        {
+          "number": "4",
+          "x": 124,
+          "y": 123,
+          "toX": 88,
+          "toY": 108,
+          "label": "эндокринный островок"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    },
+    {
+      "id": "t25-06-v1",
+      "kind": "specimen",
+      "topic": 25,
+      "chapterId": "pancreas",
+      "listPosition": 6,
+      "variant": "magnified",
+      "title": "6. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "viewerTitle": "6,б. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams23.html",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "imageOriginal": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams23.jpg",
+      "image": "./photos/edubiotech/t25-06-v1.jpg",
+      "imageSha256": "55ecf5f4830f098c0f76b009424b18e5e91ad9de7d0765a6985b3073bfef7b43",
+      "width": 768,
+      "height": 576,
+      "appletWidth": 770,
+      "appletHeight": 700,
+      "declaredMarks": 5,
+      "marks": [
+        {
+          "number": "1",
+          "x": 501,
+          "y": 173,
+          "toX": 501,
+          "toY": 173,
+          "label": "ацинус"
+        },
+        {
+          "number": "2",
+          "x": 541,
+          "y": 457,
+          "toX": 541,
+          "toY": 457,
+          "label": "кровеносный сосуд"
+        },
+        {
+          "number": "3",
+          "x": 230,
+          "y": 205,
+          "toX": 230,
+          "toY": 205,
+          "label": "эндокринный островок"
+        },
+        {
+          "number": "1",
+          "x": 352,
+          "y": 483,
+          "toX": 352,
+          "toY": 483,
+          "label": "ацинус"
+        },
+        {
+          "number": "2",
+          "x": 418,
+          "y": 449,
+          "toX": 418,
+          "toY": 449,
+          "label": "кровеносный сосуд"
+        }
+      ],
+      "attribution": "Использовано с разрешения для учебных целей; источник: edubiotech.ru"
+    }
+  ]
+}
