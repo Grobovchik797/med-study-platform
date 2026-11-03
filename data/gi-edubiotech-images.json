@@ -1,0 +1,1651 @@
+{
+  "version": 1,
+  "course": "gi-histology",
+  "title": "Микропрепараты EduBiotech: оригинальные фотографии и 143 обозначения",
+  "provenance": {
+    "host": "edubiotech.ru",
+    "authors": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+    "rights": "Разрешение на учебное использование с обязательным указанием источника подтверждено владельцем проекта; это не открытая лицензия CC.",
+    "importedAt": "2026-11-04",
+    "method": "Оригинальные JPEG и авторские обозначения markersdata/param из HTML Java-апплетов архива; без дорисовки снимков и придумывания структур."
+  },
+  "count": 21,
+  "labelCount": 143,
+  "items": [
+    {
+      "id": "edu-t23-01",
+      "topic": 23,
+      "chapterId": "tongue",
+      "title": "1,а. Препарат - язык. Сагиттальный срез кончика языка.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-01.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams188.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams188.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 5,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 222,
+          "y1": 238,
+          "x2": 222,
+          "y2": 238,
+          "label": "нитевидный сосочек языка"
+        },
+        {
+          "id": "2",
+          "x1": 420,
+          "y1": 217,
+          "x2": 420,
+          "y2": 217,
+          "label": "грибовидный сосочек языка"
+        },
+        {
+          "id": "3",
+          "x1": 310,
+          "y1": 413,
+          "x2": 310,
+          "y2": 413,
+          "label": "частично ороговевающий эпителий"
+        },
+        {
+          "id": "4",
+          "x1": 314,
+          "y1": 493,
+          "x2": 314,
+          "y2": 493,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "5",
+          "x1": 614,
+          "y1": 463,
+          "x2": 614,
+          "y2": 463,
+          "label": "мышцы языка"
+        }
+      ],
+      "sha256": "7fd1434abebac088c0f3d93c7a3817b55c56ccae9430589b63615b74653c0c03",
+      "chapterIds": [
+        "tongue"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-02",
+      "topic": 23,
+      "chapterId": "salivary",
+      "title": "2,а. Препарат - околоушная слюнная железа. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-02.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams130.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams130.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 12,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 451,
+          "y1": 139,
+          "x2": 451,
+          "y2": 139,
+          "label": "железистый эпителий"
+        },
+        {
+          "id": "1",
+          "x1": 573,
+          "y1": 271,
+          "x2": 573,
+          "y2": 271,
+          "label": "железистый эпителий"
+        },
+        {
+          "id": "2",
+          "x1": 411,
+          "y1": 239,
+          "x2": 475,
+          "y2": 232,
+          "label": "вставочные протоки"
+        },
+        {
+          "id": "2",
+          "x1": 516,
+          "y1": 431,
+          "x2": 559,
+          "y2": 411,
+          "label": "вставочные протоки"
+        },
+        {
+          "id": "3",
+          "x1": 314,
+          "y1": 253,
+          "x2": 383,
+          "y2": 223,
+          "label": "исчерченные протоки"
+        },
+        {
+          "id": "3",
+          "x1": 524,
+          "y1": 262,
+          "x2": 555,
+          "y2": 209,
+          "label": "исчерченные протоки"
+        },
+        {
+          "id": "4",
+          "x1": 142,
+          "y1": 409,
+          "x2": 142,
+          "y2": 409,
+          "label": "соединительнотканная прослойка"
+        },
+        {
+          "id": "4",
+          "x1": 451,
+          "y1": 393,
+          "x2": 451,
+          "y2": 393,
+          "label": "соединительнотканная прослойка"
+        },
+        {
+          "id": "5",
+          "x1": 91,
+          "y1": 331,
+          "x2": 91,
+          "y2": 331,
+          "label": "междольковые выводные протоки"
+        },
+        {
+          "id": "5",
+          "x1": 179,
+          "y1": 204,
+          "x2": 179,
+          "y2": 204,
+          "label": "междольковые выводные протоки"
+        },
+        {
+          "id": "6",
+          "x1": 193,
+          "y1": 55,
+          "x2": 264,
+          "y2": 60,
+          "label": "артерия"
+        },
+        {
+          "id": "7",
+          "x1": 196,
+          "y1": 318,
+          "x2": 196,
+          "y2": 317,
+          "label": "вена"
+        }
+      ],
+      "sha256": "ef3a58377f790ba0d2c29dbec7d11b317ff55ffa998c535bb694cfdfb582bd61",
+      "chapterIds": [
+        "salivary"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-03",
+      "topic": 23,
+      "chapterId": "salivary",
+      "title": "3,а. Препарат - подчелюстная слюнная железа. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-03.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams128.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams128.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 8,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 261,
+          "y1": 239,
+          "x2": 200,
+          "y2": 221,
+          "label": "серозный концевой отдел"
+        },
+        {
+          "id": "2",
+          "x1": 322,
+          "y1": 174,
+          "x2": 322,
+          "y2": 174,
+          "label": "смешанный концевой отдел"
+        },
+        {
+          "id": "3",
+          "x1": 456,
+          "y1": 310,
+          "x2": 471,
+          "y2": 297,
+          "label": "вставочный проток"
+        },
+        {
+          "id": "4",
+          "x1": 453,
+          "y1": 147,
+          "x2": 477,
+          "y2": 136,
+          "label": "исчерченный проток"
+        },
+        {
+          "id": "5",
+          "x1": 509,
+          "y1": 472,
+          "x2": 509,
+          "y2": 472,
+          "label": "междольковая соединительнотканная перегородка"
+        },
+        {
+          "id": "6",
+          "x1": 463,
+          "y1": 525,
+          "x2": 463,
+          "y2": 525,
+          "label": "междольковый проток"
+        },
+        {
+          "id": "7А",
+          "x1": 547,
+          "y1": 545,
+          "x2": 552,
+          "y2": 511,
+          "label": "артерия"
+        },
+        {
+          "id": "7Б",
+          "x1": 601,
+          "y1": 398,
+          "x2": 601,
+          "y2": 398,
+          "label": "вены"
+        }
+      ],
+      "sha256": "641900f31391f7cc4210f7a8d0cc1b7481373327df41f526c91a7e3fc56bd0ba",
+      "chapterIds": [
+        "salivary"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-04",
+      "topic": 23,
+      "chapterId": "tonsils",
+      "title": "4,а. Препарат - нёбная миндалина. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-04.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams181.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams181.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 6,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 593,
+          "y1": 383,
+          "x2": 593,
+          "y2": 383,
+          "label": "крипта слизистой оболочки"
+        },
+        {
+          "id": "2",
+          "x1": 614,
+          "y1": 323,
+          "x2": 635,
+          "y2": 339,
+          "label": "многослойный плоский неороговевающий эпителий"
+        },
+        {
+          "id": "3",
+          "x1": 160,
+          "y1": 544,
+          "x2": 192,
+          "y2": 510,
+          "label": "лимфоциты в эпителии"
+        },
+        {
+          "id": "4",
+          "x1": 316,
+          "y1": 196,
+          "x2": 316,
+          "y2": 196,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "5",
+          "x1": 467,
+          "y1": 168,
+          "x2": 467,
+          "y2": 168,
+          "label": "лимфатический фолликул"
+        },
+        {
+          "id": "6",
+          "x1": 663,
+          "y1": 83,
+          "x2": 663,
+          "y2": 83,
+          "label": "внефоллекулярная лимфоидная ткань"
+        }
+      ],
+      "sha256": "6347d4bf88e8be814bccfa4f233918f67cc948679099d333056be39e64e192d6",
+      "chapterIds": [
+        "tonsils"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-05",
+      "topic": 23,
+      "chapterId": "teeth",
+      "title": "5. Препарат - декальцинированный однокорневой зуб в альвеоле челюстной кости; продольный срез.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-05.jpg",
+      "width": 546,
+      "height": 600,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pic72v.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pic72v.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 6,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 167,
+          "y1": 293,
+          "x2": 96,
+          "y2": 243,
+          "label": "лунка челюстной кости"
+        },
+        {
+          "id": "2",
+          "x1": 219,
+          "y1": 290,
+          "x2": 117,
+          "y2": 207,
+          "label": "корень зуба"
+        },
+        {
+          "id": "3",
+          "x1": 263,
+          "y1": 229,
+          "x2": 406,
+          "y2": 220,
+          "label": "шейка зуба"
+        },
+        {
+          "id": "4",
+          "x1": 229,
+          "y1": 309,
+          "x2": 365,
+          "y2": 307,
+          "label": "зубная связка"
+        },
+        {
+          "id": "5",
+          "x1": 249,
+          "y1": 193,
+          "x2": 144,
+          "y2": 147,
+          "label": "пульпа"
+        },
+        {
+          "id": "6",
+          "x1": 224,
+          "y1": 76,
+          "x2": 224,
+          "y2": 76,
+          "label": "дентин"
+        }
+      ],
+      "sha256": "86de5d7be9cce356da7b03f1a8bf7976afbe76c88980346197f9f6aac7edf1bb",
+      "chapterIds": [
+        "teeth"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-06",
+      "topic": 23,
+      "chapterId": "teeth",
+      "title": "6. Препарат - шлиф однокоренного зуба (препарат не окрашен);",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-06.jpg",
+      "width": 174,
+      "height": 588,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pic71.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pic71.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 3,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 61,
+          "y1": 48,
+          "x2": 43,
+          "y2": 38,
+          "label": "эмаль"
+        },
+        {
+          "id": "2",
+          "x1": 128,
+          "y1": 202,
+          "x2": 145,
+          "y2": 113,
+          "label": "дентин"
+        },
+        {
+          "id": "3",
+          "x1": 128,
+          "y1": 440,
+          "x2": 148,
+          "y2": 436,
+          "label": "цемент"
+        }
+      ],
+      "sha256": "341426aca233927c26d7774f35dbbed7c4ae499b2a7bc8a2bc22732e8b2ebe74",
+      "chapterIds": [
+        "teeth"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-07",
+      "topic": 23,
+      "chapterId": "teeth",
+      "title": "7,а. Препарат - развитие зуба: стадия закладки зубного зачатка. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-07.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b151p.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b151.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 9,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 85,
+          "y1": 119,
+          "x2": 85,
+          "y2": 119,
+          "label": "эпителий ротовой полости зародыша"
+        },
+        {
+          "id": "2",
+          "x1": 172,
+          "y1": 48,
+          "x2": 170,
+          "y2": 96,
+          "label": "эмалевый тяж"
+        },
+        {
+          "id": "3",
+          "x1": 386,
+          "y1": 224,
+          "x2": 469,
+          "y2": 147,
+          "label": "эмалевый орган"
+        },
+        {
+          "id": "4",
+          "x1": 378,
+          "y1": 128,
+          "x2": 400,
+          "y2": 107,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "id": "5",
+          "x1": 362,
+          "y1": 290,
+          "x2": 362,
+          "y2": 290,
+          "label": "пульпа эмалевого органа"
+        },
+        {
+          "id": "6",
+          "x1": 422,
+          "y1": 342,
+          "x2": 341,
+          "y2": 356,
+          "label": "внутренний эмалевый эпителий"
+        },
+        {
+          "id": "7",
+          "x1": 447,
+          "y1": 411,
+          "x2": 348,
+          "y2": 419,
+          "label": "зубной сосочек"
+        },
+        {
+          "id": "8",
+          "x1": 592,
+          "y1": 335,
+          "x2": 646,
+          "y2": 339,
+          "label": "зубной мешочек"
+        },
+        {
+          "id": "9",
+          "x1": 614,
+          "y1": 69,
+          "x2": 614,
+          "y2": 69,
+          "label": "костные трабекулы"
+        }
+      ],
+      "sha256": "1484d6f0fcdf0023977e1820eb641b0433626b5ac2819e2188ad1d5d535b47e5",
+      "chapterIds": [
+        "teeth"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-08",
+      "topic": 23,
+      "chapterId": "teeth",
+      "title": "8,а. Препарат - развитие зуба: стадия гистогенеза зуба. Разрез челюсти зародыша. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-08.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b152p.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b152.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 12,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 508,
+          "y1": 37,
+          "x2": 508,
+          "y2": 37,
+          "label": "эпителий ротовой полости"
+        },
+        {
+          "id": "2",
+          "x1": 58,
+          "y1": 128,
+          "x2": 82,
+          "y2": 134,
+          "label": "костные трабекулы"
+        },
+        {
+          "id": "3",
+          "x1": 177,
+          "y1": 307,
+          "x2": 177,
+          "y2": 307,
+          "label": "мезенхима"
+        },
+        {
+          "id": "4",
+          "x1": 137,
+          "y1": 397,
+          "x2": 186,
+          "y2": 447,
+          "label": "эмалевый тяж (зубная пластинка)"
+        },
+        {
+          "id": "5",
+          "x1": 382,
+          "y1": 324,
+          "x2": 350,
+          "y2": 310,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "id": "6",
+          "x1": 263,
+          "y1": 437,
+          "x2": 263,
+          "y2": 437,
+          "label": "эмалевая пульпа"
+        },
+        {
+          "id": "7",
+          "x1": 483,
+          "y1": 275,
+          "x2": 425,
+          "y2": 262,
+          "label": "адамантобласты"
+        },
+        {
+          "id": "8",
+          "x1": 618,
+          "y1": 232,
+          "x2": 582,
+          "y2": 364,
+          "label": "эмаль"
+        },
+        {
+          "id": "5",
+          "x1": 504,
+          "y1": 242,
+          "x2": 478,
+          "y2": 225,
+          "label": "наружный эмалевый эпителий"
+        },
+        {
+          "id": "9",
+          "x1": 470,
+          "y1": 388,
+          "x2": 475,
+          "y2": 415,
+          "label": "одонтобласты"
+        },
+        {
+          "id": "10",
+          "x1": 635,
+          "y1": 469,
+          "x2": 561,
+          "y2": 439,
+          "label": "дентин"
+        },
+        {
+          "id": "11",
+          "x1": 518,
+          "y1": 492,
+          "x2": 518,
+          "y2": 492,
+          "label": "пульпа зуба"
+        }
+      ],
+      "sha256": "d071df5ad0ff2b81efdd7ac2feb6525179ecbe590e043d0e24f739ebfada75d9",
+      "chapterIds": [
+        "teeth"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t23-09",
+      "topic": 23,
+      "chapterId": "esophagus",
+      "title": "9,а. Препарат - пищевод; поперечный срез верхней трети. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t23-09.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams84p.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams84.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s23lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 4,
+      "labels": [
+        {
+          "id": "i",
+          "x1": 631,
+          "y1": 411,
+          "x2": 631,
+          "y2": 411,
+          "label": "слизистая оболочка"
+        },
+        {
+          "id": "ii",
+          "x1": 473,
+          "y1": 363,
+          "x2": 473,
+          "y2": 363,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "iii",
+          "x1": 253,
+          "y1": 238,
+          "x2": 253,
+          "y2": 238,
+          "label": "мышечная оболочка"
+        },
+        {
+          "id": "iv",
+          "x1": 20,
+          "y1": 59,
+          "x2": 63,
+          "y2": 75,
+          "label": "адвентициальная оболочка"
+        }
+      ],
+      "sha256": "56bfce0f019046066172738ea604ef4ae415f1123902f47e3e80b22ea748794f",
+      "chapterIds": [
+        "esophagus"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-01",
+      "topic": 24,
+      "chapterId": "stomach",
+      "title": "1,а. Препарат - дно желудка. Окраска конго-рот и гематоксилином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-01.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams81.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams81.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 5,
+      "labels": [
+        {
+          "id": "1.А",
+          "x1": 90,
+          "y1": 177,
+          "x2": 58,
+          "y2": 162,
+          "label": "желудочная ямка"
+        },
+        {
+          "id": "1.Б",
+          "x1": 67,
+          "y1": 226,
+          "x2": 54,
+          "y2": 218,
+          "label": "однослойный призматический железистый эпителий"
+        },
+        {
+          "id": "2.А",
+          "x1": 99,
+          "y1": 343,
+          "x2": 52,
+          "y2": 309,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "2.Б",
+          "x1": 275,
+          "y1": 191,
+          "x2": 260,
+          "y2": 221,
+          "label": "железы желудка"
+        },
+        {
+          "id": "3",
+          "x1": 457,
+          "y1": 365,
+          "x2": 408,
+          "y2": 358,
+          "label": "мышечная пластинка слизистой оболочки"
+        }
+      ],
+      "sha256": "1b209de87e8507eb20d82087a9b106d131f8a5cbe07fe36db4cffaf83915ea0b",
+      "chapterIds": [
+        "stomach",
+        "gastric-glands"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-02",
+      "topic": 24,
+      "chapterId": "esophagus",
+      "title": "2,а. Препарат - переход пищевода в желудок; продольный срез. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-02.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams24.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams24.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 15,
+      "labels": [
+        {
+          "id": "А",
+          "x1": 111,
+          "y1": 54,
+          "x2": 111,
+          "y2": 54,
+          "label": "пищевод"
+        },
+        {
+          "id": "Б",
+          "x1": 652,
+          "y1": 36,
+          "x2": 652,
+          "y2": 36,
+          "label": "кардиальная область желудка"
+        },
+        {
+          "id": "1Б",
+          "x1": 582,
+          "y1": 84,
+          "x2": 577,
+          "y2": 43,
+          "label": "желудочные ямки"
+        },
+        {
+          "id": "2А",
+          "x1": 263,
+          "y1": 114,
+          "x2": 257,
+          "y2": 87,
+          "label": "многослойный плоский эпителий пищевода"
+        },
+        {
+          "id": "2Б",
+          "x1": 526,
+          "y1": 84,
+          "x2": 511,
+          "y2": 59,
+          "label": "однослойный цилиндрический железистый эпителий"
+        },
+        {
+          "id": "3",
+          "x1": 596,
+          "y1": 180,
+          "x2": 596,
+          "y2": 180,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "3",
+          "x1": 316,
+          "y1": 158,
+          "x2": 316,
+          "y2": 158,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "3Б",
+          "x1": 683,
+          "y1": 163,
+          "x2": 673,
+          "y2": 145,
+          "label": "кардиальная железа желудка"
+        },
+        {
+          "id": "4",
+          "x1": 636,
+          "y1": 242,
+          "x2": 645,
+          "y2": 228,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "id": "4",
+          "x1": 82,
+          "y1": 161,
+          "x2": 84,
+          "y2": 150,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "id": "5",
+          "x1": 43,
+          "y1": 243,
+          "x2": 43,
+          "y2": 243,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "5",
+          "x1": 722,
+          "y1": 366,
+          "x2": 722,
+          "y2": 366,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "5А",
+          "x1": 349,
+          "y1": 319,
+          "x2": 349,
+          "y2": 357,
+          "label": "собственные железы пищевода"
+        },
+        {
+          "id": "5",
+          "x1": 111,
+          "y1": 365,
+          "x2": 111,
+          "y2": 365,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "5А",
+          "x1": 118,
+          "y1": 228,
+          "x2": 118,
+          "y2": 228,
+          "label": "собственные железы пищевода"
+        }
+      ],
+      "sha256": "0d6959faca5af8d0f844b7224c3bb5b2489659dcb37dd30741c5211542540efd",
+      "chapterIds": [
+        "esophagus",
+        "stomach"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-03",
+      "topic": 24,
+      "chapterId": "gastric-glands",
+      "title": "3,а. Препарат - пилорический отдел желудка. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-03.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams232.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams232.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 5,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 519,
+          "y1": 203,
+          "x2": 519,
+          "y2": 203,
+          "label": "желудочные ямки"
+        },
+        {
+          "id": "1",
+          "x1": 317,
+          "y1": 284,
+          "x2": 317,
+          "y2": 284,
+          "label": "желудочные ямки"
+        },
+        {
+          "id": "2",
+          "x1": 130,
+          "y1": 382,
+          "x2": 130,
+          "y2": 382,
+          "label": "железы"
+        },
+        {
+          "id": "3",
+          "x1": 495,
+          "y1": 353,
+          "x2": 508,
+          "y2": 422,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "id": "2",
+          "x1": 451,
+          "y1": 367,
+          "x2": 451,
+          "y2": 367,
+          "label": "железы"
+        }
+      ],
+      "sha256": "453841294203b9cbfa1477be138f70ca7f0bd60b44287afa4cdaab5474020275",
+      "chapterIds": [
+        "stomach",
+        "gastric-glands"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-04",
+      "topic": 24,
+      "chapterId": "jejunum",
+      "title": "4,а. Препарат - тонкая кишка. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-04.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams239.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams239.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 6,
+      "labels": [
+        {
+          "id": "1.А",
+          "x1": 169,
+          "y1": 243,
+          "x2": 118,
+          "y2": 162,
+          "label": "кишечная ворсинка"
+        },
+        {
+          "id": "1.Б",
+          "x1": 303,
+          "y1": 488,
+          "x2": 260,
+          "y2": 449,
+          "label": "крипта кишечника"
+        },
+        {
+          "id": "1.В",
+          "x1": 265,
+          "y1": 124,
+          "x2": 238,
+          "y2": 114,
+          "label": "однослойный цилиндрический каемчатый эпителий"
+        },
+        {
+          "id": "2",
+          "x1": 233,
+          "y1": 299,
+          "x2": 233,
+          "y2": 299,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "3",
+          "x1": 507,
+          "y1": 466,
+          "x2": 550,
+          "y2": 458,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "id": "ii",
+          "x1": 540,
+          "y1": 523,
+          "x2": 540,
+          "y2": 523,
+          "label": "подслизистая основа"
+        }
+      ],
+      "sha256": "a3b8887e51ed1fdddd39f415c16a427d6e30326c500a167097b3b5181860ffcf",
+      "chapterIds": [
+        "duodenum",
+        "jejunum",
+        "ileum"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-05",
+      "topic": 24,
+      "chapterId": "jejunum",
+      "title": "5. Препарат - тонкая кишка; окраска - ШИК-реакция и гематоксилин.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-05.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/11.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/11.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 4,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 146,
+          "y1": 134,
+          "x2": 126,
+          "y2": 112,
+          "label": "бокаловидные клетки"
+        },
+        {
+          "id": "2",
+          "x1": 432,
+          "y1": 423,
+          "x2": 439,
+          "y2": 439,
+          "label": "столбчатые (каемчатые) эпителиоциты"
+        },
+        {
+          "id": "3",
+          "x1": 258,
+          "y1": 321,
+          "x2": 258,
+          "y2": 321,
+          "label": "клетки соединительной ткани"
+        },
+        {
+          "id": "4",
+          "x1": 305,
+          "y1": 291,
+          "x2": 308,
+          "y2": 270,
+          "label": "гладкие миоциты"
+        }
+      ],
+      "sha256": "fb2971c0100b319e1ce9fac4ec22ed1c7efe87656b8a9b3ba45cc0a29b56bb3c",
+      "chapterIds": [
+        "duodenum",
+        "jejunum",
+        "ileum"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t24-06",
+      "topic": 24,
+      "chapterId": "duodenum",
+      "title": "6. Препарат - переход пилорической части желудка в двенадцатиперстную кишку; продольный срез. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t24-06.jpg",
+      "width": 770,
+      "height": 378,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/pr4.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/pr4.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s24lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 12,
+      "labels": [
+        {
+          "id": "А",
+          "x1": 78,
+          "y1": 40,
+          "x2": 78,
+          "y2": 40,
+          "label": "пилорический отдел желудка"
+        },
+        {
+          "id": "Б",
+          "x1": 531,
+          "y1": 43,
+          "x2": 531,
+          "y2": 43,
+          "label": "двенадцатиперстная кишка"
+        },
+        {
+          "id": "i.А",
+          "x1": 240,
+          "y1": 137,
+          "x2": 247,
+          "y2": 104,
+          "label": "слизистая оболочка желудка"
+        },
+        {
+          "id": "i.Б",
+          "x1": 494,
+          "y1": 200,
+          "x2": 499,
+          "y2": 125,
+          "label": "слизистая оболочка двенадцатиперстной кишки"
+        },
+        {
+          "id": "1.А",
+          "x1": 115,
+          "y1": 84,
+          "x2": 126,
+          "y2": 67,
+          "label": "циркулярная складка слизистой желудка"
+        },
+        {
+          "id": "2.Б",
+          "x1": 395,
+          "y1": 178,
+          "x2": 388,
+          "y2": 140,
+          "label": "ворсинки кишечника"
+        },
+        {
+          "id": "ii.А",
+          "x1": 113,
+          "y1": 148,
+          "x2": 158,
+          "y2": 107,
+          "label": "подслизистая основа желудка"
+        },
+        {
+          "id": "ii.Б",
+          "x1": 393,
+          "y1": 254,
+          "x2": 390,
+          "y2": 307,
+          "label": "подслизистая основа кишки с дуоденальными железами"
+        },
+        {
+          "id": "iii.А",
+          "x1": 157,
+          "y1": 278,
+          "x2": 157,
+          "y2": 278,
+          "label": "мышечная оболочка желудка"
+        },
+        {
+          "id": "iii.Б",
+          "x1": 490,
+          "y1": 288,
+          "x2": 500,
+          "y2": 321,
+          "label": "мышечная оболочка двенадцатиперстной кишки"
+        },
+        {
+          "id": "iv.А",
+          "x1": 110,
+          "y1": 305,
+          "x2": 103,
+          "y2": 313,
+          "label": "серозная оболочка желудка"
+        },
+        {
+          "id": "iv.Б",
+          "x1": 623,
+          "y1": 297,
+          "x2": 630,
+          "y2": 308,
+          "label": "серозная оболочка двенадцатиперстной кишки"
+        }
+      ],
+      "sha256": "04d835728a5fbeab565ef6340d63211a8b386856c175cf8db4212150aae101d0",
+      "chapterIds": [
+        "stomach",
+        "duodenum"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-01",
+      "topic": 25,
+      "chapterId": "colon",
+      "title": "1,а. Препарат - толстая кишка. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-01.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams216.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams216.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 8,
+      "labels": [
+        {
+          "id": "i",
+          "x1": 101,
+          "y1": 227,
+          "x2": 102,
+          "y2": 227,
+          "label": "слизистая оболочка"
+        },
+        {
+          "id": "ii",
+          "x1": 113,
+          "y1": 366,
+          "x2": 113,
+          "y2": 366,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "iii",
+          "x1": 121,
+          "y1": 494,
+          "x2": 121,
+          "y2": 494,
+          "label": "мышечная оболочка"
+        },
+        {
+          "id": "1.А",
+          "x1": 475,
+          "y1": 222,
+          "x2": 537,
+          "y2": 215,
+          "label": "крипты кишки"
+        },
+        {
+          "id": "2",
+          "x1": 454,
+          "y1": 191,
+          "x2": 432,
+          "y2": 172,
+          "label": "собственная пластинка слизистой оболочки"
+        },
+        {
+          "id": "3",
+          "x1": 329,
+          "y1": 271,
+          "x2": 329,
+          "y2": 271,
+          "label": "мышечная пластинка слизистой оболочки"
+        },
+        {
+          "id": "5",
+          "x1": 302,
+          "y1": 369,
+          "x2": 302,
+          "y2": 369,
+          "label": "кровеносные сосуды"
+        },
+        {
+          "id": "5",
+          "x1": 401,
+          "y1": 402,
+          "x2": 401,
+          "y2": 402,
+          "label": "кровеносные сосуды"
+        }
+      ],
+      "sha256": "a3c2b4babc95a195803c959751da1ab13915ba059d72075445c84e4075c2b7df",
+      "chapterIds": [
+        "colon"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-02",
+      "topic": 25,
+      "chapterId": "colon",
+      "title": "2,а. Препарат - червеобразный отросток; поперечный срез. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-02.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b208ak.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b208a.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 6,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 143,
+          "y1": 169,
+          "x2": 125,
+          "y2": 139,
+          "label": "крипта"
+        },
+        {
+          "id": "2",
+          "x1": 310,
+          "y1": 191,
+          "x2": 285,
+          "y2": 167,
+          "label": "однослойный цилиндрический эпителий"
+        },
+        {
+          "id": "3",
+          "x1": 123,
+          "y1": 488,
+          "x2": 238,
+          "y2": 465,
+          "label": "подслизистая основа"
+        },
+        {
+          "id": "4",
+          "x1": 344,
+          "y1": 320,
+          "x2": 344,
+          "y2": 320,
+          "label": "лимфоидный фолликул"
+        },
+        {
+          "id": "5",
+          "x1": 446,
+          "y1": 410,
+          "x2": 446,
+          "y2": 410,
+          "label": "реактивный центр"
+        },
+        {
+          "id": "6",
+          "x1": 171,
+          "y1": 359,
+          "x2": 171,
+          "y2": 359,
+          "label": "внефолликулярные лимфоциты"
+        }
+      ],
+      "sha256": "864ca7cc9fb442b4d251ae5897a7c4909bab52b31a2122cef66250788e94aeef",
+      "chapterIds": [
+        "colon"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-03",
+      "topic": 25,
+      "chapterId": "liver",
+      "title": "3,а. Препарат - печень человека. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-03.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams278.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams278.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 3,
+      "labels": [
+        {
+          "id": "i",
+          "x1": 240,
+          "y1": 85,
+          "x2": 216,
+          "y2": 73,
+          "label": "триада"
+        },
+        {
+          "id": "1",
+          "x1": 610,
+          "y1": 72,
+          "x2": 564,
+          "y2": 89,
+          "label": "центральная вена"
+        },
+        {
+          "id": "2",
+          "x1": 203,
+          "y1": 356,
+          "x2": 203,
+          "y2": 356,
+          "label": "поддольковая вена"
+        }
+      ],
+      "sha256": "ce87623dd16fbbe90a8c24f324fcf3afce8fecffd34f3c3b1ccd145bcfb25be2",
+      "chapterIds": [
+        "liver"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-04",
+      "topic": 25,
+      "chapterId": "liver",
+      "title": "4. Препарат - включения гликогена в клетках печени. Окраска по Бесту.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-04.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/b165dk.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/b165d.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 2,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 501,
+          "y1": 220,
+          "x2": 458,
+          "y2": 230,
+          "label": "глыбки гликогена"
+        },
+        {
+          "id": "2",
+          "x1": 504,
+          "y1": 131,
+          "x2": 424,
+          "y2": 112,
+          "label": "ядро"
+        }
+      ],
+      "sha256": "8dcab11a5f87d9d355a28699e7ea1a50524e0498e5964314f518067a8a5c5fd1",
+      "chapterIds": [
+        "liver"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-05",
+      "topic": 25,
+      "chapterId": "liver",
+      "title": "5. Препарат - жировые включения в клетках печени аксолотля. Фиксация осмиевой кислотой, окраска кармином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-05.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/n010k.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/n010.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 2,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 338,
+          "y1": 272,
+          "x2": 348,
+          "y2": 237,
+          "label": "жировые капли в гепатоцитах"
+        },
+        {
+          "id": "1",
+          "x1": 511,
+          "y1": 191,
+          "x2": 539,
+          "y2": 180,
+          "label": "жировые капли в гепатоцитах"
+        }
+      ],
+      "sha256": "9155be83afaed304afb82553c28318d0b7b34004b6dfca29529dce2a407f0737",
+      "chapterIds": [
+        "liver"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    },
+    {
+      "id": "edu-t25-06",
+      "topic": 25,
+      "chapterId": "pancreas",
+      "title": "6,а. Препарат - поджелудочная железа. Окраска гематоксилин-эозином.",
+      "kind": "light-micrograph",
+      "src": "./photos/edubiotech/t25-06.jpg",
+      "width": 768,
+      "height": 576,
+      "sourcePage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/images/exams18.html",
+      "sourceImage": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/samples/exams18.jpg",
+      "sourceList": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r5/s25lst.html",
+      "attribution": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина · учебный атлас на edubiotech.ru",
+      "permission": "Educational re-use with source credit confirmed by project owner",
+      "sourceMarkCount": 10,
+      "labels": [
+        {
+          "id": "1",
+          "x1": 377,
+          "y1": 290,
+          "x2": 376,
+          "y2": 316,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "id": "2",
+          "x1": 265,
+          "y1": 214,
+          "x2": 288,
+          "y2": 193,
+          "label": "экзокринные ацинусы"
+        },
+        {
+          "id": "3",
+          "x1": 634,
+          "y1": 257,
+          "x2": 573,
+          "y2": 336,
+          "label": "междольковый выводной проток"
+        },
+        {
+          "id": "4",
+          "x1": 727,
+          "y1": 105,
+          "x2": 727,
+          "y2": 105,
+          "label": "эндокринный островок"
+        },
+        {
+          "id": "1",
+          "x1": 209,
+          "y1": 193,
+          "x2": 245,
+          "y2": 183,
+          "label": "соединительнотканные перегородки"
+        },
+        {
+          "id": "2",
+          "x1": 440,
+          "y1": 421,
+          "x2": 445,
+          "y2": 396,
+          "label": "экзокринные ацинусы"
+        },
+        {
+          "id": "5",
+          "x1": 145,
+          "y1": 337,
+          "x2": 145,
+          "y2": 337,
+          "label": "сосуды"
+        },
+        {
+          "id": "6",
+          "x1": 221,
+          "y1": 438,
+          "x2": 299,
+          "y2": 512,
+          "label": "пластинчатое тельце"
+        },
+        {
+          "id": "5",
+          "x1": 313,
+          "y1": 409,
+          "x2": 371,
+          "y2": 393,
+          "label": "сосуды"
+        },
+        {
+          "id": "4",
+          "x1": 124,
+          "y1": 123,
+          "x2": 88,
+          "y2": 108,
+          "label": "эндокринный островок"
+        }
+      ],
+      "sha256": "0ce3dd24d055b83a0d4dddc18ffd419543861fcdb0072e3c20ee2128ce464657",
+      "chapterIds": [
+        "pancreas"
+      ],
+      "sourceCredit": "Источник изображения и авторских обозначений: С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина — электронный атлас EduBiotech (edubiotech.ru). Учебное размещение с указанием источника разрешено по подтверждению владельца проекта."
+    }
+  ]
+}
