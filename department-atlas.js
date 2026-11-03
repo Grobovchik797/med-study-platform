@@ -77,7 +77,7 @@ function render(host,{onBack,chapterId=null}={}){
  const section=el('section','dept-atlas');
  host.append(section);
  let selected=specimens.find(x=>x.chapters.includes(chapterId))?.file||specimens[0].file;
- let mode='study',records=new Map(),objectUrl=null,notice='';
+ let records=new Map(),objectUrl=null,notice='';
  function release(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null;}}
  const scope=chapterId?specimens.filter(x=>x.chapters.includes(chapterId)):specimens;
  async function refresh(){const list=await getAll();records=new Map(list.map(x=>[x.name,x.blob]));paint();}
@@ -108,50 +108,34 @@ function render(host,{onBack,chapterId=null}={}){
   section.append(importer);
   if(notice)section.append(el('p','dept-message',notice));
   const grid=el('div','dept-file-grid');
-  for(const [i,spec] of scope.entries()){
+  for(const spec of scope){
    const card=el('button','dept-file-card'+(selected===spec.file?' active':''));card.type='button';
-   card.append(el('strong','',mode==='check'?'Препарат '+(i+1):displayFilename(spec.file)),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
-   card.addEventListener('click',()=>{selected=spec.file;mode='study';paint();});
+   card.append(el('strong','',displayFilename(spec.file)),el('small','',records.has(spec.file)?'Фото сохранено в браузере':'Фото ещё не добавлено'));
+   card.addEventListener('click',()=>{selected=spec.file;paint();});
    grid.append(card);
   }
   section.append(grid);
   const spec=byName.get(selected);
   if(!scope.includes(spec))return;
   const panel=el('section','dept-panel');
-  panel.append(el('div','kicker',mode==='check'?'САМОПРОВЕРКА ПО КАФЕДРАЛЬНОМУ ПРЕПАРАТУ':'КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',mode==='check'?'Определи препарат по фотографии':displayFilename(spec.file)));
-  const controls=el('div','dept-modes');
-  for(const [key,title] of [['study','Изучение'],['check','Самопроверка']]){
-   controls.append(btn(title,()=>{mode=key;paint();},'gi-button'+(mode===key?' gi-active':' gi-light')));
-  }
-  panel.append(controls);
+  panel.append(el('div','kicker','КАФЕДРАЛЬНОЕ НАЗВАНИЕ ИЗ ФАЙЛА'),el('h2','',displayFilename(spec.file)));
   if(records.has(selected)){
    const box=el('div','dept-image-wrap'),img=el('img','dept-image');
    objectUrl=URL.createObjectURL(records.get(selected));
-   img.src=objectUrl;img.alt=mode==='check'?'Кафедральный препарат: название скрыто':'Кафедральный препарат: '+displayFilename(selected);img.loading='eager';
+   img.src=objectUrl;img.alt='Кафедральный препарат: '+displayFilename(selected);img.loading='eager';
    box.append(img);panel.append(box);
    const zoom=el('input','dept-zoom');zoom.type='range';zoom.min='100';zoom.max='300';zoom.step='25';zoom.value='100';
    zoom.setAttribute('aria-label','Масштаб фотографии');
    zoom.addEventListener('input',()=>{img.style.width=zoom.value+'%';});
    panel.append(el('label','dept-zoom-label','Увеличение фото: от 100 до 300%'),zoom);
   }else{
-   panel.append(el('p','dept-placeholder',mode==='check'?'Для этого препарата ещё нет загруженной фотографии. Перейди в «Изучение», чтобы увидеть нужное имя файла и загрузить снимок.':'Фотография ещё не выбрана в этом браузере. Нажми «Выбрать файлы» выше и выбери исходный «'+selected+'».'));
+   panel.append(el('p','dept-placeholder','Фотография ещё не выбрана в этом браузере. Нажми «Выбрать файлы» выше и выбери исходный «'+selected+'».'));
   }
-  if(mode==='study'){
-   panel.append(el('h3','','Что необходимо проверить на срезе по гистологии'));
-   const list=el('ol','dept-cues');
-   spec.focus.forEach(x=>list.append(el('li','',x)));panel.append(list);
-   panel.append(el('p','dept-caution','Важно: это ориентиры из учебной гистологии, а не уже подтверждённые метки на конкретном фото. '+spec.notice));
-  }else if(mode==='check'){
-   const question=el('p','dept-question','Как называется этот кафедральный препарат?');
-   const select=el('select','dept-answer');select.setAttribute('aria-label','Выбери название препарата');
-   const empty=el('option','','Выбери название');empty.value='';select.append(empty);
-   specimens.forEach(x=>{const opt=el('option','',displayFilename(x.file));opt.value=x.file;select.append(opt);});
-   const answer=el('p','dept-feedback','');
-   panel.append(question,select,btn('Проверить название',()=>{
-    answer.textContent=select.value===selected?'Верно: '+displayFilename(selected):'Кафедральное название этого препарата: '+displayFilename(selected)+'.';
-   }),answer);
-  }
-  const note=el('p','dept-license',mode==='check'?'Кафедральный микропрепарат. Название скрыто до проверки ответа.':'Происхождение: кафедральный препарат по сообщению владельца. Публичное размещение исходного фото не выполняется. Формальное подтверждение права публикации и окончательная научная разметка — отдельные этапы.');
+  panel.append(el('h3','','Что необходимо проверить на срезе по гистологии'));
+  const list=el('ol','dept-cues');
+  spec.focus.forEach(x=>list.append(el('li','',x)));panel.append(list);
+  panel.append(el('p','dept-caution','Важно: это ориентиры из учебной гистологии, а не уже подтверждённые метки на конкретном фото. '+spec.notice));
+  const note=el('p','dept-license','Происхождение: кафедральный препарат по сообщению владельца. Публичное размещение исходного фото не выполняется. Формальное подтверждение права публикации и окончательная научная разметка — отдельные этапы.');
   panel.append(note);
   if(records.has(selected))panel.append(btn('Удалить локальную копию',async()=>{
    if(!window.confirm('Удалить локальную копию «'+selected+'» из этого браузера?'))return;
