@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Inspect original specimen images and captions
-        run: python3 scripts/probe_edubiotech_details.py
+        run: python3 scripts/probe_edubiotech_marks.py
       - name: Probe archive HTTPS from GitHub runner
         shell: bash
         run: |
