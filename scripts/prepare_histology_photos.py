@@ -25,6 +25,9 @@ assert len(SLIDES["images"])==3 and len(EXTRA["images"])==16
 # 19 licensed JPEGs. Never accept a CDN response without its pinned SHA-256, and
 # never use an old image if any source manifest changed.
 LOCK=json.loads((ROOT/"data/gi-photo-lock.json").read_text("utf-8"))
+EXPECTED_PHOTO_NAMES={Path(slide["src"]).name for slide in SLIDES["images"]+EXTRA["images"]}
+if len(EXPECTED_PHOTO_NAMES)!=19 or set(LOCK["photos"])!=EXPECTED_PHOTO_NAMES:
+    raise SystemExit("Photo checksum lock does not exactly cover the 19 reference atlas images")
 LOCK_VALID=(hashlib.sha256((ROOT/"data/gi-atlas.json").read_bytes()).hexdigest()==LOCK["atlas_sha256"]
     and hashlib.sha256((ROOT/"data/small-intestine-slides.json").read_bytes()).hexdigest()==LOCK["small_sha256"])
 if not LOCK_VALID:
