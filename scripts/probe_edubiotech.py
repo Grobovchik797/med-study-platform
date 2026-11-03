@@ -40,6 +40,17 @@ def fetch(url):
  except Exception as e:
   print("FAIL",url,type(e).__name__,str(e)[:240]);return None,url
 if __name__=="__main__":
+ archive="https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/"
+ for doc in ["r5/t24.html","r5/t25(1).html","r5/t23(1).html"]:
+  u=archive+doc
+  try:
+   with urlopen(Request(u,headers={"User-Agent":"Mozilla/5.0"}),timeout=15) as resp:
+    html=resp.read(500000).decode("windows-1251",errors="replace")
+   for match in list(re.finditer("Электронная",html,re.I))[:4]:
+    print("TEM_RAW",doc,repr(html[max(0,match.start()-1100):match.end()+1300]))
+  except Exception as e:print("TEM_FAILURE",doc,str(e)[:200])
+ exit()
+if __name__=="__main__":
  print("=== ACTUAL HISTOLOGY ARCHIVE CONTENTS ===")
  archive="https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/"
  for relative in ["r0/contents.htm","r0/menu1.htm","r5/contents.htm","r5/s25lst.htm","r5/S25lst.html","R5/S25lst.html","r5/S25lst.htm","r5/s25lst.html"]:
