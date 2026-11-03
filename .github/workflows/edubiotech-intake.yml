@@ -1,0 +1,34 @@
+name: Import licensed EduBiotech microscopy (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: edubiotech-import-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  import-originals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import approved original JPGs, source captions and original marks
+        run: |
+          python3 -m pip install --quiet beautifulsoup4 Pillow
+          python3 -u scripts/import_edubiotech_plates.py
+          python3 scripts/validate_edubiotech_plates.py
+      - name: Commit exact licensed assets and catalog to selected branch
+        env:
+          SOURCE_BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gi-edubiotech-plates.json photos/edubiotech/
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(gi): refresh permissioned EduBiotech microscopy and original marks"
+            git fetch origin "$SOURCE_BRANCH"
+            git rebase "origin/$SOURCE_BRANCH"
+            git push origin "HEAD:refs/heads/$SOURCE_BRANCH"
+          else
+            echo "All imported original images and annotations unchanged"
+          fi
