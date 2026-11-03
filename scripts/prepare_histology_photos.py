@@ -19,8 +19,8 @@ SLIDES=json.loads((ROOT/"data/small-intestine-slides.json").read_text("utf-8"))
 EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
-assert len(SLIDES["images"])==3 and len(EXTRA["images"])==18
-assert [x["id"] for x in EXTRA["images"][16:]]==["liver-central-vein","liver-portal-triad"]
+assert len(SLIDES["images"])==3 and len(EXTRA["images"])==20
+assert [x["id"] for x in EXTRA["images"][16:]]==["liver-central-vein","liver-portal-triad","gastric-parietal-tem","gastric-chief-tem"]
 
 # Our previous published build and successful PR #53 debug APK contain the same
 # 19 licensed JPEGs. Never accept a CDN response without its pinned SHA-256, and
@@ -29,8 +29,8 @@ LOCK=json.loads((ROOT/"data/gi-photo-lock.json").read_text("utf-8"))
 EXPECTED_PHOTO_NAMES={Path(slide["src"]).name for slide in SLIDES["images"]+EXTRA["images"]}
 EXISTING_NAMES=set(LOCK["photos"])
 NEW_NAMES=EXPECTED_PHOTO_NAMES-EXISTING_NAMES
-if len(EXPECTED_PHOTO_NAMES)!=21 or len(EXISTING_NAMES)!=19 or not EXISTING_NAMES.issubset(EXPECTED_PHOTO_NAMES) or NEW_NAMES!={"liver-central-vein.jpg","liver-portal-triad.jpg"}:
-    raise SystemExit("Photo checksum lock must preserve all 19 known-good reference files and add only two verified liver images")
+if len(EXPECTED_PHOTO_NAMES)!=23 or len(EXISTING_NAMES)!=19 or not EXISTING_NAMES.issubset(EXPECTED_PHOTO_NAMES) or NEW_NAMES!={"liver-central-vein.jpg","liver-portal-triad.jpg","gastric-parietal-tem.jpg","gastric-chief-tem.jpg"}:
+    raise SystemExit("Photo checksum lock must preserve all 19 known-good reference files and add only two licensed liver plus two gastric TEM images")
 # Reconstruct the original sixteen-entry JSON exactly. The two appended records
 # must not invalidate SHA-256-proven recovery of previously published microscopy.
 LEGACY_EXTRA=dict(EXTRA)
@@ -119,4 +119,4 @@ for slide in SLIDES["images"]+EXTRA["images"]:
         if err is None:break
     if err is not None:
         raise SystemExit(f"COULD NOT BUILD ATLAS: {slide['id']}: {err}. Never publish broken microscope images.")
-print("PASS: 21 Commons histology assets (19 SHA-256-locked old + 2 licensed human liver) are local and decoded; fine-grained landmarks unverified")
+print("PASS: 23 Commons histology assets (19 SHA-256-locked old + 2 human liver + 2 licensed real gastric TEM) are local and decoded; fine-grained landmarks unverified")
