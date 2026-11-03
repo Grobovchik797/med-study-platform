@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.5'),
-      'Top navigation must show the current 1.9.5 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.6'),
+      'Top navigation must show the current 1.9.6 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -426,10 +426,10 @@ async function main() {
     await atlasNav.click();
     await waitHeading(desktop,'Библиотека атласов');
 
-    // v1.7: ordinary gallery has 19 distinct real Commons specimens, all 14 departmental types.
+    // v1.7: ordinary gallery has 21 distinct real Commons specimens, all 14 departmental types.
     await desktop.getByRole('button',{name:'Открыть обычные препараты'}).click();
     await waitHeading(desktop,'Изучение и самопроверка');
-    assert.equal(await desktop.locator('.si-select option').count(),19);
+    assert.equal(await desktop.locator('.si-select option').count(),21);
     assert.equal(await desktop.locator('.si-select option').nth(10).textContent(),'Переход пищевода в желудок',
       'Reference gallery should show the normalized title without an uppercase duplicate');
     await desktop.locator('.si-select').first().selectOption('10');
