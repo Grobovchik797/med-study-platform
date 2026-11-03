@@ -15,12 +15,12 @@ const control=(label,fn,cls="gi-button gi-light")=>{
 const sourceLink=(href,label)=>{
  const a=make("a","edu-original-link",label);a.href=href;a.target="_blank";a.rel="noopener noreferrer";return a;
 };
-function render(host,{data,course,onBack,onChapter,onLegacy,selectedChapter=null}={}){
+function render(host,{data,temData=null,course,onBack,onChapter,onLegacy,selectedChapter=null}={}){
  if(data?.version!==1||!Array.isArray(data.images)||!Array.isArray(course?.chapters))throw Error("Invalid original photo catalog");
  const byChapter=new Map(course.chapters.map(c=>[c.id,c]));
  let selected=selectedChapter&&byChapter.has(selectedChapter)?selectedChapter:"all";
  let active=data.images.find(i=>selected==="all"||i.chapterId===selected)?.id||data.images[0]?.id;
- let mode="study",shown=false,result="",targetIndex=0;
+ let mode="study",shown=false,result="",targetIndex=0,galleryMode="specimens",temId=temData?.images?.[0]?.id||null;
  const getItems=()=>data.images.filter(i=>selected==="all"||i.chapterId===selected);
  function setActive(id){active=id;mode="study";shown=false;result="";targetIndex=0;draw();}
  function draw(){
@@ -35,6 +35,36 @@ function render(host,{data,course,onBack,onChapter,onLegacy,selectedChapter=null
    make("p","",data.rightsNote));
   header.append(sourceLink(data.source.homepage,"Первоисточник: edubiotech.ru"));
   host.append(header);
+  const galleryTabs=make("div","edu-original-modes");
+  for(const [key,label] of [["specimens","Микропрепараты · "+data.images.length],["tem","Электронограммы EduBiotech · "+(temData?.images?.length||0)]]){
+   const tab=control(label,()=>{galleryMode=key;draw();},"gi-button"+(galleryMode===key?"":" gi-light"));
+   tab.setAttribute("aria-pressed",String(galleryMode===key));
+   if(key==="tem"&&!temData?.images?.length)tab.disabled=true;
+   galleryTabs.append(tab);
+  }
+  host.append(galleryTabs);
+  if(galleryMode==="tem"){
+   const grid=make("div","edu-original-tem-grid");
+   for(const image of (temData?.images||[])){
+    const card=make("article","card edu-original-tem-card");
+    card.dataset.eduTem=image.id;
+    const photo=make("img");
+    photo.src=image.image;photo.alt=image.title;photo.loading="lazy";
+    photo.width=image.width;photo.height=image.height;
+    card.append(make("div","kicker","НАСТОЯЩАЯ ЭЛЕКТРОННАЯ МИКРОФОТОГРАФИЯ"),
+     make("h2","",image.title),photo);
+    const ul=make("ul","edu-original-tem-labels");
+    image.labels.forEach(label=>ul.append(make("li","",label.number+" — "+label.label)));
+    card.append(make("h3","","Обозначения из исходного учебника"),ul,
+     make("p","edu-muted",image.annotationStatus),
+     make("p","edu-original-tem-credit",image.attribution),
+     sourceLink(image.sourcePage,"Открыть главу и описание на EduBiotech"),
+     control("Конспект Med Study",()=>onChapter(image.chapterId)));
+    grid.append(card);
+   }
+   host.append(grid);
+   return;
+  }
   const controls=make("div","edu-original-controls");
   const filter=make("select","edu-original-chapter-filter");
   filter.setAttribute("aria-label","Выбери главу");
