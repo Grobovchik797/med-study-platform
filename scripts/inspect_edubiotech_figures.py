@@ -36,6 +36,20 @@ for page in ["r5/images/exams278.html","r5/images/exams18.html","r5/images/exams
   print("FULL_TEXT",page," ".join(soup.stripped_strings)[:200],flush=True)
   print("FULL_ATTRS",page,[(n.name,n.attrs) for n in soup.select("frame[src],iframe[src],embed[src],object[data],a[href],body[background]")][:15],flush=True)
   print("FULL_HEAD",page,str(soup)[:1600],flush=True)
+  ap=soup.select_one("applet")
+  if ap:
+   print("APPLET",page,"size",(ap.get("width"),ap.get("height")),"params",[(p.get("name"),p.get("value","")[:380]) for p in ap.select("param")],flush=True)
+   src=next((p.get("value") for p in ap.select("param") if p.get("name")=="imgsrc"),"")
+   if src:
+    target=urljoin(urljoin(BASE,page),src)
+    try:
+     bits=get(target)
+     from PIL import Image
+     from io import BytesIO
+     pic=Image.open(BytesIO(bits))
+     print("ORIGINAL_JPEG",page,target,"bytes",len(bits),"dims",pic.size,"format",pic.format,flush=True)
+    except Exception as e:print("ORIGINAL_ERROR",target,str(e)[:140],flush=True)
+
  except Exception as e:print("FULL_PAGE_ERROR",page,type(e).__name__,str(e)[:90],flush=True)
 for key in ["r5/exams128s.jpg","r5/exams128.jpg","r5/exams216s.jpg","r5/exams216.jpg","r5/exams278s.jpg","r5/exams278.jpg","r7/exams278s.jpg"]:
  try:
