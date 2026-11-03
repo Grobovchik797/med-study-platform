@@ -40,6 +40,15 @@ def fetch(url):
  except Exception as e:
   print("FAIL",url,type(e).__name__,str(e)[:240]);return None,url
 if __name__=="__main__":
+ print("=== ACTUAL HISTOLOGY ARCHIVE CONTENTS ===")
+ archive="https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/"
+ for relative in ["r0/contents.htm","r0/menu1.htm","r5/contents.htm","r5/s25lst.htm","r5/S25lst.html","R5/S25lst.html","r5/S25lst.htm","r5/s25lst.html"]:
+  fetch(archive+relative)
+ print("=== GEOTAR FRAMES ===")
+ root="https://edubiotech.ru/downloads/library/ugebnik/gistologi/"
+ for rel in ["pages/frameset_book.htm","pages/frameset_exam.htm","pages/book.htm","pages/contents.htm"]:
+  fetch(root+rel)
+ print("=== PREVIOUS URLS ===")
  for u in BASES:
   h,url=fetch(u)
   if h:
