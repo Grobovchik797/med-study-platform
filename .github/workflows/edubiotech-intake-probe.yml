@@ -1,22 +1,14 @@
-name: Verify original EduBiotech microscopic images
+name: Probe source EM captions and figure links
 on:
   push:
     branches: [feat/edubiotech-full-images-1-9-8-intake]
 permissions:
   contents: read
 jobs:
-  source_images:
-    name: Inspect real photos and original labels, topic ${{ matrix.theme }}
+  probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
-    strategy:
-      fail-fast: false
-      matrix:
-        theme: [23,24,25]
+    timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
-      - name: Validate exact source filenames, JPEG pixels and applet labels
-        env:
-          EDU_THEME: ${{ matrix.theme }}
-          EDU_EXPORT: "1"
-        run: python3 scripts/import_edubiotech_samples.py
+      - name: Inspect relevant original EduBiotech chapter figures
+        run: python3 scripts/probe_edubiotech_em.py
