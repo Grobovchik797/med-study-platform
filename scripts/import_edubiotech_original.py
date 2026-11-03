@@ -69,7 +69,7 @@ def parse_viewer(url):
  image_url=urljoin(url,name)
  if not image_url.startswith(BASE+"samples/"):raise ValueError("Unexpected source photograph URL: "+image_url)
  w=int(app.get("width",0));h=int(app.get("height",0))
- if w<300 or h<300 or w>2500 or h>2500:raise ValueError("Applet viewport out of bounds")
+ if w<80 or h<80 or w>2500 or h>2500:\n  print("SKIP nonstandard applet viewport",url,w,h,flush=True);return None
  count=int(params.get("markcount",0))
  annotations=marks(params.get("marksdata",""),count)
  page_title=title_text(doc.title) if doc.title else title_text(doc.find("b") or doc)
