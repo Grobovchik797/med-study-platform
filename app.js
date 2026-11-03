@@ -39,7 +39,7 @@ let intestineQuizBank = null;
 let intestineSlides = null;
 let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
-let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null;
+let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null, giEduBiotechPlates = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -290,7 +290,7 @@ function showEduBiotechAtlas(chapterId=null) {
   main.append(button('← К библиотеке атласов',()=>showResourceLibrary('atlas'),'alt-button'));return;
  }
  window.MedStudyEduBiotech.render(main,{
-  data:giEduBiotechAtlas,course:giCurriculum,guide:giColloquiumGuide,
+  data:giEduBiotechAtlas,plates:giEduBiotechPlates,course:giCurriculum,guide:giColloquiumGuide,
   selectedChapter:chapterId,
   onBack:chapterId?()=>showGIChapter(chapterId):()=>showResourceLibrary('atlas'),
   onChapter:showGIChapter,
@@ -496,7 +496,7 @@ function showResourceLibrary(kind) {
     const external=element('section','card dept-banner edu-atlas-banner');
     append(external,element('div','kicker','ДОПОЛНИТЕЛЬНЫЙ УЧЕБНЫЙ ИСТОЧНИК · EDUBIOTECH'),
       element('h2','','Препараты EduBiotech · отдельный атлас'),
-      element('p','','Тематический путеводитель по 17 главам и темам 23–25 атласа Кузнецова, Мушкамбарова и Горячкиной. Авторские фотографии и исходные обозначения открываются на сайте источника; две лицензированные электронограммы доступны у нас.'),
+      element('p','','Учебные оригинальные микрофотографии и электронограммы с подписями и точками из исходного Java-атласа. На каждой карточке указаны edubiotech.ru и авторы. Фильтр по 17 главам.'),
       button('Препараты EduBiotech →',()=>showEduBiotechAtlas(),'library-action'));
     main.append(external);
   }
@@ -1341,9 +1341,10 @@ Promise.all([
   fetch('./data/gi-answer-reasons.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI answer reasons '+r.status);return r.json();}),
   fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();}),
   fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();}),
-  fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null)
+  fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null),
+  fetch('./data/gi-edubiotech-plates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original histology gallery '+r.status);return r.json();}).catch(()=>null)
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduPlates]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1378,6 +1379,7 @@ Promise.all([
       throw Error('Маршрут коллоквиума: повреждены данные');
     giColloquiumGuide=colloquiumGuide;
     giEduBiotechAtlas=eduGuide?.version===1&&eduGuide.topics?.length===3?eduGuide:null;
+    giEduBiotechPlates=eduPlates?.version===1&&eduPlates.origin==='edubiotech.ru'&&eduPlates.plates?.length>=19?eduPlates:null;
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
