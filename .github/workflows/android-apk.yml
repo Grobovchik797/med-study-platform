@@ -42,6 +42,7 @@ jobs:
           python3 scripts/validate_study_tools.py
           python3 scripts/validate_colloquium_guide.py
           python3 scripts/validate_external_atlas.py
+          python3 scripts/validate_edubiotech_plates.py
           python3 scripts/validate_lecture_crosswalk.py
           node --check app.js
           node --check gi-course.js
