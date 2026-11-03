@@ -461,6 +461,18 @@ async function main() {
     await desktop.getByRole('button',{name:'Найди структуру'}).click();
     assert.ok((await desktop.locator('.si-find-hint').textContent()).includes('Найди структуру №1'));
     assert.equal(await desktop.locator('.si-pin').count(),0,'Do not invent spatial points on unreviewed source images');
+    // 1.9.6: two extra licensed photos are only in the ordinary atlas.
+    await desktop.getByRole('button',{name:'Изучение'}).click();
+    await desktop.locator('.si-select').first().selectOption('19');
+    assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('liver-central-vein.jpg'));
+    assert.ok(await desktop.getByRole('heading',{name:'Печень человека — центральная вена'}).isVisible());
+    assert.equal(await desktop.locator('.si-pin').count(),0,'No invented labels on human central vein photo');
+    assert.ok(await desktop.locator('.si-microscope img').evaluate(img=>img.complete&&img.naturalWidth>=420));
+    await desktop.locator('.si-select').first().selectOption('20');
+    assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('liver-portal-triad.jpg'));
+    assert.ok(await desktop.getByRole('heading',{name:'Печень человека — портальная триада'}).isVisible());
+    assert.equal(await desktop.locator('.si-pin').count(),0,'Existing source labels are not automatically graded as new pixel annotations');
+    assert.ok(await desktop.locator('.si-microscope img').evaluate(img=>img.complete&&img.naturalWidth>=420));
     await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
     await waitHeading(desktop,'Библиотека атласов');
     // Regression 1.6: public departmental atlas has all real source JPGs and video frames.
