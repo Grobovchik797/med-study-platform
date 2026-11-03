@@ -39,7 +39,7 @@ let intestineQuizBank = null;
 let intestineSlides = null;
 let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
-let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null;
+let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null;
 let activeGIChapterId = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
@@ -109,7 +109,7 @@ function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
     'gi-workbook':'notes','gi-exam':'subjects',atlas:'atlases','si-slides':'atlases',
     'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
-    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects'})[view] || view;
+    'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects','edu-atlas':'atlases'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
     const selected = item.dataset.nav === navigationView;
     item.classList.toggle('selected', selected);
@@ -131,7 +131,8 @@ function navigate(to) {
   session = null;
   updateNav();
   if (!questionBank) return;
-  if (to === 'colloquium') showGIColloquium();
+  if (to === 'edu-atlas') showEduBiotechAtlas();
+  else if (to === 'colloquium') showGIColloquium();
   else if (to === 'search') showStudySearch();
   else if (to === 'updates') showUpdateJournal();
   else if (to === 'subjects') showSubjects();
@@ -282,6 +283,25 @@ function showGIColloquium(){
  });
  window.scrollTo(0,0);
 }
+function showEduBiotechAtlas(chapterId=null) {
+ view='edu-atlas';updateNav();main.replaceChildren();
+ if(!giEduBiotechAtlas||!giCurriculum||!window.MedStudyEduBiotech){
+  main.append(titleArea('ВНЕШНИЙ АТЛАС','EduBiotech временно недоступен','Наши кафедральные и обычные препараты работают независимо.'));
+  main.append(button('← К библиотеке атласов',()=>showResourceLibrary('atlas'),'alt-button'));return;
+ }
+ window.MedStudyEduBiotech.render(main,{
+  data:giEduBiotechAtlas,course:giCurriculum,guide:giColloquiumGuide,
+  selectedChapter:chapterId,
+  onBack:chapterId?()=>showGIChapter(chapterId):()=>showResourceLibrary('atlas'),
+  onChapter:showGIChapter,
+  onReference:id=>{
+   const index=giSlideIndex(id);
+   if(index>=0)showSmallIntestineSlides(index,null,true);
+   else showResourceLibrary('atlas');
+  }
+ });
+ window.scrollTo(0,0);
+}
 function showGIChapter(id) {
   if(!window.MedStudyGI || !giCurriculum)return showSubjects();
   const chapter=giCurriculum.chapters.find(x=>x.id===id);
@@ -297,7 +317,8 @@ function showGIChapter(id) {
     onExam:()=>showGIExam(id),onFlashcards:()=>showGIFlashcards(id),onWorkbook:showGIWorkbook,
     onDepartment:()=>showDepartmentAtlas(id),
     colloquiumGuide:giColloquiumGuide,scientificChanges:updateJournal?.scientificChanges||[],
-    onColloquium:showGIColloquium
+    onColloquium:showGIColloquium,
+    onExternalAtlas:()=>showEduBiotechAtlas(id)
   });
   window.scrollTo(0,0);
 }
@@ -462,16 +483,22 @@ function showResourceLibrary(kind) {
   if(kind==='atlas'){
     const department=element('section','card dept-banner');
     append(department,element('div','kicker','КОЛЛОКВИУМ · КАФЕДРАЛЬНЫЕ ПРЕПАРАТЫ'),
-      element('h2','','14 кафедральных микропрепаратов'),
+      element('h2','','15 кафедральных микропрепаратов'),
       element('p','','Исходные названия сохранены без изменений. Реальные фотографии и видеокадры уже доступны. Отдельно открыт справочный атлас лицензированных препаратов.'),
       button('Открыть кафедральный атлас →',()=>showDepartmentAtlas(),'library-action'));
     main.append(department);
     const reference=element('section','card dept-banner');
     append(reference,element('div','kicker','СПРАВОЧНЫЕ · РЕАЛЬНЫЕ МИКРОПРЕПАРАТЫ'),
-      element('h2','','Обычные препараты · 19 фотографий'),
-      element('p','','Все 14 кафедральных названий покрыты отдельными справочными изображениями. В изучении доступны пронумерованные ориентиры; цифры непосредственно на микрофотографии и автоматическая оценка — только у проверенной разметки.'),
+      element('h2','','Обычные препараты · 23 изображения'),
+      element('p','','Световые микропрепараты и две настоящие электронограммы (TEM). Учебные ориентиры не превращаются в неподтверждённые координаты на снимке.'),
       button('Открыть обычные препараты →',()=>showReferenceAtlas(),'library-action'));
     main.append(reference);
+    const external=element('section','card dept-banner edu-atlas-banner');
+    append(external,element('div','kicker','ДОПОЛНИТЕЛЬНЫЙ УЧЕБНЫЙ ИСТОЧНИК · EDUBIOTECH'),
+      element('h2','','Препараты EduBiotech · отдельный атлас'),
+      element('p','','Тематический путеводитель по 17 главам и темам 23–25 атласа Кузнецова, Мушкамбарова и Горячкиной. Авторские фотографии и исходные обозначения открываются на сайте источника; две лицензированные электронограммы доступны у нас.'),
+      button('Препараты EduBiotech →',()=>showEduBiotechAtlas(),'library-action'));
+    main.append(external);
   }
   const entries=libraryEntries().filter(({topic})=>kind==='notes'?
     Object.values(topic.notes||{}).some(Boolean) : kind==='atlas'?topic.atlas:topic.flashcards);
@@ -545,7 +572,8 @@ function showHome() {
   main.append(append(element('div','study-quick-actions'),
     button('🔎 Поиск по учебнику и атласам',showStudySearch,'alt-button'),
     button('Что нового · журнал изменений',showUpdateJournal,'alt-button'),
-    button('Маршрут к коллоквиуму · 17 глав',showGIColloquium,'alt-button')));
+    button('Маршрут к коллоквиуму · 17 глав',showGIColloquium,'alt-button'),
+    button('Препараты EduBiotech · отдельный атлас',()=>showEduBiotechAtlas(),'alt-button')));
   const heading=element('div','section-head');
   append(heading,append(element('div'),
     element('h2','','Продолжить обучение'),
@@ -1312,9 +1340,10 @@ Promise.all([
   fetch('./data/gi-deep-b.json', { cache: 'no-store' }).then(r=>{if(!r.ok)throw Error('GI deep B '+r.status);return r.json();}),
   fetch('./data/gi-answer-reasons.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI answer reasons '+r.status);return r.json();}),
   fetch('./data/update-journal.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Change journal '+r.status);return r.json();}),
-  fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();})
+  fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();}),
+  fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null)
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1348,6 +1377,7 @@ Promise.all([
        Object.keys(colloquiumGuide.cues||{}).length!==17||colloquiumGuide.comparisons?.length!==6)
       throw Error('Маршрут коллоквиума: повреждены данные');
     giColloquiumGuide=colloquiumGuide;
+    giEduBiotechAtlas=eduGuide?.version===1&&eduGuide.topics?.length===3?eduGuide:null;
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;

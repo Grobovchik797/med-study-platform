@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "section": "gi-histology",
+  "title": "Атлас EduBiotech — пищеварительная система",
+  "source": {
+    "name": "Руководство-атлас по гистологии, цитологии и эмбриологии",
+    "authors": "С. Л. Кузнецов, Н. Н. Мушкамбаров, В. Л. Горячкина",
+    "provider": "Архив электронных учебных материалов на edubiotech.ru",
+    "index": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/index.htm",
+    "contents": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/r6frames.htm",
+    "chapterPathStatus": "Ссылки на темы 23–25 получены из оглавления старого атласа; их текущая доступность не подтверждена отдельной загрузкой.",
+    "rights": "Права на перепубликацию фотографий, рисунков и полных подписей не подтверждены. Med Study размещает только краткий авторский путеводитель и ссылки на оригинал."
+  },
+  "topics": [
+    {
+      "id": "s23",
+      "number": 23,
+      "title": "Органы ротовой полости и пищевод",
+      "url": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/R5/S23lst.html",
+      "chapterIds": [
+        "plan",
+        "oral",
+        "tongue",
+        "taste",
+        "tonsils",
+        "teeth",
+        "salivary",
+        "pharynx",
+        "esophagus"
+      ],
+      "scope": "Слизистая рта, язык, зубы, слюнные железы, глотка и пищевод; общий план сопоставляется поперечно с устройством стенки."
+    },
+    {
+      "id": "s24",
+      "number": 24,
+      "title": "Желудок и тонкая кишка",
+      "url": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/R5/S24lst.html",
+      "chapterIds": [
+        "stomach",
+        "gastric-glands",
+        "duodenum",
+        "jejunum",
+        "ileum"
+      ],
+      "scope": "Фундальные и пилорические отделы желудка, кишечные ворсинки и крипты, региональные отличия тонкой кишки."
+    },
+    {
+      "id": "s25",
+      "number": 25,
+      "title": "Толстая кишка, печень и поджелудочная железа",
+      "url": "https://edubiotech.ru/images/vetfac/images/ebooks/histology/histology/R5/S25lst.html",
+      "chapterIds": [
+        "colon",
+        "liver",
+        "pancreas"
+      ],
+      "scope": "Крипты толстой кишки, печёночные дольки и ацинарно-островковый аппарат поджелудочной железы."
+    }
+  ],
+  "electronograms": [
+    {
+      "id": "parietal",
+      "title": "Париетальная клетка желудочной железы — электронограмма",
+      "chapterId": "gastric-glands",
+      "referenceId": "gastric-parietal-tem",
+      "note": "Подлинная TEM желудка европейского бобра, CC BY 4.0 — уже в обычном атласе Med Study. Не взята с EduBiotech."
+    },
+    {
+      "id": "chief",
+      "title": "Главная клетка желудочной железы — электронограмма",
+      "chapterId": "gastric-glands",
+      "referenceId": "gastric-chief-tem",
+      "note": "Подлинная TEM желудка европейского бобра, CC BY 4.0 — уже в обычном атласе Med Study. Не взята с EduBiotech."
+    }
+  ],
+  "ultrastructureStudy": [
+    {
+      "id": "enterocyte",
+      "title": "Энтероцит и щёточная каёмка",
+      "chapterIds": [
+        "duodenum",
+        "jejunum",
+        "ileum"
+      ],
+      "sourceTopic": "s24",
+      "cues": [
+        "Апикальные микроворсинки",
+        "Терминальная сеть под микроворсинками",
+        "Межклеточные контакты"
+      ]
+    },
+    {
+      "id": "goblet",
+      "title": "Бокаловидная клетка кишечного эпителия",
+      "chapterIds": [
+        "jejunum",
+        "ileum",
+        "colon"
+      ],
+      "sourceTopic": "s25",
+      "cues": [
+        "Апикальные гранулы муцина",
+        "Базально смещённое ядро",
+        "Экзоцитоз секрета"
+      ]
+    },
+    {
+      "id": "pancreatic-acinar",
+      "title": "Ацинарная секреторная клетка поджелудочной железы",
+      "chapterIds": [
+        "pancreas"
+      ],
+      "sourceTopic": "s25",
+      "cues": [
+        "Гранулярная ЭПС базальной цитоплазмы",
+        "Апикальные зимогенные гранулы",
+        "Полярность секреции"
+      ]
+    },
+    {
+      "id": "hepatocyte",
+      "title": "Гепатоцит и желчный капилляр",
+      "chapterIds": [
+        "liver"
+      ],
+      "sourceTopic": "s25",
+      "cues": [
+        "Контакт гепатоцитов и желчный каналец",
+        "Синусоидная поверхность",
+        "Клеточные соединения"
+      ]
+    },
+    {
+      "id": "salivary",
+      "title": "Секреторные клетки слюнной железы",
+      "chapterIds": [
+        "salivary"
+      ],
+      "sourceTopic": "s23",
+      "cues": [
+        "Секреторные гранулы",
+        "Базальные цистерны гранулярной ЭПС",
+        "Просвет и межклеточные контакты"
+      ]
+    }
+  ],
+  "methodology": "Учебные ориентиры в карточках — авторские подсказки Med Study, не транскрипция подписей и не проверенная разметка фотографий EduBiotech. Открывайте оригинал для просмотра всех исходных обозначений; конкретная электронограмма на архивной странице может отсутствовать.",
+  "updated": "2026-11-03"
+}
