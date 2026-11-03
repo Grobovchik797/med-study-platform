@@ -928,6 +928,82 @@
       "isResizedCopy": true,
       "assetDescription": "Локальная копия исходного фото с оригинальными надписями (без добавленных нами координат/меток), подготовленная с указанием авторства и CC BY-SA 3.0.",
       "reviewStatus": "source-and-license-checked; original-image-labels-present; digital-spatial-markers-unverified"
+    },
+    {
+      "id": "gastric-parietal-tem",
+      "title": "Электронограмма — париетальная клетка желудка (бобр)",
+      "file": "Celula Parietal.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Celula_Parietal.png",
+      "aspect": "1.12",
+      "stain": "Просвечивающая электронная микроскопия (TEM); желудок европейского бобра",
+      "description": "Настоящая электронная микрофотография участка желудочной железы европейского бобра; в исходной публикации париетальная клетка отмечена P. Это не рисунок из присланного файла Binar, не препарат человека и не кафедральный кадр.",
+      "landmarks": [
+        {
+          "label": "Париетальная клетка (P)",
+          "note": "На оригинальном изображении есть авторская маркировка P; Med Study не добавляет свою."
+        },
+        {
+          "label": "Канальцевая мембранная система",
+          "note": "Сопоставить ультраструктуру с кислотной секрецией, лишь если детали различимы на реальном снимке."
+        },
+        {
+          "label": "Митохондрии",
+          "note": "Отдельные органеллы определять только при достаточном разрешении электронограммы."
+        }
+      ],
+      "answer": "gastric-parietal-tem",
+      "src": "./photos/gastric-parietal-tem.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Celula_Parietal.png",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Celula_Parietal.png/960px-Celula_Parietal.png",
+        "https://upload.wikimedia.org/wikipedia/commons/e/ef/Celula_Parietal.png"
+      ],
+      "credit": "Natalia Ziółkowska, Bogdan Lewczuk, Wojciech Petryński, Katarzyna Palkowska, Magdalena Prusik, Krystyna Targońska, Zygmunt Giżejewski, Barbara Przybylska-Gornowicz (PLoS ONE, 2014)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная уменьшенная JPG-копия открытой электронной микрофотографии; без новых геометрических меток.",
+      "reviewStatus": "source-and-license-checked; electron micrograph (European beaver stomach); spatial-markers-unverified"
+    },
+    {
+      "id": "gastric-chief-tem",
+      "title": "Электронограмма — главная клетка желудка (бобр)",
+      "file": "Glandula gastrica Celula Chief.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Glandula_gastrica_Celula_Chief.png",
+      "aspect": "1.30",
+      "stain": "Просвечивающая электронная микроскопия (TEM); желудок европейского бобра",
+      "description": "Электронная микрофотография главных клеток железы желудка европейского бобра (PLoS ONE, 2014); секреторные гранулы, гранулярная ЭПС и аппарат Гольджи рассматриваются с учётом авторской маркировки. Не является электронной микрофотографией человека.",
+      "landmarks": [
+        {
+          "label": "Секреторные гранулы",
+          "note": "Авторская работа описывает гранулы в надъядерной части; отдельную гранулу не отмечаем без проверенных координат."
+        },
+        {
+          "label": "Гранулярная ЭПС",
+          "note": "Характерна для белоксинтезирующих секреторных клеток; оценивай видимость слоистых цистерн."
+        },
+        {
+          "label": "Аппарат Гольджи",
+          "note": "В оригинальной работе обозначен AG; не автоматически оценивать его координаты на сайте."
+        }
+      ],
+      "answer": "gastric-chief-tem",
+      "src": "./photos/gastric-chief-tem.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Glandula_gastrica_Celula_Chief.png",
+      "buildSources": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Glandula_gastrica_Celula_Chief.png/960px-Glandula_gastrica_Celula_Chief.png",
+        "https://upload.wikimedia.org/wikipedia/commons/1/1d/Glandula_gastrica_Celula_Chief.png"
+      ],
+      "credit": "Natalia Ziółkowska, Bogdan Lewczuk, Wojciech Petryński, Katarzyna Palkowska, Magdalena Prusik, Krystyna Targońska, Zygmunt Giżejewski, Barbara Przybylska-Gornowicz (PLoS ONE, 2014)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "annotations": [],
+      "localAsset": true,
+      "isResizedCopy": true,
+      "assetDescription": "Локальная уменьшенная JPG-копия открытой электронной микрофотографии; без новых геометрических меток.",
+      "reviewStatus": "source-and-license-checked; electron micrograph (European beaver stomach); spatial-markers-unverified"
     }
   ]
 }
