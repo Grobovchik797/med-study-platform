@@ -292,7 +292,7 @@ function renderChapter(host,{chapter,mini,workbook,deepBlocks=[],departmentQuest
      const evidence=el('section','gi-claim-with-evidence');
      evidence.append(paragraph(x));
      // Claim-level citations only for the five audited 1.9.4 additions.
-     if(index>=2&&checkedChange?.references?.length){
+     if(checkedChange?.claimIndices?.includes(index)&&checkedChange?.references?.length){
       const details=el('details','gi-claim-evidence');
       details.append(el('summary','','Источник и проверка утверждения'),
         paragraph('Сопоставлено с лекционным конспектом: '+checkedChange.lecture,'gi-provenance'),
