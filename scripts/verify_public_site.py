@@ -56,9 +56,12 @@ def main():
                 ("gi-course.js", "med-study-topic-milestones-v1"),
                 ("study-tools.js", "window.MedStudyTools"),
                 ("data/update-journal.json", '"med-1-9-7"'),
-                ("data/gi-edubiotech-atlas.json", 'S23lst.html'),
-                ("data/gi-edubiotech-atlas.json", 'S25lst.html'),
+                ("data/gi-edubiotech-atlas.json", 't23(1).html'),
+                ("data/gi-edubiotech-atlas.json", 't25(1).html'),
                 ("edubiotech-atlas.js", "window.MedStudyEduBiotech"),
+                ("data/gi-edubiotech-plates.json", '"pancreas-overview"'),
+                ("data/gi-edubiotech-plates.json", '"liver-lobules"'),
+                ("data/gi-edubiotech-plates.json", '"annotations"'),
                 ("app.js", "showEduBiotechAtlas"),
                 ("data/gi-atlas.json", '"liver-central-vein"'),
                 ("data/gi-atlas.json", '"liver-portal-triad"'),
@@ -74,6 +77,9 @@ def main():
             ]:
                 if marker not in get(path, attempt):
                     raise AssertionError(f"Published asset is old or broken: {path}")
+            for asset in ("photos/edubiotech/liver-lobules.jpg",
+                          "photos/edubiotech/pancreas-overview.jpg",
+                          "photos/edubiotech/bile-canaliculus-ultrastructure.jpg",
             for asset in ("photos/department/ПОДЖЕЛУДОЧНАЯ ЖЕЛЕЗА (PDF стр. 5).jpg",
                           "photos/liver-central-vein.jpg","photos/liver-portal-triad.jpg",
                           "photos/gastric-parietal-tem.jpg","photos/gastric-chief-tem.jpg"):
@@ -84,7 +90,7 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, EduBiotech source-linked atlas and original pancreas PDF JPEG")
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 28 imported EduBiotech originals with 144 source labels, 15 faculty records and original pancreas JPEG")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)
