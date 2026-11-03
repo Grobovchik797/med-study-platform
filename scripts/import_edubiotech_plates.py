@@ -98,28 +98,27 @@ for slug,page_name,thumb,chapter_id,kind in FIGURES:
   found=next((tag for tag in page.select("img[src]") if urlsplit(tag.get("src","")).path.split("/")[-1].lower()==thumb.lower()),None)
   if not found:raise ValueError("Thumbnail not on the allowed source page "+thumb)
   source_page=urljoin(BASE,page_name)
-  anchor=found.find_parent("a",href=True)
-  if not anchor:
-   # Some figures are inline TEM JPGs with no Java viewer.
-   image_url=urljoin(source_page,found["src"])
-   source_viewer=source_page
-   raw_marks=[];overlay=False
-   title=kind+" — "+chapter_id
-  else:
-   viewer_url=urljoin(source_page,anchor["href"])
-   if not viewer_url.startswith(BASE):raise ValueError("Viewer outside approved origin")
-   if viewer_url not in viewer_cache:viewer_cache[viewer_url]=soup_for(viewer_url[len(BASE):])
-   viewer=viewer_cache[viewer_url]
-   app=viewer.select_one("applet")
-   if not app:
-    image_url=urljoin(source_page,found["src"])
-    raw_marks=[];overlay=False
-   else:
-    src=param(app,"imgsrc")
-    if not src:raise ValueError("Original applet image param missing")
-    image_url=urljoin(viewer_url,src)
-   source_viewer=viewer_url
-   title=viewer.title.get_text(" ",strip=True) if viewer.title else slug
+  # The old HTML places "Full size" as a SIBLING link, not as <a><img>.
+  # Discover the Java viewer from its thumbnail stem, not from find_parent().
+  # e.g. exams278s.jpg -> images/exams278.html -> samples/exams278.jpg.
+  viewer=None
+  image_url=urljoin(source_page,found["src"])
+  source_viewer=source_page
+  raw_marks=[];overlay=False
+  title=slug.replace("-"," ")
+  if thumb.lower().endswith("s.jpg"):
+   viewer_url=urljoin(source_page,"images/"+thumb[:-5]+".html")
+   try:
+    if viewer_url not in viewer_cache:viewer_cache[viewer_url]=soup_for(viewer_url[len(BASE):])
+    viewer=viewer_cache[viewer_url]
+    app=viewer.select_one("applet")
+    if app and param(app,"imgsrc"):
+     image_url=urljoin(viewer_url,param(app,"imgsrc"))
+     source_viewer=viewer_url
+     title=viewer.title.get_text(" ",strip=True) if viewer.title else slug
+   except Exception as viewer_error:
+    print("VIEWER_UNAVAILABLE",slug,type(viewer_error).__name__,str(viewer_error)[:80],flush=True)
+    viewer=None
   binary=request(image_url)
   with Image.open(io.BytesIO(binary)) as im:
    im.verify()
