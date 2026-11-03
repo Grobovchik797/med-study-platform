@@ -130,7 +130,7 @@ for slug,page_name,thumb,chapter_id,kind in FIGURES:
    out=io.BytesIO()
    im.save(out,format="JPEG",quality=91,optimize=True)
    jpg=out.getvalue()
-  if anchor and viewer.select_one("applet"):
+  if viewer and viewer.select_one("applet"):
    app=viewer.select_one("applet")
    count=int(param(app,"markcount") or 0)
    raw_marks,overlay=marks(param(app,"marksdata"),count,width,height)
