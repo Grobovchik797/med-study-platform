@@ -7,6 +7,9 @@ on:
       - scripts/import_edubiotech_plates.py
       - .github/workflows/edubiotech-intake.yml
   workflow_dispatch:
+concurrency:
+  group: edubiotech-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
