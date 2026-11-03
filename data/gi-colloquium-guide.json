@@ -1,7 +1,7 @@
 {
   "version": 1,
   "courseId": "gi-histology",
-  "scope": "Study map for all 17 existing GI chapters; 2 pending original departmental liver/pancreas image series.",
+  "scope": "Study map for all 17 existing GI chapters; faculty-approved pancreas photo added in 1.9.6, original liver faculty photo still pending.",
   "statement": "These are study cues grounded in existing course chapters, not verified spatial labels on individual images. No automatic grade, recording or scientific certification.",
   "cues": {
     "plan": {
@@ -158,7 +158,6 @@
     }
   ],
   "pendingDepartmentChapters": [
-    "liver",
-    "pancreas"
+    "liver"
   ]
 }
