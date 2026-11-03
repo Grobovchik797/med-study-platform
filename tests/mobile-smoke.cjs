@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.1'),
-      'Top navigation must show the current 1.9.1 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.2'),
+      'Top navigation must show the current 1.9.2 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -472,16 +472,14 @@ async function main() {
     const videoCard=desktop.locator('.dept-file-card').filter({hasText:'Листовидные сосочки'});
     await videoCard.click();
     assert.equal(await desktop.locator('.dept-public-figure').count(),2,'Video must supply two real fields of view');
-    await desktop.getByRole('button',{name:'Самопроверка'}).click();
-    assert.ok((await desktop.locator('.dept-panel h2').textContent()).includes('Определи препарат'));
-    assert.equal(await desktop.locator('.dept-answer option[value="ЛИСТОВИДНЫЕ СОСОЧКИ"]').textContent(),'Листовидные сосочки');
-    await desktop.locator('.dept-answer').selectOption('ЛИСТОВИДНЫЕ СОСОЧКИ');
-    await desktop.getByRole('button',{name:'Проверить ответ'}).click();
-    assert.ok((await desktop.locator('.dept-feedback').textContent()).includes('Верно: Листовидные сосочки'));
-    assert.equal(await desktop.locator('.dept-modes button').count(),2,'Department must have only study and self-check');
-    assert.equal(await desktop.locator('.dept-modes').getByRole('button',{name:'Найди структуру'}).count(),0);
-    await desktop.getByRole('button',{name:'Изучение'}).click();
-    assert.equal(await desktop.locator('.dept-modes button').count(),2);
+    assert.equal(await desktop.locator('.dept-panel h2').textContent(),'Листовидные сосочки');
+    assert.equal(await desktop.locator('.dept-modes button').count(),0,'Department no longer has duplicate study/self-check controls');
+    assert.equal(await desktop.locator('.dept-panel .dept-answer').count(),0,'No departmental answer form outside random drill');
+    assert.ok(await desktop.locator('.dept-cues').isVisible(),'Study mode must keep the useful diagnostic cues');
+    assert.ok((await desktop.locator('.dept-public-figure .dept-image').first().getAttribute('alt')).includes('Листовидные сосочки'),
+      'Study mode must reveal the correct source title');
+    assert.equal(await desktop.getByRole('button',{name:'Тренировка: случайные препараты'}).count(),1,
+      'Randomized recognition remains the only department quiz action');
 
     // Colloquium drill: all 14 real specimens exactly once; identity shown only after a checked answer.
     await desktop.getByRole('button',{name:'Тренировка: случайные препараты'}).click();
