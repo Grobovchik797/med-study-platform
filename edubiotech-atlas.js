@@ -13,10 +13,10 @@ function externalLink(url,label){
  if(typeof url!=='string'||!url.startsWith(BASE)||url.includes('..'))throw Error('Unexpected external atlas link');
  const a=el('a','edu-external-link',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;
 }
-function render(host,{data,course,guide,onBack,onChapter,onReference,selectedChapter=null}={}){
+function render(host,{data,plates=null,course,guide,onBack,onChapter,onReference,selectedChapter=null}={}){
  if(!data||data.version!==1||!course?.chapters?.length||!guide?.cues)throw Error('Incomplete EduBiotech guide');
  const chapters=course.chapters,byId=new Map(chapters.map(ch=>[ch.id,ch])),byTopic=new Map(data.topics.map(x=>[x.id,x]));
- let activeMode='slides',filter=selectedChapter&&byId.has(selectedChapter)?selectedChapter:'all';
+ let activeMode=plates?.plates?.length?'originals':'slides',filter=selectedChapter&&byId.has(selectedChapter)?selectedChapter:'all';
  function renderAll(){
   host.replaceChildren();
   host.append(button('← К библиотеке атласов',onBack,'gi-back'),
@@ -24,9 +24,9 @@ function render(host,{data,course,guide,onBack,onChapter,onReference,selectedCha
     el('h1','','Атлас EduBiotech — пищеварительная система'),
     el('p','gi-lead','Навигатор по темам 23, 24 и 25 руководства-атласа Кузнецова, Мушкамбарова и Горячкиной, связанным с 17 главами Med Study.'));
   const notice=el('section','card edu-source-notice');
-  notice.append(el('h2','','Оригинальные изображения и обозначения — у правообладателя'),
-    el('p','',data.source.rights),
-    el('p','',data.source.chapterPathStatus),
+  notice.append(el('h2','','Источник: edubiotech.ru · учебное разрешение с атрибуцией'),
+    el('p','',plates?.permission||data.source.rights),
+    el('p','',plates?.plates?.length?'Загружены исходные проверенные JPG и авторские обозначения Java-атласа; в нашей разметке обозначения не придумываются.':data.source.chapterPathStatus),
     el('p','edu-source-credit','Издание: '+data.source.name+'. Авторы: '+data.source.authors+'.'));
   const index=el('div','edu-links');
   index.append(externalLink(data.source.index,'Открыть исходное руководство-атлас'),
@@ -34,7 +34,7 @@ function render(host,{data,course,guide,onBack,onChapter,onReference,selectedCha
   notice.append(index);host.append(notice);
   const toolbar=el('section','edu-controls');
   const modes=el('div','edu-modes');
-  for(const [id,title] of [['slides','Препараты по темам'],['ultrastructure','Электронограммы и ультраструктура']]){
+  for(const [id,title] of [['originals','Препараты с фото и обозначениями'],['slides','Карта тем'],['ultrastructure','Электронограммы и ультраструктура']]){
     const control=button(title,()=>{activeMode=id;renderAll();},'gi-button'+(id===activeMode?'':' gi-light'));
     control.setAttribute('aria-pressed',String(activeMode===id));modes.append(control);
   }
@@ -47,7 +47,7 @@ function render(host,{data,course,guide,onBack,onChapter,onReference,selectedCha
   select.addEventListener('change',()=>{filter=select.value;renderAll();});
   label.append(select);toolbar.append(label);
   host.append(toolbar);
-  if(activeMode==='slides')renderSlideList();else renderUltrastructure();
+  if(activeMode==='originals')renderGallery(false);else if(activeMode==='slides')renderSlideList();else renderUltrastructure();
   host.append(el('p','edu-footer-note',data.methodology));
  }
  function matches(ids){return filter==='all'||ids.includes(filter);}
@@ -86,6 +86,7 @@ function render(host,{data,course,guide,onBack,onChapter,onReference,selectedCha
   host.append(root);
  }
  function renderUltrastructure(){
+  renderGallery(true);
   const root=el('section','edu-electron-list');
   root.append(el('h2','','Электронограммы: проверенные изображения'),
     el('p','edu-muted','Эти два настоящих TEM-снимка уже размещены в обычном атласе Med Study по лицензии CC BY 4.0. Они не скопированы с EduBiotech и выполнены на материале европейского бобра.'));
