@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.6'),
-      'Top navigation must show the current 1.9.6 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.7'),
+      'Top navigation must show the current 1.9.7 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -483,6 +483,32 @@ async function main() {
     await desktop.waitForFunction(()=>document.querySelector('.si-microscope img')?.naturalWidth>=420);
     await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
     await waitHeading(desktop,'Библиотека атласов');
+    // 1.9.7: external EduBiotech is a separate, provenance-labeled atlas,
+    // with 17 chapters and no unlicensed third-party images embedded.
+    const eduProgress=await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
+    await desktop.getByRole('button',{name:'Препараты EduBiotech →'}).click();
+    await waitHeading(desktop,'Атлас EduBiotech — пищеварительная система');
+    assert.equal(await desktop.locator('.edu-topic-card').count(),3);
+    assert.equal(await desktop.locator('.edu-chapter-item').count(),17);
+    assert.equal(await desktop.locator('.edu-topic-card img').count(),0,'Do not mirror proprietary images from source');
+    const links=await desktop.locator('.edu-topic-card .edu-external-link').evaluateAll(nodes=>nodes.map(n=>({href:n.href,target:n.target,rel:n.rel})));
+    assert.equal(links.length,6);
+    assert.ok(links.every(x=>x.href.startsWith('https://edubiotech.ru/')&&x.target==='_blank'&&x.rel.includes('noopener')));
+    await desktop.locator('.edu-chapter-filter').selectOption('liver');
+    assert.equal(await desktop.locator('.edu-topic-card').count(),1);
+    assert.equal(await desktop.locator('.edu-chapter-item').count(),1);
+    assert.ok((await desktop.locator('.edu-topic-card').textContent()).includes('Печень'));
+    await desktop.locator('.edu-chapter-filter').selectOption('all');
+    await desktop.getByRole('button',{name:'Электронограммы и ультраструктура'}).click();
+    assert.equal(await desktop.locator('.edu-electron-card').count(),2,'Two existing licensed TEM images only');
+    assert.equal(await desktop.locator('.edu-ultra-card').count(),5,'Five authored ultrastructure study prompts');
+    assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),eduProgress,
+      'Browsing the source links must not alter learning progress');
+    await desktop.locator('[data-electron-id="parietal"] button').click();
+    await waitHeading(desktop,'Изучение и самопроверка');
+    assert.ok((await desktop.locator('.si-microscope img').getAttribute('src')).endsWith('gastric-parietal-tem.jpg'));
+    await desktop.getByRole('button',{name:'← Вернуться к теме'}).click();
+    await waitHeading(desktop,'Библиотека атласов');
     // Regression 1.6: public departmental atlas has all real source JPGs and video frames.
     await desktop.getByRole('button',{name:'Открыть кафедральный атлас'}).click();
     await waitHeading(desktop,'Кафедральные микропрепараты');
@@ -592,14 +618,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),11,'Seven feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),12,'Eight feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),7);
+    assert.equal(await desktop.locator('.study-journal-item').count(),8);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
