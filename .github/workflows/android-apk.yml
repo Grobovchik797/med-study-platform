@@ -40,6 +40,7 @@ jobs:
           python3 scripts/validate_small_intestine_pilot.py
           python3 scripts/validate_gi_curriculum.py
           python3 scripts/validate_study_tools.py
+          python3 scripts/validate_lecture_crosswalk.py
           node --check app.js
           node --check gi-course.js
           node --check study-tools.js
