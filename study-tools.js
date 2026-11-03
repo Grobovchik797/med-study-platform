@@ -128,12 +128,27 @@ function renderJournal(host,{journal,onBack}){
   if(!entries.length){list.append(el('p','note','Проверенных научных дополнений пока нет. После сверки лекций они появятся здесь с указанием источников и даты.'));return;}
   for(const item of entries){
    const card=el('article','card study-journal-item');
+   card.dataset.journalId=item.id;
+   if(item.chapterId)card.dataset.chapterId=item.chapterId;
    const date=item.date+' · '+(item.version||'Учебные материалы');
    card.append(el('div','kicker',item.category==='science'?'НАУЧНЫЙ МАТЕРИАЛ':'ФУНКЦИОНАЛЬНОСТЬ'),
     el('h2','',item.title),el('p','study-journal-date',date));
    const changes=el('ul');
    (item.changes||[]).forEach(change=>changes.append(el('li','',change)));
    card.append(changes,el('p','study-journal-review',item.verification||item.reviewStatus||'Не указано'));
+   if(item.category==='science'){
+    if(item.lecture)card.append(el('p','study-journal-lecture','Лекционный конспект для сверки: '+item.lecture));
+    if(Array.isArray(item.references)&&item.references.length){
+     const refs=el('div','study-journal-references');
+     refs.append(el('strong','','Независимые источники:'));
+     for(const [i,url] of item.references.entries()){
+      if(typeof url!=='string'||!/^https:\/\//.test(url))continue;
+      const link=el('a','study-journal-source','Источник '+(i+1)+' · '+new URL(url).hostname);
+      link.href=url;link.target='_blank';link.rel='noopener noreferrer';refs.append(link);
+     }
+     card.append(refs);
+    }
+   }
    if(typeof item.source==='string'&&/^https:\/\/github\.com\/Grobovchik797\//.test(item.source)){
     const link=el('a','study-journal-source','История изменения в GitHub');
     link.href=item.source;link.target='_blank';link.rel='noopener noreferrer';card.append(link);
