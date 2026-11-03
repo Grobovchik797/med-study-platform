@@ -52,6 +52,14 @@ if __name__=="__main__":
    for link in h.links:
     if "/images/" in link or link.endswith(".html"):
      fetch(urljoin(page,link))
+ print("=== INSPECT PHOTO VIEWER RAW HTML AND SOURCE LABELS ===")
+ for relative in ["r5/images/exams278.html","r5/images/n010k.html","r5/images/exams188.html","r5/s25lst.html"]:
+  url=archive+relative
+  try:
+   with urlopen(Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=12) as r:
+    raw=r.read(10000).decode("windows-1251",errors="replace")
+   print("HTML",relative,repr(raw[:6500]))
+  except Exception as e: print("RAW FAIL",relative,str(e))
  print("=== GEOTAR FRAMES ===")
  root="https://edubiotech.ru/downloads/library/ugebnik/gistologi/"
  for rel in ["pages/frameset_book.htm","pages/frameset_exam.htm","pages/book.htm","pages/contents.htm"]:
