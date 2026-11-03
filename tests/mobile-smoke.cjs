@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.7'),
-      'Top navigation must show the current 1.9.7 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.8'),
+      'Top navigation must show the current 1.9.8 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -487,6 +487,31 @@ async function main() {
     // with 17 chapters and no unlicensed third-party images embedded.
     const eduProgress=await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
     await desktop.getByRole('button',{name:'Препараты EduBiotech →'}).click();
+    await waitHeading(desktop,'Препараты и обозначения EduBiotech');
+    assert.equal(await desktop.locator('.edu-original-tile').count(),36,'21 real source specimen + 15 original alternate images');
+    assert.equal(await desktop.locator('.edu-original-pin').count(),5,'True author pins from original Java atlas');
+    assert.equal(await desktop.locator('.edu-original-structure-list li').count(),5);
+    assert.ok((await desktop.locator('.edu-original-credit').textContent()).includes('edubiotech.ru'));
+    assert.ok((await desktop.locator('.edu-original-credit').textContent()).includes('Кузнецов'));
+    await desktop.waitForFunction(()=>document.querySelector('.edu-original-figure img')?.complete &&
+      document.querySelector('.edu-original-figure img')?.naturalWidth===768);
+    const pins=await desktop.locator('.edu-original-pin').evaluateAll(nodes=>nodes.map(n=>({left:parseFloat(n.style.left),top:parseFloat(n.style.top)})));
+    assert.ok(pins.every(pin=>pin.left>0&&pin.left<100&&pin.top>0&&pin.top<100));
+    await desktop.getByRole('button',{name:'Самопроверка'}).click();
+    assert.equal(await desktop.locator('.edu-original-pin').count(),0,'Do not reveal labels before answer');
+    assert.ok((await desktop.locator('.edu-original-structure-list').textContent()).includes('Структура скрыта'));
+    await desktop.getByRole('button',{name:'Показать оригинальные обозначения'}).click();
+    assert.equal(await desktop.locator('.edu-original-pin').count(),5);
+    await desktop.locator('.edu-original-chapter-filter').selectOption('liver');
+    assert.equal(await desktop.locator('.edu-original-tile').count(),4);
+    await desktop.locator('.edu-original-tile').filter({hasText:'печень человека'}).first().click();
+    assert.ok((await desktop.locator('.edu-original-structure-list').textContent()).includes('триада'));
+    assert.ok((await desktop.locator('.edu-original-figure img').getAttribute('src')).endsWith('t25-03.jpg'));
+    await desktop.getByRole('button',{name:'Найди структуру'}).click();
+    assert.ok((await desktop.locator('.edu-original-target').textContent()).includes('Найди на снимке'));
+    await desktop.locator('.edu-original-chapter-filter').selectOption('all');
+    assert.equal(await desktop.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),eduProgress);
+    await desktop.getByRole('button',{name:'К обзору и электронограммам'}).click();
     await waitHeading(desktop,'Атлас EduBiotech — пищеварительная система');
     assert.equal(await desktop.locator('.edu-topic-card').count(),3);
     assert.equal(await desktop.locator('.edu-chapter-item').count(),17);
@@ -618,14 +643,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),12,'Eight feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),13,'Nine feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),8);
+    assert.equal(await desktop.locator('.study-journal-item').count(),9);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
