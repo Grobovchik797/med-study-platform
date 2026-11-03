@@ -828,8 +828,8 @@ html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#ff
 .edu-original-filename{font-size:.89rem;color:var(--muted);margin:0}
 .edu-original-modes{display:flex;gap:8px;flex-wrap:wrap}
 .edu-original-modes button{min-height:44px}
-.edu-original-figure{position:relative;width:min(100%,790px);margin:0 auto;line-height:0;user-select:none}
-.edu-original-figure>img{display:block;width:100%;height:auto;object-fit:contain;border-radius:9px;border:1px solid #cab7db}
+.edu-original-figure{position:relative;width:fit-content;max-width:100%;margin:0 auto;line-height:0;user-select:none}
+.edu-original-figure>img{display:block;width:auto;height:auto;max-width:100%;max-height:75vh;object-fit:contain;border-radius:9px;border:1px solid #cab7db}
 .edu-original-figure.is-finding>img{cursor:crosshair;touch-action:manipulation}
 .edu-original-markers{position:absolute;inset:0;pointer-events:none}
 .edu-original-pin{position:absolute;display:grid;place-items:center;min-width:26px;height:26px;padding:0 5px;transform:translate(-50%,-50%);border:2px solid #fff;background:#732d88;color:white;font-size:12px;font-weight:800;border-radius:100px;box-shadow:0 1px 5px #2229;line-height:1}
