@@ -24,7 +24,7 @@ for r in records:
     target=ROOT/r["src"][2:]
     assert target.is_file(),r["src"]
     binary=target.read_bytes()
-    assert len(binary)>12000 and binary[:3]==b"\\xff\\xd8\\xff",r["id"]
+    assert len(binary)>12000 and binary[:3]==bytes.fromhex("ffd8ff"),r["id"]
     assert hashlib.sha256(binary).hexdigest()==r["sha256"],r["id"]
     assert r["width"]>=170 and r["height"]>=170
     assert "edubiotech.ru" in r["credit"] and "Кузнецов" in r["credit"]
