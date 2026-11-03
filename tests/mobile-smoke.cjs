@@ -577,14 +577,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),10,'Six feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),11,'Seven feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),6);
+    assert.equal(await desktop.locator('.study-journal-item').count(),7);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
