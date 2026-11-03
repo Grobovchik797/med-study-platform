@@ -38,7 +38,7 @@ for record in atlas["electronograms"]:
     assert record["chapterId"]=="gastric-glands"
     ref=reference_ids[record["referenceId"]]
     assert ref["license"]=="CC BY 4.0" and "электрон" in ref["stain"].lower()
-    assert "не взята с EduBiotech" in record["note"]
+    assert "не взята с edubiotech" in record["note"].lower()
 for item in atlas["ultrastructureStudy"]:
     assert item["sourceTopic"] in {"s23","s24","s25"}
     assert set(item["chapterIds"]).issubset(chapter_ids)
