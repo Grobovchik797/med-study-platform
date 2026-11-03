@@ -116,7 +116,7 @@ def import_all():
     raw=fetch(view["imageSource"],max_bytes=5_000_000)
     im=Image.open(io.BytesIO(raw));im.verify()
     im=Image.open(io.BytesIO(raw))
-    if im.width<300 or im.height<250:raise ValueError("Very small source image: "+url)
+    if im.width<80 or im.height<80:raise ValueError("Image smaller than microscopy source threshold: "+url)
     if im.format not in ("JPEG","PNG","GIF"):raise ValueError("Unsupported source image: "+url)
     ext={"JPEG":"jpg","PNG":"png","GIF":"gif"}[im.format]
     if abs(im.width-view["width"])>150 or abs(im.height-view["height"])>150:
