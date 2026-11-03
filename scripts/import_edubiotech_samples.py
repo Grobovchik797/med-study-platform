@@ -102,7 +102,7 @@ def main():
   blob=get(image_url,limit=700000)
   width,height=jpg_size(blob)
   markers=parse_marks(metadata.params)
-  if not (width>=200 and height>=200 and len(blob)>13000):
+  if not (width>=130 and height>=180 and len(blob)>5000):
    raise ValueError("Too small or damaged photo "+url)
   local=f"photos/edubiotech/t{section}-{i+1:02d}.jpg"
   title=" ".join(metadata.title.split())
