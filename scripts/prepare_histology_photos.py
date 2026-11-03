@@ -4,11 +4,13 @@
 The app never hotlinks thumbnails or sends user microscope requests to third-party
 proxies. Fail a production build on missing/corrupt files; never ship placeholders.
 """
+import hashlib
 import json
 import os
 import time
 import urllib.request
 import urllib.error
+from urllib.parse import quote
 from pathlib import Path
 from PIL import Image, UnidentifiedImageError
 from io import BytesIO
@@ -18,6 +20,44 @@ EXTRA=json.loads((ROOT/"data/gi-atlas.json").read_text("utf-8"))
 BASE=ROOT/"photos"
 BASE.mkdir(parents=True,exist_ok=True)
 assert len(SLIDES["images"])==3 and len(EXTRA["images"])==16
+
+# Our previous published build and successful PR #53 debug APK contain the same
+# 19 licensed JPEGs. Never accept a CDN response without its pinned SHA-256, and
+# never use an old image if any source manifest changed.
+LOCK=json.loads((ROOT/"data/gi-photo-lock.json").read_text("utf-8"))
+LOCK_VALID=(hashlib.sha256((ROOT/"data/gi-atlas.json").read_bytes()).hexdigest()==LOCK["atlas_sha256"]
+    and hashlib.sha256((ROOT/"data/small-intestine-slides.json").read_bytes()).hexdigest()==LOCK["small_sha256"])
+if not LOCK_VALID:
+    print("Published-image fallback disabled: source manifest changed; update audited photo lock before reuse.")
+
+def reuse_verified_published(path):
+    if not LOCK_VALID or path.name not in LOCK["photos"]:
+        return False
+    url="https://grobovchik797.github.io/med-study-platform/photos/"+quote(path.name)
+    try:
+        req=urllib.request.Request(url,headers={
+            "User-Agent":"MedStudyEducation/1.9 (recover unchanged published Commons image)",
+            "Accept":"image/jpeg",
+            "Cache-Control":"no-cache",
+        })
+        with urllib.request.urlopen(req, timeout=20) as response:
+            mime=response.headers.get("Content-Type","").lower()
+            raw=response.read(35_000_001)
+        if not mime.startswith("image/") or not 12000<len(raw)<=35_000_000:
+            raise ValueError("Published asset is not a valid image download")
+        if hashlib.sha256(raw).hexdigest()!=LOCK["photos"][path.name]:
+            raise ValueError("Published image checksum differs from verified PR #53 build")
+        with Image.open(BytesIO(raw)) as image:
+            image.verify()
+        with Image.open(BytesIO(raw)) as image:
+            if min(image.size)<420:
+                raise ValueError("Published microscopy image too small")
+        path.write_bytes(raw)
+        print(f"Reused SHA-256 verified previously published image: {path.name} ({len(raw)} bytes)")
+        return True
+    except Exception as exc:
+        print(f"Previous published image unavailable for {path.name}: {str(exc)[:130]}")
+        return False
 for slide in SLIDES["images"]+EXTRA["images"]:
     local=slide.get("src","")
     if not local.startswith("./photos/") or ".." in local:
@@ -31,6 +71,8 @@ for slide in SLIDES["images"]+EXTRA["images"]:
     sources=slide.get("buildSources",[])
     if not sources or slide.get("license") not in {"CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","CC BY 3.0","Public domain"} or not slide.get("source"):
         raise SystemExit("Missing Commons provenance for "+slide["id"])
+    if reuse_verified_published(path):
+        continue
     err=None
     for url in sources:
         for retry in range(3):
