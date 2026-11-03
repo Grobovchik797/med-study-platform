@@ -1,0 +1,17 @@
+name: Check licensed EduBiotech source access
+on:
+  pull_request:
+    paths:
+      - scripts/probe_edubiotech.py
+      - .github/workflows/edubiotech-intake.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe source pages and original JPG links
+        run: python3 -u scripts/probe_edubiotech.py
