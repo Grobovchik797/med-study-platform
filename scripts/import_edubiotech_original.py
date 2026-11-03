@@ -84,7 +84,7 @@ def parse_viewer(url):
 def gallery_rows(topic):
  list_url=BASE+f"r5/s{topic}lst.html"
  page=soup(list_url);rows=[]
- for tr in page.find_all("tr"):
+ for tr in (page.find("table",attrs={"border":"2"}) or page).find_all("tr"):
   link=tr.select_one('a[href^="images/"][href$=".html"]')
   if not link:continue
   detail=urljoin(list_url,link["href"])
