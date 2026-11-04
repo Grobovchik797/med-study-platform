@@ -750,7 +750,7 @@ async function main() {
     assert.ok(typeof stored.chapters.mandibular.best==='number');
     await desktop.getByRole('button',{name:'Вернуться к разделу'}).click();
     await desktop.getByRole('button',{name:'← Нервная система'}).click();
-    await desktop.locator('.library-card').filter({hasText:'Проверка черепных нервов'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Итоговый тест по I–XII парам'}).locator('.library-go').click();
     await waitHeading(desktop,'Итоговая проверка по черепным нервам');
     assert.ok((await desktop.locator('.cn-count').textContent()).includes('1 / 20'));
     assert.equal(await desktop.locator('.cn-option').count(),4);
