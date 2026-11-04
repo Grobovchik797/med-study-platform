@@ -420,7 +420,7 @@
         {
           "id": "nervous",
           "title": "Нервная система",
-          "subtitle": "Черепные нервы I–VII · 13 полных конспектов с обязательной латынью, 263 термина, 52 вопроса и 53 карточки. VIII–XII добавим по новым материалам.",
+          "subtitle": "Полный курс черепных нервов I–XII: 26 подробных подразделов, 104 вопроса, 104 карточки, 486 русско-латинских терминов. Один полный конспект на тему.",
           "topics": [
             {
               "id": "cranial-olfactory",
@@ -605,15 +605,197 @@
               "hint": "6 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 12–14 · русские и латинские названия"
             },
             {
+              "id": "cranial-vestibulocochlear-core",
+              "title": "VIII. Преддверно-улитковый нерв: ядра и состав · Nervus vestibulocochlearis (VIII)",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vestibulocochlear-core",
+              "hint": "3 полных блока · 4 вопроса · 3 карточки · PDF-2, с. 1 · латынь"
+            },
+            {
+              "id": "cranial-cochlear-pathway",
+              "title": "VIII. Слуховой анализатор: улитка и проводящий путь · Via auditiva · Nervus cochlearis",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "cochlear-pathway",
+              "hint": "5 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 2–4 · латынь"
+            },
+            {
+              "id": "cranial-vestibular-pathway",
+              "title": "VIII. Вестибулярный анализатор: рецепторы и четыре направления · Via vestibularis · Nervus vestibularis",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vestibular-pathway",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 4 · латынь"
+            },
+            {
+              "id": "cranial-glossopharyngeal-core",
+              "title": "IX. Языкоглоточный нерв: ядра, выход и узлы · Nervus glossopharyngeus (IX)",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "glossopharyngeal-core",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 4–5 · латынь"
+            },
+            {
+              "id": "cranial-glossopharyngeal-branches",
+              "title": "IX. Языкоглоточный нерв: барабанная и остальные ветви · Rami nervi glossopharyngei",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "glossopharyngeal-branches",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 5–6 · латынь"
+            },
+            {
+              "id": "cranial-vagus-core",
+              "title": "X. Блуждающий нерв: ядра, узлы и функции · Nervus vagus (X)",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vagus-core",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 6–7 · латынь"
+            },
+            {
+              "id": "cranial-vagus-topography",
+              "title": "X. Блуждающий нерв: шейный и грудной ход · Cursus nervi vagi",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vagus-topography",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 7–8 · латынь"
+            },
+            {
+              "id": "cranial-vagus-head-neck",
+              "title": "X. Блуждающий нерв: головные и шейные ветви · Rami capitis et colli nervi vagi",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vagus-head-neck",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 8–9 · латынь"
+            },
+            {
+              "id": "cranial-vagus-thoracic",
+              "title": "X. Блуждающий нерв: грудные ветви и возвратный нерв · Rami thoracici · Nervus laryngeus recurrens",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vagus-thoracic",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 9–10 · латынь"
+            },
+            {
+              "id": "cranial-vagus-abdominal",
+              "title": "X. Блуждающий нерв: брюшные стволы и органы · Trunci vagales · Rami abdominales",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "vagus-abdominal",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 10–11 · латынь"
+            },
+            {
+              "id": "cranial-accessory",
+              "title": "XI. Добавочный нерв: корешки, ветви и мышцы · Nervus accessorius (XI)",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "accessory",
+              "hint": "3 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 11–12 · латынь"
+            },
+            {
+              "id": "cranial-hypoglossal-main",
+              "title": "XII. Подъязычный нерв: ядро, ход и мышцы языка · Nervus hypoglossus (XII)",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "hypoglossal-main",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 12–13 · латынь"
+            },
+            {
+              "id": "cranial-hypoglossal-cervical",
+              "title": "XII. Подъязычный нерв и шейная петля · Ansa cervicalis · Fibrae cervicales cum XII",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "hypoglossal-cervical",
+              "hint": "4 полных блока · 4 вопроса · 4 карточки · PDF-2, с. 13 · латынь"
+            },
+            {
               "id": "cranial-final-exam",
-              "title": "Проверка черепных нервов — 20 случайных вопросов",
+              "title": "Итоговый тест по I–XII парам — 20 случайных вопросов",
               "status": "editorial-source-mapped",
               "notes": {},
               "quiz": true,
               "atlas": false,
               "flashcards": false,
               "route": "cranial-exam",
-              "hint": "20 случайных вопросов из 52, разбор ответов; без препаратов и 3D."
+              "hint": "20 случайных вопросов из 104, с объяснениями ответов; без препаратов и 3D"
             }
           ]
         }
