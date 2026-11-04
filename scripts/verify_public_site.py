@@ -59,7 +59,7 @@ def main():
                 ("data/cranial-nerves.json", '"facial-extracranial"'),
                 ("data/cranial-nerves.json", '"one-full-note"'),
                 ("data/cranial-nerves-viii-xii.json", '"hypoglossal-cervical"'),
-                ("data/cranial-nerves-viii-xii.json", '"nervus glossopharyngeus"'),
+                ("data/cranial-nerves-viii-xii.json", '"Nervus glossopharyngeus"'),
                 ("data/library.json", '"cranial-vagus-thoracic"'),
                 ("data/cranial-nerves.json", '"Nervus ophthalmicus"'),
                 ("cranial-nerves.js", "renderTerminology(chapter)"),
