@@ -30,6 +30,7 @@ assert "разрешение" in atlas["source"]["rights"] and "edubiotech.ru" i
 assert "повторно открыты" in atlas["source"]["chapterPathStatus"]
 for topic in atlas["topics"]:
     assert topic["url"]==prefix+"histology/r5/s"+str(topic["number"])+"lst.html"
+    assert topic["contentUrl"]==prefix+"histology/r5/t"+str(topic["number"])+".html"
     assert len(topic["title"])>18 and len(topic["scope"])>35
     assert set(topic["chapterIds"]).issubset(chapter_ids)
 assert len(atlas["electronograms"])==2 and len(atlas["ultrastructureStudy"])==5
