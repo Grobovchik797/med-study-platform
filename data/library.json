@@ -424,7 +424,7 @@
           "topics": [
             {
               "id": "cranial-olfactory",
-              "title": "I. Обонятельный нерв",
+              "title": "I. Обонятельный нерв · Nervus olfactorius (I)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -434,11 +434,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "olfactory",
-              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 1–2"
+              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 1–2 · русские и латинские названия"
             },
             {
               "id": "cranial-optic",
-              "title": "II. Зрительный путь",
+              "title": "II. Зрительный путь · Nervus opticus (II)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -448,11 +448,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "optic",
-              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 2–3"
+              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 2–3 · русские и латинские названия"
             },
             {
               "id": "cranial-visual-reflexes",
-              "title": "Зрачковый рефлекс, конвергенция и аккомодация",
+              "title": "Зрачковый рефлекс, конвергенция и аккомодация · Reflexus pupillaris · Convergentia · Accommodatio",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -462,11 +462,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "visual-reflexes",
-              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 3–4"
+              "hint": "3 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 3–4 · русские и латинские названия"
             },
             {
               "id": "cranial-oculomotor",
-              "title": "III. Глазодвигательный нерв",
+              "title": "III. Глазодвигательный нерв · Nervus oculomotorius (III)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -476,11 +476,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "oculomotor",
-              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 4–5"
+              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 4–5 · русские и латинские названия"
             },
             {
               "id": "cranial-trochlear",
-              "title": "IV. Блоковый нерв",
+              "title": "IV. Блоковый нерв · Nervus trochlearis (IV)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -490,11 +490,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "trochlear",
-              "hint": "2 раздела полного конспекта · 4 проверочных вопроса · 3 карточки · PDF с. 5"
+              "hint": "2 раздела полного конспекта · 4 проверочных вопроса · 3 карточки · PDF с. 5 · русские и латинские названия"
             },
             {
               "id": "cranial-trigeminal-core",
-              "title": "V. Тройничный нерв: общая схема",
+              "title": "V. Тройничный нерв: общая схема · Nervus trigeminus (V)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -504,11 +504,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "trigeminal-core",
-              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 6–7"
+              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 6–7 · русские и латинские названия"
             },
             {
               "id": "cranial-ophthalmic",
-              "title": "V1. Глазная ветвь",
+              "title": "V1. Глазная ветвь · Nervus ophthalmicus (V1)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -518,11 +518,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "ophthalmic",
-              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 7–8"
+              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 7–8 · русские и латинские названия"
             },
             {
               "id": "cranial-maxillary",
-              "title": "V2. Верхнечелюстная ветвь",
+              "title": "V2. Верхнечелюстная ветвь · Nervus maxillaris (V2)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -532,11 +532,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "maxillary",
-              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 8–9"
+              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 8–9 · русские и латинские названия"
             },
             {
               "id": "cranial-mandibular",
-              "title": "V3. Нижнечелюстная ветвь",
+              "title": "V3. Нижнечелюстная ветвь · Nervus mandibularis (V3)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -546,11 +546,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "mandibular",
-              "hint": "5 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 9–10"
+              "hint": "5 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 9–10 · русские и латинские названия"
             },
             {
               "id": "cranial-abducens",
-              "title": "VI. Отводящий нерв",
+              "title": "VI. Отводящий нерв · Nervus abducens (VI)",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -560,11 +560,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "abducens",
-              "hint": "2 раздела полного конспекта · 4 проверочных вопроса · 3 карточки · PDF с. 5–6"
+              "hint": "2 раздела полного конспекта · 4 проверочных вопроса · 3 карточки · PDF с. 5–6 · русские и латинские названия"
             },
             {
               "id": "cranial-facial-main",
-              "title": "VII. Ядра, корешки и лицевой канал",
+              "title": "VII. Ядра, корешки и лицевой канал · Nervus facialis (VII) · Truncus et nuclei",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -574,11 +574,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "facial-main",
-              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 10–11"
+              "hint": "4 раздела полного конспекта · 4 проверочных вопроса · 4 карточки · PDF с. 10–11 · русские и латинские названия"
             },
             {
               "id": "cranial-facial-intracanal",
-              "title": "VII. Ветви внутри канала",
+              "title": "VII. Ветви внутри канала · Nervus facialis (VII) · Rami intracanaliculares",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -588,11 +588,11 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "facial-intracanal",
-              "hint": "5 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 11–12"
+              "hint": "5 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 11–12 · русские и латинские названия"
             },
             {
               "id": "cranial-facial-extracranial",
-              "title": "VII. Мимика и наружные ветви",
+              "title": "VII. Мимика и наружные ветви · Nervus facialis (VII) · Rami extracraniales",
               "status": "editorial-source-mapped",
               "notes": {
                 "full": true
@@ -602,7 +602,7 @@
               "flashcards": true,
               "route": "cranial-chapter",
               "chapterId": "facial-extracranial",
-              "hint": "6 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 12–14"
+              "hint": "6 раздела полного конспекта · 4 проверочных вопроса · 5 карточки · PDF с. 12–14 · русские и латинские названия"
             },
             {
               "id": "cranial-final-exam",
