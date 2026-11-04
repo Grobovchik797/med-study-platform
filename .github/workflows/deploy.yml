@@ -96,7 +96,10 @@ jobs:
           cp photos/*.jpg _site/photos/
           cp -R photos/department _site/photos/
           cp -R photos/edubiotech _site/photos/
-          cp -R photos/edubiotech-tem _site/photos/department
+          cp -R photos/edubiotech-tem _site/photos/
+          test -f _site/photos/edubiotech-tem/enterocyte-tem.jpg
+          test -f _site/photos/edubiotech-tem/bile-canaliculus-tem.jpg
+          test -f _site/photos/edubiotech-tem/pancreas-acinar-tem.jpg
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v4
         with:
