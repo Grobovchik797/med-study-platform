@@ -41,6 +41,7 @@ let giAtlasSlides = null;
 let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = null, giDepartmentQuestions = null, giDeepBlocks = null;
 let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null, giEduOriginal = null, giEduTEM = null;
 let activeGIChapterId = null;
+let cranialCourse = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
 let view = 'home';
@@ -107,7 +108,7 @@ function button(label, handler, className = 'action-button') {
 
 function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
-    'gi-workbook':'notes','gi-exam':'subjects',atlas:'atlases','si-slides':'atlases',
+    'gi-workbook':'notes','gi-exam':'subjects','cranial-chapter':'notes','cranial-exam':'subjects',atlas:'atlases','si-slides':'atlases',
     'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
     'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects','edu-atlas':'atlases'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
@@ -313,6 +314,29 @@ function showEduBiotechAtlas(chapterId=null,guideOnly=false) {
  }
  window.scrollTo(0,0);
 }
+function showCranialChapter(id,initialTab='brief') {
+  const course=cranialCourse, api=window.MedStudyCranial;
+  if(!course||!api)return showSection('anatomy','nervous');
+  const idx=course.chapters.findIndex(ch=>ch.id===id);
+  if(idx<0)return showSection('anatomy','nervous');
+  const chapter=course.chapters[idx];
+  view='cranial-chapter';updateNav();main.replaceChildren();
+  api.renderChapter(main,{
+    course,chapter,initialTab,
+    onBack:()=>showSection('anatomy','nervous'),
+    onPrev:idx?()=>showCranialChapter(course.chapters[idx-1].id):null,
+    onNext:idx+1<course.chapters.length?()=>showCranialChapter(course.chapters[idx+1].id):null,
+    onExam:showCranialExam
+  });
+  window.scrollTo(0,0);
+}
+function showCranialExam() {
+  view='cranial-exam';updateNav();main.replaceChildren();
+  if(!window.MedStudyCranial||!cranialCourse)return showSection('anatomy','nervous');
+  window.MedStudyCranial.renderExam(main,{course:cranialCourse,
+    onBack:()=>showSection('anatomy','nervous')});
+  window.scrollTo(0,0);
+}
 function showGIChapter(id) {
   if(!window.MedStudyGI || !giCurriculum)return showSubjects();
   const chapter=giCurriculum.chapters.find(x=>x.id===id);
@@ -420,7 +444,9 @@ function showTopic(topicId) {
   if(!entry){showSubjects();return;}
   view='topic';updateNav();main.replaceChildren();
   const {subject,section,topic}=entry;
-  if(topic.route==='gi-chapter')return showGIChapter(topic.chapterId);
+  if(topic.route==='cranial-chapter')return showCranialChapter(topic.chapterId);
+   if(topic.route==='cranial-exam')return showCranialExam();
+   if(topic.route==='gi-chapter')return showGIChapter(topic.chapterId);
   if(topic.route==='gi-workbook')return showGIWorkbook();
   if(topic.route==='gi-exam')return showGIExam();
   main.append(contextLink('← '+section.title,()=>showSection(subject.id,section.id)));
@@ -531,6 +557,7 @@ function showResourceLibrary(kind) {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',
           topic.route==='gi-chapter'?()=>showGIFlashcards(topic.chapterId):
+           topic.route==='cranial-chapter'?()=>showCranialChapter(topic.chapterId,'cards'):
           topic.route==='intestine'?showIntestineFlashcards:
           ()=>navigate('flashcards'),'library-go'));
     }
@@ -581,7 +608,8 @@ function showHome() {
     stat('↺',progress.mistakes.length,'Вопросов на повторение'));
   main.append(stats);
   main.append(append(element('div','study-quick-actions'),
-    button('🔎 Поиск по учебнику и атласам',showStudySearch,'alt-button'),
+    button('Черепные нервы · анатомия',()=>showSection('anatomy','nervous'),'alt-button'),
+     button('🔎 Поиск по учебнику и атласам',showStudySearch,'alt-button'),
     button('Что нового · журнал изменений',showUpdateJournal,'alt-button'),
     button('Маршрут к коллоквиуму · 17 глав',showGIColloquium,'alt-button'),
     button('Препараты EduBiotech · отдельный атлас',()=>showEduBiotechAtlas(),'alt-button')));
@@ -1354,9 +1382,10 @@ Promise.all([
   fetch('./data/gi-colloquium-guide.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('GI colloquium guide '+r.status);return r.json();}),
   fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null),
   fetch('./data/gi-edubiotech-original.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original study photos '+r.status);return r.json();}).catch(()=>null),
-  fetch('./data/gi-edubiotech-tem.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original TEM '+r.status);return r.json();}).catch(()=>null)
+  fetch('./data/gi-edubiotech-tem.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original TEM '+r.status);return r.json();}).catch(()=>null),
+   fetch('./data/cranial-nerves.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve course '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1393,6 +1422,10 @@ Promise.all([
     giEduBiotechAtlas=eduGuide?.version===1&&eduGuide.topics?.length===3?eduGuide:null;
     giEduOriginal=eduOriginal?.version===1&&eduOriginal.images?.length===36?eduOriginal:null;
     giEduTEM=eduTEM?.version===1&&eduTEM.images?.length===3?eduTEM:null;
+    if(!window.MedStudyCranial||cranial?.version!==1||cranial.courseId!=='anatomy-cranial-nerves'||cranial.chapters?.length!==13||
+       cranial.chapters.some(ch=>ch.questions?.length!==4||!Array.isArray(ch.sections)||!ch.sections.length))
+      throw Error('Анатомия: конспект черепных нервов не загружен');
+    cranialCourse=cranial;
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;

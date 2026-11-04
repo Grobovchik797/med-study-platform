@@ -414,6 +414,223 @@
           "topics": []
         }
       ]
+    },
+    "anatomy": {
+      "sections": [
+        {
+          "id": "nervous",
+          "title": "Нервная система",
+          "subtitle": "Черепные нервы: I–VII пары · 13 подробных подразделов, 52 вопроса и 53 карточки. VIII–XII добавим позже.",
+          "topics": [
+            {
+              "id": "cranial-olfactory",
+              "title": "I. Обонятельный нерв",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "olfactory",
+              "hint": "3 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 1–2"
+            },
+            {
+              "id": "cranial-optic",
+              "title": "II. Зрительный путь",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "optic",
+              "hint": "3 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 2–3"
+            },
+            {
+              "id": "cranial-visual-reflexes",
+              "title": "Зрачковый рефлекс, конвергенция и аккомодация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "visual-reflexes",
+              "hint": "3 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 3–4"
+            },
+            {
+              "id": "cranial-oculomotor",
+              "title": "III. Глазодвигательный нерв",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "oculomotor",
+              "hint": "4 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 4–5"
+            },
+            {
+              "id": "cranial-trochlear",
+              "title": "IV. Блоковый нерв",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "trochlear",
+              "hint": "2 подробных блока · 4 проверочных вопроса · 3 карточки · PDF с. 5"
+            },
+            {
+              "id": "cranial-trigeminal-core",
+              "title": "V. Тройничный нерв: общая схема",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "trigeminal-core",
+              "hint": "4 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 6–7"
+            },
+            {
+              "id": "cranial-ophthalmic",
+              "title": "V1. Глазная ветвь",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "ophthalmic",
+              "hint": "4 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 7–8"
+            },
+            {
+              "id": "cranial-maxillary",
+              "title": "V2. Верхнечелюстная ветвь",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "maxillary",
+              "hint": "4 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 8–9"
+            },
+            {
+              "id": "cranial-mandibular",
+              "title": "V3. Нижнечелюстная ветвь",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "mandibular",
+              "hint": "5 подробных блока · 4 проверочных вопроса · 5 карточки · PDF с. 9–10"
+            },
+            {
+              "id": "cranial-abducens",
+              "title": "VI. Отводящий нерв",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "abducens",
+              "hint": "2 подробных блока · 4 проверочных вопроса · 3 карточки · PDF с. 5–6"
+            },
+            {
+              "id": "cranial-facial-main",
+              "title": "VII. Ядра, корешки и лицевой канал",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "facial-main",
+              "hint": "4 подробных блока · 4 проверочных вопроса · 4 карточки · PDF с. 10–11"
+            },
+            {
+              "id": "cranial-facial-intracanal",
+              "title": "VII. Ветви внутри канала",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "facial-intracanal",
+              "hint": "5 подробных блока · 4 проверочных вопроса · 5 карточки · PDF с. 11–12"
+            },
+            {
+              "id": "cranial-facial-extracranial",
+              "title": "VII. Мимика и наружные ветви",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "brief": true,
+                "deep": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "cranial-chapter",
+              "chapterId": "facial-extracranial",
+              "hint": "6 подробных блока · 4 проверочных вопроса · 5 карточки · PDF с. 12–14"
+            },
+            {
+              "id": "cranial-final-exam",
+              "title": "Проверка черепных нервов — 20 случайных вопросов",
+              "status": "editorial-source-mapped",
+              "notes": {},
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "cranial-exam",
+              "hint": "20 случайных вопросов из 52, разбор ответов; без препаратов и 3D."
+            }
+          ]
+        }
+      ]
     }
   }
 }
