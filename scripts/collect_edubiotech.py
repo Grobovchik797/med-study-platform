@@ -21,9 +21,9 @@ from urllib.request import Request, urlopen
 ROOT = "https://edubiotech.ru/images/vetfac/images/ebooks/histology/"
 PATH_PREFIX = "/images/vetfac/images/ebooks/histology/"
 STARTS = {
-    "23": ["histology/R5/S23lst.html", "histology/r5/t23.html"],
-    "24": ["histology/R5/S24lst.html", "histology/r5/t24.html"],
-    "25": ["histology/R5/S25lst.html", "histology/r5/t25.html"],
+    "23": ["histology/r5/s23lst.html", "histology/r5/t23.html", "histology/R5/S23lst.html"],
+    "24": ["histology/r5/s24lst.html", "histology/r5/t24.html", "histology/R5/S24lst.html"],
+    "25": ["histology/r5/s25lst.html", "histology/r5/t25.html", "histology/R5/S25lst.html"],
 }
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 HTML_EXT = {".htm", ".html"}
@@ -59,9 +59,21 @@ class SourcePage(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.page_links = []
         self.image_links = []
+        self.text_parts = []
+        self._ignore = 0
+
+    def handle_data(self, text):
+        if not self._ignore and text.strip():
+            self.text_parts.append(text.strip()[:2000])
+
+    def handle_endtag(self, tag):
+        if tag in ("script", "style"):
+            self._ignore = max(0, self._ignore - 1)
 
     def handle_starttag(self, tag, attr_pairs):
         attrs = dict(attr_pairs)
+        if tag in ("script", "style"):
+            self._ignore += 1
         if tag in ("a", "frame", "iframe"):
             target = attrs.get("href") if tag == "a" else attrs.get("src")
             if target:
@@ -125,6 +137,7 @@ def collect(args):
             parser.feed(html)
             entry["status"] = "ok"
             entry["bytes"] = len(raw)
+            entry["text_excerpt_for_review"] = " ".join(parser.text_parts)[:14000]
             discovered = parser.image_links[:]
             for target in parser.page_links:
                 candidate = normalized(url, target)
