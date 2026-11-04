@@ -340,11 +340,11 @@ async function main() {
 
     await page.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(page,'Библиотека конспектов');
-    assert.equal(await page.locator('.library-card').count(),20);
+    assert.equal(await page.locator('.library-card').count(),33);
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
     await waitHeading(page,'Карточки по темам');
-    assert.equal(await page.locator('.library-card').count(),19,'All 18 GI learning topics plus VNS cards should be available');
+    assert.equal(await page.locator('.library-card').count(),32,'Existing GI/VNS cards plus 13 new cranial nerve topics should be available');
     await page.locator('.library-card').filter({hasText:'Желудок: оболочки'}).locator('.library-go').tap();
     await waitHeading(page,'Желудок: оболочки, ямки');
     assert.equal(await page.locator('.gi-recall-card').count(),1);
@@ -393,13 +393,31 @@ async function main() {
     assert.ok(await app.locator('.topic-stats').count()>=2,'Android statistics must support multiple topics');
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
-    assert.equal(await app.locator('.library-card').count(),20);
+    assert.equal(await app.locator('.library-card').count(),33);
     await app.getByRole('button',{name:'Найти термин или препарат'}).tap();
     await waitHeading(app,'Найти термин или препарат');
     await app.locator('.study-search-input').fill('дуоденум');
     assert.ok(await app.locator('.study-search-result').count()>=1,'Android asset origin must load real GI search data');
     await app.getByRole('button',{name:'← К библиотеке'}).tap();
     await waitHeading(app,'Библиотека конспектов');
+    // 1.9.9: The same source-based anatomy module must load on the Android asset origin.
+    const oldGI=await app.evaluate(()=>localStorage.getItem('med-study-progress-v1'));
+    const oldMilestones=await app.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
+    await app.locator('.library-card').filter({hasText:'I. Обонятельный нерв'}).locator('.library-go').tap();
+    await waitHeading(app,'Обонятельный нерв');
+    assert.equal(await app.locator('.cn-tabs button').count(),4);
+    await app.getByRole('button',{name:'Расширенный',exact:true}).tap();
+    assert.ok(await app.locator('.cn-detail').count()>=3);
+    assert.ok((await app.locator('.cn-detail').allTextContents()).join(' ').includes('полоски'));
+    await app.getByRole('button',{name:'✓ Я изучил(а) этот конспект'}).tap();
+    assert.ok((await app.locator('.cn-status').textContent()).includes('Конспект изучен'));
+    await app.getByRole('button',{name:'Карточки',exact:true}).tap();
+    await app.getByRole('button',{name:'Показать ответ'}).tap();
+    assert.equal(await app.locator('.cn-card-answer').count(),1);
+    await app.getByRole('button',{name:'Тест',exact:true}).tap();
+    assert.equal(await app.locator('.cn-option').count(),4);
+    assert.equal(await app.evaluate(()=>localStorage.getItem('med-study-progress-v1')),oldGI);
+    assert.equal(await app.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1')),oldMilestones);
     assert.equal(errors.length,0,errors.join('\n'));
     await appctx.close();await ctx.close();
 
@@ -652,14 +670,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),13,'Nine feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),14,'Ten feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),9);
+    assert.equal(await desktop.locator('.study-journal-item').count(),10);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
@@ -680,9 +698,43 @@ async function main() {
     await desktop.locator('.gi-distractor-review summary').click();
     assert.equal(await desktop.locator('.gi-distractor-review li').count(),3);
     assert.ok((await desktop.locator('.gi-distractor-review').textContent()).includes('Редакционные пояснения'));
+    // 1.9.9: Anatomy now contains the supplied I–VII, not invented VIII–XII.
+    const sourceCourse=await desktop.evaluate(async()=> (await (await fetch('./data/cranial-nerves.json')).json()));
+    assert.equal(sourceCourse.chapters.length,13);
+    assert.equal(sourceCourse.chapters.flatMap(ch=>ch.questions).length,52);
+    assert.equal(sourceCourse.chapters.flatMap(ch=>ch.cards).length,53);
+    assert.equal(sourceCourse.chapters.flatMap(ch=>ch.sections).length,49);
+    assert.deepEqual(sourceCourse.scope.missing,['VIII','IX','X','XI','XII']);
+    await desktop.locator('.brand').click();
+    await desktop.getByRole('button',{name:'Черепные нервы · анатомия'}).click();
+    await waitHeading(desktop,'Нервная система');
+    assert.equal(await desktop.locator('.library-card').count(),14,'Anatomy needs 13 chapters and an exam');
+    assert.equal(await desktop.locator('.library-card').filter({hasText:'VIII'}).count(),0);
+    await desktop.locator('.library-card').filter({hasText:'V3. Нижнечелюстная ветвь'}).locator('.library-go').click();
+    await waitHeading(desktop,'Нижнечелюстная ветвь');
+    await desktop.getByRole('button',{name:'Расширенный',exact:true}).click();
+    assert.equal(await desktop.locator('.cn-detail').count(),sourceCourse.chapters.find(c=>c.id==='mandibular').sections.length);
+    assert.ok((await desktop.locator('.cn-detail').allTextContents()).join(' ').includes('подбородочн'));
+    await desktop.getByRole('button',{name:'Тест',exact:true}).click();
+    for(let i=0;i<4;i++){
+      await desktop.locator('.cn-option').first().click();
+      await desktop.getByRole('button',{name:'Проверить ответ'}).click();
+      assert.equal(await desktop.locator('.cn-feedback').count(),1);
+      await desktop.getByRole('button',{name:i===3?'Завершить тест':'Следующий вопрос →'}).click();
+    }
+    assert.ok((await desktop.locator('.cn-result').textContent()).includes('из 4'));
+    const stored=await desktop.evaluate(()=>JSON.parse(localStorage.getItem('med-study-cranial-progress-v1')));
+    assert.equal(stored.version,1);
+    assert.ok(typeof stored.chapters.mandibular.best==='number');
+    await desktop.getByRole('button',{name:'Вернуться к разделу'}).click();
+    await desktop.getByRole('button',{name:'← Нервная система'}).click();
+    await desktop.locator('.library-card').filter({hasText:'Проверка черепных нервов'}).locator('.library-go').click();
+    await waitHeading(desktop,'Итоговая проверка по черепным нервам');
+    assert.ok((await desktop.locator('.cn-count').textContent()).includes('1 / 20'));
+    assert.equal(await desktop.locator('.cn-option').count(),4);
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
-    console.log('PASS: multi-topic navigation, GI atlas, desktop sticky sidebar and Android menu');
+    console.log('PASS: GI regression, complete anatomy cranial nerves, quiz and Android origin');
   } finally {await browser.close();}
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});
