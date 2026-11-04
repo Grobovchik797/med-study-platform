@@ -17,6 +17,10 @@ assert {x["group"] for x in subjects} <= {"medical","general"}
 for x in subjects:
     assert isinstance(x["name"], str) and x["name"].strip()
     for topic in x.get("topics", []):
+        if x["id"]=="anatomy":
+            assert topic.get("note_status")=="available" and topic.get("latin_status")=="complete"
+            assert "brief_status" not in topic and "deep_status" not in topic
+            continue
         assert topic.get("intro_status","planned") in {"planned","introductory","draft","reviewed","source-checked-draft"}
         assert topic["brief_status"] in {"planned","introductory","draft","reviewed","source-checked-draft","available"}
         assert topic["deep_status"] in {"planned","draft","reviewed","source-checked-draft","available"}
