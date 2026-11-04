@@ -1233,10 +1233,6 @@
       "roman": "V2",
       "title": "Верхнечелюстная ветвь тройничного нерва",
       "pages": "8–9",
-      "brief": [
-        "V2 — чувствительный нерв средней трети лица, верхних зубов, пазухи, носовой полости и нёба.",
-        "Из черепа выходит через круглое отверстие в крыловидно-нёбную ямку; далее важны скуловой, подглазничный, верхние альвеолярные, носовые и нёбные нервы."
-      ],
       "sections": [
         {
           "title": "Путь и зона",
@@ -1340,6 +1336,117 @@
           "answer": 2,
           "explanation": "В скуловой кости нерв делится на zygomaticotemporalis и zygomaticofacialis."
         }
+      ],
+      "latinTitle": "Nervus maxillaris (V2)",
+      "terms": [
+        {
+          "ru": "Верхнечелюстной нерв V2",
+          "la": "Nervus maxillaris"
+        },
+        {
+          "ru": "Круглое отверстие",
+          "la": "Foramen rotundum"
+        },
+        {
+          "ru": "Крыловидно-нёбная ямка",
+          "la": "Fossa pterygopalatina"
+        },
+        {
+          "ru": "Подглазничный нерв",
+          "la": "Nervus infraorbitalis"
+        },
+        {
+          "ru": "Скуловой нерв",
+          "la": "Nervus zygomaticus"
+        },
+        {
+          "ru": "Нижняя глазничная щель",
+          "la": "Fissura orbitalis inferior"
+        },
+        {
+          "ru": "Скуло-глазничное отверстие",
+          "la": "Foramen zygomaticoorbitale"
+        },
+        {
+          "ru": "Скуло-височная ветвь",
+          "la": "Ramus zygomaticotemporalis"
+        },
+        {
+          "ru": "Скуло-лицевая ветвь",
+          "la": "Ramus zygomaticofacialis"
+        },
+        {
+          "ru": "Подглазничная борозда",
+          "la": "Sulcus infraorbitalis"
+        },
+        {
+          "ru": "Подглазничный канал",
+          "la": "Canalis infraorbitalis"
+        },
+        {
+          "ru": "Подглазничное отверстие",
+          "la": "Foramen infraorbitale"
+        },
+        {
+          "ru": "Собачья ямка",
+          "la": "Fossa canina"
+        },
+        {
+          "ru": "Нижние вековые ветви",
+          "la": "Rami palpebrales inferiores"
+        },
+        {
+          "ru": "Наружные носовые ветви",
+          "la": "Rami nasales externi"
+        },
+        {
+          "ru": "Верхние губные ветви",
+          "la": "Rami labiales superiores"
+        },
+        {
+          "ru": "Верхние альвеолярные нервы",
+          "la": "Nervi alveolares superiores"
+        },
+        {
+          "ru": "Верхнее зубное сплетение",
+          "la": "Plexus dentalis superior"
+        },
+        {
+          "ru": "Верхние зубные ветви",
+          "la": "Rami dentales superiores"
+        },
+        {
+          "ru": "Верхние десневые ветви",
+          "la": "Rami gingivales superiores"
+        },
+        {
+          "ru": "Носовые ветви",
+          "la": "Rami nasales"
+        },
+        {
+          "ru": "Большой нёбный нерв",
+          "la": "Nervus palatinus major"
+        },
+        {
+          "ru": "Малые нёбные нервы",
+          "la": "Nervi palatini minores"
+        },
+        {
+          "ru": "Глоточные ветви",
+          "la": "Rami pharyngei"
+        },
+        {
+          "ru": "Твёрдое нёбо",
+          "la": "Palatum durum"
+        },
+        {
+          "ru": "Мягкое нёбо",
+          "la": "Palatum molle"
+        },
+        {
+          "ru": "Верхнечелюстная пазуха",
+          "la": "Sinus maxillaris"
+        }
       ]
     },
     {
@@ -1347,10 +1454,6 @@
       "roman": "V3",
       "title": "Нижнечелюстная ветвь: чувствительность и жевание",
       "pages": "9–10",
-      "brief": [
-        "V3 — смешанная ветвь, выходящая через овальное отверстие. Она чувствует нижнюю треть лица, нижние зубы, язык (общая чувствительность), щёку и часть уха.",
-        "Двигательные волокна V3 иннервируют четыре жевательные мышцы и четыре дополнительные мышцы; основными чувствительными ветвями в конспекте названы нижний альвеолярный, язычный, ушно-височный и щёчный нервы."
-      ],
       "sections": [
         {
           "title": "Выход и менингеальная ветвь",
@@ -1463,6 +1566,121 @@
           "answer": 3,
           "explanation": "Общая чувствительность идёт по язычному нерву; вкус из той же области — волокнами VII пары."
         }
+      ],
+      "latinTitle": "Nervus mandibularis (V3)",
+      "terms": [
+        {
+          "ru": "Нижнечелюстной нерв V3",
+          "la": "Nervus mandibularis"
+        },
+        {
+          "ru": "Овальное отверстие",
+          "la": "Foramen ovale"
+        },
+        {
+          "ru": "Менингеальная ветвь",
+          "la": "Ramus meningeus"
+        },
+        {
+          "ru": "Остистое отверстие",
+          "la": "Foramen spinosum"
+        },
+        {
+          "ru": "Твёрдая мозговая оболочка",
+          "la": "Dura mater encephali"
+        },
+        {
+          "ru": "Сосцевидный отросток",
+          "la": "Processus mastoideus"
+        },
+        {
+          "ru": "Височно-нижнечелюстной сустав",
+          "la": "Articulatio temporomandibularis"
+        },
+        {
+          "ru": "Жевательная мышца",
+          "la": "Musculus masseter"
+        },
+        {
+          "ru": "Височная мышца",
+          "la": "Musculus temporalis"
+        },
+        {
+          "ru": "Латеральная крыловидная мышца",
+          "la": "Musculus pterygoideus lateralis"
+        },
+        {
+          "ru": "Медиальная крыловидная мышца",
+          "la": "Musculus pterygoideus medialis"
+        },
+        {
+          "ru": "Челюстно-подъязычная мышца",
+          "la": "Musculus mylohyoideus"
+        },
+        {
+          "ru": "Переднее брюшко двубрюшной мышцы",
+          "la": "Venter anterior musculi digastrici"
+        },
+        {
+          "ru": "Мышца, напрягающая барабанную перепонку",
+          "la": "Musculus tensor tympani"
+        },
+        {
+          "ru": "Мышца, напрягающая нёбную занавеску",
+          "la": "Musculus tensor veli palatini"
+        },
+        {
+          "ru": "Нижний альвеолярный нерв",
+          "la": "Nervus alveolaris inferior"
+        },
+        {
+          "ru": "Канал нижней челюсти",
+          "la": "Canalis mandibulae"
+        },
+        {
+          "ru": "Подбородочное отверстие",
+          "la": "Foramen mentale"
+        },
+        {
+          "ru": "Подбородочный нерв",
+          "la": "Nervus mentalis"
+        },
+        {
+          "ru": "Нижнее зубное сплетение",
+          "la": "Plexus dentalis inferior"
+        },
+        {
+          "ru": "Нижние зубные ветви",
+          "la": "Rami dentales inferiores"
+        },
+        {
+          "ru": "Нижние десневые ветви",
+          "la": "Rami gingivales inferiores"
+        },
+        {
+          "ru": "Язычный нерв",
+          "la": "Nervus lingualis"
+        },
+        {
+          "ru": "Ушно-височный нерв",
+          "la": "Nervus auriculotemporalis"
+        },
+        {
+          "ru": "Щёчный нерв",
+          "la": "Nervus buccalis"
+        },
+        {
+          "ru": "Барабанная перепонка",
+          "la": "Membrana tympanica"
+        },
+        {
+          "ru": "Язык",
+          "la": "Lingua"
+        },
+        {
+          "ru": "Барабанная струна",
+          "la": "Chorda tympani"
+        }
       ]
     },
     {
@@ -1470,10 +1688,6 @@
       "roman": "VI",
       "title": "Отводящий нерв",
       "pages": "5–6",
-      "brief": [
-        "VI пара — соматический двигательный нерв латеральной прямой мышцы глаза, которая отводит глазное яблоко кнаружи.",
-        "Ядро располагается в мосту. Нерв появляется между мостом и пирамидой продолговатого мозга, проходит через пещеристый синус и верхнюю глазничную щель."
-      ],
       "sections": [
         {
           "title": "Ядро и функция",
@@ -1555,6 +1769,45 @@
           "answer": 0,
           "explanation": "Ядро VI пары расположено в мосту."
         }
+      ],
+      "latinTitle": "Nervus abducens (VI)",
+      "terms": [
+        {
+          "ru": "Отводящий нерв",
+          "la": "Nervus abducens"
+        },
+        {
+          "ru": "Ядро отводящего нерва",
+          "la": "Nucleus nervi abducentis"
+        },
+        {
+          "ru": "Мост",
+          "la": "Pons"
+        },
+        {
+          "ru": "Продолговатый мозг",
+          "la": "Medulla oblongata"
+        },
+        {
+          "ru": "Пирамида продолговатого мозга",
+          "la": "Pyramis medullae oblongatae"
+        },
+        {
+          "ru": "Средняя черепная ямка",
+          "la": "Fossa cranii media"
+        },
+        {
+          "ru": "Пещеристый синус",
+          "la": "Sinus cavernosus"
+        },
+        {
+          "ru": "Верхняя глазничная щель",
+          "la": "Fissura orbitalis superior"
+        },
+        {
+          "ru": "Латеральная прямая мышца глаза",
+          "la": "Musculus rectus lateralis"
+        }
       ]
     },
     {
@@ -1562,10 +1815,6 @@
       "roman": "VII",
       "title": "Лицевой нерв: ядра, корешки и канал",
       "pages": "10–11",
-      "brief": [
-        "VII пара сочетает двигательную иннервацию мимических мышц, парасимпатическую секрецию и вкусовую чувствительность. Корешки входят во внутренний слуховой проход, а ствол идёт в канале височной кости.",
-        "Узел коленца — чувствительный; после прохождения канала ствол выходит через шилососцевидное отверстие."
-      ],
       "sections": [
         {
           "title": "Ядра и компоненты",
@@ -1668,6 +1917,81 @@
           "answer": 1,
           "explanation": "Основной ствол выходит через foramen stylomastoideum."
         }
+      ],
+      "latinTitle": "Nervus facialis (VII) · Truncus et nuclei",
+      "terms": [
+        {
+          "ru": "Лицевой нерв",
+          "la": "Nervus facialis"
+        },
+        {
+          "ru": "Двигательное ядро лицевого нерва",
+          "la": "Nucleus nervi facialis"
+        },
+        {
+          "ru": "Верхнее слюноотделительное ядро",
+          "la": "Nucleus salivatorius superior"
+        },
+        {
+          "ru": "Ядро одиночного пути",
+          "la": "Nucleus tractus solitarii"
+        },
+        {
+          "ru": "Промежуточный нерв",
+          "la": "Nervus intermedius"
+        },
+        {
+          "ru": "Задняя черепная ямка",
+          "la": "Fossa cranii posterior"
+        },
+        {
+          "ru": "Внутренний слуховой проход",
+          "la": "Meatus acusticus internus"
+        },
+        {
+          "ru": "Канал лицевого нерва",
+          "la": "Canalis nervi facialis"
+        },
+        {
+          "ru": "Пирамида височной кости",
+          "la": "Pars petrosa ossis temporalis"
+        },
+        {
+          "ru": "Узел коленца",
+          "la": "Ganglion geniculi"
+        },
+        {
+          "ru": "Выступ лицевого канала",
+          "la": "Prominentia canalis facialis"
+        },
+        {
+          "ru": "Расщелина канала большого каменистого нерва",
+          "la": "Hiatus canalis nervi petrosi majoris"
+        },
+        {
+          "ru": "Шилососцевидное отверстие",
+          "la": "Foramen stylomastoideum"
+        },
+        {
+          "ru": "Барабанная полость",
+          "la": "Cavitas tympani"
+        },
+        {
+          "ru": "Мимические мышцы",
+          "la": "Musculi faciei"
+        },
+        {
+          "ru": "Большой каменистый нерв",
+          "la": "Nervus petrosus major"
+        },
+        {
+          "ru": "Нерв стременной мышцы",
+          "la": "Nervus stapedius"
+        },
+        {
+          "ru": "Барабанная струна",
+          "la": "Chorda tympani"
+        }
       ]
     },
     {
@@ -1675,10 +1999,6 @@
       "roman": "VII",
       "title": "Ветви VII пары внутри лицевого канала",
       "pages": "11–12",
-      "brief": [
-        "В канале лицевой нерв даёт три принципиально разные ветви: большой каменистый нерв — парасимпатическая секреция; нерв стременной мышцы — соматический двигательный; барабанная струна — вкус и парасимпатика слюнных желёз.",
-        "Для понимания маршрута полезно помнить соединения с V2 и V3: волокна VII пары могут использовать периферические ветви тройничного как проводники, оставаясь функционально волокнами VII пары."
-      ],
       "sections": [
         {
           "title": "Большой каменистый нерв: начало пути",
@@ -1793,6 +2113,137 @@
           "answer": 2,
           "explanation": "Барабанная струна несёт преганглионарные волокна к ganglion submandibulare."
         }
+      ],
+      "latinTitle": "Nervus facialis (VII) · Rami intracanaliculares",
+      "terms": [
+        {
+          "ru": "Большой каменистый нерв",
+          "la": "Nervus petrosus major"
+        },
+        {
+          "ru": "Верхнее слюноотделительное ядро",
+          "la": "Nucleus salivatorius superior"
+        },
+        {
+          "ru": "Расщелина канала большого каменистого нерва",
+          "la": "Hiatus canalis nervi petrosi majoris"
+        },
+        {
+          "ru": "Борозда большого каменистого нерва",
+          "la": "Sulcus nervi petrosi majoris"
+        },
+        {
+          "ru": "Рваное отверстие",
+          "la": "Foramen lacerum"
+        },
+        {
+          "ru": "Глубокий каменистый нерв",
+          "la": "Nervus petrosus profundus"
+        },
+        {
+          "ru": "Нерв крыловидного канала (Видиев)",
+          "la": "Nervus canalis pterygoidei"
+        },
+        {
+          "ru": "Крыловидный канал",
+          "la": "Canalis pterygoideus"
+        },
+        {
+          "ru": "Крыловидно-нёбная ямка",
+          "la": "Fossa pterygopalatina"
+        },
+        {
+          "ru": "Крыловидно-нёбный узел",
+          "la": "Ganglion pterygopalatinum"
+        },
+        {
+          "ru": "Клиновидно-нёбное отверстие",
+          "la": "Foramen sphenopalatinum"
+        },
+        {
+          "ru": "Медиальные верхние задние носовые ветви",
+          "la": "Rami nasales posteriores superiores mediales"
+        },
+        {
+          "ru": "Латеральные верхние задние носовые ветви",
+          "la": "Rami nasales posteriores superiores laterales"
+        },
+        {
+          "ru": "Носонёбный нерв",
+          "la": "Nervus nasopalatinus"
+        },
+        {
+          "ru": "Резцовый канал",
+          "la": "Canalis incisivus"
+        },
+        {
+          "ru": "Большой нёбный нерв",
+          "la": "Nervus palatinus major"
+        },
+        {
+          "ru": "Малые нёбные нервы",
+          "la": "Nervi palatini minores"
+        },
+        {
+          "ru": "Задние носовые ветви",
+          "la": "Rami nasales posteriores"
+        },
+        {
+          "ru": "Скуловой нерв",
+          "la": "Nervus zygomaticus"
+        },
+        {
+          "ru": "Слёзный нерв",
+          "la": "Nervus lacrimalis"
+        },
+        {
+          "ru": "Слёзная железа",
+          "la": "Glandula lacrimalis"
+        },
+        {
+          "ru": "Нерв стременной мышцы",
+          "la": "Nervus stapedius"
+        },
+        {
+          "ru": "Стременная мышца",
+          "la": "Musculus stapedius"
+        },
+        {
+          "ru": "Барабанная струна",
+          "la": "Chorda tympani"
+        },
+        {
+          "ru": "Каменисто-барабанная щель",
+          "la": "Fissura petrotympanica"
+        },
+        {
+          "ru": "Язычный нерв",
+          "la": "Nervus lingualis"
+        },
+        {
+          "ru": "Поднижнечелюстной узел",
+          "la": "Ganglion submandibulare"
+        },
+        {
+          "ru": "Поднижнечелюстная железа",
+          "la": "Glandula submandibularis"
+        },
+        {
+          "ru": "Подъязычная железа",
+          "la": "Glandula sublingualis"
+        },
+        {
+          "ru": "Носовая перегородка",
+          "la": "Septum nasi"
+        },
+        {
+          "ru": "Твёрдое нёбо",
+          "la": "Palatum durum"
+        },
+        {
+          "ru": "Мягкое нёбо",
+          "la": "Palatum molle"
+        }
       ]
     },
     {
@@ -1800,10 +2251,6 @@
       "roman": "VII",
       "title": "Ветви VII пары на лице и двигательный путь мимики",
       "pages": "12–14",
-      "brief": [
-        "После шилососцевидного отверстия VII пара отдаёт задний ушной нерв и ветви к заднему брюшку двубрюшной и шилоподъязычной мышцам.",
-        "В околоушной железе нерв образует двигательное сплетение и пять основных групп ветвей для мимических мышц. Саму околоушную железу секреторно иннервирует IX пара, а не VII."
-      ],
       "sections": [
         {
           "title": "Первые ветви после выхода",
@@ -1924,6 +2371,145 @@
           "answer": 3,
           "explanation": "Нижняя часть двигательного ядра VII получает преимущественно контралатеральный корковый сигнал."
         }
+      ],
+      "latinTitle": "Nervus facialis (VII) · Rami extracraniales",
+      "terms": [
+        {
+          "ru": "Шилососцевидное отверстие",
+          "la": "Foramen stylomastoideum"
+        },
+        {
+          "ru": "Задний ушной нерв",
+          "la": "Nervus auricularis posterior"
+        },
+        {
+          "ru": "Ушные мышцы",
+          "la": "Musculi auriculares"
+        },
+        {
+          "ru": "Затылочное брюшко надчерепной мышцы",
+          "la": "Venter occipitalis musculi epicranii"
+        },
+        {
+          "ru": "Двубрюшная ветвь",
+          "la": "Ramus digastricus"
+        },
+        {
+          "ru": "Заднее брюшко двубрюшной мышцы",
+          "la": "Venter posterior musculi digastrici"
+        },
+        {
+          "ru": "Шилоподъязычная ветвь",
+          "la": "Ramus stylohyoideus"
+        },
+        {
+          "ru": "Шилоподъязычная мышца",
+          "la": "Musculus stylohyoideus"
+        },
+        {
+          "ru": "Околоушная железа",
+          "la": "Glandula parotidea"
+        },
+        {
+          "ru": "Околоушное сплетение",
+          "la": "Plexus intraparotideus"
+        },
+        {
+          "ru": "Височные ветви",
+          "la": "Rami temporales"
+        },
+        {
+          "ru": "Скуловые ветви",
+          "la": "Rami zygomatici"
+        },
+        {
+          "ru": "Щёчные ветви лицевого нерва",
+          "la": "Rami buccales nervi facialis"
+        },
+        {
+          "ru": "Краевая ветвь нижней челюсти",
+          "la": "Ramus marginalis mandibularis"
+        },
+        {
+          "ru": "Шейная ветвь",
+          "la": "Ramus colli"
+        },
+        {
+          "ru": "Лобное брюшко надчерепной мышцы",
+          "la": "Venter frontalis musculi epicranii"
+        },
+        {
+          "ru": "Круговая мышца глаза",
+          "la": "Musculus orbicularis oculi"
+        },
+        {
+          "ru": "Мышца, сморщивающая бровь",
+          "la": "Musculus corrugator supercilii"
+        },
+        {
+          "ru": "Большая скуловая мышца",
+          "la": "Musculus zygomaticus major"
+        },
+        {
+          "ru": "Малая скуловая мышца",
+          "la": "Musculus zygomaticus minor"
+        },
+        {
+          "ru": "Мышца, поднимающая верхнюю губу",
+          "la": "Musculus levator labii superioris"
+        },
+        {
+          "ru": "Мышца, поднимающая угол рта",
+          "la": "Musculus levator anguli oris"
+        },
+        {
+          "ru": "Круговая мышца рта",
+          "la": "Musculus orbicularis oris"
+        },
+        {
+          "ru": "Щёчная мышца (по источнику M. buccalis)",
+          "la": "Musculus buccinator"
+        },
+        {
+          "ru": "Носовая мышца",
+          "la": "Musculus nasalis"
+        },
+        {
+          "ru": "Мышца смеха",
+          "la": "Musculus risorius"
+        },
+        {
+          "ru": "Мышца, опускающая нижнюю губу",
+          "la": "Musculus depressor labii inferioris"
+        },
+        {
+          "ru": "Мышца, опускающая угол рта",
+          "la": "Musculus depressor anguli oris"
+        },
+        {
+          "ru": "Подбородочная мышца",
+          "la": "Musculus mentalis"
+        },
+        {
+          "ru": "Подкожная мышца шеи",
+          "la": "Platysma"
+        },
+        {
+          "ru": "Прецентральная извилина",
+          "la": "Gyrus precentralis"
+        },
+        {
+          "ru": "Корково-ядерный путь",
+          "la": "Tractus corticonuclearis"
+        },
+        {
+          "ru": "Двигательное ядро лицевого нерва",
+          "la": "Nucleus nervi facialis"
+        },
+        {
+          "ru": "Языкоглоточный нерв IX",
+          "la": "Nervus glossopharyngeus"
+        }
       ]
     }
   ],
@@ -1932,5 +2518,6 @@
     "title": "IFAA/FIPAT Terminologia Anatomica 2 (2019)",
     "url": "https://ifaa.net/committees/anatomical-terminology-fipat/fipat-ifaa-terminologies/",
     "scope": "Нормативный ориентир латинских терминов; терминологические формулировки первоисточника сохранены или отдельно оговорены, где отличаются."
-  }
+  },
+  "terminologyTotal": 263
 }
