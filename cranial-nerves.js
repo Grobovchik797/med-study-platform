@@ -1,4 +1,4 @@
-/* Med Study 1.9.10 — anatomy/cranial nerves; text-only, original educational adaptation.
+/* Med Study 1.9.11 — anatomy/cranial nerves; text-only, original educational adaptation.
  * Never mutates legacy Med Study localStorage keys. No network APIs or third-party media.
  */
 (()=>{
@@ -156,7 +156,7 @@ function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam,initialT
   footer.append(button('Итоговый тест по разделу',onExam,'cn-btn cn-secondary'));
   if(onNext)footer.append(button('Следующая тема →',onNext,'cn-btn cn-secondary'));
   host.append(footer);
-  source(host,course.source,chapter.pages);
+  source(host,chapter.source||course.source,chapter.pages);
  }
  draw();
 }
