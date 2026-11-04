@@ -40,9 +40,9 @@ function source(host,source,pages){
   paragraph('Самостоятельная редакционная структура по предоставленному 14-страничному материалу; исходный PDF не размещён на сайте. '+source.review));
  host.append(block);
 }
-function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam}){
+function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam,initialTab='brief'}){
  if(!chapter||!course?.chapters)throw Error('Missing cranial chapter');
- let tab='brief',cardsIndex=0,cardOpen=false;
+ let tab=initialTab==='cards'?'cards':'brief',cardsIndex=0,cardOpen=false;
  const current=()=>readProgress(chapter.id);
  function draw(){
   headline(host,'АНАТОМИЯ · НЕРВНАЯ СИСТЕМА · '+chapter.roman+' ПАРА',chapter.title,
