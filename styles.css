@@ -856,3 +856,46 @@ html.reading-calm .lesson-section,html.reading-calm .lesson-intro{background:#ff
 .edu-original-tem-labels{padding-left:23px;line-height:1.65;margin:0}
 .edu-original-tem-credit{font-size:.89rem;line-height:1.55;color:var(--muted)}
 .edu-original-tem-card .edu-original-link{font-size:.9rem}
+
+/* 1.9.9 — anatomy · cranial nerves: readable text, no microscopy/3D */
+.cn-back{min-height:42px;background:transparent;border:0;color:var(--accent,#6741a5);font:inherit;font-weight:650;cursor:pointer;padding:9px 0;margin:0 0 12px}
+.cn-intro{line-height:1.7;max-width:78ch}
+.cn-summary{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 18px;align-items:center}
+.cn-summary>span{padding:7px 11px;border-radius:20px;background:var(--surface,#f6f5fa);border:1px solid #e3ddec;font-size:.89rem}
+.cn-summary>.cn-status{font-weight:700;border-color:#c6b5e0}
+.cn-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:15px 0 18px}
+.cn-tab,.cn-btn{font:inherit;cursor:pointer;min-height:44px;border:1px solid #ad99ce;background:var(--surface,#fff);color:var(--text,#272035);border-radius:11px;padding:10px 14px;font-weight:700;line-height:1.3}
+.cn-btn,.cn-tab.is-active{background:#6444a3;color:#fff;border-color:#6444a3}
+.cn-btn:focus-visible,.cn-tab:focus-visible,.cn-option:focus-visible,.cn-back:focus-visible{outline:3px solid #edb94c;outline-offset:3px}
+.cn-btn.cn-secondary{background:var(--surface,#fff);color:var(--text,#272035)}
+.cn-tab:hover,.cn-btn:hover{filter:brightness(.96)}
+.cn-panel,.cn-detail{max-width:1040px;padding:20px 24px;margin:0 0 15px}
+.cn-panel h2,.cn-detail h2{font-size:clamp(1.1rem,2.4vw,1.35rem);line-height:1.4;margin:8px 0 14px}
+.cn-panel h3{margin:20px 0 10px}
+.cn-panel p,.cn-detail p{line-height:1.78;margin:0 0 14px;max-width:86ch}
+.cn-detail p:last-child{margin-bottom:0}
+.cn-block-counter,.cn-count{font-size:.8rem;letter-spacing:.09em;font-weight:800;color:#7255a9;margin:10px 0}
+.cn-outline{line-height:1.85;padding-left:24px}
+.cn-actions,.cn-bottom-nav{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 22px}
+.cn-source{max-width:1040px;margin:20px 0;padding:15px 18px;border-left:4px solid #9883bd;background:var(--surface,#f6f5fa);line-height:1.6}
+.cn-source p{margin:7px 0 0}
+.cn-card{max-width:780px;min-height:230px;padding:25px;margin:0 0 18px}
+.cn-card h2{font-size:1.2rem;line-height:1.5;margin:15px 0}
+.cn-card-answer{padding:14px 17px;border-radius:9px;background:var(--surface,#f5f1fb);border:1px solid #d3c6ea;line-height:1.7}
+.cn-options{display:grid;gap:10px;margin:16px 0 23px}
+.cn-option{display:block;width:100%;min-height:46px;text-align:left;padding:13px 16px;background:var(--surface,#fff);border:1px solid #c8bdd7;color:var(--text,#272035);font:inherit;line-height:1.45;border-radius:10px;cursor:pointer}
+.cn-option.is-selected{border:2px solid #6444a3;background:#f5f0fd;color:#282033}
+.cn-option.is-correct{border:2px solid #267345;background:#e7f4e9;color:#143d20}
+.cn-option.is-incorrect{border:2px solid #aa3d3d;background:#fbe9e9;color:#5c2020}
+.cn-option:disabled{cursor:default;opacity:1}
+.cn-feedback{background:var(--surface,#f4f1fa);border:1px solid #cfc1e1;padding:17px;border-radius:10px;line-height:1.65;margin-bottom:17px}
+.cn-feedback p{margin:7px 0 0}
+.cn-muted{font-size:.89rem;color:var(--muted,#62606b)}
+.cn-result{font-size:1.8rem;font-weight:800}
+@media(max-width:600px){
+ .cn-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-panel,.cn-detail,.cn-card{padding:15px 14px}
+ .cn-summary>span{font-size:.8rem}
+ .cn-btn{flex:1 1 44%}
+ .cn-bottom-nav .cn-btn{flex:1 1 100%}
+}
