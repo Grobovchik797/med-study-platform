@@ -775,9 +775,9 @@ async function main() {
     assert.ok((await desktop.locator('.cn-detail').allTextContents()).join(' ').includes('thyrohyoideus'));
     assert.ok((await desktop.locator('.cn-term-grid').textContent()).includes('Ansa cervicalis'));
     assert.equal(await desktop.locator('.cn-scientific-sources a').count(),1);
-    await desktop.getByRole('button',{name:'Карточки',exact:true}).click();
+    await desktop.locator('.cn-tabs').getByRole('button',{name:'Карточки',exact:true}).click();
     assert.equal(await desktop.locator('.cn-card').count(),1);
-    await desktop.getByRole('button',{name:'Тест',exact:true}).click();
+    await desktop.locator('.cn-tabs').getByRole('button',{name:'Тест',exact:true}).click();
     assert.equal(await desktop.locator('.cn-option').count(),4);
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();
