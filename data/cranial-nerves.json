@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "courseId": "anatomy-cranial-nerves",
   "title": "Черепные нервы: I–VII пары",
-  "description": "Анатомия → Нервная система. 13 самостоятельных тем по представленным I–VII парам, включая отдельные V1, V2, V3, проводящие пути и ветви VII пары.",
+  "description": "Анатомия → Нервная система · Черепные нервы I–VII. Один полный конспект с латинской номенклатурой, подробные блоки, карточки и тесты; без краткой версии.",
   "source": {
     "filename": "Черепные нервы.pdf",
     "date": "2026-11-04",
@@ -36,10 +36,6 @@
       "roman": "I",
       "title": "Обонятельный нерв",
       "pages": "1–2",
-      "brief": [
-        "Обоняние начинается в рецепторных биполярных нейронах верхней области полости носа. Их аксоны проходят через решётчатую пластинку к обонятельной луковице.",
-        "Для запоминания: рецептор → луковица → обонятельный тракт → обонятельные полоски и корковые области. В исходном конспекте этот маршрут разобран как последовательность четырёх звеньев."
-      ],
       "sections": [
         {
           "title": "Рецепторный аппарат и I нейрон",
@@ -134,6 +130,81 @@
           "answer": 3,
           "explanation": "В исходной схеме латеральная полоска идёт к корковому обонятельному центру."
         }
+      ],
+      "latinTitle": "Nervus olfactorius (I)",
+      "terms": [
+        {
+          "ru": "Обонятельный нерв",
+          "la": "Nervus olfactorius"
+        },
+        {
+          "ru": "Обонятельная область",
+          "la": "Regio olfactoria"
+        },
+        {
+          "ru": "Верхний носовой ход",
+          "la": "Meatus nasi superior"
+        },
+        {
+          "ru": "Носовая перегородка",
+          "la": "Septum nasi"
+        },
+        {
+          "ru": "Обонятельные нити",
+          "la": "Fila olfactoria"
+        },
+        {
+          "ru": "Обонятельные реснички",
+          "la": "Cilia olfactoria"
+        },
+        {
+          "ru": "Решётчатая пластинка решётчатой кости",
+          "la": "Lamina cribrosa ossis ethmoidalis"
+        },
+        {
+          "ru": "Обонятельная луковица",
+          "la": "Bulbus olfactorius"
+        },
+        {
+          "ru": "Обонятельный тракт",
+          "la": "Tractus olfactorius"
+        },
+        {
+          "ru": "Обонятельный треугольник",
+          "la": "Trigonum olfactorium"
+        },
+        {
+          "ru": "Переднее продырявленное вещество",
+          "la": "Substantia perforata anterior"
+        },
+        {
+          "ru": "Медиальная обонятельная полоска",
+          "la": "Stria olfactoria medialis"
+        },
+        {
+          "ru": "Латеральная обонятельная полоска",
+          "la": "Stria olfactoria lateralis"
+        },
+        {
+          "ru": "Промежуточная обонятельная полоска (по конспекту)",
+          "la": "Stria olfactoria intermedia"
+        },
+        {
+          "ru": "Подмозолистое поле",
+          "la": "Area subcallosa"
+        },
+        {
+          "ru": "Парагиппокампальная извилина",
+          "la": "Gyrus parahippocampalis"
+        },
+        {
+          "ru": "Крючок парагиппокампальной извилины",
+          "la": "Uncus gyri parahippocampalis"
+        },
+        {
+          "ru": "Гиппокамп",
+          "la": "Hippocampus"
+        }
       ]
     },
     {
@@ -141,10 +212,6 @@
       "roman": "II",
       "title": "Зрительный нерв и зрительный путь",
       "pages": "2–3",
-      "brief": [
-        "Сетчатка передаёт информацию через фоторецепторы, биполярные и ганглиозные клетки. Аксоны последних образуют зрительный нерв.",
-        "В хиазме пересекаются волокна носовых (медиальных) половин сетчаток; после неё зрительные тракты ведут информацию к подкорковым структурам и затылочной коре."
-      ],
       "sections": [
         {
           "title": "Три первых звена сетчатки",
@@ -240,6 +307,73 @@
           "answer": 0,
           "explanation": "Зрительная лучистость связывает таламическое реле со зрительной корой."
         }
+      ],
+      "latinTitle": "Nervus opticus (II)",
+      "terms": [
+        {
+          "ru": "Зрительный нерв",
+          "la": "Nervus opticus"
+        },
+        {
+          "ru": "Сетчатка",
+          "la": "Retina"
+        },
+        {
+          "ru": "Зрительный канал",
+          "la": "Canalis opticus"
+        },
+        {
+          "ru": "Средняя черепная ямка",
+          "la": "Fossa cranii media"
+        },
+        {
+          "ru": "Предперекрёстная борозда",
+          "la": "Sulcus prechiasmaticus"
+        },
+        {
+          "ru": "Зрительный перекрёст",
+          "la": "Chiasma opticum"
+        },
+        {
+          "ru": "Зрительный тракт",
+          "la": "Tractus opticus"
+        },
+        {
+          "ru": "Латеральное коленчатое тело",
+          "la": "Corpus geniculatum laterale"
+        },
+        {
+          "ru": "Подушка таламуса",
+          "la": "Pulvinar thalami"
+        },
+        {
+          "ru": "Верхние холмики",
+          "la": "Colliculi superiores"
+        },
+        {
+          "ru": "Зрительная лучистость",
+          "la": "Radiatio optica"
+        },
+        {
+          "ru": "Внутренняя капсула",
+          "la": "Capsula interna"
+        },
+        {
+          "ru": "Задняя ножка внутренней капсулы",
+          "la": "Crus posterius capsulae internae"
+        },
+        {
+          "ru": "Затылочная доля",
+          "la": "Lobus occipitalis"
+        },
+        {
+          "ru": "Шпорная борозда",
+          "la": "Sulcus calcarinus"
+        },
+        {
+          "ru": "Зрительная кора",
+          "la": "Cortex visualis"
+        }
       ]
     },
     {
@@ -247,10 +381,6 @@
       "roman": "II–III",
       "title": "Зрачковый рефлекс, конвергенция и аккомодация",
       "pages": "3–4",
-      "brief": [
-        "При освещении одного глаза обычно сужаются оба зрачка. Важную роль играют предпокрышечная область, добавочные парасимпатические ядра III пары и ресничные узлы.",
-        "Конвергенция сводит глазные оси к близкому предмету; аккомодация меняет форму хрусталика благодаря ресничной мышце."
-      ],
       "sections": [
         {
           "title": "Связь зрения с движениями глаз",
@@ -346,6 +476,73 @@
           "answer": 1,
           "explanation": "Конвергенция — согласованное движение обоих глаз, а не хиазма."
         }
+      ],
+      "latinTitle": "Reflexus pupillaris · Convergentia · Accommodatio",
+      "terms": [
+        {
+          "ru": "Зрачковый рефлекс",
+          "la": "Reflexus pupillaris"
+        },
+        {
+          "ru": "Предпокрышечная область",
+          "la": "Area pretectalis"
+        },
+        {
+          "ru": "Предпокрышечные ядра",
+          "la": "Nuclei pretectales"
+        },
+        {
+          "ru": "Добавочное ядро глазодвигательного нерва",
+          "la": "Nucleus accessorius nervi oculomotorii"
+        },
+        {
+          "ru": "Глазодвигательный нерв",
+          "la": "Nervus oculomotorius"
+        },
+        {
+          "ru": "Ресничный узел",
+          "la": "Ganglion ciliare"
+        },
+        {
+          "ru": "Короткие ресничные нервы",
+          "la": "Nervi ciliares breves"
+        },
+        {
+          "ru": "Сфинктер зрачка",
+          "la": "Musculus sphincter pupillae"
+        },
+        {
+          "ru": "Ресничная мышца",
+          "la": "Musculus ciliaris"
+        },
+        {
+          "ru": "Хрусталик",
+          "la": "Lens"
+        },
+        {
+          "ru": "Верхние холмики",
+          "la": "Colliculi superiores"
+        },
+        {
+          "ru": "Зрительный тракт",
+          "la": "Tractus opticus"
+        },
+        {
+          "ru": "Латеральное коленчатое тело",
+          "la": "Corpus geniculatum laterale"
+        },
+        {
+          "ru": "Зрительная лучистость",
+          "la": "Radiatio optica"
+        },
+        {
+          "ru": "Шпорная борозда",
+          "la": "Sulcus calcarinus"
+        },
+        {
+          "ru": "Зрительный нерв",
+          "la": "Nervus opticus"
+        }
       ]
     },
     {
@@ -353,10 +550,6 @@
       "roman": "III",
       "title": "Глазодвигательный нерв",
       "pages": "4–5",
-      "brief": [
-        "III пара содержит двигательные соматические и преганглионарные парасимпатические волокна. Она управляет большинством наружных мышц глаза, поднимает верхнее веко и участвует в сужении зрачка и аккомодации.",
-        "Нерв идёт из среднего мозга через пещеристый синус и верхнюю глазничную щель, после чего делится на верхнюю и нижнюю ветви."
-      ],
       "sections": [
         {
           "title": "Ядра и природа волокон",
@@ -457,6 +650,85 @@
           "answer": 2,
           "explanation": "В верхнюю глазничную щель проходят III, IV и VI пары."
         }
+      ],
+      "latinTitle": "Nervus oculomotorius (III)",
+      "terms": [
+        {
+          "ru": "Глазодвигательный нерв",
+          "la": "Nervus oculomotorius"
+        },
+        {
+          "ru": "Двигательное ядро глазодвигательного нерва",
+          "la": "Nucleus nervi oculomotorii"
+        },
+        {
+          "ru": "Добавочное ядро глазодвигательного нерва",
+          "la": "Nucleus accessorius nervi oculomotorii"
+        },
+        {
+          "ru": "Ножка мозга",
+          "la": "Pedunculus cerebri"
+        },
+        {
+          "ru": "Глазодвигательная борозда",
+          "la": "Sulcus oculomotorius"
+        },
+        {
+          "ru": "Пещеристый синус",
+          "la": "Sinus cavernosus"
+        },
+        {
+          "ru": "Верхняя глазничная щель",
+          "la": "Fissura orbitalis superior"
+        },
+        {
+          "ru": "Верхняя ветвь",
+          "la": "Ramus superior"
+        },
+        {
+          "ru": "Нижняя ветвь",
+          "la": "Ramus inferior"
+        },
+        {
+          "ru": "Верхняя прямая мышца",
+          "la": "Musculus rectus superior"
+        },
+        {
+          "ru": "Медиальная прямая мышца",
+          "la": "Musculus rectus medialis"
+        },
+        {
+          "ru": "Нижняя прямая мышца",
+          "la": "Musculus rectus inferior"
+        },
+        {
+          "ru": "Нижняя косая мышца",
+          "la": "Musculus obliquus inferior"
+        },
+        {
+          "ru": "Мышца, поднимающая верхнее веко",
+          "la": "Musculus levator palpebrae superioris"
+        },
+        {
+          "ru": "Глазодвигательный корешок ресничного узла",
+          "la": "Radix oculomotoria ganglii ciliaris"
+        },
+        {
+          "ru": "Ресничный узел",
+          "la": "Ganglion ciliare"
+        },
+        {
+          "ru": "Короткие ресничные нервы",
+          "la": "Nervi ciliares breves"
+        },
+        {
+          "ru": "Ресничная мышца",
+          "la": "Musculus ciliaris"
+        },
+        {
+          "ru": "Мышца, суживающая зрачок",
+          "la": "Musculus sphincter pupillae"
+        }
       ]
     },
     {
@@ -464,10 +736,6 @@
       "roman": "IV",
       "title": "Блоковый нерв",
       "pages": "5",
-      "brief": [
-        "IV пара — соматический двигательный нерв одной мышцы: верхней косой мышцы глазного яблока.",
-        "Отличительный признак — это единственный черепной нерв, выходящий из дорсальной поверхности ствола мозга."
-      ],
       "sections": [
         {
           "title": "Ядро и мышца",
@@ -548,6 +816,41 @@
           "answer": 3,
           "explanation": "IV пара — двигательный соматический нерв."
         }
+      ],
+      "latinTitle": "Nervus trochlearis (IV)",
+      "terms": [
+        {
+          "ru": "Блоковый нерв",
+          "la": "Nervus trochlearis"
+        },
+        {
+          "ru": "Ядро блокового нерва",
+          "la": "Nucleus nervi trochlearis"
+        },
+        {
+          "ru": "Верхний мозговой парус",
+          "la": "Velum medullare superius"
+        },
+        {
+          "ru": "Уздечка верхнего мозгового паруса",
+          "la": "Frenulum veli medullaris superioris"
+        },
+        {
+          "ru": "Средняя черепная ямка",
+          "la": "Fossa cranii media"
+        },
+        {
+          "ru": "Пещеристый синус",
+          "la": "Sinus cavernosus"
+        },
+        {
+          "ru": "Верхняя глазничная щель",
+          "la": "Fissura orbitalis superior"
+        },
+        {
+          "ru": "Верхняя косая мышца глаза",
+          "la": "Musculus obliquus superior"
+        }
       ]
     },
     {
@@ -555,10 +858,6 @@
       "roman": "V",
       "title": "Тройничный нерв: ядра, узел и проводящие пути",
       "pages": "6–7",
-      "brief": [
-        "V пара сочетает чувствительные волокна лица и соматические двигательные волокна жевательного аппарата. От ствола мозга отходят чувствительный и двигательный корешки.",
-        "Основные ветви: V1 глазная — чувствительная; V2 верхнечелюстная — чувствительная; V3 нижнечелюстная — смешанная."
-      ],
       "sections": [
         {
           "title": "Четыре ядра",
@@ -661,6 +960,85 @@
           "answer": 0,
           "explanation": "Корково-ядерный путь проводит импульс верхнего мотонейрона к моторному ядру V пары."
         }
+      ],
+      "latinTitle": "Nervus trigeminus (V)",
+      "terms": [
+        {
+          "ru": "Тройничный нерв",
+          "la": "Nervus trigeminus"
+        },
+        {
+          "ru": "Главное (мостовое) ядро тройничного нерва",
+          "la": "Nucleus principalis nervi trigemini"
+        },
+        {
+          "ru": "Среднемозговое ядро тройничного нерва",
+          "la": "Nucleus mesencephalicus nervi trigemini"
+        },
+        {
+          "ru": "Спинномозговое ядро тройничного нерва",
+          "la": "Nucleus spinalis nervi trigemini"
+        },
+        {
+          "ru": "Двигательное ядро тройничного нерва",
+          "la": "Nucleus motorius nervi trigemini"
+        },
+        {
+          "ru": "Чувствительный корешок",
+          "la": "Radix sensoria"
+        },
+        {
+          "ru": "Двигательный корешок",
+          "la": "Radix motoria"
+        },
+        {
+          "ru": "Тройничный узел (узел Гассера)",
+          "la": "Ganglion trigeminale"
+        },
+        {
+          "ru": "Тройничное вдавление",
+          "la": "Impressio trigeminalis"
+        },
+        {
+          "ru": "Пирамида височной кости",
+          "la": "Pars petrosa ossis temporalis"
+        },
+        {
+          "ru": "Глазной нерв V1",
+          "la": "Nervus ophthalmicus"
+        },
+        {
+          "ru": "Верхнечелюстной нерв V2",
+          "la": "Nervus maxillaris"
+        },
+        {
+          "ru": "Нижнечелюстной нерв V3",
+          "la": "Nervus mandibularis"
+        },
+        {
+          "ru": "Тройничная петля",
+          "la": "Lemniscus trigeminalis"
+        },
+        {
+          "ru": "Таламус",
+          "la": "Thalamus"
+        },
+        {
+          "ru": "Постцентральная извилина",
+          "la": "Gyrus postcentralis"
+        },
+        {
+          "ru": "Прецентральная извилина",
+          "la": "Gyrus precentralis"
+        },
+        {
+          "ru": "Корково-ядерный путь",
+          "la": "Tractus corticonuclearis"
+        },
+        {
+          "ru": "Колено внутренней капсулы",
+          "la": "Genu capsulae internae"
+        }
       ]
     },
     {
@@ -668,10 +1046,6 @@
       "roman": "V1",
       "title": "Глазная ветвь тройничного нерва",
       "pages": "7–8",
-      "brief": [
-        "V1 — чисто чувствительная ветвь тройничного нерва. Её область включает роговицу и глаз, лоб, верх лица, часть носа и переднюю черепную ямку.",
-        "Через верхнюю глазничную щель V1 входит в глазницу, где делится на лобный, слёзный и носоресничный нервы."
-      ],
       "sections": [
         {
           "title": "Основной ход и территория",
@@ -772,6 +1146,85 @@
           ],
           "answer": 1,
           "explanation": "Слёзный нерв — ветвь V1; секреторные парасимпатические волокна приходят иным путём."
+        }
+      ],
+      "latinTitle": "Nervus ophthalmicus (V1)",
+      "terms": [
+        {
+          "ru": "Глазной нерв V1",
+          "la": "Nervus ophthalmicus"
+        },
+        {
+          "ru": "Тенториальная ветвь",
+          "la": "Ramus tentorius"
+        },
+        {
+          "ru": "Намёт мозжечка",
+          "la": "Tentorium cerebelli"
+        },
+        {
+          "ru": "Верхняя глазничная щель",
+          "la": "Fissura orbitalis superior"
+        },
+        {
+          "ru": "Лобный нерв",
+          "la": "Nervus frontalis"
+        },
+        {
+          "ru": "Слёзный нерв",
+          "la": "Nervus lacrimalis"
+        },
+        {
+          "ru": "Носоресничный нерв",
+          "la": "Nervus nasociliaris"
+        },
+        {
+          "ru": "Надглазничный нерв",
+          "la": "Nervus supraorbitalis"
+        },
+        {
+          "ru": "Надблоковый нерв",
+          "la": "Nervus supratrochlearis"
+        },
+        {
+          "ru": "Надглазничное отверстие",
+          "la": "Foramen supraorbitale"
+        },
+        {
+          "ru": "Надглазничная вырезка",
+          "la": "Incisura supraorbitalis"
+        },
+        {
+          "ru": "Длинные ресничные нервы",
+          "la": "Nervi ciliares longi"
+        },
+        {
+          "ru": "Передний решётчатый нерв",
+          "la": "Nervus ethmoidalis anterior"
+        },
+        {
+          "ru": "Задний решётчатый нерв",
+          "la": "Nervus ethmoidalis posterior"
+        },
+        {
+          "ru": "Подблоковый нерв",
+          "la": "Nervus infratrochlearis"
+        },
+        {
+          "ru": "Слёзная железа",
+          "la": "Glandula lacrimalis"
+        },
+        {
+          "ru": "Слёзный мешок",
+          "la": "Saccus lacrimalis"
+        },
+        {
+          "ru": "Конъюнктива",
+          "la": "Conjunctiva"
+        },
+        {
+          "ru": "Твёрдая мозговая оболочка",
+          "la": "Dura mater encephali"
         }
       ]
     },
@@ -1473,5 +1926,11 @@
         }
       ]
     }
-  ]
+  ],
+  "studyFormat": "one-full-note",
+  "terminologyReference": {
+    "title": "IFAA/FIPAT Terminologia Anatomica 2 (2019)",
+    "url": "https://ifaa.net/committees/anatomical-terminology-fipat/fipat-ifaa-terminologies/",
+    "scope": "Нормативный ориентир латинских терминов; терминологические формулировки первоисточника сохранены или отдельно оговорены, где отличаются."
+  }
 }
