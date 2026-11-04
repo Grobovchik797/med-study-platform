@@ -1383,9 +1383,10 @@ Promise.all([
   fetch('./data/gi-edubiotech-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('External histology guide '+r.status);return r.json();}).catch(()=>null),
   fetch('./data/gi-edubiotech-original.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original study photos '+r.status);return r.json();}).catch(()=>null),
   fetch('./data/gi-edubiotech-tem.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original TEM '+r.status);return r.json();}).catch(()=>null),
-   fetch('./data/cranial-nerves.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve course '+r.status);return r.json();})
+   fetch('./data/cranial-nerves.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve course '+r.status);return r.json();}),
+   fetch('./data/cranial-nerves-viii-xii.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve extension '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial, cranialExtended]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1425,7 +1426,11 @@ Promise.all([
     if(!window.MedStudyCranial||cranial?.version!==2||cranial.courseId!=='anatomy-cranial-nerves'||cranial.chapters?.length!==13||
        cranial.chapters.some(ch=>ch.questions?.length!==4||!Array.isArray(ch.sections)||!ch.sections.length||!ch.latinTitle||!ch.terms?.length||('brief' in ch)))
       throw Error('Анатомия: конспект черепных нервов не загружен');
-    cranialCourse=cranial;
+    if(cranialExtended?.version!==1||cranialExtended.courseId!=='anatomy-cranial-nerves-viii-xii'||
+       cranialExtended.chapters?.length!==13||cranialExtended.chapters.some(ch=>ch.questions?.length!==4||!ch.sections?.length||!ch.latinTitle||ch.terms?.length<8||('brief' in ch))||
+       new Set([...cranial.chapters,...cranialExtended.chapters].map(ch=>ch.id)).size!==26)
+      throw Error('Анатомия: продолжение VIII–XII не загружено или неполное');
+    cranialCourse={...cranial,title:'Черепные нервы I–XII',scope:{included:['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'],missing:[]},chapters:[...cranial.chapters,...cranialExtended.chapters]};
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;
     questionBank = data; lessonData = lesson; atlasData = atlas; subjectCatalog = subjects; intestineData = intestine; learningLibrary = library;
