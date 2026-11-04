@@ -314,7 +314,7 @@ function showEduBiotechAtlas(chapterId=null,guideOnly=false) {
  }
  window.scrollTo(0,0);
 }
-function showCranialChapter(id,initialTab='brief') {
+function showCranialChapter(id,initialTab='notes') {
   const course=cranialCourse, api=window.MedStudyCranial;
   if(!course||!api)return showSection('anatomy','nervous');
   const idx=course.chapters.findIndex(ch=>ch.id===id);
