@@ -564,6 +564,388 @@
         "origin": "Учебный конспект zachet.app, 04.11.2026",
         "review": "Редакционный пересказ по материалу владельца; спорные варианты терминов вынесены с оговоркой."
       }
+    },
+    {
+      "id": "glossopharyngeal-core",
+      "roman": "IX",
+      "title": "Языкоглоточный нерв: ядра, выход и узлы",
+      "latinTitle": "Nervus glossopharyngeus (IX)",
+      "pages": "4–5",
+      "sections": [
+        {
+          "title": "Почему IX пара считается смешанной",
+          "points": [
+            "Nervus glossopharyngeus сочетает соматические моторные, парасимпатические секреторные и чувствительные волокна. Поэтому для описания нерва недостаточно только названия языка и глотки.",
+            "Три функциональные области представлены разными ядрами продолговатого мозга: nucleus ambiguus посылает двигательную компоненту, nucleus salivatorius inferior — преганглионарную парасимпатику, nucleus tractus solitarii принимает чувствительные сигналы.",
+            "В начале раздела PDF эти три ядра последовательно распределены по типам волокон. Эту таблицу следует заучивать с латинскими названиями, не смешивая нижнее слюноотделительное ядро IX с верхним ядром VII."
+          ]
+        },
+        {
+          "title": "Выход из ствола и яремное отверстие",
+          "points": [
+            "Корешки IX пары выходят по заднелатеральной борозде продолговатого мозга, то есть позади oliva medullae oblongatae. Затем нерв вступает в fossa cranii posterior и уходит из черепа через foramen jugulare.",
+            "В яремном отверстии по источнику порядок нервов спереди назад составляет IX → X → XI. Поэтому языкоглоточный нерв проходит кпереди от блуждающего и добавочного.",
+            "Это положение следует отличать от VIII пары, которая идёт через внутренний слуховой проход, и XII пары, покидающей череп через отдельный подъязычный канал."
+          ]
+        },
+        {
+          "title": "Чувствительные узлы и зоны",
+          "points": [
+            "В области яремного отверстия указаны ganglion superius nervi glossopharyngei (верхний) и ganglion inferius nervi glossopharyngei (нижний). Их чувствительные клетки — псевдоуниполярные нейроны.",
+            "Периферические отростки получают информацию от глотки, барабанной полости и каротидной области, а вкусовые волокна — от задней трети языка, включая желобоватые сосочки.",
+            "Центральные отростки чувствительных нейронов идут в ствол мозга. Вкус в большей степени связан с ядром одиночного пути; общую соматическую чувствительность в углублённой анатомии также относят к стволовым тройничным ядрам, поэтому лекционная трёхъядерная схема является обзорной."
+          ]
+        },
+        {
+          "title": "Двигательная задача IX пары",
+          "points": [
+            "Единственная названная в материале скелетная мышца для отдельной моторной ветви IX пары — musculus stylopharyngeus, шилоглоточная мышца; её двигательные волокна связаны с nucleus ambiguus.",
+            "Не приписывайте IX паре всю скелетную мускулатуру глотки: большую её часть обеспечивает X пара через глоточное сплетение. Это разграничение отдельно подчёркнуто в разделе блуждающего нерва."
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "ru": "Языкоглоточный нерв",
+          "la": "Nervus glossopharyngeus"
+        },
+        {
+          "ru": "Двойное ядро",
+          "la": "Nucleus ambiguus"
+        },
+        {
+          "ru": "Нижнее слюноотделительное ядро",
+          "la": "Nucleus salivatorius inferior"
+        },
+        {
+          "ru": "Ядро одиночного пути",
+          "la": "Nucleus tractus solitarii"
+        },
+        {
+          "ru": "Олива продолговатого мозга",
+          "la": "Oliva medullae oblongatae"
+        },
+        {
+          "ru": "Яремное отверстие",
+          "la": "Foramen jugulare"
+        },
+        {
+          "ru": "Задняя черепная ямка",
+          "la": "Fossa cranii posterior"
+        },
+        {
+          "ru": "Верхний узел языкоглоточного нерва",
+          "la": "Ganglion superius nervi glossopharyngei"
+        },
+        {
+          "ru": "Нижний узел языкоглоточного нерва",
+          "la": "Ganglion inferius nervi glossopharyngei"
+        },
+        {
+          "ru": "Шилоглоточная мышца",
+          "la": "Musculus stylopharyngeus"
+        },
+        {
+          "ru": "Глотка",
+          "la": "Pharynx"
+        },
+        {
+          "ru": "Барабанная полость",
+          "la": "Cavitas tympani"
+        },
+        {
+          "ru": "Сонный синус",
+          "la": "Sinus caroticus"
+        },
+        {
+          "ru": "Сонный клубочек",
+          "la": "Glomus caroticum"
+        },
+        {
+          "ru": "Желобоватые сосочки",
+          "la": "Papillae vallatae"
+        }
+      ],
+      "cards": [
+        {
+          "front": "Какие три ядра важны для IX пары?",
+          "back": "Nucleus ambiguus — соматическая моторика; nucleus salivatorius inferior — парасимпатика; nucleus tractus solitarii — чувствительность/вкус."
+        },
+        {
+          "front": "Через какое отверстие выходит IX?",
+          "back": "Через foramen jugulare, кпереди от X и XI пар."
+        },
+        {
+          "front": "Каковы два чувствительных узла IX?",
+          "back": "Ganglion superius и ganglion inferius nervi glossopharyngei; чувствительные клетки псевдоуниполярные."
+        },
+        {
+          "front": "Какую мышцу иннервирует собственная двигательная ветвь IX?",
+          "back": "Musculus stylopharyngeus, шилоглоточную мышцу."
+        }
+      ],
+      "questions": [
+        {
+          "id": "cn-glossopharyngeal-core-1",
+          "prompt": "Какое ядро IX пары обеспечивает парасимпатическую секрецию?",
+          "options": [
+            "Nucleus salivatorius inferior",
+            "Nucleus salivatorius superior",
+            "Nucleus nervi hypoglossi",
+            "Nucleus vestibularis lateralis"
+          ],
+          "answer": 0,
+          "explanation": "Нижнее слюноотделительное ядро — источник секреторной парасимпатики IX пары."
+        },
+        {
+          "id": "cn-glossopharyngeal-core-2",
+          "prompt": "Через что IX пара выходит из черепа?",
+          "options": [
+            "Canalis opticus",
+            "Foramen jugulare",
+            "Meatus acusticus internus",
+            "Foramen rotundum"
+          ],
+          "answer": 1,
+          "explanation": "Яремное отверстие пропускает в этой области IX, X и XI пары."
+        },
+        {
+          "id": "cn-glossopharyngeal-core-3",
+          "prompt": "Каков порядок IX, X, XI в яремном отверстии по PDF?",
+          "options": [
+            "XI → IX → X",
+            "VIII → IX → XII",
+            "IX → X → XI",
+            "XII → X → XI"
+          ],
+          "answer": 2,
+          "explanation": "Языкоглоточный располагается впереди блуждающего, а тот — впереди добавочного."
+        },
+        {
+          "id": "cn-glossopharyngeal-core-4",
+          "prompt": "Чувствительность какой области включает IX пара?",
+          "options": [
+            "Вкус передних двух третей через chorda tympani",
+            "Моторика латеральной прямой мышцы глаза",
+            "Слух через улитковое ядро",
+            "Вкус задней трети языка"
+          ],
+          "answer": 3,
+          "explanation": "Язычные ветви IX связаны со вкусом задней трети языка и желобоватых сосочков."
+        }
+      ],
+      "source": {
+        "filename": "Черепные нервы (1).pdf",
+        "date": "2026-11-04",
+        "pages": 13,
+        "origin": "Конспект zachet.app, предоставлен владельцем; на сайте оригинальная редакционная версия, не копия PDF",
+        "review": "Не является кафедральным заключением. Расхождения с общепринятой анатомией выделяются в соответствующих темах."
+      }
+    },
+    {
+      "id": "glossopharyngeal-branches",
+      "roman": "IX",
+      "title": "Языкоглоточный нерв: барабанная и остальные ветви",
+      "latinTitle": "Rami nervi glossopharyngei",
+      "pages": "5–6",
+      "sections": [
+        {
+          "title": "Барабанный нерв и барабанное сплетение",
+          "points": [
+            "Nervus tympanicus — ветвь IX пары с чувствительными и преганглионарными парасимпатическими волокнами. От нижней области черепа он проходит в барабанный каналец через каменистую ямочку и вступает в cavitas tympani.",
+            "В барабанной полости волокна участвуют в формировании plexus tympanicus. Чувствительная часть воспринимает раздражения слизистой среднего уха, включая болевые сигналы, а через rami tubarii связана со слуховой трубой.",
+            "В представленном конспекте отдельно перечислены сообщения с ячейками сосцевидного отростка и евстахиевой трубой. Это не означает, что весь n. tympanicus исключительно чувствительный: по нему также идёт секреторная часть."
+          ]
+        },
+        {
+          "title": "Малый каменистый нерв и околоушная секреция",
+          "points": [
+            "После барабанного сплетения преганглионарные секреторные аксоны получают название nervus petrosus minor, проходят через hiatus canalis nervi petrosi minoris и направляются к ganglion oticum.",
+            "В PDF путь выхода малого каменистого нерва обозначен через «круглое отверстие». Это потенциальная ошибка учебного источника: обычный анатомический маршрут описывают через foramen ovale (с возможными вариантами выхода), а foramen rotundum проводит V2. Здесь сохранено замечание о формулировке PDF, но неверный выход не принят как норма.",
+            "В ganglion oticum преганглионарные волокна переключаются на постганглионарные, которые идут в составе nervus auriculotemporalis от V3 к glandula parotidea, вызывая секрецию слюны. При этом проводником является ветвь V3, а источник парасимпатических волокон — IX.",
+            "Вся цепочка для ответа: nucleus salivatorius inferior → nervus glossopharyngeus → nervus tympanicus → plexus tympanicus → nervus petrosus minor → ganglion oticum → nervus auriculotemporalis (V3) → glandula parotidea."
+          ]
+        },
+        {
+          "title": "Синусная и глоточно-миндаликовые ветви",
+          "points": [
+            "Ramus sinus carotici несёт афферентные сигналы от carotid sinus с барорецепторами и glomus caroticum с хеморецепторами в месте деления общей сонной артерии. В исходнике для этой ветви перечислены обе периферические зоны.",
+            "Rami pharyngei собирают общую чувствительность с участков глотки, а rami tonsillares связаны с небной миндалиной — tonsilla palatina. Эти ветви не следует автоматически путать с двигательными глоточными ветвями X пары."
+          ]
+        },
+        {
+          "title": "Вкус и двигательная ветвь",
+          "points": [
+            "Rami linguales проводят вкусовые сигналы от задней одной трети lingua, в том числе от papillae vallatae. Наряду со вкусом у языкоглоточного нерва есть общая чувствительность этой области.",
+            "Ramus musculi stylopharyngei представляет соматическую двигательную ветвь к musculus stylopharyngeus. В полном перечне ветвей IX пары она отличается от чувствительных ветвей и парасимпатического пути к околоушной железе."
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "ru": "Барабанный нерв",
+          "la": "Nervus tympanicus"
+        },
+        {
+          "ru": "Каменистая ямочка",
+          "la": "Fossula petrosa"
+        },
+        {
+          "ru": "Барабанный каналец",
+          "la": "Canaliculus tympanicus"
+        },
+        {
+          "ru": "Барабанное сплетение",
+          "la": "Plexus tympanicus"
+        },
+        {
+          "ru": "Слуховая труба",
+          "la": "Tuba auditiva"
+        },
+        {
+          "ru": "Трубные ветви",
+          "la": "Rami tubarii"
+        },
+        {
+          "ru": "Малый каменистый нерв",
+          "la": "Nervus petrosus minor"
+        },
+        {
+          "ru": "Расщелина канала малого каменистого нерва",
+          "la": "Hiatus canalis nervi petrosi minoris"
+        },
+        {
+          "ru": "Овальное отверстие",
+          "la": "Foramen ovale"
+        },
+        {
+          "ru": "Круглое отверстие",
+          "la": "Foramen rotundum"
+        },
+        {
+          "ru": "Ушной узел",
+          "la": "Ganglion oticum"
+        },
+        {
+          "ru": "Ушно-височный нерв",
+          "la": "Nervus auriculotemporalis"
+        },
+        {
+          "ru": "Околоушная слюнная железа",
+          "la": "Glandula parotidea"
+        },
+        {
+          "ru": "Синусная ветвь",
+          "la": "Ramus sinus carotici"
+        },
+        {
+          "ru": "Сонный синус",
+          "la": "Sinus caroticus"
+        },
+        {
+          "ru": "Сонный клубочек",
+          "la": "Glomus caroticum"
+        },
+        {
+          "ru": "Глоточные ветви",
+          "la": "Rami pharyngei"
+        },
+        {
+          "ru": "Миндаликовые ветви",
+          "la": "Rami tonsillares"
+        },
+        {
+          "ru": "Язычные ветви",
+          "la": "Rami linguales"
+        },
+        {
+          "ru": "Ветвь к шилоглоточной мышце",
+          "la": "Ramus musculi stylopharyngei"
+        },
+        {
+          "ru": "Нёбная миндалина",
+          "la": "Tonsilla palatina"
+        },
+        {
+          "ru": "Желобоватые сосочки",
+          "la": "Papillae vallatae"
+        }
+      ],
+      "cards": [
+        {
+          "front": "Как дойти от IX пары до околоушной железы?",
+          "back": "N. tympanicus → plexus tympanicus → n. petrosus minor → ganglion oticum → n. auriculotemporalis (V3) → gl. parotidea."
+        },
+        {
+          "front": "Что неверно в выходе малого каменистого нерва в PDF?",
+          "back": "В лекции написано «круглое отверстие»; обычно описывается foramen ovale, а foramen rotundum относится к V2."
+        },
+        {
+          "front": "Какие данные приносит синусная ветвь?",
+          "back": "Чувствительные сигналы от каротидного синуса и клубочка, включая давление крови и её газовый состав."
+        },
+        {
+          "front": "Какие две ветви удобно различать для вкуса и мышцы?",
+          "back": "Rami linguales — вкус задней трети языка; ramus musculi stylopharyngei — двигательная ветвь."
+        }
+      ],
+      "questions": [
+        {
+          "id": "cn-glossopharyngeal-branches-1",
+          "prompt": "Где переключается парасимпатический путь IX к околоушной железе?",
+          "options": [
+            "Ganglion oticum",
+            "Ganglion ciliare",
+            "Ganglion pterygopalatinum",
+            "Ganglion geniculi"
+          ],
+          "answer": 0,
+          "explanation": "Ушной узел является парасимпатическим реле перед околоушной железой."
+        },
+        {
+          "id": "cn-glossopharyngeal-branches-2",
+          "prompt": "Какой нерв проводит волокна от ушного узла к околоушной железе?",
+          "options": [
+            "Nervus lacrimalis (V1)",
+            "Nervus auriculotemporalis (V3)",
+            "Nervus infraorbitalis (V2)",
+            "Nervus hypoglossus (XII)"
+          ],
+          "answer": 1,
+          "explanation": "Постганглионарные секреторные волокна IX идут к glandula parotidea по ветви V3."
+        },
+        {
+          "id": "cn-glossopharyngeal-branches-3",
+          "prompt": "Какое отверстие обычно указывают для малого каменистого нерва?",
+          "options": [
+            "Foramen rotundum",
+            "Canalis opticus",
+            "Foramen ovale",
+            "Foramen jugulare"
+          ],
+          "answer": 2,
+          "explanation": "Сведения PDF о foramen rotundum помечены как ошибка: стандартно называют foramen ovale, существуют варианты."
+        },
+        {
+          "id": "cn-glossopharyngeal-branches-4",
+          "prompt": "Какая ветвь IX связана с сонным синусом и клубочком?",
+          "options": [
+            "Ramus musculi stylopharyngei",
+            "Rami tonsillares",
+            "Nervus petrosus major",
+            "Ramus sinus carotici"
+          ],
+          "answer": 3,
+          "explanation": "Синусная ветвь проводит афферентную информацию от баро- и хеморецепторов каротидной области."
+        }
+      ],
+      "source": {
+        "filename": "Черепные нервы (1).pdf",
+        "date": "2026-11-04",
+        "pages": 13,
+        "origin": "Конспект zachet.app, предоставлен владельцем; на сайте оригинальная редакционная версия, не копия PDF",
+        "review": "Не является кафедральным заключением. Расхождения с общепринятой анатомией выделяются в соответствующих темах."
+      }
     }
   ]
 }
