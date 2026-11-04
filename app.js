@@ -314,7 +314,7 @@ function showEduBiotechAtlas(chapterId=null,guideOnly=false) {
  }
  window.scrollTo(0,0);
 }
-function showCranialChapter(id) {
+function showCranialChapter(id,initialTab='brief') {
   const course=cranialCourse, api=window.MedStudyCranial;
   if(!course||!api)return showSection('anatomy','nervous');
   const idx=course.chapters.findIndex(ch=>ch.id===id);
@@ -322,7 +322,7 @@ function showCranialChapter(id) {
   const chapter=course.chapters[idx];
   view='cranial-chapter';updateNav();main.replaceChildren();
   api.renderChapter(main,{
-    course,chapter,
+    course,chapter,initialTab,
     onBack:()=>showSection('anatomy','nervous'),
     onPrev:idx?()=>showCranialChapter(course.chapters[idx-1].id):null,
     onNext:idx+1<course.chapters.length?()=>showCranialChapter(course.chapters[idx+1].id):null,
@@ -557,7 +557,7 @@ function showResourceLibrary(kind) {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',
           topic.route==='gi-chapter'?()=>showGIFlashcards(topic.chapterId):
-           topic.route==='cranial-chapter'?()=>showCranialChapter(topic.chapterId):
+           topic.route==='cranial-chapter'?()=>showCranialChapter(topic.chapterId,'cards'):
           topic.route==='intestine'?showIntestineFlashcards:
           ()=>navigate('flashcards'),'library-go'));
     }
