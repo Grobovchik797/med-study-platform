@@ -11,14 +11,14 @@ assert isinstance(subjects, list) and len(subjects) == 11
 assert {mode["id"] for mode in data["note_modes"]} == {"brief","deep"}
 ids = [x["id"] for x in subjects]
 assert len(ids) == len(set(ids))
-assert sum(x["status"] == "learning-material" for x in subjects) == 2
+assert sum(x["status"] == "learning-material" for x in subjects) == 3
 assert {x["status"] for x in subjects} <= {"planned","learning-material"}
 assert {x["group"] for x in subjects} <= {"medical","general"}
 for x in subjects:
     assert isinstance(x["name"], str) and x["name"].strip()
     for topic in x.get("topics", []):
         assert topic.get("intro_status","planned") in {"planned","introductory","draft","reviewed","source-checked-draft"}
-        assert topic["brief_status"] in {"planned","introductory","draft","reviewed","source-checked-draft"}
-        assert topic["deep_status"] in {"planned","draft","reviewed","source-checked-draft"}
+        assert topic["brief_status"] in {"planned","introductory","draft","reviewed","source-checked-draft","available"}
+        assert topic["deep_status"] in {"planned","draft","reviewed","source-checked-draft","available"}
 assert "Нормальная физиология" in {x["name"] for x in subjects}
-print("OK: 11 university subjects, intro/brief/deep modes, clear work-in-progress statuses")
+print("OK: 11 university subjects, 3 learning-material subjects, intro/brief/deep modes")
