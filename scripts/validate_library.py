@@ -46,5 +46,5 @@ for subject_id, subject_data in library["subjects"].items():
                 assert topic["quiz"] and not topic["atlas"]
             if topic["route"]=="lesson":
                 assert topic["id"]=="ans" and topic["quiz"]
-assert len(topic_ids)==35 and {"ans","histology-small-intestine","gi-workbook","gi-final-exam","cranial-final-exam"}.issubset(topic_ids)
-print("Navigation OK: 11 subjects, 35 scoped learning entries, honest resource flags, unique IDs")
+assert len(topic_ids)==48 and {"ans","histology-small-intestine","gi-workbook","gi-final-exam","cranial-final-exam"}.issubset(topic_ids)
+print("Navigation OK: 11 subjects, 48 scoped learning entries, honest resource flags, unique IDs")
