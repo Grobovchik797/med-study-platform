@@ -1089,7 +1089,7 @@
             "Canalis hypoglossi"
           ],
           "answer": 1,
-          "explanation": "X пара проходит через яремное отверстие вместе с IX и XI."
+          "explanation": "X пара проходит через яремное отверстие (foramen jugulare) вместе с IX и XI парами и занимает промежуточное положение."
         },
         {
           "id": "cn-vagus-core-3",
@@ -1823,7 +1823,7 @@
       "cards": [
         {
           "front": "Какие ветви имеет truncus vagalis anterior?",
-          "back": "Rami gastrici anteriores и rami hepatici."
+          "back": "Передние желудочные ветви — rami gastrici anteriores — и печёночные ветви — rami hepatici."
         },
         {
           "front": "Какие ветви имеет truncus vagalis posterior?",
@@ -2217,7 +2217,7 @@
         },
         {
           "front": "Три наружные мышцы XII?",
-          "back": "Mm. genioglossus, hyoglossus, styloglossus."
+          "back": "Наружные мышцы: musculus genioglossus, musculus hyoglossus, musculus styloglossus; это цели XII."
         },
         {
           "front": "Какая мышца языка — исключение из XII?",
@@ -2247,7 +2247,7 @@
             "Через решётчатую пластинку"
           ],
           "answer": 1,
-          "explanation": "XII выходит в предоливной области medulla oblongata."
+          "explanation": "XII выходит в предоливной области medulla oblongata, между пирамидой и оливой продолговатого мозга."
         },
         {
           "id": "cn-hypoglossal-main-3",
