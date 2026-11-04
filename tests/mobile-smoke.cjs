@@ -210,8 +210,8 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.9'),
-      'Top navigation must show the current 1.9.9 release number');
+    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.11'),
+      'Top navigation must show the current 1.9.11 release number');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -340,11 +340,11 @@ async function main() {
 
     await page.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(page,'Библиотека конспектов');
-    assert.equal(await page.locator('.library-card').count(),33);
+    assert.equal(await page.locator('.library-card').count(),46);
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
     await waitHeading(page,'Карточки по темам');
-    assert.equal(await page.locator('.library-card').count(),32,'Existing GI/VNS cards plus 13 new cranial nerve topics should be available');
+    assert.equal(await page.locator('.library-card').count(),45,'Existing GI/VNS cards plus 26 cranial nerve topics should be available');
     await page.locator('.library-card').filter({hasText:'Желудок: оболочки'}).locator('.library-go').tap();
     await waitHeading(page,'Желудок: оболочки, ямки');
     assert.equal(await page.locator('.gi-recall-card').count(),1);
@@ -393,14 +393,14 @@ async function main() {
     assert.ok(await app.locator('.topic-stats').count()>=2,'Android statistics must support multiple topics');
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
-    assert.equal(await app.locator('.library-card').count(),33);
+    assert.equal(await app.locator('.library-card').count(),46);
     await app.getByRole('button',{name:'Найти термин или препарат'}).tap();
     await waitHeading(app,'Найти термин или препарат');
     await app.locator('.study-search-input').fill('дуоденум');
     assert.ok(await app.locator('.study-search-result').count()>=1,'Android asset origin must load real GI search data');
     await app.getByRole('button',{name:'← К библиотеке'}).tap();
     await waitHeading(app,'Библиотека конспектов');
-    // 1.9.9: The same source-based anatomy module must load on the Android asset origin.
+    // 1.9.11: The complete source-based anatomy module must load on the Android asset origin.
     const oldGI=await app.evaluate(()=>localStorage.getItem('med-study-progress-v1'));
     const oldMilestones=await app.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
     await app.locator('.library-card').filter({hasText:'I. Обонятельный нерв'}).locator('.library-go').tap();
@@ -676,14 +676,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),15,'Eleven feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),16,'Twelve feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),11);
+    assert.equal(await desktop.locator('.study-journal-item').count(),12);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
@@ -704,7 +704,7 @@ async function main() {
     await desktop.locator('.gi-distractor-review summary').click();
     assert.equal(await desktop.locator('.gi-distractor-review li').count(),3);
     assert.ok((await desktop.locator('.gi-distractor-review').textContent()).includes('Редакционные пояснения'));
-    // 1.9.9: Anatomy now contains the supplied I–VII, not invented VIII–XII.
+    // 1.9.11: Anatomy now contains I–XII from both owner-provided source PDFs.
     const sourceCourse=await desktop.evaluate(async()=> (await (await fetch('./data/cranial-nerves.json')).json()));
     assert.equal(sourceCourse.chapters.length,13);
     assert.equal(sourceCourse.chapters.flatMap(ch=>ch.questions).length,52);
@@ -716,11 +716,20 @@ async function main() {
     assert.ok(sourceCourse.chapters.reduce((n,ch)=>n+ch.sections.flatMap(s=>s.points).join(' ').length,0)>50000);
     assert.ok(sourceCourse.chapters.every(ch=>!('brief' in ch)&&ch.latinTitle));
     assert.deepEqual(sourceCourse.scope.missing,['VIII','IX','X','XI','XII']);
+    const sourceExt=await desktop.evaluate(async()=> (await (await fetch('./data/cranial-nerves-viii-xii.json')).json()));
+    assert.equal(sourceExt.chapters.length,13);
+    assert.equal(sourceExt.chapters.flatMap(ch=>ch.questions).length,52);
+    assert.equal(sourceExt.chapters.flatMap(ch=>ch.cards).length,51);
+    assert.equal(sourceExt.chapters.flatMap(ch=>ch.sections).length,51);
+    assert.equal(sourceExt.chapters.reduce((n,ch)=>n+ch.terms.length,0),223);
+    assert.ok(sourceExt.chapters.reduce((n,ch)=>n+ch.sections.flatMap(s=>s.points).join(' ').length,0)>30000);
+    assert.ok(sourceExt.chapters.every(ch=>ch.latinTitle&&!('brief' in ch)));
+    assert.deepEqual(sourceExt.scope.included,['VIII','IX','X','XI','XII']);
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Черепные нервы · анатомия'}).click();
     await waitHeading(desktop,'Нервная система');
-    assert.equal(await desktop.locator('.library-card').count(),14,'Anatomy needs 13 chapters and an exam');
-    assert.equal(await desktop.locator('.library-card').filter({hasText:'VIII'}).count(),0);
+    assert.equal(await desktop.locator('.library-card').count(),27,'Anatomy needs 26 full notes and an exam');
+    assert.equal(await desktop.locator('.library-card').filter({hasText:'VIII. Преддверно-улитковый нерв'}).count(),1);
     await desktop.locator('.library-card').filter({hasText:'V3. Нижнечелюстная ветвь'}).locator('.library-go').click();
     await waitHeading(desktop,'Нижнечелюстная ветвь');
     assert.equal(await desktop.locator('.cn-tabs button').count(),3);
@@ -741,9 +750,34 @@ async function main() {
     assert.ok(typeof stored.chapters.mandibular.best==='number');
     await desktop.getByRole('button',{name:'Вернуться к разделу'}).click();
     await desktop.getByRole('button',{name:'← Нервная система'}).click();
-    await desktop.locator('.library-card').filter({hasText:'Проверка черепных нервов'}).locator('.library-go').click();
+    await desktop.locator('.library-card').filter({hasText:'Итоговый тест по I–XII парам'}).locator('.library-go').click();
     await waitHeading(desktop,'Итоговая проверка по черепным нервам');
     assert.ok((await desktop.locator('.cn-count').textContent()).includes('1 / 20'));
+    assert.equal(await desktop.locator('.cn-option').count(),4);
+    // Source 2: five nerves (VIII–XII) in thirteen full notes, with Latin and traceable corrections.
+    await desktop.getByRole('button',{name:'← К конспекту'}).click();
+    await waitHeading(desktop,'Нервная система');
+    await desktop.locator('.library-card').filter({hasText:'VIII. Преддверно-улитковый нерв'}).locator('.library-go').click();
+    await waitHeading(desktop,'Преддверно-улитковый нерв: ядра и состав');
+    assert.equal(await desktop.locator('.cn-tabs button').count(),3,'No abbreviated study mode');
+    assert.equal(await desktop.locator('.cn-detail').count(),sourceExt.chapters[0].sections.length);
+    assert.ok((await desktop.locator('.cn-latin-title').textContent()).includes('Nervus vestibulocochlearis'));
+    assert.ok((await desktop.locator('.cn-source').textContent()).includes('Черепные нервы (1).pdf'));
+    assert.ok((await desktop.locator('.cn-term-grid').textContent()).includes('Nucleus vestibularis'));
+    await desktop.getByRole('button',{name:'← Нервная система'}).click();
+    await desktop.locator('.library-card').filter({hasText:'IX. Языкоглоточный нерв: барабанная'}).locator('.library-go').click();
+    await waitHeading(desktop,'Языкоглоточный нерв: барабанная и остальные ветви');
+    assert.ok((await desktop.locator('.cn-detail').allTextContents()).join(' ').includes('foramen ovale'));
+    assert.equal(await desktop.locator('.cn-scientific-sources a').count(),1);
+    await desktop.getByRole('button',{name:'← Нервная система'}).click();
+    await desktop.locator('.library-card').filter({hasText:'XII. Подъязычный нерв и шейная петля'}).locator('.library-go').click();
+    await waitHeading(desktop,'Подъязычный нерв и шейная петля');
+    assert.ok((await desktop.locator('.cn-detail').allTextContents()).join(' ').includes('thyrohyoideus'));
+    assert.ok((await desktop.locator('.cn-term-grid').textContent()).includes('Ansa cervicalis'));
+    assert.equal(await desktop.locator('.cn-scientific-sources a').count(),1);
+    await desktop.locator('.cn-tabs').getByRole('button',{name:'Карточки',exact:true}).click();
+    assert.equal(await desktop.locator('.cn-card').count(),1);
+    await desktop.locator('.cn-tabs').getByRole('button',{name:'Тест',exact:true}).click();
     assert.equal(await desktop.locator('.cn-option').count(),4);
     assert.equal(errors.length,0,errors.join('\n'));
     await desktopCtx.close();

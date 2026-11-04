@@ -22,12 +22,14 @@
       "topics": [
         {
           "id": "cranial-nerves",
-          "name": "Черепные нервы: I–VII пары",
+          "name": "Черепные нервы: I–XII пары",
           "status": "editorial-source-mapped",
-          "questions": 52,
-          "chapterCount": 13,
+          "questions": 104,
+          "chapterCount": 26,
           "note_status": "available",
-          "latin_status": "complete"
+          "latin_status": "complete",
+          "sourceCount": 2,
+          "latinTerms": 486
         }
       ]
     },

@@ -58,11 +58,14 @@ def main():
                 ("cranial-nerves.js", "window.MedStudyCranial"),
                 ("data/cranial-nerves.json", '"facial-extracranial"'),
                 ("data/cranial-nerves.json", '"one-full-note"'),
+                ("data/cranial-nerves-viii-xii.json", '"hypoglossal-cervical"'),
+                ("data/cranial-nerves-viii-xii.json", '"nervus glossopharyngeus"'),
+                ("data/library.json", '"cranial-vagus-thoracic"'),
                 ("data/cranial-nerves.json", '"Nervus ophthalmicus"'),
                 ("cranial-nerves.js", "renderTerminology(chapter)"),
                 ("data/library.json", '"cranial-final-exam"'),
                 ("app.js", "showCranialChapter"),
-                ("data/update-journal.json", '"med-1-9-10"'),
+                ("data/update-journal.json", '"med-1-9-11"'),
                 ("data/gi-edubiotech-atlas.json", 's23lst.html'),
                 ("data/gi-edubiotech-atlas.json", 's25lst.html'),
                 ("edubiotech-atlas.js", "window.MedStudyEduBiotech"),
@@ -97,7 +100,7 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 13 complete cranial nerve topics, Latin names and 52 questions")
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 26 complete cranial nerve topics I–XII, 486 Latin names and 104 questions")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)
