@@ -82,6 +82,10 @@ function renderTerminology(chapter){
   row.append(el('dt','',term.ru),el('dd','',term.la));grid.append(row);
  }
  details.append(grid);
+ const reference=el('a','cn-terminology-reference','Основа латинской терминологии: IFAA / FIPAT (Terminologia Anatomica)');
+ reference.href='https://ifaa.net/committees/anatomical-terminology-fipat/fipat-ifaa-terminologies/';
+ reference.target='_blank';reference.rel='noopener noreferrer';
+ details.append(reference);
  return details;
 }
 function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam,initialTab='notes'}){
