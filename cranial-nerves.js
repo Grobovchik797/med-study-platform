@@ -144,7 +144,7 @@ function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam,initialT
    section.append(nav);host.append(section);
    host.append(renderTerminology(chapter));
   }else{
-   startQuiz(host,chapter.questions,()=>{tab='notes';draw();},{id:chapter.id,heading:chapter.title+' · '+chapter.latinTitle});
+   startQuiz(host,chapter.questions,()=>{tab='notes';draw();},{id:chapter.id,heading:chapter.title+' · '+chapter.latinTitle,terms:chapter.terms});
    return;
   }
   const footer=el('div','cn-bottom-nav');
@@ -161,7 +161,7 @@ function shuffled(items){
  const copy=[...items];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}
  return copy;
 }
-function startQuiz(host,questions,onBack,{id=null,heading='Черепные нервы',limit=null}={}){
+function startQuiz(host,questions,onBack,{id=null,heading='Черепные нервы',limit=null,terms=[]}={}){
  if(!Array.isArray(questions)||questions.length===0)throw Error('No cranial questions');
  let order=shuffled(questions).slice(0,limit||questions.length),index=0,score=0,chosen=null,checked=false;
  function draw(){
@@ -188,7 +188,7 @@ function startQuiz(host,questions,onBack,{id=null,heading='Черепные не
    b.disabled=checked;b.setAttribute('aria-pressed',String(chosen===j));opts.append(b);
   });panel.append(opts);
   if(checked){
-   const feedback=el('div','cn-feedback');feedback.append(el('strong','',chosen===q.answer?'Верно!':'Правильный ответ: '+q.options[q.answer]),paragraph(q.explanation));
+   const feedback=el('div','cn-feedback');feedback.append(el('strong','',chosen===q.answer?'Верно!':'Правильный ответ: '+q.options[q.answer]),annotatedParagraph(q.explanation,terms));
    panel.append(feedback);
    panel.append(button(index===order.length-1?'Завершить тест':'Следующий вопрос →',()=>{index++;chosen=null;checked=false;draw();}));
   }else{
