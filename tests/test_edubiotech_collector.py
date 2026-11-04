@@ -17,8 +17,8 @@ class EduBiotechCollectorTests(unittest.TestCase):
         self.assertIsNone(collector.normalized(base, "../../../../../../elsewhere.jpg"))
         self.assertIsNone(collector.normalized(base, "http://edubiotech.ru/photo.jpg"))
         self.assertEqual(
-            collector.normalized(base, "../../images/photo.jpg?x=2#top"),
-            collector.ROOT + "images/photo.jpg")
+            collector.normalized(base, "../images/photo.jpg?x=2#top"),
+            collector.ROOT + "histology/images/photo.jpg")
 
     def test_extracts_real_links_without_guessing_captions(self):
         page = collector.SourcePage()
