@@ -526,8 +526,9 @@ async function main() {
     assert.equal(await desktop.locator('.edu-chapter-item').count(),17);
     assert.equal(await desktop.locator('.edu-topic-card img').count(),0,'Do not mirror proprietary images from source');
     const links=await desktop.locator('.edu-topic-card .edu-external-link').evaluateAll(nodes=>nodes.map(n=>({href:n.href,target:n.target,rel:n.rel})));
-    assert.equal(links.length,6);
+    assert.equal(links.length,9);
     assert.ok(links.every(x=>x.href.startsWith('https://edubiotech.ru/')&&x.target==='_blank'&&x.rel.includes('noopener')));
+    assert.equal(links.filter(x=>x.href.includes('/histology/r5/t2')).length,3,'Full-text source pages 23–25 must be linked');
     await desktop.locator('.edu-chapter-filter').selectOption('liver');
     assert.equal(await desktop.locator('.edu-topic-card').count(),1);
     assert.equal(await desktop.locator('.edu-chapter-item').count(),1);
