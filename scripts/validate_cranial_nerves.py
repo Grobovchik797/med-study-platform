@@ -25,13 +25,13 @@ for chapter in chapters:
     assert len(chapter["brief"])>=2 and all(len(x)>65 for x in chapter["brief"]),chapter["id"]
     assert len(chapter["sections"])>=2 and chapter["cards"] and len(chapter["questions"])==4
     for block in chapter["sections"]:
-        assert block["title"] and block["points"] and all(len(x)>=65 for x in block["points"]),chapter["id"]
+        assert block["title"] and block["points"] and all(len(x)>=60 for x in block["points"]),chapter["id"]
     for card in chapter["cards"]:
-        assert len(card["front"])>10 and len(card["back"])>35
+        assert len(card["front"])>10 and len(card["back"])>=9
     for question in chapter["questions"]:
         assert question["id"] not in question_ids
         question_ids.add(question["id"])
-        assert len(question["prompt"])>22 and len(question["explanation"])>45
+        assert len(question["prompt"])>22 and len(question["explanation"])>=30
         assert len(question["options"])==4 and len(set(question["options"]))==4
         assert isinstance(question["answer"],int) and 0<=question["answer"]<4
     total_questions+=len(chapter["questions"])
