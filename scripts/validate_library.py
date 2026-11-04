@@ -26,7 +26,7 @@ for subject_id, subject_data in library["subjects"].items():
             assert topic["title"] and topic["hint"]
             assert topic["route"] in {"intestine","lesson","gi-chapter","gi-workbook","gi-exam","cranial-chapter","cranial-exam"}
             assert all(isinstance(topic[key],bool) for key in ("quiz","atlas","flashcards"))
-            assert set(topic["notes"]) == (set() if topic["route"] in {"gi-exam","cranial-exam"} else ({"brief"} if topic["route"]=="gi-workbook" else {"brief","deep"}))
+            assert set(topic["notes"]) == (set() if topic["route"] in {"gi-exam","cranial-exam"} else ({"full"} if topic["route"]=="cranial-chapter" else ({"brief"} if topic["route"]=="gi-workbook" else {"brief","deep"})))
             assert all(isinstance(value,bool) for value in topic["notes"].values())
             assert any(topic["notes"].values()) or topic["route"] in {"gi-exam","cranial-exam"}, topic["id"]
             if topic["route"]=="intestine":
@@ -38,7 +38,7 @@ for subject_id, subject_data in library["subjects"].items():
                 assert topic["quiz"] and topic["flashcards"],topic["id"]
             if topic["route"]=="cranial-chapter":
                 assert subject_id=="anatomy" and section["id"]=="nervous"
-                assert topic["chapterId"] and topic["quiz"] and topic["flashcards"] and not topic["atlas"]
+                assert topic["chapterId"] and topic["quiz"] and topic["flashcards"] and not topic["atlas"] and topic["notes"]=={"full":True}
             if topic["route"]=="cranial-exam":
                 assert subject_id=="anatomy" and section["id"]=="nervous"
                 assert topic["quiz"] and not topic["atlas"] and not topic["flashcards"]

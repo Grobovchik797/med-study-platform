@@ -405,15 +405,21 @@ async function main() {
     const oldMilestones=await app.evaluate(()=>localStorage.getItem('med-study-topic-milestones-v1'));
     await app.locator('.library-card').filter({hasText:'I. Обонятельный нерв'}).locator('.library-go').tap();
     await waitHeading(app,'Обонятельный нерв');
-    assert.equal(await app.locator('.cn-tabs button').count(),4);
-    await app.getByRole('button',{name:'Расширенный',exact:true}).tap();
+    assert.equal(await app.locator('.cn-tabs button').count(),3,'One full note, cards and quiz');
+    assert.equal(await app.getByRole('button',{name:'Краткий',exact:true}).count(),0);
+    assert.equal(await app.getByRole('button',{name:'Расширенный',exact:true}).count(),0);
+    assert.ok((await app.locator('.cn-latin-title').textContent()).includes('Nervus olfactorius'));
+    assert.ok((await app.locator('.cn-terminology summary').textContent()).includes('18 терминов'));
+    assert.equal(await app.locator('.cn-term-row').count(),18);
+    await app.locator('.cn-terminology summary').tap();
+    assert.ok((await app.locator('.cn-term-grid').textContent()).includes('Lamina cribrosa'));
     assert.ok(await app.locator('.cn-detail').count()>=3);
     assert.ok((await app.locator('.cn-detail').allTextContents()).join(' ').includes('полоски'));
     await app.getByRole('button',{name:'✓ Я изучил(а) этот конспект'}).tap();
     assert.ok((await app.locator('.cn-status').textContent()).includes('Конспект изучен'));
     await app.getByRole('button',{name:'Карточки',exact:true}).tap();
     await app.getByRole('button',{name:'Показать ответ'}).tap();
-    assert.equal(await app.locator('.cn-card-answer').count(),1);
+    assert.equal(await app.locator('.cn-card .cn-anatomy-text').count(),1);
     await app.getByRole('button',{name:'Тест',exact:true}).tap();
     assert.equal(await app.locator('.cn-option').count(),4);
     assert.equal(await app.evaluate(()=>localStorage.getItem('med-study-progress-v1')),oldGI);
@@ -670,14 +676,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),14,'Ten feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),15,'Eleven feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),10);
+    assert.equal(await desktop.locator('.study-journal-item').count(),11);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>
@@ -704,6 +710,11 @@ async function main() {
     assert.equal(sourceCourse.chapters.flatMap(ch=>ch.questions).length,52);
     assert.equal(sourceCourse.chapters.flatMap(ch=>ch.cards).length,53);
     assert.equal(sourceCourse.chapters.flatMap(ch=>ch.sections).length,49);
+    assert.equal(sourceCourse.version,2);
+    assert.equal(sourceCourse.studyFormat,'one-full-note');
+    assert.equal(sourceCourse.chapters.reduce((n,ch)=>n+ch.terms.length,0),263);
+    assert.ok(sourceCourse.chapters.reduce((n,ch)=>n+ch.sections.flatMap(s=>s.points).join(' ').length,0)>50000);
+    assert.ok(sourceCourse.chapters.every(ch=>!('brief' in ch)&&ch.latinTitle));
     assert.deepEqual(sourceCourse.scope.missing,['VIII','IX','X','XI','XII']);
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Черепные нервы · анатомия'}).click();
@@ -712,7 +723,9 @@ async function main() {
     assert.equal(await desktop.locator('.library-card').filter({hasText:'VIII'}).count(),0);
     await desktop.locator('.library-card').filter({hasText:'V3. Нижнечелюстная ветвь'}).locator('.library-go').click();
     await waitHeading(desktop,'Нижнечелюстная ветвь');
-    await desktop.getByRole('button',{name:'Расширенный',exact:true}).click();
+    assert.equal(await desktop.locator('.cn-tabs button').count(),3);
+    assert.ok((await desktop.locator('.cn-latin-title').textContent()).includes('Nervus mandibularis'));
+    assert.equal(await desktop.locator('.cn-term-row').count(),28);
     assert.equal(await desktop.locator('.cn-detail').count(),sourceCourse.chapters.find(c=>c.id==='mandibular').sections.length);
     assert.ok((await desktop.locator('.cn-detail').allTextContents()).join(' ').includes('подбородочн'));
     await desktop.getByRole('button',{name:'Тест',exact:true}).click();

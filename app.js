@@ -314,7 +314,7 @@ function showEduBiotechAtlas(chapterId=null,guideOnly=false) {
  }
  window.scrollTo(0,0);
 }
-function showCranialChapter(id,initialTab='brief') {
+function showCranialChapter(id,initialTab='notes') {
   const course=cranialCourse, api=window.MedStudyCranial;
   if(!course||!api)return showSection('anatomy','nervous');
   const idx=course.chapters.findIndex(ch=>ch.id===id);
@@ -1422,8 +1422,8 @@ Promise.all([
     giEduBiotechAtlas=eduGuide?.version===1&&eduGuide.topics?.length===3?eduGuide:null;
     giEduOriginal=eduOriginal?.version===1&&eduOriginal.images?.length===36?eduOriginal:null;
     giEduTEM=eduTEM?.version===1&&eduTEM.images?.length===3?eduTEM:null;
-    if(!window.MedStudyCranial||cranial?.version!==1||cranial.courseId!=='anatomy-cranial-nerves'||cranial.chapters?.length!==13||
-       cranial.chapters.some(ch=>ch.questions?.length!==4||!Array.isArray(ch.sections)||!ch.sections.length))
+    if(!window.MedStudyCranial||cranial?.version!==2||cranial.courseId!=='anatomy-cranial-nerves'||cranial.chapters?.length!==13||
+       cranial.chapters.some(ch=>ch.questions?.length!==4||!Array.isArray(ch.sections)||!ch.sections.length||!ch.latinTitle||!ch.terms?.length||('brief' in ch)))
       throw Error('Анатомия: конспект черепных нервов не загружен');
     cranialCourse=cranial;
     giAnswerReasons=reasons;updateJournal=journal;

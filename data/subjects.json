@@ -24,10 +24,10 @@
           "id": "cranial-nerves",
           "name": "Черепные нервы: I–VII пары",
           "status": "editorial-source-mapped",
-          "brief_status": "available",
-          "deep_status": "available",
           "questions": 52,
-          "chapterCount": 13
+          "chapterCount": 13,
+          "note_status": "available",
+          "latin_status": "complete"
         }
       ]
     },
