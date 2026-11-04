@@ -1,0 +1,46 @@
+name: EduBiotech source inventory (review artifact only)
+
+on:
+  push:
+    branches: [feat/edubiotech-local-intake-2026-11-04]
+    paths:
+      - scripts/collect_edubiotech.py
+      - tests/test_edubiotech_collector.py
+      - .github/workflows/edubiotech-intake.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    name: Inspect linked atlas pages without publishing images
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image decoder
+        run: python3 -m pip install --quiet Pillow
+      - name: Validate collector and path safety offline
+        run: python3 -m unittest discover -s tests -p 'test_edubiotech_collector.py' -v
+      - name: Attempt bounded archived-source inventory
+        id: collect
+        continue-on-error: true
+        run: |
+          python3 scripts/collect_edubiotech.py \
+            --output build/edubiotech-intake \
+            --max-pages 70 --max-depth 3 --max-images 120 \
+            --delay 0.8 --download-images
+      - name: Keep source files only as temporary review artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: edubiotech-source-review
+          path: build/edubiotech-intake/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Report unavailable original source honestly
+        if: steps.collect.outcome != 'success'
+        run: |
+          echo 'Original EduBiotech pages could not be inventoried; check the report artifact and source access.' >&2
+          exit 1
