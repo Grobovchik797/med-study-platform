@@ -53,7 +53,8 @@ function render(host,{data,course,guide,onBack,onChapter,onReference,selectedCha
  function matches(ids){return filter==='all'||ids.includes(filter);}
  function sourceRow(topic){
   const links=el('div','edu-links');
-  links.append(externalLink(topic.url,'Перейти к теме '+topic.number+' на EduBiotech'),
+  links.append(externalLink(topic.url,'Список препаратов · тема '+topic.number),
+    externalLink(topic.contentUrl,'Текст темы и иллюстрации · '+topic.number),
     externalLink(data.source.index,'Если ссылка недоступна — открыть каталог атласа'));
   return links;
  }
