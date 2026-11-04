@@ -34,10 +34,22 @@ function headline(host,kicker,title,subtitle,onBack){
  host.replaceChildren();
  host.append(button('← Нервная система',onBack,'cn-back'),el('div','kicker',kicker),el('h1','',title),paragraph(subtitle,'cn-intro'));
 }
-function source(host,source,pages){
+function source(host,source,pages,chapter){
  const block=el('aside','cn-source');
- block.append(el('strong','','Основа: учебный PDF «Черепные нервы» · страницы '+pages),
-  paragraph('Самостоятельная редакционная структура по предоставленному 14-страничному материалу; исходный PDF не размещён на сайте. '+source.review));
+ block.append(el('strong','','Основа: учебный PDF «'+(source?.filename||'Черепные нервы')+'» · страницы '+pages),
+  paragraph('Полный авторский конспект по предоставленному материалу; оригинальный PDF и изображения из него не размещены на сайте. '+(source?.review||'')));
+ if(chapter?.scientificSources?.length){
+  const refs=el('div','cn-scientific-sources');
+  refs.append(el('strong','','Независимая анатомическая сверка спорных мест:'));
+  for(const entry of chapter.scientificSources){
+   const item=el('p','');
+   item.append(document.createTextNode(entry.clarification+' '));
+   const link=el('a','',entry.title);
+   if(/^https:\/\//.test(entry.url)){link.href=entry.url;link.target='_blank';link.rel='noopener noreferrer';item.append(link);}
+   refs.append(item);
+  }
+  block.append(refs);
+ }
  host.append(block);
 }
 
@@ -156,7 +168,7 @@ function renderChapter(host,{chapter,course,onBack,onNext,onPrev,onExam,initialT
   footer.append(button('Итоговый тест по разделу',onExam,'cn-btn cn-secondary'));
   if(onNext)footer.append(button('Следующая тема →',onNext,'cn-btn cn-secondary'));
   host.append(footer);
-  source(host,chapter.source||course.source,chapter.pages);
+  source(host,chapter.source||course.source,chapter.pages,chapter);
  }
  draw();
 }
