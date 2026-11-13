@@ -211,7 +211,7 @@ async function main() {
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
     const indexSource=await fs.readFile(path.join(__dirname,'..','index.html'),'utf8');
-    const declaredVersion=indexSource.match(/Med Study · (\\d+\\.\\d+\\.\\d+)/)?.[1];
+    const declaredVersion=indexSource.match(/Med Study · (\d+\.\d+\.\d+)/)?.[1];
     assert.ok(declaredVersion && (await page.locator('.top-pill').textContent()).includes(declaredVersion),
       'Top navigation must match the version declared in index.html');
     const nav=await page.locator('.sidebar').boundingBox();
