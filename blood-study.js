@@ -69,6 +69,7 @@
     const wrapper=showRoot(root, 'К разделу',topic.title,track.title+' · '+topic.source+' · один полный конспект',handlers.onBack);
     const meter=n('p','blood-meter','Мини-блоки: '+completedMiniCount(topic)+' из '+topic.miniblocks.length+' · тематический тест: '+(progress.topic[topic.id]?'пройден':'впереди'));
     wrapper.append(meter);
+    if(handlers.onLecture)wrapper.append(linkButton('Полная исходная лекция без сокращений →',()=>handlers.onLecture(track.id),'blood-source-button'));
     if(topic.figures?.length){const row=n('div','blood-figures');topic.figures.forEach(name=>row.append(diagram(name)));wrapper.append(row);}
     for(let i=0;i<topic.miniblocks.length;i++){
       const b=topic.miniblocks[i], section=n('section','blood-block');
@@ -162,6 +163,19 @@
     }
     window.scrollTo(0,0);
   }
+  function renderLecture(root,lectures,trackId,handlers={}){
+    const lecture=lectures?.lectures?.[trackId];
+    if(!lecture)return;
+    const wrapper=showRoot(root,'К разделу','Полный исходный конспект: '+lecture.title,lecture.pageCount+' страниц исходного учебного материала. Текст сохранён по страницам без сокращения; страницы изображения не воспроизводят.',handlers.onBack);
+    wrapper.append(add(n('p','blood-original-warning'),
+      'АРХИВНАЯ ЛЕКЦИЯ: исходная расшифровка может содержать ошибки чисел, терминов и физиологии. Для запоминания норм и прохождения тестов используй научно уточнённые мини-блоки, а не неподтверждённые цифры из архива.'));
+    lecture.pages.forEach(page=>{
+      const section=n('section','blood-original-page');
+      add(section,n('h2','blood-section-title','Страница '+page.page),n('div','blood-original-text',page.text));
+      wrapper.append(section);
+    });
+    window.scrollTo(0,0);
+  }
   function renderSources(root,handlers={}){
     const wrapper=showRoot(root,'К разделу','Научные источники','Референсы для уточнений и исправлений. Четыре исходных конспекта не публикуются дословно.',handlers.onBack);
     const list=n('ul','blood-source-list');
@@ -181,5 +195,5 @@
     if(atlas?.tasks?.length!==27||new Set(atlas.tasks.map(x=>x.id)).size!==27)throw Error('Физиология крови: атлас задач повреждён');
     return true;
   }
-  window.MedStudyBlood={renderTopic,renderExam,renderAtlas,renderSources,validate,readProgress,findTopic,allTopicIds};
+  window.MedStudyBlood={renderTopic,renderExam,renderAtlas,renderLecture,renderSources,validate,readProgress,findTopic,allTopicIds};
 })();
