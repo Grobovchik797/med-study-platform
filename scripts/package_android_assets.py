@@ -9,7 +9,7 @@ web.mkdir(parents=True, exist_ok=True)
 files = [
     "index.html", "styles.css", "app.js", "small-intestine-interact.js", "gi-course.js", "cranial-nerves.js", "study-tools.js", "department-atlas.js", "department-public.js", "edubiotech-atlas.js", "edubiotech-original.js", "blood-study.js", "blood-study.css", "sw.js", "manifest.webmanifest",
     "data/gi-deep-a.json", "data/gi-deep-b.json", "data/gi-department-questions.json", "data/gi-curriculum.json", "data/cranial-nerves.json", "data/cranial-nerves-viii-xii.json", "data/gi-inline-quiz.json", "data/gi-final-quiz.json", "data/gi-answer-reasons.json", "data/update-journal.json", "data/gi-colloquium-guide.json", "data/gi-edubiotech-atlas.json", "data/gi-edubiotech-original.json", "data/gi-edubiotech-tem.json", "data/gi-workbook.json", "data/gi-atlas.json", "data/department-public.json", "data/gi-department-reference-map.json",
-    "data/physiology-blood.json", "data/physiology-blood-exam.json", "data/physiology-blood-atlas.json",
+    "data/physiology-blood.json", "data/physiology-blood-exam.json", "data/physiology-blood-atlas.json", "data/physiology-blood-lectures.json",
     "data/questions.json", "data/lesson.json", "data/atlas.json", "data/subjects.json", "data/histology-small-intestine.json", "data/library.json", "data/small-intestine-quiz.json", "data/small-intestine-slides.json",
     "icons/icon-192.png", "icons/icon-512.png",
     "photos/duodenum.jpg", "photos/jejunum.jpg", "photos/ileum.jpg",
