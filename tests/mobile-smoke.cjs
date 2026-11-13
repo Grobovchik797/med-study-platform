@@ -210,8 +210,10 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.11'),
-      'Top navigation must show the current 1.9.11 release number');
+    const indexSource=await fs.readFile(path.join(__dirname,'..','index.html'),'utf8');
+    const declaredVersion=indexSource.match(/Med Study · (\\d+\\.\\d+\\.\\d+)/)?.[1];
+    assert.ok(declaredVersion && (await page.locator('.top-pill').textContent()).includes(declaredVersion),
+      'Top navigation must match the version declared in index.html');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
