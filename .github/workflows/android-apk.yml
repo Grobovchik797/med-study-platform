@@ -38,6 +38,7 @@ jobs:
           python3 scripts/validate_histology.py
           python3 scripts/validate_library.py
           python3 scripts/validate_cranial_nerves.py
+          python3 scripts/validate_blood_course.py
           python3 scripts/validate_small_intestine_pilot.py
           python3 scripts/validate_gi_curriculum.py
           python3 scripts/validate_study_tools.py
@@ -49,6 +50,7 @@ jobs:
           node --check app.js
           node --check gi-course.js
           node --check cranial-nerves.js
+          node --check blood-study.js
           node --check study-tools.js
           node --check edubiotech-atlas.js
           node --check edubiotech-original.js

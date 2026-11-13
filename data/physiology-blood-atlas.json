@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "title": "Атлас интерактивных задач по физиологии крови",
+  "status": "educational-practice-release",
+  "clinicalDecisionSupport": false,
+  "tasks": [
+    {
+      "id": "A-L01",
+      "type": "calculation",
+      "topic": "L01",
+      "title": "Абсолютное число нейтрофилов №1",
+      "description": "WBC 8,0×10⁹/л, нейтрофилы 55%. Вычисли ANC.",
+      "inputs": {
+        "wbc": 8.0,
+        "percent": 55
+      },
+      "formula": "WBC × percent/100",
+      "answer": 4.4,
+      "unit": "×10⁹/л",
+      "tolerance": 0.05,
+      "explanation": "8,0×0,55 = 4,4; клиническую оценку делают по абсолютному показателю.",
+      "source": "MedlinePlus differential; NHS",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-L02",
+      "type": "calculation",
+      "topic": "L05",
+      "title": "Абсолютное число лимфоцитов №1",
+      "description": "WBC 6,0×10⁹/л, лимфоциты 35%.",
+      "inputs": {
+        "wbc": 6,
+        "percent": 35
+      },
+      "formula": "WBC × percent/100",
+      "answer": 2.1,
+      "unit": "×10⁹/л",
+      "tolerance": 0.05,
+      "explanation": "6×0,35 = 2,1.",
+      "source": "MedlinePlus differential; NHS",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-L03",
+      "type": "calculation",
+      "topic": "L05",
+      "title": "ANC с молодыми формами",
+      "description": "WBC 2,4×10⁹/л, сегментоядерные 42%, палочкоядерные 8%. Посчитай суммарный ANC.",
+      "inputs": {
+        "wbc": 2.4,
+        "segmented": 42,
+        "band": 8
+      },
+      "formula": "WBC × (segmented + band)/100",
+      "answer": 1.2,
+      "unit": "×10⁹/л",
+      "tolerance": 0.05,
+      "explanation": "2,4×0,50 = 1,2. Палочкоядерные учитываются вместе с нейтрофилами.",
+      "source": "MedlinePlus differential; NHS",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-L04",
+      "type": "calculation",
+      "topic": "L05",
+      "title": "Абсолютное число эозинофилов",
+      "description": "WBC 9,0×10⁹/л, эозинофилы 4%.",
+      "inputs": {
+        "wbc": 9,
+        "percent": 4
+      },
+      "formula": "WBC × percent/100",
+      "answer": 0.36,
+      "unit": "×10⁹/л",
+      "tolerance": 0.05,
+      "explanation": "9,0×0,04=0,36, сравни с референсами конкретной лаборатории.",
+      "source": "NHS absolute ranges",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-L05",
+      "type": "selection",
+      "topic": "L05",
+      "title": "Проценты не равны количеству",
+      "description": "WBC 1,8×10⁹/л, нейтрофилы 60%. Какая интерпретация корректна?",
+      "options": [
+        "Процент сам доказывает нормальное абсолютное число",
+        "Нужно рассчитать ANC, процент может маскировать низкое абсолютное число",
+        "Нейтрофилов нет вообще",
+        "ABO-совместимость изменена"
+      ],
+      "answer": "Нужно рассчитать ANC, процент может маскировать низкое абсолютное число",
+      "explanation": "ANC = 1,08×10⁹/л; процент без WBC неполон.",
+      "source": "NHS absolute ranges",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-E01",
+      "type": "calculation",
+      "topic": "E03",
+      "title": "Средний объём эритроцита MCV",
+      "description": "Hct 42%, RBC 4,8 млн/мкл. Рассчитай MCV.",
+      "inputs": {
+        "hctPercent": 42,
+        "rbcMillionPerMicroliter": 4.8
+      },
+      "formula": "Hct% × 10 / RBC",
+      "answer": 87.5,
+      "unit": "фл",
+      "tolerance": 0.05,
+      "explanation": "42×10/4,8 = 87,5 фл.",
+      "source": "Merck anemia",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-E02",
+      "type": "calculation",
+      "topic": "E03",
+      "title": "Средняя масса Hb в клетке MCH",
+      "description": "Hb 14,4 г/дл, RBC 4,8 млн/мкл. Рассчитай MCH.",
+      "inputs": {
+        "hemoglobinGdL": 14.4,
+        "rbcMillionPerMicroliter": 4.8
+      },
+      "formula": "Hb г/дл × 10 / RBC",
+      "answer": 30.0,
+      "unit": "пг",
+      "tolerance": 0.05,
+      "explanation": "14,4×10/4,8 = 30 пг.",
+      "source": "Merck anemia",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-E03",
+      "type": "calculation",
+      "topic": "E03",
+      "title": "Концентрация Hb в клетках MCHC",
+      "description": "Hb 13,5 г/дл, Hct 40,5%. Рассчитай MCHC.",
+      "inputs": {
+        "hemoglobinGdL": 13.5,
+        "hctPercent": 40.5
+      },
+      "formula": "Hb г/дл × 100 / Hct%",
+      "answer": 33.3333,
+      "unit": "г/дл",
+      "tolerance": 0.05,
+      "explanation": "13,5×100/40,5 ≈ 33,3 г/дл.",
+      "source": "Merck anemia",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-E04",
+      "type": "selection",
+      "topic": "E05",
+      "title": "Сдвиг кривой Hb",
+      "description": "Работающая мышца: температура и CO₂ увеличились. Что произойдёт?",
+      "options": [
+        "Правый сдвиг и облегчение отдачи O₂",
+        "Левый сдвиг и полная блокада O₂",
+        "Группа крови станет O",
+        "Никакой связи со сродством нет"
+      ],
+      "answer": "Правый сдвиг и облегчение отдачи O₂",
+      "explanation": "Эффект Бора + температура + 2,3-БФГ влияют на сродство Hb.",
+      "source": "OpenStax blood",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-E05",
+      "type": "selection",
+      "topic": "E07",
+      "title": "Гепсидин и железо",
+      "description": "Выработка гепсидина печенью выросла. Что произойдёт с ферропортином и выходом железа?",
+      "options": [
+        "Ферропортин подавляется, выход железа в плазму уменьшается",
+        "Ферропортин увеличивается, железо выходит быстрее",
+        "Синтезируется anti-D",
+        "Увеличится HbF мгновенно"
+      ],
+      "answer": "Ферропортин подавляется, выход железа в плазму уменьшается",
+      "explanation": "Гепсидин отрицательно регулирует ферропортин.",
+      "source": "NCBI iron/hepcidin",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G01",
+      "type": "selection",
+      "topic": "G02",
+      "title": "ABO-типирование: случай 1",
+      "description": "В учебной реакции anti-A: нет агглютинации; anti-B: нет агглютинации. Определи ABO.",
+      "options": [
+        "O",
+        "A",
+        "B",
+        "AB"
+      ],
+      "answer": "O",
+      "explanation": "Фенотип определяют по наличию A и B антигенов в прямом типировании.",
+      "source": "Lifeblood ABO",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G02",
+      "type": "selection",
+      "topic": "G02",
+      "title": "ABO-типирование: случай 2",
+      "description": "В учебной реакции anti-A: агглютинация; anti-B: нет агглютинации. Определи ABO.",
+      "options": [
+        "O",
+        "A",
+        "B",
+        "AB"
+      ],
+      "answer": "A",
+      "explanation": "Фенотип определяют по наличию A и B антигенов в прямом типировании.",
+      "source": "Lifeblood ABO",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G03",
+      "type": "selection",
+      "topic": "G02",
+      "title": "ABO-типирование: случай 3",
+      "description": "В учебной реакции anti-A: нет агглютинации; anti-B: агглютинация. Определи ABO.",
+      "options": [
+        "O",
+        "A",
+        "B",
+        "AB"
+      ],
+      "answer": "B",
+      "explanation": "Фенотип определяют по наличию A и B антигенов в прямом типировании.",
+      "source": "Lifeblood ABO",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G04",
+      "type": "selection",
+      "topic": "G02",
+      "title": "ABO-типирование: случай 4",
+      "description": "В учебной реакции anti-A: агглютинация; anti-B: агглютинация. Определи ABO.",
+      "options": [
+        "O",
+        "A",
+        "B",
+        "AB"
+      ],
+      "answer": "AB",
+      "explanation": "Фенотип определяют по наличию A и B антигенов в прямом типировании.",
+      "source": "Lifeblood ABO",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G05",
+      "type": "selection",
+      "topic": "G04",
+      "title": "Плазма группы AB",
+      "description": "По какой причине AB-плазма обычно ABO-совместима со всеми реципиентами?",
+      "options": [
+        "В ней нет обычных anti-A и anti-B",
+        "В ней отсутствуют все белки",
+        "В ней присутствует HbA₂",
+        "В ней нет воды"
+      ],
+      "answer": "В ней нет обычных anti-A и anti-B",
+      "explanation": "Плазменная совместимость зависит от антител донора.",
+      "source": "Lifeblood plasma",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G06",
+      "type": "selection",
+      "topic": "G04",
+      "title": "Реципиент O: плазма",
+      "description": "Какие группы плазмы допустимы по базовой ABO-схеме для O-реципиента?",
+      "options": [
+        "O, A, B, AB",
+        "Только O",
+        "Только AB",
+        "Только B"
+      ],
+      "answer": "O, A, B, AB",
+      "explanation": "Эритроциты O не экспрессируют A/B; нужны протокольные проверки.",
+      "source": "Lifeblood plasma",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-G07",
+      "type": "selection",
+      "topic": "G06",
+      "title": "ABO у родителей AO×BO",
+      "description": "Какие фенотипы детей возможны при обычной модели AO×BO?",
+      "options": [
+        "O, A, B, AB",
+        "Только A и B",
+        "Только AB",
+        "Только O"
+      ],
+      "answer": "O, A, B, AB",
+      "explanation": "AA не возникает; сочетания AO, BO, AB, OO дают 4 фенотипа.",
+      "source": "ABO inheritance",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H01",
+      "type": "ordering",
+      "topic": "H01",
+      "title": "Упорядочи основные этапы гемостаза",
+      "description": "Расположи по физиологической последовательности с учётом перекрытия этапов.",
+      "steps": [
+        "Повреждение сосуда и его сокращение",
+        "Адгезия/активация тромбоцитов",
+        "Агрегация и пробка",
+        "Генерация тромбина и фибрина",
+        "Стабилизация и последующий фибринолиз"
+      ],
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Этапы частично идут одновременно, но функционально образуют связанную цепь.",
+      "source": "Merck hemostasis",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H02",
+      "type": "ordering",
+      "topic": "H06",
+      "title": "Образование фибрина",
+      "description": "Расположи события общего пути коагуляции.",
+      "steps": [
+        "Активация X в Xa",
+        "Xa/Va + фосфолипиды + Ca²⁺",
+        "Протромбин II превращается в тромбин IIa",
+        "Фибриноген I превращается в фибрин",
+        "Фактор XIIIa поперечно сшивает фибрин"
+      ],
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Фибриновую сеть стабилизирует XIIIa.",
+      "source": "Merck hemostasis",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H03",
+      "type": "ordering",
+      "topic": "H07",
+      "title": "Фибринолиз",
+      "description": "Упорядочи основные переходы при разрушении сгустка.",
+      "steps": [
+        "Активация плазминогена tPA/uPA",
+        "Образование плазмина",
+        "Расщепление сшитого фибрина",
+        "Появление продуктов деградации, включая D-димер"
+      ],
+      "correctOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "D-димер образуется при разрушении поперечно сшитого фибрина.",
+      "source": "Merck; ARUP",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H04",
+      "type": "selection",
+      "topic": "H03",
+      "title": "Болезнь Бернара–Сулье",
+      "description": "При нарушении GPIb-IX-V какой этап особенно страдает?",
+      "options": [
+        "Адгезия через vWF",
+        "Связывание O₂ гемоглобином",
+        "Внутриклеточный запас железа",
+        "Плазменная ABO-совместимость"
+      ],
+      "answer": "Адгезия через vWF",
+      "explanation": "GPIb-IX-V обеспечивает связывание vWF.",
+      "source": "Merck hemostasis",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H05",
+      "type": "selection",
+      "topic": "H08",
+      "title": "Отличие PT и aPTT",
+      "description": "Какой тест в учебной схеме характеризует внутренний + общий путь?",
+      "options": [
+        "aPTT",
+        "MCV",
+        "СОЭ",
+        "Группа ABO"
+      ],
+      "answer": "aPTT",
+      "explanation": "Результат зависит от реагента и лекарств.",
+      "source": "ARUP",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-H06",
+      "type": "selection",
+      "topic": "H08",
+      "title": "Разделение антиагреганта и антикоагулянта",
+      "description": "Что лучше описывает антиагрегантное действие?",
+      "options": [
+        "Подавление активации/функции тромбоцитов",
+        "Замену эритропоэтина",
+        "Увеличение HbF",
+        "Изменение антигена A на B"
+      ],
+      "answer": "Подавление активации/функции тромбоцитов",
+      "explanation": "Антиагреганты и антикоагулянты воздействуют на разные звенья гемостаза.",
+      "source": "Merck hemostasis",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-S01",
+      "type": "selection",
+      "topic": "S03",
+      "title": "Объёмная доля эритроцитов",
+      "description": "После обезвоживания Hct вырос, а масса RBC не изменилась. Почему?",
+      "options": [
+        "Уменьшился объём плазмы",
+        "RBC размножились в крови",
+        "ABO сменился",
+        "Образовался RhD-антиген"
+      ],
+      "answer": "Уменьшился объём плазмы",
+      "explanation": "Концентрационные показатели зависят от объёма жидкой фазы.",
+      "source": "NHLBI CBC",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-S02",
+      "type": "selection",
+      "topic": "S04",
+      "title": "Плазма или сыворотка",
+      "description": "Для определения фибриногена какую жидкость логичнее использовать?",
+      "options": [
+        "Плазму",
+        "Сыворотку после полной коагуляции",
+        "Чистую воду",
+        "Слюну"
+      ],
+      "answer": "Плазму",
+      "explanation": "Фибриноген должен сохраниться без расходования при свертывании.",
+      "source": "OpenStax blood",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-S03",
+      "type": "selection",
+      "topic": "S07",
+      "title": "Изменение PaCO₂",
+      "description": "При гиповентиляции PaCO₂ повышается. В какую сторону обычно сдвигается pH?",
+      "options": [
+        "В кислую",
+        "В щелочную независимо от компенсации",
+        "Никак не влияет",
+        "Смена ABO"
+      ],
+      "answer": "В кислую",
+      "explanation": "CO₂ участвует в гидрокарбонатном равновесии.",
+      "source": "MedlinePlus ABG",
+      "clinicalUse": false
+    },
+    {
+      "id": "A-S04",
+      "type": "selection",
+      "topic": "S07",
+      "title": "Буфер и орган компенсации",
+      "description": "Какой орган напрямую изменяет PaCO₂ в течение минут?",
+      "options": [
+        "Лёгкие",
+        "Селезёнка",
+        "Костный мозг",
+        "Поджелудочная железа"
+      ],
+      "answer": "Лёгкие",
+      "explanation": "Вентиляция регулирует выведение CO₂.",
+      "source": "MedlinePlus ABG",
+      "clinicalUse": false
+    }
+  ]
+}

@@ -210,8 +210,10 @@ async function main() {
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
     await waitHeading(page,'Med Study — библиотека знаний');
-    assert.ok((await page.locator('.top-pill').textContent()).includes('1.9.11'),
-      'Top navigation must show the current 1.9.11 release number');
+    const indexSource=await fs.readFile(path.join(__dirname,'..','index.html'),'utf8');
+    const declaredVersion=indexSource.match(/Med Study · (\d+\.\d+\.\d+)/)?.[1];
+    assert.ok(declaredVersion && (await page.locator('.top-pill').textContent()).includes(declaredVersion),
+      'Top navigation must match the version declared in index.html');
     const nav=await page.locator('.sidebar').boundingBox();
     assert.ok(nav && nav.y>=48 && nav.y+nav.height<190,'Top navigation obstruction');
     await page.locator('.hero-action').tap();
@@ -340,7 +342,7 @@ async function main() {
 
     await page.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(page,'Библиотека конспектов');
-    assert.equal(await page.locator('.library-card').count(),46);
+    assert.equal(await page.locator('.library-card').count(),82,'46 old notes + 36 full blood physiology topics');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
     await waitHeading(page,'Карточки по темам');
@@ -393,7 +395,7 @@ async function main() {
     assert.ok(await app.locator('.topic-stats').count()>=2,'Android statistics must support multiple topics');
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
-    assert.equal(await app.locator('.library-card').count(),46);
+    assert.equal(await app.locator('.library-card').count(),82,'Android must list 36 new blood topics');
     await app.getByRole('button',{name:'Найти термин или препарат'}).tap();
     await waitHeading(app,'Найти термин или препарат');
     await app.locator('.study-search-input').fill('дуоденум');
@@ -676,14 +678,14 @@ async function main() {
     await desktop.locator('.brand').click();
     await desktop.getByRole('button',{name:'Что нового · журнал изменений'}).click();
     await waitHeading(desktop,'Что нового в Med Study');
-    assert.equal(await desktop.locator('.study-journal-item').count(),16,'Twelve feature releases plus four scientific additions');
+    assert.equal(await desktop.locator('.study-journal-item').count(),17,'Thirteen feature releases plus four scientific additions');
     await desktop.getByRole('button',{name:'Научные дополнения'}).click();
     assert.equal(await desktop.locator('.study-journal-item').count(),4);
     assert.equal(await desktop.locator('.study-journal-item[data-chapter-id]').count(),4);
     assert.equal(await desktop.locator('.study-journal-references a').count(),9);
     assert.ok((await desktop.locator('[data-journal-id="sci-2026-11-03-teeth"]').textContent()).includes('с. 4–5'));
     await desktop.getByRole('button',{name:'Функции и интерфейс'}).click();
-    assert.equal(await desktop.locator('.study-journal-item').count(),12);
+    assert.equal(await desktop.locator('.study-journal-item').count(),13);
     await desktop.getByRole('button',{name:'← На главную'}).click();
 
     const courseAfterAudit=await desktop.evaluate(async()=>

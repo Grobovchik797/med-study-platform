@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="Кровь после центрифугирования: три слоя">
+<rect width="100%" height="100%" fill="#fcfcff"/>
+<text x="36" y="54" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="bold" fill="#18233b" text-anchor="start">Кровь после центрифугирования: три слоя</text>
+<rect x="58" y="104" width="400" height="462" rx="24" fill="#f1f5f9" stroke="#b4c3d6" stroke-width="2"/>
+<rect x="95" y="135" width="326" height="229" rx="10" fill="#f6db93" stroke="#ecd193" stroke-width="1"/>
+<rect x="95" y="367" width="326" height="12" rx="3" fill="#e5dce9" stroke="#c6bac7" stroke-width="1"/>
+<rect x="95" y="382" width="326" height="146" rx="10" fill="#b94a57" stroke="#9a3444" stroke-width="1"/>
+<text x="480" y="196" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold" fill="#483c1b" text-anchor="start">Плазма</text>
+<text x="480" y="225" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="normal" fill="#25344d" text-anchor="start">Вода, белки, электролиты, другие вещества</text>
+<line x1="465" y1="190" x2="421" y2="190" stroke="#58677f" stroke-width="3"/>
+<polygon points="421,190 431.81,184.78 431.81,195.22" fill="#58677f"/>
+<text x="480" y="356" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold" fill="#4c4363" text-anchor="start">«Белый слой»</text>
+<text x="480" y="386" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="normal" fill="#25344d" text-anchor="start">Лейкоциты и тромбоциты (&lt;1%)</text>
+<line x1="465" y1="356" x2="421" y2="373" stroke="#58677f" stroke-width="3"/>
+<polygon points="421,373 429.20,364.24 432.96,373.97" fill="#58677f"/>
+<text x="480" y="475" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold" fill="#943748" text-anchor="start">Эритроциты</text>
+<text x="480" y="506" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="normal" fill="#25344d" text-anchor="start">Гематокрит — доля их объёма</text>
+<line x1="465" y1="476" x2="421" y2="457" stroke="#58677f" stroke-width="3"/>
+<polygon points="421,457 432.99,456.49 428.85,466.08" fill="#58677f"/>
+<text x="36" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="normal" fill="#697789" text-anchor="start">Схема пропорций условная: гематокрит отличается по полу, возрасту и состоянию.</text>
+</svg>

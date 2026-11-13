@@ -42,6 +42,7 @@ let giCurriculum = null, giInlineBank = null, giFinalBank = null, giWorkbook = n
 let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEduBiotechAtlas = null, giEduOriginal = null, giEduTEM = null;
 let activeGIChapterId = null;
 let cranialCourse = null;
+let bloodCourse = null, bloodExam = null, bloodAtlas = null, bloodLectures = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
 let view = 'home';
@@ -108,7 +109,7 @@ function button(label, handler, className = 'action-button') {
 
 function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
-    'gi-workbook':'notes','gi-exam':'subjects','cranial-chapter':'notes','cranial-exam':'subjects',atlas:'atlases','si-slides':'atlases',
+    'gi-workbook':'notes','gi-exam':'subjects','cranial-chapter':'notes','cranial-exam':'subjects','blood-topic':'notes','blood-exam':'subjects','blood-atlas':'atlases','blood-lecture':'notes',atlas:'atlases','si-slides':'atlases',
     'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
     'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects','edu-atlas':'atlases'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
@@ -244,6 +245,32 @@ function showSection(subjectId,sectionId) {
     main.append(element('p','note','Раздел создан. Конспекты и тесты появятся после проверки материалов.'));
     return;
   }
+  if(subjectId==='normal-physiology' && sectionId==='blood' && bloodCourse) {
+    for(const track of bloodCourse.tracks) {
+      main.append(element('h2','blood-track-heading',track.title));
+      const bloodGrid=element('div','library-grid');
+      for(const chapter of track.topics) {
+        const card=element('article','library-card');
+        append(card,element('div','course-kind','ПОЛНЫЙ КОНСПЕКТ · 2 МИНИ-БЛОКА'),
+          element('h3','',chapter.title),element('p','',chapter.source+' · 2 мини-проверки · 3 новых вопроса'),
+          button('Учить тему →',()=>showBloodTopic(chapter.id),'library-go'));
+        bloodGrid.append(card);
+      }
+      main.append(bloodGrid);
+      main.append(button('Полный исходный конспект: '+track.title+' →',()=>showBloodLecture(track.id),'library-go blood-lecture-launch'));
+    }
+    const bloodGrid=element('div','library-grid');
+    for(const extra of section.topics.filter(item=>item.route==='blood-exam'||item.route==='blood-atlas')){
+      const card=element('article','library-card');
+      append(card,element('div','course-kind','ОТДЕЛЬНОЕ ЗАКРЕПЛЕНИЕ'),
+        element('h3','',extra.title),element('p','',extra.hint),
+        button('Открыть →',()=>showTopic(extra.id),'library-go'));
+      bloodGrid.append(card);
+    }
+    main.append(element('h2','blood-track-heading','Задачи и экзамен'),bloodGrid);
+    window.scrollTo(0,0);
+    return;
+  }
   const grid=element('div','library-grid');
   for(const topic of section.topics) {
     const card=element('article','library-card');
@@ -336,6 +363,36 @@ function showCranialExam() {
   window.MedStudyCranial.renderExam(main,{course:cranialCourse,
     onBack:()=>showSection('anatomy','nervous')});
   window.scrollTo(0,0);
+}
+function showBloodTopic(topicId) {
+  if(!bloodCourse || !window.MedStudyBlood)return showSection('normal-physiology','blood');
+  view='blood-topic';updateNav();main.replaceChildren();
+  window.MedStudyBlood.renderTopic(main,bloodCourse,topicId,{
+    onBack:()=>showSection('normal-physiology','blood'),
+    tasks:bloodAtlas?.tasks||[],
+    onAtlas:id=>showBloodAtlas(id),
+    onLecture:id=>showBloodLecture(id)
+  });
+}
+function showBloodLecture(trackId) {
+  if(!bloodLectures || !window.MedStudyBlood)return showSection('normal-physiology','blood');
+  view='blood-lecture';updateNav();main.replaceChildren();
+  window.MedStudyBlood.renderLecture(main,bloodLectures,trackId,{
+    onBack:()=>showSection('normal-physiology','blood')
+  });
+}
+function showBloodAtlas(topicId=null) {
+  if(!bloodAtlas || !window.MedStudyBlood)return showSection('normal-physiology','blood');
+  view='blood-atlas';updateNav();main.replaceChildren();
+  window.MedStudyBlood.renderAtlas(main,bloodAtlas.tasks,{
+    onBack:()=>showSection('normal-physiology','blood'),
+    onAll:()=>showBloodAtlas()
+  },topicId);
+}
+function showBloodExam() {
+  if(!bloodExam || !window.MedStudyBlood)return showSection('normal-physiology','blood');
+  view='blood-exam';updateNav();main.replaceChildren();
+  window.MedStudyBlood.renderExam(main,bloodExam,{onBack:()=>showSection('normal-physiology','blood')});
 }
 function showGIChapter(id) {
   if(!window.MedStudyGI || !giCurriculum)return showSubjects();
@@ -444,6 +501,9 @@ function showTopic(topicId) {
   if(!entry){showSubjects();return;}
   view='topic';updateNav();main.replaceChildren();
   const {subject,section,topic}=entry;
+  if(topic.route==='blood-topic')return showBloodTopic(topic.chapterId);
+  if(topic.route==='blood-atlas')return showBloodAtlas();
+  if(topic.route==='blood-exam')return showBloodExam();
   if(topic.route==='cranial-chapter')return showCranialChapter(topic.chapterId);
    if(topic.route==='cranial-exam')return showCranialExam();
    if(topic.route==='gi-chapter')return showGIChapter(topic.chapterId);
@@ -552,7 +612,8 @@ function showResourceLibrary(kind) {
       append(card,element('p','','Атлас доступен в разделе выбранной темы.'),
         button('Открыть атлас →',
           topic.id==='histology-small-intestine'?showSmallIntestineSlides:
-          topic.route==='gi-chapter'?()=>showGIAtlasChapter(topic.chapterId):()=>navigate('atlas'),'library-go'));
+          topic.route==='gi-chapter'?()=>showGIAtlasChapter(topic.chapterId):
+          topic.route==='blood-atlas'?()=>showBloodAtlas():()=>navigate('atlas'),'library-go'));
     } else {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',
@@ -1384,9 +1445,13 @@ Promise.all([
   fetch('./data/gi-edubiotech-original.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original study photos '+r.status);return r.json();}).catch(()=>null),
   fetch('./data/gi-edubiotech-tem.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original TEM '+r.status);return r.json();}).catch(()=>null),
    fetch('./data/cranial-nerves.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve course '+r.status);return r.json();}),
-   fetch('./data/cranial-nerves-viii-xii.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve extension '+r.status);return r.json();})
+   fetch('./data/cranial-nerves-viii-xii.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Cranial nerve extension '+r.status);return r.json();}),
+  fetch('./data/physiology-blood.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blood physiology course '+r.status);return r.json();}),
+  fetch('./data/physiology-blood-exam.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blood physiology exam '+r.status);return r.json();}),
+  fetch('./data/physiology-blood-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blood physiology tasks '+r.status);return r.json();}),
+  fetch('./data/physiology-blood-lectures.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original blood lectures '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial, cranialExtended]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial, cranialExtended, bloodCourseData, bloodExamData, bloodAtlasData, bloodLectureData]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1430,6 +1495,12 @@ Promise.all([
        cranialExtended.chapters?.length!==13||cranialExtended.chapters.some(ch=>ch.questions?.length!==4||!ch.sections?.length||!ch.latinTitle||ch.terms?.length<8||('brief' in ch))||
        new Set([...cranial.chapters,...cranialExtended.chapters].map(ch=>ch.id)).size!==26)
       throw Error('Анатомия: продолжение VIII–XII не загружено или неполное');
+    if(!window.MedStudyBlood || !window.MedStudyBlood.validate(bloodCourseData,bloodExamData,bloodAtlasData))
+      throw Error('Физиология крови: не загружен полный учебный курс');
+    if(bloodLectureData?.schemaVersion!==1 || Object.keys(bloodLectureData.lectures||{}).join()!=='S,E,H,G' ||
+       [12,11,10,7].some((n,i)=>bloodLectureData.lectures[['S','E','H','G'][i]]?.pageCount!==n))
+      throw Error('Полные архивные конспекты физиологии крови не загружены');
+    bloodCourse=bloodCourseData;bloodExam=bloodExamData;bloodAtlas=bloodAtlasData;bloodLectures=bloodLectureData;
     cranialCourse={...cranial,title:'Черепные нервы I–XII',scope:{included:['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'],missing:[]},chapters:[...cranial.chapters,...cranialExtended.chapters]};
     giAnswerReasons=reasons;updateJournal=journal;
     giCurriculum=giCourse;giInlineBank=giMini;giFinalBank=giExam;giWorkbook=giMaps;giDepartmentQuestions=giMethodQuestions;

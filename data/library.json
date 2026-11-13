@@ -369,6 +369,539 @@
     "normal-physiology": {
       "sections": [
         {
+          "id": "blood",
+          "title": "Физиология крови",
+          "subtitle": "5 тематических направлений · 36 полных тем · 72 мини-блока · 210 уникальных вопросов · 27 интерактивных задач · русскоязычные схемы",
+          "topics": [
+            {
+              "id": "blood-s01",
+              "title": "Кровь как ткань и система",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S01",
+              "hint": "Система крови и плазма · «Система крови», с. 1–2 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s02",
+              "title": "Гемопоэз и функции крови",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S02",
+              "hint": "Система крови и плазма · «Система крови», с. 2–3 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s03",
+              "title": "Объём крови, гематокрит и вязкость",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S03",
+              "hint": "Система крови и плазма · «Система крови», с. 3–4 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s04",
+              "title": "Плазма, сыворотка и белковые фракции",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S04",
+              "hint": "Система крови и плазма · «Система крови», с. 4–7 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s05",
+              "title": "Онкотическое и осмотическое давление",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S05",
+              "hint": "Система крови и плазма · «Система крови», с. 6–7 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s06",
+              "title": "Транспортные белки и липопротеины",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S06",
+              "hint": "Система крови и плазма · «Система крови», с. 7–8 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s07",
+              "title": "Буферные системы и кислотно-основное равновесие",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S07",
+              "hint": "Система крови и плазма · «Система крови», с. 8–10 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-s08",
+              "title": "Кровезаменяющие растворы и принципы трансфузии",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "S08",
+              "hint": "Система крови и плазма · «Система крови», с. 11–12 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e01",
+              "title": "Эритрон и жизненный цикл эритроцитов",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E01",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 1, 7 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e02",
+              "title": "Мембрана и формы эритроцитов",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E02",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 1–3 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e03",
+              "title": "Эритроцитарные индексы и морфология",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E03",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 1–3, 6 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e04",
+              "title": "Гемоглобин и возрастные формы",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E04",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 4–6 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e05",
+              "title": "Перенос газов и кривая диссоциации Hb",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E05",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 3, 5–6 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e06",
+              "title": "Эритропоэз и регуляция эритропоэтином",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E06",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 6–9 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e07",
+              "title": "Железо, фолат и витамин B₁₂",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E07",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 7–9 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-e08",
+              "title": "Анемии, СОЭ и агрегация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "E08",
+              "hint": "Эритроциты и эритрон · «Эритроциты и эритрон», с. 8–10 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l01",
+              "title": "Пять популяций и понятие формулы",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L01",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительная редакционная тема, MedlinePlus и NHS · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l02",
+              "title": "Нейтрофилы, эозинофилы и базофилы",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L02",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительный модуль о гранулоцитах · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l03",
+              "title": "Лимфоциты и адаптивный иммунитет",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L03",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительный модуль о лимфоцитах · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l04",
+              "title": "Моноциты и фагоцитарная система",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L04",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительный модуль о моноцитах · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l05",
+              "title": "Абсолютные концентрации и расчёты",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L05",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительный модуль: референсы NHS · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-l06",
+              "title": "Сдвиги формулы и интерпретация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "L06",
+              "hint": "Лейкоциты и лейкоцитарная формула · Дополнительный модуль: изменения формулы · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h01",
+              "title": "Гемостаз: последовательность и смысл",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H01",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 1, 4 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h02",
+              "title": "Тромбоциты: происхождение, структура, гранулы",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H02",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 2–3 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h03",
+              "title": "Адгезия, активация и агрегация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H03",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 4–6 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h04",
+              "title": "Здоровый эндотелий и ограничение гемостаза",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H04",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 3–4 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h05",
+              "title": "Факторы коагуляции и их классификация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H05",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 6–7 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h06",
+              "title": "Каскад и клеточная модель коагуляции",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H06",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 7–8 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h07",
+              "title": "Ретракция и фибринолиз",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H07",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 7–9 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-h08",
+              "title": "Лабораторные тесты и нарушения гемостаза",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "H08",
+              "hint": "Физиология гемостаза · «Физиология гемостаза», с. 8–10 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g01",
+              "title": "Антигены ABO и естественные антитела",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G01",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 1–3 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g02",
+              "title": "Определение группы крови и агглютинация",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G02",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 1–4 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g03",
+              "title": "Совместимость эритроцитарных компонентов",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G03",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 4 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g04",
+              "title": "Плазменная совместимость и компоненты",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G04",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 4; дополнительный источник Lifeblood · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g05",
+              "title": "Резус-система и гемолитическая болезнь плода",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G05",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 4–6 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-g06",
+              "title": "Наследование ABO и другие системы",
+              "status": "editorial-source-mapped",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-topic",
+              "chapterId": "G06",
+              "hint": "Группы крови и иммуногематология · «Группы крови», с. 7 · полный конспект, две проверки и отдельный тест"
+            },
+            {
+              "id": "blood-task-atlas",
+              "title": "Атлас интерактивных задач",
+              "status": "learning-material",
+              "notes": {},
+              "quiz": false,
+              "atlas": true,
+              "flashcards": false,
+              "route": "blood-atlas",
+              "hint": "27 самостоятельных упражнений: расчёты, последовательности, выбор решения"
+            },
+            {
+              "id": "blood-final-exam",
+              "title": "Общий экзамен по крови",
+              "status": "learning-material",
+              "notes": {},
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "blood-exam",
+              "hint": "30 отдельных вопросов без повторов мини-проверок и тематических тестов"
+            }
+          ]
+        },
+        {
           "id": "nervous-system",
           "title": "Нервная система",
           "subtitle": "Соматическая и вегетативная регуляция",

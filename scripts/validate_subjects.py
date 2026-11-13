@@ -21,6 +21,11 @@ for x in subjects:
             assert topic.get("note_status")=="available" and topic.get("latin_status")=="complete"
             assert "brief_status" not in topic and "deep_status" not in topic
             continue
+        if x["id"]=="normal-physiology" and topic["id"]=="physiology-blood":
+            assert topic.get("note_status")=="available" and topic.get("notesMode")=="only_full_note"
+            assert "brief_status" not in topic and "deep_status" not in topic
+            assert topic.get("chapterCount")==36
+            continue
         assert topic.get("intro_status","planned") in {"planned","introductory","draft","reviewed","source-checked-draft"}
         assert topic["brief_status"] in {"planned","introductory","draft","reviewed","source-checked-draft","available"}
         assert topic["deep_status"] in {"planned","draft","reviewed","source-checked-draft","available"}

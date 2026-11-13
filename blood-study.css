@@ -1,0 +1,51 @@
+/* Isolated physiology-of-blood course. Does not alter legacy GI/cranial styles. */
+.blood-page{max-width:1020px;margin:0 auto;padding:5px 0 70px;color:#29203b}
+.blood-kicker{font-weight:800;letter-spacing:.09em;color:#7744bb;font-size:11px;margin:20px 0 10px}
+.blood-heading{font-size:clamp(25px,4.4vw,34px);line-height:1.24;color:#301849;margin:0 0 13px}
+.blood-intro{color:#625b72;line-height:1.65;font-size:14px;margin:0 0 21px}
+.blood-back{min-height:44px;padding:9px 14px;background:#fff;border:1px solid #e5dbed;border-radius:10px;color:#6335a2;font-weight:750;cursor:pointer;text-align:left}
+.blood-meter{margin:16px 0 22px;padding:11px 15px;background:#f4effb;border-radius:11px;font-weight:750;color:#552c86;font-size:13px}
+.blood-block,.blood-topic-test,.blood-task,.blood-related{background:#fff;border:1px solid #ded7e6;border-radius:17px;padding:clamp(15px,3.2vw,25px);margin:19px 0;box-shadow:0 3px 14px rgba(46,24,72,.035)}
+.blood-block-label{font-size:11px;letter-spacing:.07em;font-weight:850;text-transform:uppercase;color:#8457b6;margin-bottom:10px}
+.blood-section-title{font-size:clamp(18px,2.8vw,22px);line-height:1.35;margin:0 0 13px;color:#38204e}
+.blood-text{font-size:15px;line-height:1.87;color:#322b42;white-space:pre-line;margin:11px 0;overflow-wrap:anywhere}
+.blood-note{font-size:14px;line-height:1.7;color:#554b61;margin:8px 0 13px;overflow-wrap:anywhere}
+.blood-mini{border-top:1px solid #e7e1eb;background:#faf8fd;padding:17px 17px 20px;margin:20px -8px -6px;border-radius:12px}
+.blood-subtitle{font-size:11px;color:#694397;font-weight:850;letter-spacing:.07em;margin-bottom:9px}
+.blood-question{font-size:16px;font-weight:750;line-height:1.6;color:#39234b;margin:13px 0}
+.blood-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0}
+.blood-option{display:block;width:100%;font-size:13px;min-height:48px;line-height:1.5;text-align:left;padding:11px 13px;background:#fff;border:1px solid #ded4e7;border-radius:10px;color:#362847;cursor:pointer;overflow-wrap:anywhere}
+.blood-option:hover:not(:disabled){background:#f4ecff;border-color:#8b60c6}
+.blood-option:focus-visible,.blood-btn:focus-visible,.blood-back:focus-visible,.blood-input:focus-visible,.blood-select:focus-visible{outline:3px solid #ad89e5;outline-offset:2px}
+.blood-option.correct{background:#e7f9ec;border-color:#46a96b;color:#174d2a;font-weight:750}
+.blood-option.wrong{background:#fff0ed;border-color:#ce6b58;color:#763225}
+.blood-option:disabled{cursor:default;opacity:1}
+.blood-feedback{font-size:13px;line-height:1.7;color:#763225;margin-top:9px;min-height:0}
+.blood-feedback:not(:empty){padding:12px 14px;border-left:3px solid #bb7967;background:#fff4f2;border-radius:7px}
+.blood-feedback.is-correct:not(:empty){color:#185b35;border-left-color:#4eaa68;background:#effaf2}
+.blood-btn{font-size:13px;font-weight:750;color:white;border:1px solid #713abb;background:#713abb;border-radius:10px;padding:12px 17px;min-height:44px;cursor:pointer;line-height:1.5}
+.blood-btn:hover{background:#53228e}
+.blood-done{font-size:12px;color:#296645;font-weight:700;margin:3px 0 8px}
+.blood-figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:15px;align-items:start}
+.blood-figure{margin:7px 0 14px;border:1px solid #ebe5ed;border-radius:12px;background:#fcfafc;padding:10px}
+.blood-figure img{width:100%;height:auto;display:block;max-height:500px;object-fit:contain}
+.blood-figure figcaption{color:#786c85;font-size:11px;padding:7px 3px;line-height:1.4}
+.blood-topic-test{background:#faf8fd;border-color:#d8c7e7}
+.blood-progress{font-weight:850;font-size:13px;color:#7a4eab;margin:16px 0}
+.blood-test-question{background:white;border:1px solid #e7deeb;border-radius:12px;padding:17px}
+.blood-recap{display:grid;gap:9px;margin:12px 0 18px}
+.blood-recap-item{padding:12px;border:1px solid #e3d9ec;background:white;border-radius:9px}
+.blood-recap-item h4{font-size:14px;margin:2px 0 5px}.blood-recap-item p{font-size:13px;line-height:1.55;margin:6px 0}
+.blood-task-input{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.blood-task-input .blood-option{flex:1 0 45%}
+.blood-input{border:1px solid #d2c7e1;border-radius:9px;padding:13px;font-size:15px;min-width:160px;flex:1}
+.blood-ordering{display:grid;gap:10px;width:100%;margin:7px 0 12px}.blood-order-row{display:grid;gap:5px;font-size:12px;font-weight:700;color:#4f3b66}.blood-select{width:100%;padding:11px;border:1px solid #d3c7e1;border-radius:9px;background:#fff;max-width:100%;font-size:13px}
+.blood-source-list{padding-left:25px;line-height:2;font-size:14px}.blood-source-list a{color:#68309e;text-decoration:underline}
+.blood-disclaimer{font-size:12px;color:#685f72;line-height:1.7;margin:23px 0}
+@media(max-width:650px){.blood-options{grid-template-columns:1fr}.blood-mini{margin-left:-4px;margin-right:-4px;padding:14px}.blood-task-input .blood-option{flex-basis:100%}.blood-btn{width:100%;text-align:center}.blood-figure{margin-left:0;margin-right:0}}
+/* Full owner-supplied source transcripts kept separate from scientifically checked lessons. */
+.blood-original-warning{border-left:4px solid #a65c24;background:#fff4e8;color:#5b310f;padding:14px 16px;border-radius:9px;line-height:1.7;font-weight:600}
+.blood-original-page{margin:22px 0;padding:18px;background:white;border:1px solid #e6e0f2;border-radius:12px;}
+.blood-original-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.82;color:#39304c;}
+.blood-lecture-launch{margin:12px 0 23px;min-height:44px;}
+@media(max-width:600px){.blood-original-page{padding:12px}.blood-original-text{font-size:13px;line-height:1.7}}

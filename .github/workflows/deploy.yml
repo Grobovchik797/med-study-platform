@@ -22,6 +22,7 @@ jobs:
           python3 scripts/validate_histology.py
           python3 scripts/validate_library.py
           python3 scripts/validate_cranial_nerves.py
+          python3 scripts/validate_blood_course.py
           python3 scripts/validate_small_intestine_pilot.py
           python3 scripts/validate_gi_curriculum.py
           python3 scripts/validate_study_tools.py
@@ -55,6 +56,7 @@ jobs:
           node --check small-intestine-interact.js
           node --check gi-course.js
           node --check cranial-nerves.js
+          node --check blood-study.js
           node --check study-tools.js
           node --check department-atlas.js
           node --check department-public.js
@@ -90,11 +92,13 @@ jobs:
           python3 -m pip install --quiet Pillow
           python3 scripts/prepare_histology_photos.py
           mkdir -p _site/data _site/icons _site/illustrations _site/photos
-          cp index.html styles.css app.js small-intestine-interact.js gi-course.js cranial-nerves.js study-tools.js department-atlas.js department-public.js edubiotech-atlas.js edubiotech-original.js sw.js manifest.webmanifest .nojekyll _site/
+          cp index.html styles.css app.js small-intestine-interact.js gi-course.js cranial-nerves.js study-tools.js department-atlas.js department-public.js edubiotech-atlas.js edubiotech-original.js blood-study.js blood-study.css sw.js manifest.webmanifest .nojekyll _site/
           cp data/gi-deep-a.json data/gi-deep-b.json data/gi-department-questions.json data/gi-curriculum.json data/cranial-nerves.json data/cranial-nerves-viii-xii.json data/gi-inline-quiz.json data/gi-final-quiz.json data/gi-answer-reasons.json data/update-journal.json data/gi-colloquium-guide.json data/gi-edubiotech-atlas.json data/gi-edubiotech-original.json data/gi-edubiotech-tem.json data/gi-workbook.json data/gi-atlas.json data/department-public.json data/gi-department-reference-map.json _site/data/
+          cp data/physiology-blood.json data/physiology-blood-exam.json data/physiology-blood-atlas.json data/physiology-blood-lectures.json _site/data/
           cp data/questions.json data/lesson.json data/atlas.json data/subjects.json data/histology-small-intestine.json data/library.json data/small-intestine-quiz.json data/small-intestine-slides.json _site/data/
           cp icons/icon-192.png icons/icon-512.png _site/icons/
           cp illustrations/*.svg _site/illustrations/
+          cp -R illustrations/blood _site/illustrations/
           cp photos/*.jpg _site/photos/
           cp -R photos/department _site/photos/
           cp -R photos/edubiotech _site/photos/

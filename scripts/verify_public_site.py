@@ -29,7 +29,7 @@ SHA = os.environ.get("GITHUB_SHA", "unknown")[:12]
 
 
 def get(name: str, attempt: int = 0) -> str:
-    url = BASE + name + "?audit=" + SHA + "-" + str(attempt)
+    url = BASE + quote(name, safe="/") + "?audit=" + SHA + "-" + str(attempt)
     request = urllib.request.Request(url, headers={
         "User-Agent": "MedStudy-public-release-check/" + VERSION,
         "Cache-Control": "no-cache",
@@ -66,6 +66,17 @@ def main():
                 ("data/library.json", '"cranial-final-exam"'),
                 ("app.js", "showCranialChapter"),
                 ("data/update-journal.json", '"med-1-9-11"'),
+                ("data/update-journal.json", '"med-1-10-0"'),
+                ("data/physiology-blood.json", '"S01.B01"'),
+                ("data/physiology-blood.json", '"L01.B01"'),
+                ("data/physiology-blood.json", '"G06"'),
+                ("data/physiology-blood-exam.json", '"F-001"'),
+                ("data/physiology-blood-lectures.json", '"Система крови"'),
+                ("data/physiology-blood-lectures.json", '"Физиология гемостаза"'),
+                ("data/physiology-blood-atlas.json", '"A-L01"'),
+                ("blood-study.js", "window.MedStudyBlood"),
+                ("blood-study.css", ".blood-page"),
+                ("illustrations/blood/01_лейкоцитарная_формула.svg", "<svg"),
                 ("data/gi-edubiotech-atlas.json", 's23lst.html'),
                 ("data/gi-edubiotech-atlas.json", 's25lst.html'),
                 ("edubiotech-atlas.js", "window.MedStudyEduBiotech"),
@@ -100,7 +111,7 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 26 complete cranial nerve topics I–XII, 486 Latin names and 104 questions")
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 36 blood topics, 72 mini checks, 108 topic tests, 30 unique exam questions, 27 interactive tasks, 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 26 complete cranial nerve topics I–XII, 486 Latin names and 104 questions")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)

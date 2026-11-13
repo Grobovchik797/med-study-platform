@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="Эритрон и круговорот железа">
+<rect width="100%" height="100%" fill="#fcfcff"/>
+<text x="36" y="54" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="bold" fill="#18233b" text-anchor="start">Эритрон и круговорот железа</text>
+<rect x="52" y="165" width="278" height="90" rx="14" fill="#eef2f9" stroke="#c9d4e5" stroke-width="1"/>
+<text x="191" y="198" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#203961" text-anchor="middle">Костный мозг</text>
+<text x="191" y="230" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#51627e" text-anchor="middle">Эритропоэз</text>
+<rect x="405" y="165" width="278" height="90" rx="14" fill="#eef2f9" stroke="#c9d4e5" stroke-width="1"/>
+<text x="544" y="198" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#203961" text-anchor="middle">Кровь</text>
+<text x="544" y="230" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#51627e" text-anchor="middle">Эритроциты ~120 суток</text>
+<rect x="755" y="165" width="278" height="90" rx="14" fill="#eef2f9" stroke="#c9d4e5" stroke-width="1"/>
+<text x="894" y="198" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#203961" text-anchor="middle">Макрофаги</text>
+<text x="894" y="230" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#51627e" text-anchor="middle">Селезёнка, печень</text>
+<rect x="405" y="440" width="278" height="90" rx="14" fill="#eef2f9" stroke="#c9d4e5" stroke-width="1"/>
+<text x="544" y="473" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#203961" text-anchor="middle">Трансферрин</text>
+<text x="544" y="505" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#51627e" text-anchor="middle">Доставка Fe</text>
+<rect x="52" y="440" width="278" height="90" rx="14" fill="#eef2f9" stroke="#c9d4e5" stroke-width="1"/>
+<text x="191" y="473" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#203961" text-anchor="middle">Ферритин</text>
+<text x="191" y="505" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#51627e" text-anchor="middle">Клеточные запасы Fe</text>
+<line x1="332" y1="210" x2="397" y2="210" stroke="#58677f" stroke-width="3"/>
+<polygon points="397,210 386.19,215.22 386.19,204.78" fill="#58677f"/>
+<line x1="687" y1="210" x2="746" y2="210" stroke="#58677f" stroke-width="3"/>
+<polygon points="746,210 735.19,215.22 735.19,204.78" fill="#58677f"/>
+<line x1="830" y1="267" x2="830" y2="331" stroke="#58677f" stroke-width="3"/>
+<polygon points="830,331 824.78,320.19 835.22,320.19" fill="#58677f"/>
+<line x1="830" y1="331" x2="687" y2="480" stroke="#58677f" stroke-width="3"/>
+<polygon points="687,480 690.72,468.59 698.25,475.82" fill="#58677f"/>
+<line x1="332" y1="480" x2="395" y2="480" stroke="#58677f" stroke-width="3"/>
+<polygon points="395,480 384.19,485.22 384.19,474.78" fill="#58677f"/>
+<line x1="510" y1="439" x2="210" y2="267" stroke="#58677f" stroke-width="3"/>
+<polygon points="210,267 221.97,267.85 216.78,276.90" fill="#58677f"/>
+<text x="710" y="393" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="bold" fill="#7a4d39" text-anchor="start">Выход железа</text>
+<text x="36" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="normal" fill="#697789" text-anchor="start">Схема утилизации эритроцитов и рециклинга железа; рисунок не в масштабе.</text>
+</svg>

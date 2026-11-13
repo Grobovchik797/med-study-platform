@@ -1,8 +1,19 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v1.9.11-cranial-viii-xii";
+const CACHE = "med-study-shell-v1.10.0-blood-physiology";
 const CORE = [
-  "./", "./index.html", "./styles.css", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./cranial-nerves.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js", "./edubiotech-original.js",
+  "./", "./index.html", "./styles.css", "./blood-study.css", "./blood-study.js", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./cranial-nerves.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js", "./edubiotech-original.js",
+  "./data/physiology-blood.json", "./data/physiology-blood-exam.json", "./data/physiology-blood-atlas.json", "./data/physiology-blood-lectures.json",
   "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/cranial-nerves.json", "./data/cranial-nerves-viii-xii.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-edubiotech-original.json", "./data/gi-edubiotech-tem.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
+  "./illustrations/blood/01_лейкоцитарная_формула.svg",
+  "./illustrations/blood/02_состав_крови.svg",
+  "./illustrations/blood/03_ABO_антигены_антитела.svg",
+  "./illustrations/blood/04_ABO_эритроциты_плазма.svg",
+  "./illustrations/blood/05_каскад_свертывания.svg",
+  "./illustrations/blood/06_эритрон_железо.svg",
+  "./illustrations/blood/07_диссоциация_оксигемоглобина.svg",
+  "./illustrations/blood/08_буферные_системы.svg",
+  "./illustrations/blood/09_ABO_наследование.svg",
+  "./illustrations/blood/10_виды_лейкоцитов.svg",
   "./photos/duodenum.jpg", "./photos/jejunum.jpg", "./photos/ileum.jpg",
   "./photos/salivary-submandibular.jpg", "./photos/esophagus.jpg", "./photos/stomach-fundus.jpg",
   "./photos/colon.jpg", "./photos/liver.jpg", "./photos/pancreas.jpg", "./photos/liver-central-vein.jpg", "./photos/liver-portal-triad.jpg", "./photos/gastric-parietal-tem.jpg", "./photos/gastric-chief-tem.jpg",
