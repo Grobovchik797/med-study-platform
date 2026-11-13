@@ -39,4 +39,5 @@ jobs:
         run: |
           node tests/mobile-smoke.cjs
           node tests/blood-smoke.cjs
+          node tests/blood-department-smoke.cjs
 
