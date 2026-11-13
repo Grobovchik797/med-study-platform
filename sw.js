@@ -1,8 +1,8 @@
 /* Med Study: network-first updates, cached core content for offline reuse. */
-const CACHE = "med-study-shell-v1.10.0-blood-physiology";
+const CACHE = "med-study-shell-v1.11.0-blood-department";
 const CORE = [
-  "./", "./index.html", "./styles.css", "./blood-study.css", "./blood-study.js", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./cranial-nerves.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js", "./edubiotech-original.js",
-  "./data/physiology-blood.json", "./data/physiology-blood-exam.json", "./data/physiology-blood-atlas.json", "./data/physiology-blood-lectures.json",
+  "./", "./index.html", "./styles.css", "./blood-study.css", "./blood-study.js", "./blood-department.css", "./blood-department.js", "./app.js", "./small-intestine-interact.js", "./gi-course.js", "./cranial-nerves.js", "./study-tools.js", "./department-atlas.js", "./department-public.js", "./edubiotech-atlas.js", "./edubiotech-original.js",
+  "./data/physiology-blood.json", "./data/physiology-blood-exam.json", "./data/physiology-blood-atlas.json", "./data/physiology-blood-lectures.json", "./data/physiology-blood-department.json",
   "./data/questions.json", "./data/lesson.json", "./data/atlas.json", "./data/subjects.json", "./data/histology-small-intestine.json", "./data/library.json", "./data/gi-deep-a.json", "./data/gi-deep-b.json", "./data/gi-department-questions.json", "./data/gi-curriculum.json", "./data/cranial-nerves.json", "./data/cranial-nerves-viii-xii.json", "./data/gi-inline-quiz.json", "./data/gi-final-quiz.json", "./data/gi-answer-reasons.json", "./data/update-journal.json", "./data/gi-colloquium-guide.json", "./data/gi-edubiotech-atlas.json", "./data/gi-edubiotech-original.json", "./data/gi-edubiotech-tem.json", "./data/gi-workbook.json", "./data/gi-atlas.json", "./data/department-public.json", "./data/gi-department-reference-map.json", "./data/small-intestine-quiz.json", "./data/small-intestine-slides.json", "./illustrations/small-intestine-schematic.svg",
   "./illustrations/blood/01_лейкоцитарная_формула.svg",
   "./illustrations/blood/02_состав_крови.svg",

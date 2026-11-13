@@ -1,0 +1,49 @@
+/* Supplement to blood-study.css; all components scoped to departmental mode. */
+.bd-page{max-width:1080px;margin-inline:auto}
+.bd-nav{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 22px}
+.bd-button,.bd-choice,.bd-tab{font:inherit;border:1px solid #b8a3e2;padding:11px 16px;border-radius:11px;background:#fff;color:#50378b;cursor:pointer;font-weight:600;min-height:43px;text-align:left}
+.bd-button:hover,.bd-choice:hover,.bd-tab:hover{background:#f4efff;border-color:#8058cf}
+.bd-button-primary{background:#7548cf;color:white;border-color:#7548cf}
+.bd-button-primary:hover{background:#6140ad;color:white}
+.bd-button:disabled,.bd-choice:disabled{opacity:.58;cursor:default}
+.bd-tab-row{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 24px}
+.bd-tab-active{background:#7548cf;color:white}
+.bd-warning{background:#fff5e9;border-left:4px solid #ba6e2c;padding:14px 16px;border-radius:10px;color:#624120;line-height:1.6}
+.bd-question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px;margin-bottom:25px}
+.bd-question-card,.bd-answer,.bd-additional,.bd-self,.bd-quiz-area,.bd-practical-card,.bd-pediatric,.bd-review,.bd-oral{background:#fff;border:1px solid #e0d5f3;border-radius:15px;padding:18px;margin:14px 0;line-height:1.65;min-width:0}
+.bd-question-card h3{font-size:1.05rem;line-height:1.4;overflow-wrap:anywhere}
+.bd-question-card p{font-size:.91rem;color:#675f75}
+.bd-question-number{font-size:.76rem;letter-spacing:.06em;font-weight:800;color:#7344c5;text-transform:uppercase;margin-bottom:8px}
+.bd-section{font-size:1.2rem;margin:24px 0 13px;line-height:1.4}
+.bd-markdown{line-height:1.72;font-size:1rem;overflow-wrap:anywhere}
+.bd-markdown p{margin:.72em 0}
+.bd-markdown h2,.bd-markdown h3,.bd-markdown h4{font-size:1.07rem;margin:1.3em 0 .6em}
+.bd-markdown ul,.bd-markdown ol{padding-left:1.3em;margin:.6em 0}
+.bd-markdown li{margin:.26em 0}
+.bd-markdown strong{font-weight:750;color:#30234a}
+.bd-markdown blockquote{margin:1em 0;padding:.5em 1em;border-left:3px solid #9a7bd8;background:#f9f6ff}
+.bd-markdown code{padding:.08em .3em;border-radius:5px;background:#eee8f9}
+.bd-table-scroll{overflow-x:auto;max-width:100%;margin:14px 0}
+.bd-table{border-collapse:collapse;min-width:470px;width:100%;font-size:.9rem;line-height:1.45}
+.bd-table td,.bd-table th{border:1px solid #ded7ec;padding:10px;text-align:left;vertical-align:top}
+.bd-table thead{background:#eee7fa}
+.bd-additional{border-left:4px solid #7553c3}
+.bd-self{border-left:4px solid #4a8091}
+.bd-source-note,.bd-muted{color:#655c70;font-size:.91rem;line-height:1.6}
+.bd-answers{display:grid;gap:10px;margin:13px 0}
+.bd-choice{display:block;width:100%;font-weight:500}
+.bd-feedback{margin:12px 0;font-size:.95rem}
+.bd-correct{color:#256a40;font-weight:700}
+.bd-incorrect{color:#a84236;font-weight:700}
+.bd-references{margin:25px 0;border:1px solid #e1d8ec;padding:13px;border-radius:12px}
+.bd-references summary{cursor:pointer;font-weight:700}
+.bd-source{color:#62409e;text-decoration:underline;overflow-wrap:anywhere}
+.bd-bottom-nav{display:flex;justify-content:space-between;gap:10px;margin:22px 0}
+.bd-oral .bd-markdown{border-top:1px solid #eee;padding-top:16px}
+.bd-check{display:block;margin:8px 0;padding:6px 0;cursor:pointer}
+.bd-check input{margin-right:8px;accent-color:#7548cf}
+.bd-number{border:1px solid #bfb3d3;border-radius:8px;padding:10px;min-height:43px;margin:8px}
+.bd-practice-task{border-top:1px solid #e8ddf4;margin-top:18px;padding-top:12px}
+.bd-practice-task .bd-choice{margin:7px 0}
+.bd-pediatric h2{font-size:1.1rem}
+@media(max-width:600px){.bd-question-grid{grid-template-columns:1fr}.bd-nav .bd-button{width:100%}.bd-question-card,.bd-answer,.bd-additional,.bd-self,.bd-quiz-area,.bd-practical-card,.bd-pediatric,.bd-review,.bd-oral{padding:13px}.bd-markdown{font-size:.97rem}.bd-table{min-width:420px;font-size:.82rem}}
