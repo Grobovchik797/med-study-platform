@@ -52,7 +52,7 @@ for task in ATLAS['tasks']:
     else:
         assert sorted(task['correctOrder'])==list(range(len(task['steps'])))
 assert (ROOT/'blood-study.js').is_file() and (ROOT/'blood-study.css').is_file()
-lectures=json.loads((root/"data/physiology-blood-lectures.json").read_text("utf-8"))
+lectures=json.loads((ROOT/"data/physiology-blood-lectures.json").read_text("utf-8"))
 assert lectures["schemaVersion"]==1
 assert set(lectures["lectures"])=={"S","E","H","G"}
 assert [lectures["lectures"][key]["pageCount"] for key in ("S","E","H","G")]==[12,11,10,7]
