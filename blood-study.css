@@ -43,3 +43,9 @@
 .blood-source-list{padding-left:25px;line-height:2;font-size:14px}.blood-source-list a{color:#68309e;text-decoration:underline}
 .blood-disclaimer{font-size:12px;color:#685f72;line-height:1.7;margin:23px 0}
 @media(max-width:650px){.blood-options{grid-template-columns:1fr}.blood-mini{margin-left:-4px;margin-right:-4px;padding:14px}.blood-task-input .blood-option{flex-basis:100%}.blood-btn{width:100%;text-align:center}.blood-figure{margin-left:0;margin-right:0}}
+/* Full owner-supplied source transcripts kept separate from scientifically checked lessons. */
+.blood-original-warning{border-left:4px solid #a65c24;background:#fff4e8;color:#5b310f;padding:14px 16px;border-radius:9px;line-height:1.7;font-weight:600}
+.blood-original-page{margin:22px 0;padding:18px;background:white;border:1px solid #e6e0f2;border-radius:12px;}
+.blood-original-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.82;color:#39304c;}
+.blood-lecture-launch{margin:12px 0 23px;min-height:44px;}
+@media(max-width:600px){.blood-original-page{padding:12px}.blood-original-text{font-size:13px;line-height:1.7}}
