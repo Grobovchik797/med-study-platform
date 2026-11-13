@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="Система ABO: антигены на эритроците и антитела">
+<rect width="100%" height="100%" fill="#fcfcff"/>
+<text x="36" y="54" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="bold" fill="#18233b" text-anchor="start">Система ABO: антигены на эритроците и антитела</text>
+<rect x="30" y="117" width="240" height="445" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="150" y="164" font-family="DejaVu Sans, sans-serif" font-size="28" font-weight="bold" fill="#263a62" text-anchor="middle">O (I)</text>
+<ellipse cx="150" cy="290" rx="70" ry="45" fill="#d56172" stroke="#b74258" stroke-width="1"/>
+<ellipse cx="150" cy="290" rx="43" ry="24" fill="#c44b5f" stroke="#b74258" stroke-width="1"/>
+<text x="150" y="393" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" fill="#25344d" text-anchor="middle">Антигены:</text>
+<text x="150" y="426" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#344f7b" text-anchor="middle">нет A/B</text>
+<text x="150" y="475" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#25344d" text-anchor="middle">Антитела плазмы:</text>
+<text x="150" y="510" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#aa5060" text-anchor="middle">anti-A + anti-B</text>
+<rect x="290" y="117" width="240" height="445" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="410" y="164" font-family="DejaVu Sans, sans-serif" font-size="28" font-weight="bold" fill="#263a62" text-anchor="middle">A (II)</text>
+<ellipse cx="410" cy="290" rx="70" ry="45" fill="#d56172" stroke="#b74258" stroke-width="1"/>
+<ellipse cx="410" cy="290" rx="43" ry="24" fill="#c44b5f" stroke="#b74258" stroke-width="1"/>
+<circle cx="346" cy="268" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<circle cx="400" cy="243" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<circle cx="468" cy="266" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<text x="410" y="393" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" fill="#25344d" text-anchor="middle">Антигены:</text>
+<text x="410" y="426" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#344f7b" text-anchor="middle">A</text>
+<text x="410" y="475" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#25344d" text-anchor="middle">Антитела плазмы:</text>
+<text x="410" y="510" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#aa5060" text-anchor="middle">anti-B</text>
+<rect x="550" y="117" width="240" height="445" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="670" y="164" font-family="DejaVu Sans, sans-serif" font-size="28" font-weight="bold" fill="#263a62" text-anchor="middle">B (III)</text>
+<ellipse cx="670" cy="290" rx="70" ry="45" fill="#d56172" stroke="#b74258" stroke-width="1"/>
+<ellipse cx="670" cy="290" rx="43" ry="24" fill="#c44b5f" stroke="#b74258" stroke-width="1"/>
+<circle cx="733" cy="308" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<circle cx="672" cy="334" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<circle cx="610" cy="310" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<text x="670" y="393" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" fill="#25344d" text-anchor="middle">Антигены:</text>
+<text x="670" y="426" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#344f7b" text-anchor="middle">B</text>
+<text x="670" y="475" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#25344d" text-anchor="middle">Антитела плазмы:</text>
+<text x="670" y="510" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#aa5060" text-anchor="middle">anti-A</text>
+<rect x="810" y="117" width="240" height="445" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="930" y="164" font-family="DejaVu Sans, sans-serif" font-size="28" font-weight="bold" fill="#263a62" text-anchor="middle">AB (IV)</text>
+<ellipse cx="930" cy="290" rx="70" ry="45" fill="#d56172" stroke="#b74258" stroke-width="1"/>
+<ellipse cx="930" cy="290" rx="43" ry="24" fill="#c44b5f" stroke="#b74258" stroke-width="1"/>
+<circle cx="866" cy="268" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<circle cx="920" cy="243" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<circle cx="988" cy="266" r="8" fill="#5978bc" stroke="#5978bc" stroke-width="1"/>
+<circle cx="993" cy="308" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<circle cx="932" cy="334" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<circle cx="870" cy="310" r="8" fill="#4a9a90" stroke="#4a9a90" stroke-width="1"/>
+<text x="930" y="393" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" fill="#25344d" text-anchor="middle">Антигены:</text>
+<text x="930" y="426" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#344f7b" text-anchor="middle">A + B</text>
+<text x="930" y="475" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" fill="#25344d" text-anchor="middle">Антитела плазмы:</text>
+<text x="930" y="510" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#aa5060" text-anchor="middle">обычных нет</text>
+<text x="36" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="normal" fill="#697789" text-anchor="start">Учебная схема без учёта редких вариантов ABO и других систем групп крови.</text>
+</svg>
