@@ -1,0 +1,41 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {chromium}=require('playwright');
+(async()=>{
+  const browser=await chromium.launch({headless:true});
+  try{
+    const page=await browser.newPage({viewport:{width:390,height:780},isMobile:true,hasTouch:true});
+    const errors=[];page.on('pageerror',e=>errors.push(e.message));
+    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+    await page.locator('.side-nav [data-nav="subjects"]').click();
+    await page.locator('.library-card').filter({hasText:'Нормальная физиология'}).locator('.library-go').click();
+    await page.locator('.library-card').filter({hasText:'Физиология крови'}).locator('.library-go').click();
+    assert.equal(await page.locator('.library-card').count(),38,'36 topics + atlas + exam');
+    await page.locator('.library-card').filter({hasText:'Кровь как ткань и система'}).locator('.library-go').click();
+    await page.waitForSelector('.blood-page');
+    assert.equal(await page.locator('.blood-block').count(),2);
+    assert.equal(await page.locator('.blood-mini').count(),2);
+    assert.equal(await page.locator('.blood-option').count(),8);
+    await page.locator('.blood-mini').first().locator('.blood-option').last().click();
+    assert.equal(await page.locator('.blood-feedback.is-correct').count(),1);
+    const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('med-study-blood-progress-v1')));
+    assert.equal(saved.mini['S01.B01'],true);
+    await page.getByRole('button',{name:'Начать тематический тест'}).click();
+    for(let i=0;i<3;i++)await page.locator('.blood-test-question .blood-option').first().click();
+    assert.ok(await page.locator('.blood-recap-item').count()===3);
+    await page.getByRole('button',{name:/К разделу/}).click();
+    await page.locator('.library-card').filter({hasText:'Атлас интерактивных задач'}).locator('.library-go').click();
+    await page.waitForSelector('.blood-task');
+    assert.equal(await page.locator('.blood-task').count(),27);
+    await page.locator('.blood-task').first().locator('.blood-input').fill('4,4');
+    await page.locator('.blood-task').first().getByRole('button',{name:'Проверить ответ'}).click();
+    assert.equal(await page.locator('.blood-task').first().locator('.blood-feedback.is-correct').count(),1);
+    await page.getByRole('button',{name:/К разделу/}).click();
+    await page.locator('.library-card').filter({hasText:'Общий экзамен по крови'}).locator('.library-go').click();
+    await page.getByRole('button',{name:'Начать экзамен'}).click();
+    for(let i=0;i<30;i++)await page.locator('.blood-test-question .blood-option').first().click();
+    assert.equal(await page.locator('.blood-recap-item').count(),30);
+    assert.deepEqual(errors,[]);
+    console.log('PASS blood-study mobile: navigation, 72 mini structure, topic-only quiz, 27 tasks, 30 question exam, local progress');
+  }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
