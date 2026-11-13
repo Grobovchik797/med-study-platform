@@ -67,6 +67,12 @@ def main():
                 ("app.js", "showCranialChapter"),
                 ("data/update-journal.json", '"med-1-9-11"'),
                 ("data/update-journal.json", '"med-1-10-0"'),
+                ("data/update-journal.json", '"med-1-11-0"'),
+                ("data/physiology-blood-department.json", '"blood-dept-q01"'),
+                ("data/physiology-blood-department.json", '"blood-dept-q25"'),
+                ("data/physiology-blood-department.json", '"pr08"'),
+                ("blood-department.js", "window.MedStudyBloodDepartment"),
+                ("blood-department.css", ".bd-page"),
                 ("data/physiology-blood.json", '"S01.B01"'),
                 ("data/physiology-blood.json", '"L01.B01"'),
                 ("data/physiology-blood.json", '"G06"'),
@@ -111,7 +117,7 @@ def main():
                     raise ValueError("Published image missing or outside size limits: "+asset)
                 with Image.open(BytesIO(image_bytes)) as image:
                     image.verify()
-            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 36 blood topics, 72 mini checks, 108 topic tests, 30 unique exam questions, 27 interactive tasks, 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 26 complete cranial nerve topics I–XII, 486 Latin names and 104 questions")
+            print(f"PASS: Public GitHub Pages serves {VERSION} ({EXPECTED}), 36 blood topics, 25 department oral answers, 8 practical skills, 3 pediatrics, 72 mini checks, 108 topic tests, 30 unique exam questions, 27 interactive tasks, 15 real faculty records, 23 references, 39 EduBiotech original microscopy photos, 228 author labels, 15 departmental originals and 23 existing references, 26 complete cranial nerve topics I–XII, 486 Latin names and 104 questions")
             return
         except (OSError, ValueError, AssertionError, UnicodeError) as exc:
             print(f"Public release check {attempt + 1}/13: {exc}", flush=True)
