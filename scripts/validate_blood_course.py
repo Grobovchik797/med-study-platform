@@ -52,4 +52,10 @@ for task in ATLAS['tasks']:
     else:
         assert sorted(task['correctOrder'])==list(range(len(task['steps'])))
 assert (ROOT/'blood-study.js').is_file() and (ROOT/'blood-study.css').is_file()
+lectures=json.loads((root/"data/physiology-blood-lectures.json").read_text("utf-8"))
+assert lectures["schemaVersion"]==1
+assert set(lectures["lectures"])=={"S","E","H","G"}
+assert [lectures["lectures"][key]["pageCount"] for key in ("S","E","H","G")]==[12,11,10,7]
+assert all(sum(len(page["text"]) for page in lecture["pages"])>5000 for lecture in lectures["lectures"].values())
+assert sum(len(lecture["pages"]) for lecture in lectures["lectures"].values())==40
 print('PASS: 5 tracks, 36 topics, 72 mini checks, 108 topic tests, 30 unique exam questions, 27 atlas tasks, 10 Russian SVG, no short notes or flashcards')
