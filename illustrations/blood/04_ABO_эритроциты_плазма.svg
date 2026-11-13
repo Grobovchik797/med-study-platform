@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="ABO-совместимость: эритроциты ≠ плазма">
+<rect width="100%" height="100%" fill="#fcfcff"/>
+<text x="36" y="54" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="bold" fill="#18233b" text-anchor="start">ABO-совместимость: эритроциты ≠ плазма</text>
+<text x="40" y="133" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#243c64" text-anchor="start">Реципиент</text>
+<text x="292" y="133" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#aa465c" text-anchor="start">Доноры эритроцитов</text>
+<text x="748" y="133" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#357a70" text-anchor="start">Доноры плазмы</text>
+<rect x="28" y="162" width="1024" height="62" rx="9" fill="#f5f7fb" stroke="#d9e0ea" stroke-width="1"/>
+<text x="83" y="205" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#233452" text-anchor="middle">O</text>
+<text x="480" y="205" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#aa465c" text-anchor="middle">O</text>
+<text x="883" y="205" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#357a70" text-anchor="middle">O, A, B, AB</text>
+<rect x="28" y="237" width="1024" height="62" rx="9" fill="#f5f7fb" stroke="#d9e0ea" stroke-width="1"/>
+<text x="83" y="280" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#233452" text-anchor="middle">A</text>
+<text x="480" y="280" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#aa465c" text-anchor="middle">O, A</text>
+<text x="883" y="280" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#357a70" text-anchor="middle">A, AB</text>
+<rect x="28" y="312" width="1024" height="62" rx="9" fill="#f5f7fb" stroke="#d9e0ea" stroke-width="1"/>
+<text x="83" y="355" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#233452" text-anchor="middle">B</text>
+<text x="480" y="355" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#aa465c" text-anchor="middle">O, B</text>
+<text x="883" y="355" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#357a70" text-anchor="middle">B, AB</text>
+<rect x="28" y="387" width="1024" height="62" rx="9" fill="#f5f7fb" stroke="#d9e0ea" stroke-width="1"/>
+<text x="83" y="430" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" fill="#233452" text-anchor="middle">AB</text>
+<text x="480" y="430" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#aa465c" text-anchor="middle">O, A, B, AB</text>
+<text x="883" y="430" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="bold" fill="#357a70" text-anchor="middle">AB</text>
+<text x="40" y="562" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="normal" fill="#25344d" text-anchor="start">Дополнительно нужны RhD, антитела и предтрансфузионная совместимость.</text>
+<text x="36" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="normal" fill="#697789" text-anchor="start">Источник: Australian Red Cross Lifeblood. Не применять схему для самостоятельной трансфузии.</text>
+</svg>
