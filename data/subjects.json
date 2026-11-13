@@ -63,6 +63,20 @@
           "brief_status": "draft",
           "deep_status": "planned",
           "questions": 20
+        },
+        {
+          "id": "physiology-blood",
+          "name": "Физиология крови",
+          "status": "editorial-source-mapped",
+          "note_status": "available",
+          "notesMode": "only_full_note",
+          "chapterCount": 36,
+          "miniChecks": 72,
+          "topicQuestions": 108,
+          "examQuestions": 30,
+          "interactiveTasks": 27,
+          "figures": 10,
+          "flashcardsStatus": "planned"
         }
       ]
     },
