@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="Коагуляция: от тканевого фактора к стабильному фибрину">
+<rect width="100%" height="100%" fill="#fcfcff"/>
+<text x="36" y="54" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="bold" fill="#18233b" text-anchor="start">Коагуляция: от тканевого фактора к стабильному фибрину</text>
+<rect x="37" y="152" width="282" height="65" rx="12" fill="#eeeaf9" stroke="#d3ddeb" stroke-width="1"/>
+<text x="178" y="191" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Тканевой фактор + VIIa</text>
+<rect x="397" y="152" width="282" height="65" rx="12" fill="#e6efff" stroke="#d3ddeb" stroke-width="1"/>
+<text x="538" y="191" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Активация X → Xa</text>
+<rect x="757" y="152" width="282" height="65" rx="12" fill="#e6efff" stroke="#d3ddeb" stroke-width="1"/>
+<text x="898" y="191" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Теназа IXa + VIIIa</text>
+<rect x="397" y="290" width="282" height="65" rx="12" fill="#eff8f3" stroke="#d3ddeb" stroke-width="1"/>
+<text x="538" y="329" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Протромбиназа Xa + Va</text>
+<rect x="397" y="417" width="282" height="65" rx="12" fill="#fff1e7" stroke="#d3ddeb" stroke-width="1"/>
+<text x="538" y="456" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Протромбин II → тромбин IIa</text>
+<rect x="397" y="535" width="282" height="65" rx="12" fill="#fdecef" stroke="#d3ddeb" stroke-width="1"/>
+<text x="538" y="574" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#233653" text-anchor="middle">Фибриноген I → фибрин</text>
+<line x1="319" y1="183" x2="389" y2="183" stroke="#58677f" stroke-width="3"/>
+<polygon points="389,183 378.19,188.22 378.19,177.78" fill="#58677f"/>
+<line x1="757" y1="183" x2="687" y2="183" stroke="#58677f" stroke-width="3"/>
+<polygon points="687,183 697.81,177.78 697.81,188.22" fill="#58677f"/>
+<line x1="535" y1="217" x2="535" y2="279" stroke="#58677f" stroke-width="3"/>
+<polygon points="535,279 529.78,268.19 540.22,268.19" fill="#58677f"/>
+<line x1="535" y1="355" x2="535" y2="405" stroke="#58677f" stroke-width="3"/>
+<polygon points="535,405 529.78,394.19 540.22,394.19" fill="#58677f"/>
+<line x1="535" y1="483" x2="535" y2="522" stroke="#58677f" stroke-width="3"/>
+<polygon points="535,522 529.78,511.19 540.22,511.19" fill="#58677f"/>
+<rect x="730" y="455" width="310" height="66" rx="12" fill="#eeeaf9" stroke="#d3ddeb" stroke-width="1"/>
+<text x="885" y="481" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="bold" fill="#533c82" text-anchor="middle">XIII → XIIIa</text>
+<text x="885" y="506" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="normal" fill="#533c82" text-anchor="middle">Сшивание фибрина</text>
+<line x1="730" y1="489" x2="680" y2="533" stroke="#58677f" stroke-width="3"/>
+<polygon points="680,533 684.66,521.94 691.56,529.78" fill="#58677f"/>
+<text x="36" y="626" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="normal" fill="#697789" text-anchor="start">Учебное упрощение: клеточная модель гемостаза сложнее классической схемы.</text>
+</svg>
