@@ -69,6 +69,12 @@
     const wrapper=showRoot(root, 'К разделу',topic.title,track.title+' · '+topic.source+' · один полный конспект',handlers.onBack);
     const meter=n('p','blood-meter','Мини-блоки: '+completedMiniCount(topic)+' из '+topic.miniblocks.length+' · тематический тест: '+(progress.topic[topic.id]?'пройден':'впереди'));
     wrapper.append(meter);
+    if(handlers.onDepartment) {
+      const tabs=n('div','bd-tab-row');
+      tabs.append(linkButton('Общий конспект · открыт',()=>{},'bd-tab bd-tab-active'));
+      tabs.append(linkButton('По кафедре · контрольные вопросы →',()=>handlers.onDepartment(topic.id),'bd-tab'));
+      wrapper.append(tabs);
+    }
     if(handlers.onLecture)wrapper.append(linkButton('Полная исходная лекция без сокращений →',()=>handlers.onLecture(track.id),'blood-source-button'));
     if(topic.figures?.length){const row=n('div','blood-figures');topic.figures.forEach(name=>row.append(diagram(name)));wrapper.append(row);}
     for(let i=0;i<topic.miniblocks.length;i++){
