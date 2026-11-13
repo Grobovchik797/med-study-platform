@@ -71,6 +71,8 @@ def main():
                 ("data/physiology-blood.json", '"L01.B01"'),
                 ("data/physiology-blood.json", '"G06"'),
                 ("data/physiology-blood-exam.json", '"F-001"'),
+                ("data/physiology-blood-lectures.json", '"Система крови"'),
+                ("data/physiology-blood-lectures.json", '"Физиология гемостаза"'),
                 ("data/physiology-blood-atlas.json", '"A-L01"'),
                 ("blood-study.js", "window.MedStudyBlood"),
                 ("blood-study.css", ".blood-page"),
