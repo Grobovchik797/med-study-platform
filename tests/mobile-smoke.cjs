@@ -342,11 +342,11 @@ async function main() {
 
     await page.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(page,'Библиотека конспектов');
-    assert.equal(await page.locator('.library-card').count(),82,'46 old notes + 36 full blood physiology topics');
+    assert.equal(await page.locator('.library-card').count(),99,'46 previous notes + 36 blood topics + 17 urinary learning entries');
     await page.locator('#mobile-more-toggle').tap();
     await page.locator('#mobile-more-panel [data-nav="cards"]').tap();
     await waitHeading(page,'Карточки по темам');
-    assert.equal(await page.locator('.library-card').count(),45,'Existing GI/VNS cards plus 26 cranial nerve topics should be available');
+    assert.equal(await page.locator('.library-card').count(),60,'Existing 45 card topics plus 15 urinary histology chapters');
     await page.locator('.library-card').filter({hasText:'Желудок: оболочки'}).locator('.library-go').tap();
     await waitHeading(page,'Желудок: оболочки, ямки');
     assert.equal(await page.locator('.gi-recall-card').count(),1);
@@ -395,7 +395,7 @@ async function main() {
     assert.ok(await app.locator('.topic-stats').count()>=2,'Android statistics must support multiple topics');
     await app.locator('.side-nav [data-nav="notes"]').tap();
     await waitHeading(app,'Библиотека конспектов');
-    assert.equal(await app.locator('.library-card').count(),82,'Android must list 36 new blood topics');
+    assert.equal(await app.locator('.library-card').count(),99,'Android must list the 36 blood and 17 urinary note entries');
     await app.getByRole('button',{name:'Найти термин или препарат'}).tap();
     await waitHeading(app,'Найти термин или препарат');
     await app.locator('.study-search-input').fill('дуоденум');
