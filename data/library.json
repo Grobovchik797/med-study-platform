@@ -354,9 +354,268 @@
         },
         {
           "id": "urogenital",
-          "title": "Мочевая и половая системы",
-          "subtitle": "Почки, мочевые пути, половые органы",
-          "topics": []
+          "title": "Мочевая система",
+          "subtitle": "15 кафедральных вопросов · 45 мини-тестов · 30 экзаменационных · карта нефрона · 6 практических заданий",
+          "topics": [
+            {
+              "id": "urinary-q01",
+              "title": "1. Происхождение и функциональное значение мочевыделительной системы",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q01",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q02",
+              "title": "2. Общая схема строения мочевыводящих путей",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q02",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q03",
+              "title": "3. Особенности строения мочеточника и мочевого пузыря",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q03",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q04",
+              "title": "4. Строение почки. Характеристика коркового и мозгового вещества",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q04",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q05",
+              "title": "5. Структурно-функциональная единица почки — нефрон, характеристика его составных компонентов",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q05",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q06",
+              "title": "6. Электронномикроскопическое строение и гистофизиология почечного тельца",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q06",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q07",
+              "title": "7. Особенности строения различных канальцев нефрона: проксимального, тонкого отдела петли, прямого и извитого дистальных канальцев",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q07",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q08",
+              "title": "8. Особенности строения эпителия собирательных трубок",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q08",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q09",
+              "title": "9. Особенности строения корковых и юкстамедуллярных нефронов",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q09",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q10",
+              "title": "10. Кровоснабжение почки. Особенности юкстамедулярного кровообращения",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q10",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q11",
+              "title": "11. Юкстагломерулярный аппарат почки",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q11",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q12",
+              "title": "12. Понятие об эндокринной системе почки",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q12",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q13",
+              "title": "13. Современная теория образования мочи",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q13",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q14",
+              "title": "14. Особенности строения почки и её структурно-функциональной единицы у новорождённых и детей первого года жизни",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q14",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-q15",
+              "title": "15. Особенности кровоснабжения почки у детей раннего возраста",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": true,
+              "atlas": false,
+              "flashcards": true,
+              "route": "urinary-chapter",
+              "chapterId": "urinary-q15",
+              "hint": "Подробный кафедральный ответ · таблица · 3 мини-теста · 2 самостоятельные экзаменационные задачи"
+            },
+            {
+              "id": "urinary-workbook",
+              "title": "Заполненная ориентировочная карта «Гистофизиология нефрона»",
+              "status": "editorial-draft",
+              "notes": {
+                "brief": true
+              },
+              "quiz": false,
+              "atlas": false,
+              "flashcards": false,
+              "route": "urinary-workbook",
+              "hint": "Оригинальная кафедральная карта: 6 отделов, 4 характеристики, заполнены все 24 ячейки"
+            },
+            {
+              "id": "urinary-practical",
+              "title": "Практикум: 4 препарата и 2 электронограммы",
+              "status": "image-sources-pending",
+              "notes": {},
+              "quiz": true,
+              "atlas": true,
+              "flashcards": false,
+              "route": "urinary-practical",
+              "hint": "Диагностика по признакам и авторским схемам · оригинальных кафедральных фото пока нет"
+            },
+            {
+              "id": "urinary-final-exam",
+              "title": "Итоговый экзамен по мочевой системе",
+              "status": "editorial-draft",
+              "notes": {},
+              "quiz": true,
+              "atlas": false,
+              "flashcards": false,
+              "route": "urinary-exam",
+              "hint": "30 отдельных вопросов · три уровня · разбор и повторение ошибок"
+            },
+            {
+              "id": "urinary-oral",
+              "title": "Тренажёр устного кафедрального ответа",
+              "status": "editorial-draft",
+              "notes": {
+                "full": true
+              },
+              "quiz": false,
+              "atlas": false,
+              "flashcards": false,
+              "route": "urinary-oral",
+              "hint": "15 вопросов · развёрнутый ответ после самостоятельной попытки · 4 критерия самооценки"
+            }
+          ]
         },
         {
           "id": "integumentary",

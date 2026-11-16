@@ -40,4 +40,5 @@ jobs:
           node tests/mobile-smoke.cjs
           node tests/blood-smoke.cjs
           node tests/blood-department-smoke.cjs
+          node tests/urinary-smoke.cjs
 

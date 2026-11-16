@@ -43,6 +43,7 @@ let giAnswerReasons = null, updateJournal = null, giColloquiumGuide = null, giEd
 let activeGIChapterId = null;
 let cranialCourse = null;
 let bloodCourse = null, bloodExam = null, bloodAtlas = null, bloodLectures = null, bloodDepartment = null;
+let urinaryCourse = null, urinaryExam = null, urinaryWorkbook = null, urinaryPractical = null;
 let intestineDepth = 'brief';
 let selectedReceptor = 'beta1';
 let view = 'home';
@@ -110,7 +111,7 @@ function button(label, handler, className = 'action-button') {
 function updateNav() {
   const navigationView = ({lesson:'notes',intestine:'notes','gi-chapter':'notes',
     'gi-workbook':'notes','gi-exam':'subjects','cranial-chapter':'notes','cranial-exam':'subjects','blood-topic':'notes','blood-exam':'subjects','blood-atlas':'atlases','blood-lecture':'notes','blood-department':'notes',atlas:'atlases','si-slides':'atlases',
-    'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards',
+    'department-atlas':'atlases',flashcards:'cards','gi-cards':'cards','urinary-cards':'cards','urinary-chapter':'notes','urinary-workbook':'notes','urinary-practical':'atlases','urinary-exam':'subjects','urinary-oral':'notes',
     'si-cards':'cards',subject:'subjects',section:'subjects',topic:'subjects',search:'notes',updates:'home',colloquium:'subjects','edu-atlas':'atlases'})[view] || view;
   for (const item of document.querySelectorAll('[data-nav]')) {
     const selected = item.dataset.nav === navigationView;
@@ -245,6 +246,16 @@ function showSection(subjectId,sectionId) {
     main.append(element('p','note','Раздел создан. Конспекты и тесты появятся после проверки материалов.'));
     return;
   }
+  if(subjectId==='histology-cytology' && sectionId==='urogenital' && urinaryCourse){
+    const banner=element('section','card bd-dept-banner');
+    append(banner,element('div','course-kind','ГИСТОЛОГИЯ · КАФЕДРАЛЬНАЯ ПРОГРАММА · 1999'),
+      element('h2','','Мочевая система: полный учебный курс'),
+      element('p','','15 развёрнутых ответов по методичке, 15 таблиц, 45 мини-проверок, 30 экзаменационных вопросов и заполненная карта нефрона. 6 практических заданий; кафедральные фотографии пока не предоставлены.'),
+      button('Практикум →',showUrinaryPractical,'library-go'),
+      button('Устный коллоквиум →',showUrinaryOral,'alt-button'),
+      button('Заполненная карта нефрона →',showUrinaryWorkbook,'alt-button'));
+    main.append(banner);
+  }
   if(subjectId==='normal-physiology' && sectionId==='blood' && bloodCourse) {
     if(bloodDepartment && window.MedStudyBloodDepartment){
       const banner=element('section','card bd-dept-banner');
@@ -293,6 +304,12 @@ function showSection(subjectId,sectionId) {
       const done=parts.filter(stage=>progress[stage]).length;
       const label=element('div','library-status','Учебные шаги: '+done+' из '+parts.length);
       card.insertBefore(label,card.querySelector('.library-go'));
+    }
+    if(topic.route==='urinary-chapter'&&window.MedStudyUrinary&&urinaryCourse){
+      const ch=urinaryCourse.chapters.find(x=>x.id===topic.chapterId);
+      if(ch){const summary=window.MedStudyUrinary.summarize(ch);
+        card.insertBefore(element('div','library-status','Изучено: '+(summary.notes?'✓':'○')+' · мини '+summary.mini+'/3'),card.querySelector('.library-go'));
+      }
     }
     grid.append(card);
   }
@@ -419,6 +436,48 @@ function showBloodExam() {
   view='blood-exam';updateNav();main.replaceChildren();
   window.MedStudyBlood.renderExam(main,bloodExam,{onBack:()=>showSection('normal-physiology','blood')});
 }
+function showUrinaryChapter(id){
+  const chapter=urinaryCourse?.chapters.find(x=>x.id===id);
+  if(!chapter||!window.MedStudyUrinary)return showSection('histology-cytology','urogenital');
+  view='urinary-chapter';updateNav();main.replaceChildren();
+  const next=urinaryCourse.chapters.find(x=>x.number===chapter.number+1);
+  window.MedStudyUrinary.renderChapter(main,{chapter,
+    onBack:()=>showSection('histology-cytology','urogenital'),
+    onWorkbook:showUrinaryWorkbook,onPractical:showUrinaryPractical,
+    onExam:()=>showUrinaryExam(id),onCards:()=>showUrinaryCards(id),
+    onOral:showUrinaryOral,onNext:next?()=>showUrinaryChapter(next.id):null});
+  window.scrollTo(0,0);
+}
+function showUrinaryCards(id){
+  const chapter=urinaryCourse?.chapters.find(x=>x.id===id);
+  if(!chapter)return showSection('histology-cytology','urogenital');
+  view='urinary-cards';updateNav();main.replaceChildren();
+  window.MedStudyUrinary.renderCards(main,{chapter,onBack:()=>showUrinaryChapter(id)});
+  window.scrollTo(0,0);
+}
+function showUrinaryWorkbook(){
+  view='urinary-workbook';updateNav();main.replaceChildren();
+  window.MedStudyUrinary.renderWorkbook(main,{map:urinaryWorkbook,onBack:()=>showSection('histology-cytology','urogenital')});
+  window.scrollTo(0,0);
+}
+function showUrinaryPractical(){
+  view='urinary-practical';updateNav();main.replaceChildren();
+  window.MedStudyUrinary.renderPractical(main,{practice:urinaryPractical,onBack:()=>showSection('histology-cytology','urogenital')});
+  window.scrollTo(0,0);
+}
+function showUrinaryExam(chapterId=null){
+  view='urinary-exam';updateNav();main.replaceChildren();
+  const chapter=chapterId?urinaryCourse.chapters.find(x=>x.id===chapterId):null;
+  window.MedStudyUrinary.renderExam(main,{exam:urinaryExam,chapter,onBack:chapter?()=>showUrinaryChapter(chapterId):()=>showSection('histology-cytology','urogenital')});
+  window.scrollTo(0,0);
+}
+function showUrinaryOral(){
+  view='urinary-oral';updateNav();main.replaceChildren();
+  window.MedStudyUrinary.renderOral(main,{course:urinaryCourse,
+    onBack:()=>showSection('histology-cytology','urogenital'),onOpenChapter:showUrinaryChapter});
+  window.scrollTo(0,0);
+}
+
 function showGIChapter(id) {
   if(!window.MedStudyGI || !giCurriculum)return showSubjects();
   const chapter=giCurriculum.chapters.find(x=>x.id===id);
@@ -526,6 +585,11 @@ function showTopic(topicId) {
   if(!entry){showSubjects();return;}
   view='topic';updateNav();main.replaceChildren();
   const {subject,section,topic}=entry;
+  if(topic.route==='urinary-chapter')return showUrinaryChapter(topic.chapterId);
+  if(topic.route==='urinary-workbook')return showUrinaryWorkbook();
+  if(topic.route==='urinary-practical')return showUrinaryPractical();
+  if(topic.route==='urinary-exam')return showUrinaryExam();
+  if(topic.route==='urinary-oral')return showUrinaryOral();
   if(topic.route==='blood-topic')return showBloodTopic(topic.chapterId);
   if(topic.route==='blood-atlas')return showBloodAtlas();
   if(topic.route==='blood-exam')return showBloodExam();
@@ -638,11 +702,13 @@ function showResourceLibrary(kind) {
         button('Открыть атлас →',
           topic.id==='histology-small-intestine'?showSmallIntestineSlides:
           topic.route==='gi-chapter'?()=>showGIAtlasChapter(topic.chapterId):
-          topic.route==='blood-atlas'?()=>showBloodAtlas():()=>navigate('atlas'),'library-go'));
+          topic.route==='blood-atlas'?()=>showBloodAtlas():
+          topic.route==='urinary-practical'?showUrinaryPractical:()=>navigate('atlas'),'library-go'));
     } else {
       append(card,element('p','','Карточки для активного повторения.'),
         button('Начать повторение →',
           topic.route==='gi-chapter'?()=>showGIFlashcards(topic.chapterId):
+          topic.route==='urinary-chapter'?()=>showUrinaryCards(topic.chapterId):
            topic.route==='cranial-chapter'?()=>showCranialChapter(topic.chapterId,'cards'):
           topic.route==='intestine'?showIntestineFlashcards:
           ()=>navigate('flashcards'),'library-go'));
@@ -1475,9 +1541,13 @@ Promise.all([
   fetch('./data/physiology-blood-exam.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blood physiology exam '+r.status);return r.json();}),
   fetch('./data/physiology-blood-atlas.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blood physiology tasks '+r.status);return r.json();}),
   fetch('./data/physiology-blood-lectures.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Original blood lectures '+r.status);return r.json();}),
-  fetch('./data/physiology-blood-department.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Department blood course '+r.status);return r.json();})
+  fetch('./data/physiology-blood-department.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Department blood course '+r.status);return r.json();}),
+    fetch('./data/urinary-course.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Urinary course '+r.status);return r.json();}),
+    fetch('./data/urinary-exam.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Urinary exam '+r.status);return r.json();}),
+    fetch('./data/urinary-workbook.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Urinary workbook '+r.status);return r.json();}),
+    fetch('./data/urinary-practical.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Urinary practical '+r.status);return r.json();})
 ])
-  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial, cranialExtended, bloodCourseData, bloodExamData, bloodAtlasData, bloodLectureData, bloodDepartmentData]) => {
+  .then(([data, lesson, atlas, subjects, intestine, library, histQuiz, slides, extraAtlas, giCourse, giMini, giExam, giMaps, giMethodQuestions, giDeepA, giDeepB, reasons, journal, colloquiumGuide, eduGuide, eduOriginal, eduTEM, cranial, cranialExtended, bloodCourseData, bloodExamData, bloodAtlasData, bloodLectureData, bloodDepartmentData, urinaryCourseData, urinaryExamData, urinaryWorkbookData, urinaryPracticalData]) => {
     if (!isValidBank(data)) throw new Error('Некорректный формат банка вопросов');
     if (!lesson || !Array.isArray(lesson.sections) || lesson.sections.length === 0) throw new Error('Не удалось загрузить конспект');
     if (!atlas || !Array.isArray(atlas.items) || atlas.items.length !== 6) throw new Error('Некорректный формат атласа');
@@ -1528,6 +1598,9 @@ Promise.all([
       throw Error('Полные архивные конспекты физиологии крови не загружены');
     if(!window.MedStudyBloodDepartment || !window.MedStudyBloodDepartment.validate(bloodDepartmentData))
       throw Error('Кафедральные 25 вопросов крови: некорректный формат');
+    if(!window.MedStudyUrinary||!window.MedStudyUrinary.validate(urinaryCourseData,urinaryExamData,urinaryWorkbookData,urinaryPracticalData))
+      throw Error('Мочевая система: повреждён учебный комплект');
+    urinaryCourse=urinaryCourseData;urinaryExam=urinaryExamData;urinaryWorkbook=urinaryWorkbookData;urinaryPractical=urinaryPracticalData;
     bloodCourse=bloodCourseData;bloodExam=bloodExamData;bloodAtlas=bloodAtlasData;bloodLectures=bloodLectureData;bloodDepartment=bloodDepartmentData;
     cranialCourse={...cranial,title:'Черепные нервы I–XII',scope:{included:['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'],missing:[]},chapters:[...cranial.chapters,...cranialExtended.chapters]};
     giAnswerReasons=reasons;updateJournal=journal;
