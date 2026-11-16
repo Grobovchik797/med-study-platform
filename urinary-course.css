@@ -1,0 +1,55 @@
+/* Urinary Histology: accessible, mobile-first teaching module; isolated from GI. */
+.ur-view{max-width:100%;}
+.ur-kicker{font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted,#687383);font-weight:750;margin:.7rem 0;}
+.ur-title{line-height:1.18;overflow-wrap:anywhere;margin:.4rem 0 .7rem;}
+.ur-lead{font-size:1.08rem;line-height:1.6;margin-bottom:1.25rem;max-width:75ch;}
+.ur-back{background:transparent;border:0;padding:.6rem 0;cursor:pointer;font:inherit;text-align:left;color:inherit;text-decoration:underline;text-underline-offset:.2em;}
+.ur-notice{background:rgba(118,120,129,.08);border-left:3px solid #7b8596;padding:.65rem .9rem;margin:1rem 0;border-radius:.3rem;}
+.ur-notice p{margin:.1rem 0;line-height:1.5;}
+.ur-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1.3rem 0;}
+.ur-feature{border:1px solid var(--border,#d5dae1);border-radius:14px;padding:1rem;display:flex;flex-direction:column;gap:.55rem;background:var(--card-bg,transparent);}
+.ur-feature h2{font-size:1.1rem;margin:0;}.ur-feature p{line-height:1.55;font-size:.91rem;margin:0;flex:1;}
+.ur-button{appearance:none;font:inherit;font-size:.91rem;line-height:1.35;border-radius:9px;padding:.7rem 1rem;border:1px solid transparent;background:#314b74;color:#fff;cursor:pointer;text-align:center;font-weight:650;transition:filter .12s ease;}
+.ur-button:hover{filter:brightness(1.09);}.ur-button:focus-visible,.ur-answer:focus-visible,.ur-back:focus-visible,.ur-select:focus-visible{outline:3px solid #70a7e9;outline-offset:3px;}
+.ur-button:disabled,.ur-answer:disabled{cursor:default;opacity:.82;}.ur-light{background:transparent;border:1px solid #728198;color:inherit;}
+.ur-progress{border:1px solid var(--border,#d5dae1);border-radius:10px;padding:.8rem 1rem;line-height:1.5;margin:1.2rem 0;}
+.ur-reading{max-width:82ch;margin:1.15rem auto;line-height:1.72;}
+.ur-reading h2{margin:2rem 0 .9rem;line-height:1.35;}.ur-reading h3{margin:1.5rem 0 .7rem;line-height:1.35;}
+.ur-paragraph{margin:.75rem 0 1rem;max-width:84ch;overflow-wrap:break-word;line-height:1.7;}
+.ur-highlight,.ur-memory{padding:.75rem .9rem;background:rgba(89,113,153,.08);border-left:3px solid #526c94;border-radius:4px;line-height:1.55;}
+.ur-checkpoint{border:1px solid #b5c5dd;border-radius:12px;padding:1rem 1.1rem;margin:1.4rem 0;background:rgba(97,141,191,.06);}
+.ur-checkpoint h3{margin:.5rem 0 1rem;font-size:1rem;}
+.ur-answer-options{display:grid;gap:.6rem;margin:1rem 0;}
+.ur-answer{width:100%;appearance:none;border:1px solid #aebcd1;border-radius:9px;background:var(--card-bg,transparent);color:inherit;padding:.75rem 1rem;font:inherit;font-size:.96rem;text-align:left;cursor:pointer;line-height:1.42;}
+.ur-answer:hover:not(:disabled){border-color:#416995;background:rgba(80,120,178,.08);}
+.ur-answer.is-correct{border:2px solid #258354;background:rgba(42,160,99,.08);}
+.ur-answer.is-wrong{border:2px solid #bf6238;background:rgba(210,110,53,.08);}
+.ur-feedback:not(:empty){margin-top:1rem;padding:.7rem;border-top:1px solid #bcc8d6;line-height:1.55;}
+.ur-feedback p{margin:.35rem 0 0;}
+.ur-table-scroll{overflow-x:auto;margin:1rem 0 1.8rem;border:1px solid var(--border,#cbd3dc);border-radius:10px;max-width:100%;}
+.ur-table{border-collapse:collapse;min-width:560px;width:100%;font-size:.89rem;line-height:1.55;}
+.ur-table th,.ur-table td{border:1px solid var(--border,#d9dfe6);text-align:left;vertical-align:top;padding:.75rem .8rem;}
+.ur-table th{font-weight:750;background:rgba(100,118,146,.12);}
+.ur-table tbody tr:nth-child(even){background:rgba(110,134,161,.035);}
+.ur-table td:first-child{font-weight:650;}
+.ur-figure{margin:1.5rem 0;text-align:center;padding:1rem;border:1px solid var(--border,#d5dae1);border-radius:12px;}
+.ur-figure img{width:min(100%,780px);height:auto;display:block;margin:auto;}
+.ur-figure figcaption{font-size:.8rem;color:var(--muted,#687383);padding:.55rem .3rem 0;line-height:1.5;}
+.ur-memory{margin:1.5rem 0;font-weight:650;}.ur-done{margin:1.5rem 0;}.ur-done-text{color:inherit;}
+.ur-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.35rem 0 1.8rem;align-items:center;}
+.ur-warning{border-left:4px solid #b47f2c;background:rgba(188,137,50,.1);padding:.9rem;line-height:1.6;}
+.ur-muted{font-size:.86rem;opacity:.78;line-height:1.5;}
+.ur-card,.ur-oral,.ur-practical{border:1px solid var(--border,#ced5dd);border-radius:14px;padding:1.15rem;margin:1.3rem 0;}
+.ur-card h2{font-size:1.32rem;line-height:1.48;}.ur-card-answer{font-size:1.08rem;line-height:1.65;border-left:3px solid #6783a9;padding:.6rem 1rem;}
+.ur-tabs{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;margin:1rem 0;}.ur-select{max-width:100%;font:inherit;padding:.7rem;border:1px solid #aebad0;border-radius:9px;color:inherit;background:var(--card-bg,transparent);}
+.ur-groupheading{padding:.6rem;margin:0;background:rgba(100,118,146,.11);font-size:.87rem;font-weight:700;}
+.ur-practical-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;}.ur-practical h2{font-size:1.18rem;line-height:1.35;}
+.ur-practice-details{margin:.8rem 0;border:1px solid var(--border,#d1d6de);border-radius:8px;padding:.65rem .75rem;line-height:1.58;}
+.ur-practice-details summary{cursor:pointer;font-weight:650;}.ur-practice-details li{margin:.4rem 0;}
+.ur-media-note{padding:.5rem;text-align:center;background:rgba(116,133,153,.04);}.ur-media-note img{display:block;width:min(100%,450px);max-height:310px;object-fit:contain;margin:auto;}
+.ur-practical-quiz{margin:1rem 0;padding:.65rem;background:rgba(97,141,191,.06);border-radius:9px;}.ur-practical-quiz h3{font-size:.99rem;}
+.ur-oral-answer{max-height:50vh;overflow-y:auto;border:1px solid var(--border,#d1d6de);padding:1rem;line-height:1.72;border-radius:9px;}
+.ur-checkbox{display:block;margin:.6rem 0;line-height:1.6;}.ur-checkbox input{width:18px;height:18px;vertical-align:middle;}
+.ur-self-check{margin:1.2rem 0;}.ur-focus{margin:1rem 0;}
+@media(max-width:730px){.ur-features,.ur-practical-list{grid-template-columns:1fr;}.ur-actions .ur-button{flex:1 1 44%;}.ur-reading{margin-left:0;margin-right:0;}.ur-checkpoint{padding:.85rem;}.ur-table{min-width:640px;}.ur-title{font-size:1.65rem;}}
+@media(prefers-reduced-motion:reduce){.ur-button{transition:none;}}

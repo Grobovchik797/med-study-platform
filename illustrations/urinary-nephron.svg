@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
+<title id="title">Нефрон: корковое и мозговое вещество</title><desc id="desc">Авторская схема почечного тельца, проксимального канальца, петли и собирательной трубки. Не микропрепарат.</desc>
+<rect width="900" height="540" rx="20" fill="#f8fafd"/><rect x="26" y="20" width="848" height="242" rx="12" fill="#f2e0d8"/><rect x="26" y="272" width="848" height="250" rx="12" fill="#dbe8f4"/>
+<text x="46" y="50" font-family="Arial,sans-serif" font-size="19" font-weight="bold" fill="#59473e">КОРКОВОЕ ВЕЩЕСТВО</text><text x="46" y="303" font-family="Arial,sans-serif" font-size="19" font-weight="bold" fill="#354f68">МОЗГОВОЕ ВЕЩЕСТВО</text>
+<circle cx="195" cy="170" r="64" fill="#fff" stroke="#bc6665" stroke-width="7"/><circle cx="195" cy="170" r="39" fill="none" stroke="#bd5c5c" stroke-width="13" stroke-dasharray="8 4"/>
+<path d="M250 167 C300 110,365 123,371 179 C377 222,293 213,323 165 C344 130,439 140,451 202 C460 257,425 309,445 360 L445 457 Q445 488 482 488 Q519 488 519 457 L519 321 C520 272,547 224,573 209 C610 189,612 149,634 165 C659 179,652 213,685 211 L717 211 L717 490" fill="none" stroke="#cb8e45" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M445 360 L445 457 Q445 488 482 488 Q519 488 519 457 L519 321" fill="none" stroke="#4382aa" stroke-width="12" stroke-linecap="round"/>
+<path d="M635 165 C650 177,644 200,685 211" fill="none" stroke="#6a8f5b" stroke-width="12" stroke-linecap="round"/>
+<path d="M716 210 L716 490" fill="none" stroke="#81a469" stroke-width="18" stroke-linecap="round"/>
+<path d="M36 133 C84 133,111 158,143 162" fill="none" stroke="#b65055" stroke-width="12"/><path d="M241 182 C265 192,274 233,273 253" fill="none" stroke="#ba6466" stroke-width="10"/>
+<g font-family="Arial,sans-serif" font-size="16" fill="#26384a"><text x="111" y="87">Почечное тельце</text><text x="300" y="103">Проксимальный каналец</text><text x="560" y="108">Дистальный каналец</text><text x="325" y="515">Петля Генле</text><text x="690" y="82">Собирательная</text><text x="690" y="102">трубочка</text><text x="45" y="341">В мозговом веществе</text><text x="45" y="365">прямые и тонкие отделы</text></g>
+<g fill="none" stroke="#546476" stroke-width="2"><path d="M195 92 L195 105"/><path d="M399 113 L400 158"/><path d="M635 115 L625 165"/><path d="M710 112 L716 198"/></g><text x="24" y="534" font-family="Arial,sans-serif" font-size="11" fill="#5a6573">Med Study · Авторская учебная схема · не реальный гистологический срез · не в масштабе</text>
+</svg>
